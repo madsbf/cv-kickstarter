@@ -1,0 +1,14 @@
+{
+"title": "Work in progress",
+"members": [ 
+{ "name": "Mads Bjerg Frandsen", 
+"study_number": "s082972"
+}, 
+{ "name": "Anders Emil Nielsen",
+"study_number": "s2345678"
+}
+],
+"git": "git@github.com:MadsFrandsen/PyCampus.git", 
+"description": "Work in progress",
+"modules": []
+}
