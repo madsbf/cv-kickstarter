@@ -1,14 +1,16 @@
 {
-"title": "Work in progress",
-"members": [ 
-{ "name": "Mads Bjerg Frandsen", 
-"study_number": "s082972"
-}, 
-{ "name": "Anders Emil Nielsen",
-"study_number": "s103457"
-}
-],
-"git": "git@github.com:MadsFrandsen/PyCampus.git", 
-"description": "Work in progress",
-"modules": []
+  "title": "Work in progress",
+  "members": [ 
+    {
+      "name": "Mads Bjerg Frandsen",
+      "study_number": "s082972"
+    }, 
+    {
+      "name": "Anders Emil Nielsen",
+      "study_number": "s103457"
+    }
+  ],
+  "git": "git@github.com:MadsFrandsen/PyCampus.git", 
+  "description": "Work in progress",
+  "modules": []
 }
