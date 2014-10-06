@@ -1,0 +1,21 @@
+<EducationProgrammes>
+  <EducationProgramme DisplayName="Bachelor (Softwaretek.)" Active="false">
+    <PassedEctsSum Exams="20" Credits="0" Total="20" />
+    <ExamResults>
+      <ExamResult CourseCode="42610" EctsGiven="true" EctsPoints="5" Grade="10" Period="Summer" Year="2013" Name="Ingeniørfagets videnskabsteori" />
+      <ExamResult CourseCode="02241" EctsGiven="true" EctsPoints="5" Grade="10" Period="Summer" Year="2013" Name="Robuste softwaresystemer" />
+      <ExamResult CourseCode="S02" EctsGiven="true" EctsPoints="5" Grade="BE" Period="Winter" Year="2012" Name="Programmering i Objective-C" />
+      <ExamResult CourseCode="02157" EctsGiven="true" EctsPoints="5" Grade="12" Period="Winter" Year="2012" Name="Funktionsprogrammering" />
+    </ExamResults>
+    <CreditResults />
+  </EducationProgramme>
+  <EducationProgramme DisplayName="Master (Informationtech.)" Active="true">
+    <PassedEctsSum Exams="15" Credits="0" Total="15" />
+    <ExamResults>
+      <ExamResult CourseCode="02110" EctsGiven="true" EctsPoints="5" Grade="10" Period="Winter" Year="2011" Name="Algoritmer og datastrukturer 2" />
+      <ExamResult CourseCode="01227" EctsGiven="true" EctsPoints="5" Grade="10" Period="Summer" Year="2011" Name="Grafteori" />
+      <ExamResult CourseCode="02266" EctsGiven="true" EctsPoints="5" Grade="12" Period="Winter" Year="2011" Name="User Experience Engineering" />
+    </ExamResults>
+    <CreditResults />
+  </EducationProgramme>
+</EducationProgrammes>
