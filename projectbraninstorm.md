@@ -1,6 +1,16 @@
 PyCampus:
 ==================
 
+Plan
+------------------
+- Bygge CampusNet API Client
+- Keyword analysis af kurser
+- LinkedIn søgning ud fra keywords med jobforslag
+- Web Frontend
+  - DjangoApp
+  - Deplyoment (GoogleApps/Heroku?)
+- Anbefaling af kurser ud fra keywords eller kursustilmeldinger (csv-fil)
+
 Data
 ------------------
 CampusNet Api:
