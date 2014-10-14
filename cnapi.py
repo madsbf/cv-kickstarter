@@ -10,8 +10,6 @@ class CampusNetApi:
         self.auth_token = auth_token
 
     def authenticate(self, password):
-        if self.auth_token is not None:
-            return None
         self.auth_token = self._get_auth_token(password)
 
     def is_authenticated(self):
