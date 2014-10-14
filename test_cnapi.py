@@ -61,7 +61,7 @@ def test_user_info_without_authorization():
     responses.add(
         responses.GET,
         'https://www.campusnet.dtu.dk/data/CurrentUser/UserInfo',
-        body=load_fixture('user_info_unauthorized.xml')
+        body=load_fixture('unauthorized_request.xml')
     )
     api = new_api()
     student = api.user_info()
@@ -78,3 +78,15 @@ def test_grades():
     api = new_api('21EF8196-ED05-4BAB-9081-44313ABD3D32')
     grades = api.grades()
     assert grades[1].course.title == u'Robuste softwaresystemer'
+
+
+@responses.activate
+def test_grades_without_authorization():
+    responses.add(
+        responses.GET,
+        'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
+        body=load_fixture('unauthorized_request.xml')
+    )
+    api = new_api()
+    grades = api.grades()
+    assert grades is None

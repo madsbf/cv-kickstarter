@@ -92,8 +92,11 @@ class UserGradesExtractor:
         courses_xml = xml_response.findall(
             "EducationProgramme/ExamResults/ExamResult"
         )
-        return [self._map_to_exam_results(course_xml.attrib)
-                for course_xml in courses_xml]
+        if self._is_response_ok(xml_response):
+            return [self._map_to_exam_results(course_xml.attrib)
+                    for course_xml in courses_xml]
+        else:
+            return None
 
     def _map_to_exam_results(self, course_xml):
         return ExamResult(
@@ -109,6 +112,9 @@ class UserGradesExtractor:
             course_xml["Name"],
             course_xml["CourseCode"]
         )
+
+    def _is_response_ok(self, xml_response):
+        return xml_response.tag[-5:] != 'Fault'
 
 
 class Authenticator:
