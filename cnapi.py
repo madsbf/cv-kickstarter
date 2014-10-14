@@ -1,6 +1,39 @@
 import requests
 import xml.etree.ElementTree
 
+"""Python client for the CampusNet API.
+
+This library is designed for having a nice interface for integrating with
+the CampusNet API. The library provides an interface for the network requests
+as well as objects for wrapping the data returned by the CampusNet API.
+
+For documentation of the Campusnet API, see:
+
+https://www.campusnet.dtu.dk/data/Documentation/CampusNet%20public%20API.pdf
+
+Example of usage:
+
+At first instantiate the api:
+
+    >>> app_name = 'MyCampusNetApp'
+    >>> app_token = 'sh2870272-2ush292-ji2u98s2-2h2821-jsw9j2ihs982'
+    >>> student_number = 's123456'
+
+    >>> api = cnapi.CampusNetApi(app_name, app_token, student_number)
+
+In order to fetch information, authenticate with the password of the user:
+
+    >>> api.authenticate('secret-password')
+
+To fetch the grades of the given user:
+
+    >>> grades = api.grades()
+
+To fetch the user infor of the given user:
+
+    >>> api.user_info()
+"""
+
 
 class CampusNetApi:
     def __init__(self, app_name, api_token, student_number, auth_token=None):
