@@ -14,6 +14,9 @@ class CampusNetApi:
             return None
         self.auth_token = self._get_auth_token(password)
 
+    def is_authenticated(self):
+        return self.auth_token is not None
+
     def grades(self):
         return UserGradesExtractor(self._client().get('Grades').text).grades()
 

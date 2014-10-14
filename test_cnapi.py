@@ -27,6 +27,7 @@ def test_authentication():
     api = new_api()
     api.authenticate('security')
     assert api.auth_token == '21EF8196-ED05-4BAB-9081-44313ABD3D32'
+    assert api.is_authenticated() is True
 
 
 @responses.activate
