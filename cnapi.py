@@ -80,6 +80,10 @@ class CampusNetApi:
 
 
 class UserClient:
+    """Network client for fetching information about the user
+    through the CampusNet API. This class knows about the relevant urls and
+    headers in order to perform the given request.
+    """
     def __init__(self, app_name, api_token, student_number, access_token):
         self.app_name = app_name
         self.api_token = api_token
@@ -87,6 +91,25 @@ class UserClient:
         self.access_token = access_token
 
     def get(self, path):
+        """Performs a GET request to fetch information about the given user
+        and includes the relevant headers for appname, token and language.
+
+        For example:
+
+            user_client = UserClient('MyApp', 'api-token-123', 's123', 'atoke')
+            user_client.get('Grades')
+
+        will perform a GET request to:
+
+            https://www.campusnet.dtu.dk/data/CurrentUser/Grades
+
+        with the headers:
+
+            X-appname: 'MyApp'
+            X-token: 'api-token-123'
+            accept-language: 'da-DK'
+            X-Include-services-and-relations: 'true'
+        """
         return requests.get(
             ("https://www.campusnet.dtu.dk/data/CurrentUser/%s" % path),
             headers=self._headers(),
