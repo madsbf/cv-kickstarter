@@ -133,9 +133,14 @@ class Authenticator:
         }
 
     def _extract_password_from_response_body(self, response_text):
-        return xml.etree.ElementTree.fromstring(
-            response_text
-        ).find('LimitedAccess').attrib['Password']
+        response_text_xml = xml.etree.ElementTree.fromstring(response_text)
+        if self._is_authenticated(response_text_xml):
+            return response_text_xml.find('LimitedAccess').attrib['Password']
+        else:
+            return None
+
+    def _is_authenticated(self, response_text_xml):
+        return response_text_xml.find('LimitedAccess') is not None
 
 
 class Student:

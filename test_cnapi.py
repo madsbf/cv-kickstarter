@@ -31,6 +31,18 @@ def test_authentication():
 
 
 @responses.activate
+def test_unauthorized():
+    responses.add(
+        responses.POST,
+        'https://auth.dtu.dk/dtu/mobilapp.jsp',
+        body=load_fixture('wrong_authentication.xml')
+    )
+    api = new_api()
+    api.authenticate('bad-password')
+    assert api.is_authenticated() is False
+
+
+@responses.activate
 def test_user_info():
     responses.add(
         responses.GET,
