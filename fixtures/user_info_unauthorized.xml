@@ -1,0 +1,11 @@
+<Fault xmlns="http://schemas.microsoft.com/ws/2005/05/envelope/none">
+  <Code>
+    <Value>Receiver</Value>
+    <Subcode>
+      <Value>NotAuthorized</Value>
+    </Subcode>
+  </Code>
+  <Reason>
+    <Text xml:lang="da-DK">Wrong username or password.</Text>
+  </Reason>
+</Fault>

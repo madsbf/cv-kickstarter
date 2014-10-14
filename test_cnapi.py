@@ -57,6 +57,18 @@ def test_user_info():
 
 
 @responses.activate
+def test_user_info_without_authorization():
+    responses.add(
+        responses.GET,
+        'https://www.campusnet.dtu.dk/data/CurrentUser/UserInfo',
+        body=load_fixture('user_info_unauthorized.xml')
+    )
+    api = new_api()
+    student = api.user_info()
+    assert student is None
+
+
+@responses.activate
 def test_grades():
     responses.add(
         responses.GET,

@@ -66,7 +66,10 @@ class UserInfoExtractor:
     def user(self):
         response_text = self.user_info_response_text.encode('utf-8')
         xml_response = xml.etree.ElementTree.fromstring(response_text)
-        return self._map_xml_to_student(xml_response.attrib)
+        if self._is_response_ok(xml_response):
+            return self._map_xml_to_student(xml_response.attrib)
+        else:
+            return None
 
     def _map_xml_to_student(self, student_info_xml):
         return Student(
@@ -74,6 +77,9 @@ class UserInfoExtractor:
             student_info_xml['FamilyName'],
             student_info_xml['Email']
         )
+
+    def _is_response_ok(self, xml_response):
+        return xml_response.tag[-5:] != 'Fault'
 
 
 class UserGradesExtractor:
