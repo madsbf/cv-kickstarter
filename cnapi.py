@@ -36,6 +36,12 @@ To fetch the user infor of the given user:
 
 
 class CampusNetApi:
+    """The interface class for the API
+
+    This class acts as the top level interface of the api and wraps the
+    behaviour needed for fetching relevant information from from the API.
+    """
+
     def __init__(self, app_name, api_token, student_number, auth_token=None):
         self.app_name = app_name
         self.api_token = api_token
@@ -43,15 +49,19 @@ class CampusNetApi:
         self.auth_token = auth_token
 
     def authenticate(self, password):
+        """Authenticates the given user by fetching an authentication token"""
         self.auth_token = self._get_auth_token(password)
 
     def is_authenticated(self):
+        """Returns a boolean indicating whether the user is authenticated"""
         return self.auth_token is not None
 
     def grades(self):
+        """Fetches the grades for the authenticated user"""
         return UserGradesExtractor(self._client().get('Grades').text).extract()
 
     def user_info(self):
+        """Fetches user infor for the authenticated user"""
         return UserInfoExtractor(self._client().get('UserInfo').text).extract()
 
     def _get_auth_token(self, password):
