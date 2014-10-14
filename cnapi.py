@@ -16,10 +16,10 @@ class CampusNetApi:
         return self.auth_token is not None
 
     def grades(self):
-        return UserGradesExtractor(self._client().get('Grades').text).grades()
+        return UserGradesExtractor(self._client().get('Grades').text).extract()
 
     def user_info(self):
-        return UserInfoExtractor(self._client().get('UserInfo').text).user()
+        return UserInfoExtractor(self._client().get('UserInfo').text).extract()
 
     def _get_auth_token(self, password):
         return Authenticator(self.app_name, self.api_token).auth_token(
@@ -59,44 +59,44 @@ class UserClient:
         }
 
 
-class UserInfoExtractor:
-    def __init__(self, user_info_response_text):
-        self.user_info_response_text = user_info_response_text
+class XmlInfoExtractor:
+    def __init__(self, response_text):
+        self.response_text = response_text
 
-    def user(self):
-        response_text = self.user_info_response_text.encode('utf-8')
+    def extract(self):
+        response_text = self.response_text.encode('utf-8')
         xml_response = xml.etree.ElementTree.fromstring(response_text)
         if self._is_response_ok(xml_response):
-            return self._map_xml_to_student(xml_response.attrib)
+            return self._extract_information(xml_response)
         else:
             return None
 
-    def _map_xml_to_student(self, student_info_xml):
-        return Student(
-            student_info_xml['GivenName'],
-            student_info_xml['FamilyName'],
-            student_info_xml['Email']
+    def _extract_information(self):
+        raise NotImplementedError(
+            'Xml Info Extractors need to implement _extract_information'
         )
 
     def _is_response_ok(self, xml_response):
         return xml_response.tag[-5:] != 'Fault'
 
 
-class UserGradesExtractor:
-    def __init__(self, grades_response_text):
-        self.grades_response_text = grades_response_text
+class UserInfoExtractor(XmlInfoExtractor):
+    def _extract_information(self, xml_response):
+        student_info_xml = xml_response.attrib
+        return Student(
+            student_info_xml['GivenName'],
+            student_info_xml['FamilyName'],
+            student_info_xml['Email']
+        )
 
-    def grades(self):
-        response_text = self.grades_response_text.encode('utf-8')
-        xml_response = xml.etree.ElementTree.fromstring(response_text)
+
+class UserGradesExtractor(XmlInfoExtractor):
+    def _extract_information(self, xml_response):
         courses_xml = xml_response.findall(
             "EducationProgramme/ExamResults/ExamResult"
         )
-        if self._is_response_ok(xml_response):
-            return [self._map_to_exam_results(course_xml.attrib)
-                    for course_xml in courses_xml]
-        else:
-            return None
+        return [self._map_to_exam_results(course_xml.attrib)
+                for course_xml in courses_xml]
 
     def _map_to_exam_results(self, course_xml):
         return ExamResult(
@@ -112,9 +112,6 @@ class UserGradesExtractor:
             course_xml["Name"],
             course_xml["CourseCode"]
         )
-
-    def _is_response_ok(self, xml_response):
-        return xml_response.tag[-5:] != 'Fault'
 
 
 class Authenticator:
