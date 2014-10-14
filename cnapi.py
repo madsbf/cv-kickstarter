@@ -125,7 +125,7 @@ class UserClient:
         }
 
 
-class XmlInfoExtractor:
+class AbstractXmlInfoExtractor:
     def __init__(self, response_text):
         self.response_text = response_text
 
@@ -146,7 +146,7 @@ class XmlInfoExtractor:
         return xml_response.tag[-5:] != 'Fault'
 
 
-class UserInfoExtractor(XmlInfoExtractor):
+class UserInfoExtractor(AbstractXmlInfoExtractor):
     def _extract_information(self, xml_response):
         student_info_xml = xml_response.attrib
         return Student(
@@ -156,7 +156,7 @@ class UserInfoExtractor(XmlInfoExtractor):
         )
 
 
-class UserGradesExtractor(XmlInfoExtractor):
+class UserGradesExtractor(AbstractXmlInfoExtractor):
     def _extract_information(self, xml_response):
         courses_xml = xml_response.findall(
             "EducationProgramme/ExamResults/ExamResult"
