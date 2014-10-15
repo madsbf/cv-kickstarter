@@ -195,8 +195,8 @@ class Authenticator:
 
     def _headers(self):
         return {
-            'appname': self.app_name,
-            'token': self.api_token
+            'X-appname': self.app_name,
+            'X-token': self.api_token
         }
 
     def _authentication_payload(self, username, password):
