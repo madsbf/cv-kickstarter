@@ -199,11 +199,26 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
 
 
 class Authenticator:
+    """Can authenticate a user based on a user name and a password by
+    requesting an auth token from the API.
+
+    Example usage:
+
+        >>> auth = Authenticator('MyApp', 'app-token-123')
+        >>> token = auth.auth_token('s1234', 'secretpass')
+    """
+
     def __init__(self, app_name, api_token):
         self.app_name = app_name
         self.api_token = api_token
 
     def auth_token(self, username, password):
+        """Fetches and returns an authentication token from CampusNet API.
+        The request is a POST request send the given app name, app token,
+        username and password.
+
+        If the authentication fails, it will return None.
+        """
         response = requests.post(
             'https://auth.dtu.dk/dtu/mobilapp.jsp',
             headers=self._headers(),
