@@ -1,0 +1,254 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module cnapi</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>cnapi</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/anderslime/Development/PyCampus/cnapi.py">/Users/anderslime/Development/PyCampus/cnapi.py</a></font></td></tr></table>
+    <p><tt>Python&nbsp;client&nbsp;for&nbsp;the&nbsp;CampusNet&nbsp;API.<br>
+&nbsp;<br>
+This&nbsp;library&nbsp;is&nbsp;designed&nbsp;for&nbsp;having&nbsp;a&nbsp;nice&nbsp;interface&nbsp;for&nbsp;integrating&nbsp;with<br>
+the&nbsp;CampusNet&nbsp;API.&nbsp;The&nbsp;library&nbsp;provides&nbsp;an&nbsp;interface&nbsp;for&nbsp;the&nbsp;network&nbsp;requests<br>
+as&nbsp;well&nbsp;as&nbsp;objects&nbsp;for&nbsp;wrapping&nbsp;the&nbsp;data&nbsp;returned&nbsp;by&nbsp;the&nbsp;CampusNet&nbsp;API.<br>
+&nbsp;<br>
+For&nbsp;documentation&nbsp;of&nbsp;the&nbsp;Campusnet&nbsp;API,&nbsp;see:<br>
+&nbsp;<br>
+https://www.campusnet.dtu.dk/data/Documentation/CampusNet%20public%20API.pdf<br>
+&nbsp;<br>
+Example&nbsp;of&nbsp;usage:<br>
+&nbsp;<br>
+At&nbsp;first&nbsp;instantiate&nbsp;the&nbsp;api:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;app_name&nbsp;=&nbsp;'MyCampusNetApp'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;app_token&nbsp;=&nbsp;'sh2870272-2ush292-ji2u98s2-2h2821-jsw9j2ihs982'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;student_number&nbsp;=&nbsp;'s123456'<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;api&nbsp;=&nbsp;cnapi.<a href="#CampusNetApi">CampusNetApi</a>(app_name,&nbsp;app_token,&nbsp;student_number)<br>
+&nbsp;<br>
+In&nbsp;order&nbsp;to&nbsp;fetch&nbsp;information,&nbsp;authenticate&nbsp;with&nbsp;the&nbsp;password&nbsp;of&nbsp;the&nbsp;user:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;api.authenticate('secret-password')<br>
+&nbsp;<br>
+To&nbsp;fetch&nbsp;the&nbsp;grades&nbsp;of&nbsp;the&nbsp;given&nbsp;user:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;grades&nbsp;=&nbsp;api.grades()<br>
+&nbsp;<br>
+To&nbsp;fetch&nbsp;the&nbsp;user&nbsp;infor&nbsp;of&nbsp;the&nbsp;given&nbsp;user:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;api.user_info()</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="requests.html">requests</a><br>
+</td><td width="25%" valign=top><a href="xml.html">xml</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="cnapi.html#AbstractXmlInfoExtractor">AbstractXmlInfoExtractor</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="cnapi.html#UserGradesExtractor">UserGradesExtractor</a>
+</font></dt><dt><font face="helvetica, arial"><a href="cnapi.html#UserInfoExtractor">UserInfoExtractor</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="cnapi.html#Authenticator">Authenticator</a>
+</font></dt><dt><font face="helvetica, arial"><a href="cnapi.html#CampusNetApi">CampusNetApi</a>
+</font></dt><dt><font face="helvetica, arial"><a href="cnapi.html#Course">Course</a>
+</font></dt><dt><font face="helvetica, arial"><a href="cnapi.html#ExamResult">ExamResult</a>
+</font></dt><dt><font face="helvetica, arial"><a href="cnapi.html#Student">Student</a>
+</font></dt><dt><font face="helvetica, arial"><a href="cnapi.html#UserClient">UserClient</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AbstractXmlInfoExtractor">class <strong>AbstractXmlInfoExtractor</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;abstract&nbsp;class&nbsp;for&nbsp;classes&nbsp;that&nbsp;extract&nbsp;information&nbsp;from&nbsp;the&nbsp;xml<br>
+returned&nbsp;by&nbsp;the&nbsp;CampusNet&nbsp;API.<br>
+&nbsp;<br>
+The&nbsp;inheriting&nbsp;class&nbsp;needs&nbsp;to&nbsp;implement:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_extract_information<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AbstractXmlInfoExtractor-__init__"><strong>__init__</strong></a>(self, response_text)</dt></dl>
+
+<dl><dt><a name="AbstractXmlInfoExtractor-extract"><strong>extract</strong></a>(self)</dt><dd><tt>Extract&nbsp;the&nbsp;information&nbsp;from&nbsp;the&nbsp;given&nbsp;xml<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;structure&nbsp;given&nbsp;by&nbsp;the&nbsp;child&nbsp;class&nbsp;implementing<br>
+'_extract_information'.<br>
+&nbsp;<br>
+Returns&nbsp;None&nbsp;if&nbsp;the&nbsp;CampusNet&nbsp;API&nbsp;returns&nbsp;a&nbsp;Fault</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Authenticator">class <strong>Authenticator</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Can&nbsp;authenticate&nbsp;a&nbsp;user&nbsp;based&nbsp;on&nbsp;a&nbsp;user&nbsp;name&nbsp;and&nbsp;a&nbsp;password&nbsp;by<br>
+requesting&nbsp;an&nbsp;auth&nbsp;token&nbsp;from&nbsp;the&nbsp;API.<br>
+&nbsp;<br>
+Example&nbsp;usage:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;auth&nbsp;=&nbsp;<a href="#Authenticator">Authenticator</a>('MyApp',&nbsp;'app-token-123')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;token&nbsp;=&nbsp;auth.<a href="#Authenticator-auth_token">auth_token</a>('s1234',&nbsp;'secretpass')<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Authenticator-__init__"><strong>__init__</strong></a>(self, app_name, api_token)</dt></dl>
+
+<dl><dt><a name="Authenticator-auth_token"><strong>auth_token</strong></a>(self, username, password)</dt><dd><tt>Fetches&nbsp;and&nbsp;returns&nbsp;an&nbsp;authentication&nbsp;token&nbsp;from&nbsp;CampusNet&nbsp;API.<br>
+The&nbsp;request&nbsp;is&nbsp;a&nbsp;POST&nbsp;request&nbsp;send&nbsp;the&nbsp;given&nbsp;app&nbsp;name,&nbsp;app&nbsp;token,<br>
+username&nbsp;and&nbsp;password.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;authentication&nbsp;fails,&nbsp;it&nbsp;will&nbsp;return&nbsp;None.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CampusNetApi">class <strong>CampusNetApi</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;interface&nbsp;class&nbsp;for&nbsp;the&nbsp;API<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;acts&nbsp;as&nbsp;the&nbsp;top&nbsp;level&nbsp;interface&nbsp;of&nbsp;the&nbsp;api&nbsp;and&nbsp;wraps&nbsp;the<br>
+behaviour&nbsp;needed&nbsp;for&nbsp;fetching&nbsp;relevant&nbsp;information&nbsp;from&nbsp;from&nbsp;the&nbsp;API.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CampusNetApi-__init__"><strong>__init__</strong></a>(self, app_name, api_token, student_number, auth_token<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="CampusNetApi-authenticate"><strong>authenticate</strong></a>(self, password)</dt><dd><tt>Authenticates&nbsp;the&nbsp;given&nbsp;user&nbsp;by&nbsp;fetching&nbsp;an&nbsp;authentication&nbsp;token</tt></dd></dl>
+
+<dl><dt><a name="CampusNetApi-grades"><strong>grades</strong></a>(self)</dt><dd><tt>Fetches&nbsp;the&nbsp;grades&nbsp;for&nbsp;the&nbsp;authenticated&nbsp;user</tt></dd></dl>
+
+<dl><dt><a name="CampusNetApi-is_authenticated"><strong>is_authenticated</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;boolean&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;user&nbsp;is&nbsp;authenticated</tt></dd></dl>
+
+<dl><dt><a name="CampusNetApi-user_info"><strong>user_info</strong></a>(self)</dt><dd><tt>Fetches&nbsp;user&nbsp;infor&nbsp;for&nbsp;the&nbsp;authenticated&nbsp;user</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Course">class <strong>Course</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Structured&nbsp;class&nbsp;for&nbsp;courses&nbsp;from&nbsp;CampusNet&nbsp;API<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Course-__init__"><strong>__init__</strong></a>(self, title, course_number)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ExamResult">class <strong>ExamResult</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Structured&nbsp;class&nbsp;for&nbsp;exam&nbsp;results&nbsp;from&nbsp;CampusNet&nbsp;API<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ExamResult-__init__"><strong>__init__</strong></a>(self, course, ects_points, grade, period, year)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Student">class <strong>Student</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Structured&nbsp;class&nbsp;for&nbsp;user&nbsp;info&nbsp;from&nbsp;CampusNet&nbsp;API<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Student-__init__"><strong>__init__</strong></a>(self, first_name, last_name, email)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UserClient">class <strong>UserClient</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Network&nbsp;client&nbsp;for&nbsp;fetching&nbsp;information&nbsp;about&nbsp;the&nbsp;user<br>
+through&nbsp;the&nbsp;CampusNet&nbsp;API.&nbsp;This&nbsp;class&nbsp;knows&nbsp;about&nbsp;the&nbsp;relevant&nbsp;urls&nbsp;and<br>
+headers&nbsp;in&nbsp;order&nbsp;to&nbsp;perform&nbsp;the&nbsp;given&nbsp;request.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="UserClient-__init__"><strong>__init__</strong></a>(self, app_name, api_token, student_number, access_token)</dt></dl>
+
+<dl><dt><a name="UserClient-get"><strong>get</strong></a>(self, path)</dt><dd><tt>Performs&nbsp;a&nbsp;GET&nbsp;request&nbsp;to&nbsp;fetch&nbsp;information&nbsp;about&nbsp;the&nbsp;given&nbsp;user<br>
+and&nbsp;includes&nbsp;the&nbsp;relevant&nbsp;headers&nbsp;for&nbsp;appname,&nbsp;token&nbsp;and&nbsp;language.<br>
+&nbsp;<br>
+For&nbsp;example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;user_client&nbsp;=&nbsp;<a href="#UserClient">UserClient</a>('MyApp',&nbsp;'api-token-123',&nbsp;'s123',&nbsp;'atoke')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;user_client.<a href="#UserClient-get">get</a>('Grades')<br>
+&nbsp;<br>
+will&nbsp;perform&nbsp;a&nbsp;GET&nbsp;request&nbsp;to:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://www.campusnet.dtu.dk/data/CurrentUser/Grades<br>
+&nbsp;<br>
+with&nbsp;the&nbsp;headers:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;X-appname:&nbsp;'MyApp'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;X-token:&nbsp;'api-token-123'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;accept-language:&nbsp;'da-DK'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;X-Include-services-and-relations:&nbsp;'true'</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UserGradesExtractor">class <strong>UserGradesExtractor</strong></a>(<a href="cnapi.html#AbstractXmlInfoExtractor">AbstractXmlInfoExtractor</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Is&nbsp;able&nbsp;to&nbsp;extract&nbsp;the&nbsp;grades&nbsp;of&nbsp;the&nbsp;given&nbsp;user<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods inherited from <a href="cnapi.html#AbstractXmlInfoExtractor">AbstractXmlInfoExtractor</a>:<br>
+<dl><dt><a name="UserGradesExtractor-__init__"><strong>__init__</strong></a>(self, response_text)</dt></dl>
+
+<dl><dt><a name="UserGradesExtractor-extract"><strong>extract</strong></a>(self)</dt><dd><tt>Extract&nbsp;the&nbsp;information&nbsp;from&nbsp;the&nbsp;given&nbsp;xml<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;structure&nbsp;given&nbsp;by&nbsp;the&nbsp;child&nbsp;class&nbsp;implementing<br>
+'_extract_information'.<br>
+&nbsp;<br>
+Returns&nbsp;None&nbsp;if&nbsp;the&nbsp;CampusNet&nbsp;API&nbsp;returns&nbsp;a&nbsp;Fault</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UserInfoExtractor">class <strong>UserInfoExtractor</strong></a>(<a href="cnapi.html#AbstractXmlInfoExtractor">AbstractXmlInfoExtractor</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Is&nbsp;able&nbsp;to&nbsp;extract&nbsp;user&nbsp;info&nbsp;based&nbsp;on&nbsp;xml&nbsp;describe&nbsp;the&nbsp;user<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods inherited from <a href="cnapi.html#AbstractXmlInfoExtractor">AbstractXmlInfoExtractor</a>:<br>
+<dl><dt><a name="UserInfoExtractor-__init__"><strong>__init__</strong></a>(self, response_text)</dt></dl>
+
+<dl><dt><a name="UserInfoExtractor-extract"><strong>extract</strong></a>(self)</dt><dd><tt>Extract&nbsp;the&nbsp;information&nbsp;from&nbsp;the&nbsp;given&nbsp;xml<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;structure&nbsp;given&nbsp;by&nbsp;the&nbsp;child&nbsp;class&nbsp;implementing<br>
+'_extract_information'.<br>
+&nbsp;<br>
+Returns&nbsp;None&nbsp;if&nbsp;the&nbsp;CampusNet&nbsp;API&nbsp;returns&nbsp;a&nbsp;Fault</tt></dd></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>
