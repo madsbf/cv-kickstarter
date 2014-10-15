@@ -250,6 +250,8 @@ class Authenticator:
 
 
 class Student:
+    """Structured class for user info from CampusNet API"""
+
     def __init__(self, first_name, last_name, email):
         self.first_name = first_name
         self.last_name = last_name
@@ -257,6 +259,8 @@ class Student:
 
 
 class ExamResult:
+    """Structured class for exam results from CampusNet API"""
+
     def __init__(self, course, ects_points, grade, period, year):
         self.course = course
         self.ects_points = ects_points
@@ -266,6 +270,8 @@ class ExamResult:
 
 
 class Course:
+    """Structured class for courses from CampusNet API"""
+
     def __init__(self, title, course_number):
         self.title = title
         self.course_number = course_number
