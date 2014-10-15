@@ -126,10 +126,24 @@ class UserClient:
 
 
 class AbstractXmlInfoExtractor:
+    """An abstract class for classes that extract information from the xml
+    returned by the CampusNet API.
+
+    The inheriting class needs to implement:
+
+        _extract_information
+    """
     def __init__(self, response_text):
         self.response_text = response_text
 
     def extract(self):
+        """Extract the information from the given xml
+
+        Returns a structure given by the child class implementing
+        '_extract_information'.
+
+        Returns None if the CampusNet API returns a Fault
+        """
         response_text = self.response_text.encode('utf-8')
         xml_response = xml.etree.ElementTree.fromstring(response_text)
         if self._is_response_ok(xml_response):
@@ -147,6 +161,8 @@ class AbstractXmlInfoExtractor:
 
 
 class UserInfoExtractor(AbstractXmlInfoExtractor):
+    """Is able to extract user info based on xml describe the user"""
+
     def _extract_information(self, xml_response):
         student_info_xml = xml_response.attrib
         return Student(
@@ -157,6 +173,8 @@ class UserInfoExtractor(AbstractXmlInfoExtractor):
 
 
 class UserGradesExtractor(AbstractXmlInfoExtractor):
+    """Is able to extract the grades of the given user"""
+
     def _extract_information(self, xml_response):
         courses_xml = xml_response.findall(
             "EducationProgramme/ExamResults/ExamResult"
