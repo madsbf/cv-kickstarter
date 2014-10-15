@@ -1,6 +1,3 @@
-import requests
-import xml.etree.ElementTree
-
 """Python client for the CampusNet API.
 
 This library is designed for having a nice interface for integrating with
@@ -33,6 +30,9 @@ To fetch the user infor of the given user:
 
     >>> api.user_info()
 """
+
+import requests
+import xml.etree.ElementTree
 
 
 class CampusNetApi:
