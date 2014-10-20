@@ -36,11 +36,13 @@ class CourseExtractor(object):
         ).text
 
     def _course_objectives(self):
-        course_objectives_xml = self.course_xml.findall(
+        return [objective_xml.attrib['Txt']
+                for objective_xml in self._course_objectives_xml()]
+
+    def _course_objectives_xml(self):
+        return self.course_xml.findall(
             "DTU_ObjectiveKeyword/Txt[@Lang='da-DK']"
         )
-        return [objective_xml.attrib['Txt']
-                for objective_xml in course_objectives_xml]
 
 
 class Course(object):
