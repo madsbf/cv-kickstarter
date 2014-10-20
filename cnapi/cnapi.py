@@ -185,10 +185,10 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
     def _map_to_exam_results(self, course_xml):
         return ExamResult(
             self._map_to_course(course_xml),
-            course_xml['EctsPoints'],
-            course_xml['Grade'],
+            float(course_xml['EctsPoints']),
+            self._parse_grade(course_xml['Grade']),
             course_xml['Period'],
-            course_xml['Year']
+            int(course_xml['Year'])
         )
 
     def _map_to_course(self, course_xml):
@@ -196,6 +196,12 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
             course_xml["Name"],
             course_xml["CourseCode"]
         )
+
+    def _parse_grade(self, grade):
+        try:
+            return int(grade)
+        except ValueError:
+            return grade
 
 
 class Authenticator:

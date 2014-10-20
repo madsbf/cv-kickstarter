@@ -88,7 +88,12 @@ def test_grades_objects_are_returned_when_authenticated():
     )
     api = new_api('21EF8196-ED05-4BAB-9081-44313ABD3D32')
     grades = api.grades()
-    assert grades[1].course.title == u'Robuste softwaresystemer'
+    first_grade = grades[1]
+    assert first_grade.ects_points == 5.0
+    assert first_grade.grade == 10
+    assert first_grade.year == 2013
+    assert first_grade.course.title == u'Robuste softwaresystemer'
+    assert first_grade.course.course_number == u'02241'
 
 
 @responses.activate
