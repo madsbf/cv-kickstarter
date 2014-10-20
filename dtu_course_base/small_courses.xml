@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="">
+  <Courses int="6040" CourseCatalogVersion="2014/2015">
+    <FullXML>
+      <Course CourseCode="01005" University="dtu" LastUpdated="2014-08-29+02:00" Volume="2014/2015">
+        <Departments>
+          <Main_Dep UID="1" University="DTU" Resources="100" KVL_Resources="100" />
+        </Departments>
+        <Study_Board Study_BoardKey="1" />
+        <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+        <Point PointType="ECTS">17.5</Point>
+        <Title Lang="da-DK" Title="Matematik 1" />
+        <Title Lang="en-GB" Title="Advanced Engineering Mathematics 1" />
+        <Description_Language Lang="da-DK" />
+        <Description_Language Lang="en-GB" />
+        <Teaching_Language LangCode="da-DK" />
+        <Open_University TaughtUnderOpenUniversity="true" />
+        <Course_Duration>
+          <Exact>P12M</Exact>
+        </Course_Duration>
+        <Location Key="Campus_Lyngby" />
+        <Class_Schedule SortID="1">
+          <Schedule_Txt Lang="da-DK" Txt="Kurset udbydes på tre forskellige skemaplaceringer afhængig af bachelorlinje. Skema A: E1A, E2 og F1A, F2 Skema B: E3A, E4 og F3A, F4 Skema C: E5, E3B og F5, F3B" />
+          <Schedule_Txt Lang="en-GB" Txt="Course is given in three different schedules dependent on bachelorline.&#xD;&#xA;Scheme A: E1A, E2 og F1A, F2 Scheme B: E3A, E4 og F3A, F4 Scheme C: E5, E3B og F5, F3B" />
+          <Schedule ScheduleKey="E" SortID="0" />
+          <Schedule ScheduleKey="F" SortID="0" />
+        </Class_Schedule>
+        <Course_Responsible PersonKey="9644" FUniversity="DTU" SortID="0" DepartmentKey="" Show="true" />
+        <Course_Responsible PersonKey="1968" FUniversity="DTU" SortID="1" DepartmentKey="" Show="true" />
+        <Examination ExaminationSortID="0" Show="true">
+          <Evaluation EvaluationKey="GLOB_EXTERN" />
+          <Assessment>
+            <Pre_Def_List AssessmentKey="Written_Exam_And_Reports" Show="true" />
+            <Supp_Txt Lang="da-DK" Txt="Evalueringen består af fire delelementer med lige stor vægt:&#xD;&#xA;1) 8 sæt hjemmeopgaver&#xD;&#xA;2) En skr. prøve i to dele, en time efter 4. uge og to timer i december/januar.&#xD;&#xA;3) En 3-ugers gruppe-projektopgave.&#xD;&#xA;4) En 2-timers skr. prøve i maj." Show="true" />
+            <Supp_Txt Lang="en-GB" Txt="We refer to the following URL for a precise description of the evaluation of the course:&#xD;&#xA;http://01005.mat.dtu.dk/2010/kursusinformation/eksamensregler/" Show="true" />
+          </Assessment>
+          <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+          <Aid AidKey="ALL_AID" AidSortID="1" />
+          <Date_Of_Exam SortID="1" Show="true">
+            <Schedule ScheduleKey="DTU_Special day" />
+            <Schedule ScheduleKey="DTU_Special day" />
+          </Date_Of_Exam>
+          <Duration Lang="da-DK" Txt="3 timer / 2 timer" />
+          <Duration Lang="en-GB" Txt="3 hours / 2 hours " />
+        </Examination>
+        <Sign_Up>
+          <Place>
+            <Pre_Def_List PlaceKey="GLOB_CAMPUSNET" />
+          </Place>
+        </Sign_Up>
+        <Txt Lang="da-DK">
+          <Contents>Lineære ligninger og lineære afbildninger. Matrixalgebra. Vektorrum.  Egenværdiproblemet. Symmetriske og ortogonale matricer. Komplekse tal. Lineære differentialligninger. Elementære funktioner. Funktioner af én og flere reelle variable: linearisering og partielle afledede,Taylors formel og kvadratiske former, ekstrema og niveaukurver, flade-, rum-, og kurve-integral. Vektorfelter, Gauss' og Stokes' sætning.
+Anvendelse af MAPLE i de ovennævnte emner. Anvendelser i ingeniørvidenskaberne.</Contents>
+          <Teaching_And_Learning_Methods>Pr. uge: 2 forelæsninger, 5 timers  gruppearbejde/klasseundervisning og 2 timers skemalagt selvstudium. Derudover projektarbejde i nogle uger.</Teaching_And_Learning_Methods>
+          <Course_Objectives>Kursets emner udgør det matematiske grundlag for en lang række tekniske fag og er samtidig basis for videregående studier inden for matematik og anvendt matematik. Et gennemgående tema er linearitet. Målet er at sætte de studerende i stand til at benytte basale matematiske værktøjer, både teoretisk og i anvendelsesorienterede projekter. Begge aspekter understøttes ved brug af moderne edb-programmer.</Course_Objectives>
+          <Remark>Kurset er et to-semesterkursus for bachelor-studerende, som er opdelt i skemagrupper (forelæsningshold) således:
+Skema A for linjerne Bioteknologi, Design og Innovation, Kemi &amp; Teknologi, Medicin &amp; Teknologi, Teknisk Biomedicin og Vand, Bioressourcer og Miljømanagement .
+Skema B for linjerne Byggeteknologi, Bygningsdesign, Geofysik &amp; rumteknologi, Produktion &amp; Konstruktion og Fysik &amp; Nanoteknologi.
+Skema C for linjerne Elektroteknologi, Matematik &amp; Teknologi, Netværksteknologi og IT, Softwareteknologi og Strategisk Analyse og Systemdesign.</Remark>
+        </Txt>
+        <Txt Lang="en-GB">
+          <Contents>Linear equations and linear maps. Matrix algebra. Vektor spaces. Eigenvalue problems. Symmetric and orthogonal matrices. Complex numbers. Linear differential equations. Standard functions.
+Functions of one and several real variables: linear approximations and partial derivatives, Taylor expansions and quadratic forms, extrema and level curves, line, surface and volume integrals. Vector fields, Gauss' and Stokes' theorem.
+Applications of MAPLE in the above areas. Examples of applications in the engineering sciences.</Contents>
+          <Teaching_And_Learning_Methods>Pr.week: 2 lectures, 5h tutorials. Projectwork in some weeks.</Teaching_And_Learning_Methods>
+          <Course_Objectives>The course content is the mathematical basis for a broad range of technical fields and also provides a starting point for further studies in mathematics and applied mathematics. The dominating theme of the course is linearity. The goal is to give students the ability to employ fundamental tools of mathematics in theoretical studies as well as in applied projects. The use of modern computer software supports both of these aspects.</Course_Objectives>
+          <Remark>The course is a two-semester course for students following one of the preliminary four-semester programs:
+Scheme A for the programs Chemical Engineering, Biotechnology, Design and Innovation, Environmental Engineering, Medicine &amp; Technology and Human Life Science Engineering.
+Scheme B for the programs Architectural Engineering, Civil Engineering, Earth and Space Physics and Engineering, Mechanical Engineering and Physics and Nanotechnology.
+Scheme C for the programs Electrical Engineering, Mathematics and Technology, Network Technology and IT, Software Technology and Strategic Analysis and Systems Design.</Remark>
+        </Txt>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Benytte den algebraiske og den geometriske repræsentation af de komplekse tal samt den komplekse eksponentialfunktion." />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Benytte matrixregning og Gausselimination i forbindelse med løsning af lineære ligningssystemer, og" />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Analysere og forklare løsningsmængder i vektorrum ud fra struktursætningen." />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt=" Kunne udføre simple beregninger med de elementære funktioner, herunder deres inverse." />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Benytte de forskellige varianter af Taylors formel til approksimationer og grænseværdibestemmelse." />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Kunne løse simple første og anden ordens differentialligninger og differentialligningssytemer." />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Beregne ekstrema for funktioner af flere variable, herunder på områder med rand." />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Kunne parametrisere simple kurver, flader og  rumlige områder, samt beregne simple kurve-, flade- og rumintegraler." />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Kunne anvende Gauss' og Stokes sætninger i simple sammenhænge." />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Kunne anvende matematisk terminologi og ræsonnement i forbindelse med mundtlig og skriftlig fremstilling. " />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Organisere samarbejdet i en projektgruppe omkring  matematiske begreber og metoder i en større anvendelsesmæssig sammenhæng." />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Benytte symbolske software-værktøjer, for tiden Maple, til løsning og grafisk illustration af matematiske problemer." />
+          <Txt Lang="en-GB" Txt="See the Danish version" />
+        </DTU_ObjectiveKeyword>
+        <Course_Home_Page Lang="da-DK" URL="http://01005.mat.dtu.dk/" />
+        <DTU>
+          <GroenDyst ParticipationKey="dtu_groendyst_contact" />
+          <OpenUniversity>
+            <SubTitle>Lineær algebra, differentiable funktioner og integralregning i flere variable</SubTitle>
+            <AreaOfExpertise AreaOfExpertiseKey="14" />
+          </OpenUniversity>
+        </DTU>
+        <No_Credit_Points_With CourseCode="01000 / 01001 / 01002 / 01003 / 01010 / 01011 / 01012 / 01013 / 01014 / 01020 / 01021 / 01007" />
+        <Record_Info>
+          <Action Action="Accepted" PersonKey="41322" PersonUniversity="dtu" Date="2014-09-17" Time="10:43:00.417" />
+        </Record_Info>
+      </Course>
+    </FullXML>
+  </Courses>
+  <Courses int="6010" CourseCatalogVersion="2014/2015">
+    <FullXML>
+      <Course CourseCode="01007" University="dtu" LastUpdated="2014-08-21+02:00" Volume="2014/2015">
+        <Departments>
+          <Main_Dep UID="1" University="DTU" Resources="100" KVL_Resources="100" />
+        </Departments>
+        <Study_Board Study_BoardKey="1" />
+        <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+        <Point PointType="ECTS">10</Point>
+        <Title Lang="da-DK" Title="Lineære og differentiable matematiske modeller" />
+        <Title Lang="en-GB" Title="Linear and Differentiable Mathematical Models" />
+        <Description_Language Lang="da-DK" />
+        <Description_Language Lang="en-GB" />
+        <Teaching_Language LangCode="da-DK" />
+        <Open_University TaughtUnderOpenUniversity="true" />
+        <Course_Duration>
+          <Exact>P12M</Exact>
+        </Course_Duration>
+        <Location Key="Campus_Lyngby" />
+        <Class_Schedule SortID="1">
+          <Schedule ScheduleKey="E2A" SortID="0" />
+        </Class_Schedule>
+        <Course_Responsible PersonKey="9644" FUniversity="DTU" SortID="0" DepartmentKey="" Show="true" />
+        <Course_Responsible PersonKey="7138" FUniversity="DTU" SortID="1" DepartmentKey="" Show="true" />
+        <Examination ExaminationSortID="0" Show="true">
+          <Evaluation EvaluationKey="GLOB_INTERN" />
+          <Assessment>
+            <Pre_Def_List AssessmentKey="Written_Exam_And_Exercises" Show="true" />
+            <Supp_Txt Lang="da-DK" Txt="1. En 2-timers skriftlig prøve i maj/juni.&#xD;&#xA;2. En 2-timers skriftlig prøve i december.&#xD;&#xA;3. 6 hjemmeopgavesæt.&#xD;&#xA;Karakteren for kurset gives på baggrund af en helhedsvurdering af de tre elementer, der afspejler om den studerende alsidigt opfylder kursusmål." Show="true" />
+            <Supp_Txt Lang="en-GB" Txt="1. A 2 hour written exam in May/June.&#xD;&#xA;2. A 2 hour written exam in December.&#xD;&#xA;3. 6 sets of homework problems.&#xD;&#xA;The 3 elements are graded as a whole with respect to the goals of the course." Show="true" />
+          </Assessment>
+          <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+          <Aid AidKey="ALL_AID" AidSortID="1" />
+          <Date_Of_Exam SortID="1" Show="true">
+            <Date_of_Exam_Txt Lang="en-GB" Txt="Exam in F2A and E2A" />
+            <Date_of_Exam_Txt Lang="da-DK" Txt="Eksamen ligger både i F2A og E2A" />
+            <Schedule ScheduleKey="F2A" />
+            <Schedule ScheduleKey="E2A" />
+          </Date_Of_Exam>
+          <Duration Lang="da-DK" Txt="2 timer" />
+          <Duration Lang="en-GB" Txt="2 hours" />
+        </Examination>
+        <Sign_Up>
+          <Place>
+            <Pre_Def_List PlaceKey="GLOB_CAMPUSNET" />
+          </Place>
+        </Sign_Up>
+        <Txt Lang="da-DK">
+          <Contents>Systemer af lineære ligninger. Matrixalgebra. Vektorrum. Lineære afbildninger. Egenværdiproblemet. Symmetriske og ortogonale matricer. Kvadratisk form. De komplekse tals legeme, kompleks eksponentialfunktion. Lineære differentialligninger og systemer. Elementære funktioner.  Kontinuerte og differentiable funktioner af én og flere reelle variable. Partielle afledede. Gradient. Taylors formel for funktioner af én eller flere variable. Ekstremumsbestemmelse. Grænseværdibestemmelse.  Brug af computeralgebraprogrammet Maple er en integreret del af kurset.</Contents>
+          <Teaching_And_Learning_Methods>Forelæsninger, øvelser og hjemmeopgaver.</Teaching_And_Learning_Methods>
+          <Course_Objectives>At forsyne deltagerne med de grundlæggende redskaber til opbygning og analyse af matematiske modeller, og skabe grundlag for videregående studier inden for matematik og anvendt matematik. Det gennemgående tema er linearitet.</Course_Objectives>
+          <DTU_Remark>Kurset er under udfasning. Denne version af kurset (startet februar 2014 og afsluttes december 2014) er den den sidste version af kurset.</DTU_Remark>
+          <Remark>Kurset begynder i foråret.
+Kurset er en integreret del af Design &amp; Innovation og er forbeholdt studerende på denne bachelorlinje.</Remark>
+        </Txt>
+        <Txt Lang="en-GB">
+          <Contents>Linear equations and linear mappings. Matrix algebra. Vector spaces. Eigenvalue problems. Symmetric and orthogonal matrices. Quadratic forms. The field of Complex numbers. Linear differential equations and systems. Elementary functions.
+Functions of one and several variables: Linear approximations and partial derivatives, Taylor expansions. Extrema.
+The computer algebra program Maple is an integrated part of the course.</Contents>
+          <Teaching_And_Learning_Methods>Lectures, exercises, and  home work.</Teaching_And_Learning_Methods>
+          <Course_Objectives>To provide the students with insight into the fundamental tools for constructing and analyzing mathematical models, and to provide a basis for  further studies in (applied) mathematics. The common theme is linearity.</Course_Objectives>
+          <DTU_Remark>This version of the course (running from January 2014 to December 2014) is the last version of the course.</DTU_Remark>
+          <Remark>The course begins in the spring semester. The course is an integral part of the Design and Innovation bachelor line of study and can only be taken by these students.</Remark>
+        </Txt>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Benytte den algebraiske og den geometriske repræsentation af de komplekse tals legeme, samt den komplekse eksponentialfunktion." />
+          <Txt Lang="en-GB" Txt="Apply the algebraic and geometric representation of the field of complex numbers, and the complex exponential function." />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Benytte matrixregning og Gausselimination i forbindelse med løsning af lineære ligningssystemer, og beregne vektorers koordinater i forskellige baser og diagonalisere matricer." />
+          <Txt Lang="en-GB" Txt="Apply matrix algebra and Gaussian elimination to solve linear systems" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Kunne analysere og forklare løsningsmængder i vektorrum ud fra struktursætningen." />
+          <Txt Lang="en-GB" Txt="Analyze and describe solution sets in vector spaces" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Kunne udføre simple beregninger med de elementære funktioner, herunder deres inverse." />
+          <Txt Lang="en-GB" Txt="Do simple calculations with the elementary functions " />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Benytte de forskellige varianter af Taylors formel til approksimationer og grænseværdibestemmelse." />
+          <Txt Lang="en-GB" Txt="Apply the various versions of Taylor's formula to obtain approximations and limits" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Kunne løse simple første og anden ordens lineære differentialligninger og differentialligningssystemer." />
+          <Txt Lang="en-GB" Txt="Solve simple 1. and 2. order linear differential equations and systems of equations" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Beregne ekstrema for funktioner af to variable, herunder på områder med rand." />
+          <Txt Lang="en-GB" Txt="Find extrema for functions of two variables." />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Kunne anvende matematisk terminologi og ræsonnement i forbindelse med mundtlig og skriftlig fremstilling. " />
+          <Txt Lang="en-GB" Txt="Apply correct mathematical terminology and reasoning" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Benytte symbolske software-værktøjer, for tiden Maple, til løsning og grafisk illustration af matematiske problemer." />
+          <Txt Lang="en-GB" Txt="Apply computer algebra software, presently Maple, to solve and illustrate mathematical problems." />
+        </DTU_ObjectiveKeyword>
+        <Course_Home_Page Lang="da-DK" URL="http://www.mat.dtu.dk/education/01007" />
+        <DTU>
+          <GroenDyst ParticipationKey="dtu_groendyst_no" />
+          <OpenUniversity>
+            <SubTitle>Lineære og differentiable matematiske modeller</SubTitle>
+            <AreaOfExpertise AreaOfExpertiseKey="14" />
+          </OpenUniversity>
+        </DTU>
+        <No_Credit_Points_With CourseCode="01005/01006" />
+        <Record_Info>
+          <Action Action="Accepted" PersonKey="41322" PersonUniversity="dtu" Date="2014-08-27" Time="10:05:13.2" />
+        </Record_Info>
+      </Course>
+    </FullXML>
+  </Courses>
+  <Courses int="4529" CourseCatalogVersion="2014/2015">
+    <FullXML>
+      <Course CourseCode="01008" University="dtu" LastUpdated="2014-04-28+02:00" Volume="2014/2015">
+        <Departments>
+          <Main_Dep UID="1" University="DTU" Resources="100" KVL_Resources="100" />
+        </Departments>
+        <Study_Board Study_BoardKey="1" />
+        <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+        <Point PointType="ECTS">2.5</Point>
+        <Title Lang="da-DK" Title="Matematik 1 - temaøvelser" />
+        <Title Lang="en-GB" Title="A Supplement in Mathematics" />
+        <Description_Language Lang="da-DK" />
+        <Description_Language Lang="en-GB" />
+        <Teaching_Language LangCode="da-DK" />
+        <Course_Duration>
+          <Exact>P0M</Exact>
+        </Course_Duration>
+        <Location Key="Campus_Lyngby" />
+        <Class_Schedule SortID="1">
+          <Schedule_Txt Lang="da-DK" Txt="Se planen for det aktuelle Matematik 1 skema." />
+          <Schedule_Txt Lang="en-GB" Txt="Related to the timetable for the course 01005 Mathematics 1." />
+          <Schedule ScheduleKey="E" SortID="0" />
+          <Schedule ScheduleKey="F" SortID="0" />
+        </Class_Schedule>
+        <Course_Responsible PersonKey="9644" FUniversity="DTU" SortID="0" DepartmentKey="" Show="true" />
+        <Examination ExaminationSortID="0" Show="true">
+          <Evaluation EvaluationKey="GLOB_INTERN" />
+          <Assessment>
+            <Pre_Def_List AssessmentKey="Eval_Of_Experiments" Show="true" />
+          </Assessment>
+          <Marking_Scale Marking_ScaleKey="GLOB_BESTAEET" />
+          <Aid AidKey="ALL_AID" AidSortID="1" />
+          <Date_Of_Exam SortID="1" Show="true">
+            <Date_of_Exam_Txt Lang="en-GB" Txt="No ordinary examinations" />
+            <Date_of_Exam_Txt Lang="da-DK" Txt="Ingen eksamen i den ordinære eksamensperiode" />
+            <Schedule ScheduleKey="DTU_Report" />
+            <Schedule ScheduleKey="DTU_Report" />
+          </Date_Of_Exam>
+          <Duration Lang="da-DK" Txt="Ingen ordinær eksamen" />
+          <Duration Lang="en-GB" Txt="No ordinary examinations" />
+        </Examination>
+        <Sign_Up>
+          <DeadLine>
+            <DeadLineTxt Lang="da-DK" Txt="Samme som 01005" />
+            <DeadLineTxt Lang="en-GB" Txt="The same as 1005" />
+          </DeadLine>
+          <Place>
+            <Pre_Def_List PlaceKey="GLOB_CAMPUSNET" />
+          </Place>
+        </Sign_Up>
+        <Txt Lang="da-DK">
+          <Contents>Som 01005</Contents>
+          <Teaching_And_Learning_Methods>Kurset består af udvalgte øvelser af retningsspecifik karakter og afholdes på specielle dage som fremgår af planen for 01005.</Teaching_And_Learning_Methods>
+          <Course_Objectives>Kurset har til formål at præsentere nogle simple, retningsfagligt relevante problemstillinger som kan behandles med de matematiske kundskaber man formodes at have erhvervet på de tidspunkter hvor øvelserne afholdes. Øvelserne afholdes over 6 gange i løbet af året.</Course_Objectives>
+          <DTU_Remark>Kurset kan kun følges ved samtidig deltagelse i 01005</DTU_Remark>
+          <Remark>Kurset er obligatorisk for de bachelorretninger som har 20 point Matematik 1 og man tilmeldes automatisk.</Remark>
+        </Txt>
+        <Txt Lang="en-GB">
+          <Contents>The same as 01005</Contents>
+          <Teaching_And_Learning_Methods>Additional thematic exercises to 01005</Teaching_And_Learning_Methods>
+          <Course_Objectives>The course aims to present some simple applications of mathematical skills obtained in 01005. The exercises take place over 6 times during the year.</Course_Objectives>
+          <DTU_Remark>Only together with 01005</DTU_Remark>
+          <Remark>The course is mandatory for 11 out of 14 bachelor lines.</Remark>
+        </Txt>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Se læringsmålene for 01005 Matematik 1" />
+          <Txt Lang="en-GB" Txt="See the learning objectives for 01005 Mathematics 1" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Se læringsmålene for 01005 Matematik 1" />
+          <Txt Lang="en-GB" Txt="See the learning objectives for 01005 Mathematics 1" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Se læringsmålene for 01005 Matematik 1" />
+          <Txt Lang="en-GB" Txt="See the learning objectives for 01005 Mathematics 1" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Se læringsmålene for 01005 Matematik 1" />
+          <Txt Lang="en-GB" Txt="See the learning objectives for 01005 Mathematics 1" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Se læringsmålene for 01005 Matematik 1" />
+          <Txt Lang="en-GB" Txt="See the learning objectives for 01005 Mathematics 1" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Se læringsmålene for 01005 Matematik 1" />
+          <Txt Lang="en-GB" Txt="See the learning objectives for 01005 Mathematics 1" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Se læringsmålene for 01005 Matematik 1" />
+          <Txt Lang="en-GB" Txt="See the learning objectives for 01005 Mathematics 1" />
+        </DTU_ObjectiveKeyword>
+        <DTU_ObjectiveKeyword SortID="1">
+          <Txt Lang="da-DK" Txt="Se læringsmålene for 01005 Matematik 1" />
+          <Txt Lang="en-GB" Txt="See the learning objectives for 01005 Mathematics 1" />
+        </DTU_ObjectiveKeyword>
+        <Course_Home_Page Lang="da-DK" URL="http://01005.mat.dtu.dk/info/temaoevelser/" />
+        <DTU>
+          <GroenDyst ParticipationKey="dtu_groendyst_no" />
+        </DTU>
+        <Record_Info>
+          <Action Action="Accepted" PersonKey="756" PersonUniversity="dtu" Date="2014-04-29" Time="09:11:41.997" />
+        </Record_Info>
+      </Course>
+    </FullXML>
+  </Courses>
+</root>
