@@ -18,7 +18,7 @@ def new_api(auth_token=None):
 
 
 @responses.activate
-def test_authentication():
+def test_auth_token_is_set_with_successfull_authentication():
     responses.add(
         responses.POST,
         'https://auth.dtu.dk/dtu/mobilapp.jsp',
@@ -27,11 +27,22 @@ def test_authentication():
     api = new_api()
     api.authenticate('security')
     assert api.auth_token == '21EF8196-ED05-4BAB-9081-44313ABD3D32'
+
+
+@responses.activate
+def test_user_is_authenticated_with_successfull_authentication():
+    responses.add(
+        responses.POST,
+        'https://auth.dtu.dk/dtu/mobilapp.jsp',
+        body=load_fixture('authentication.xml')
+    )
+    api = new_api()
+    api.authenticate('security')
     assert api.is_authenticated() is True
 
 
 @responses.activate
-def test_unauthorized():
+def test_user_is_not_authenticated_with_wrong_authentication():
     responses.add(
         responses.POST,
         'https://auth.dtu.dk/dtu/mobilapp.jsp',
@@ -43,7 +54,7 @@ def test_unauthorized():
 
 
 @responses.activate
-def test_user():
+def test_user_object_is_returned_when_authenticated():
     responses.add(
         responses.GET,
         'https://www.campusnet.dtu.dk/data/CurrentUser/UserInfo',
@@ -57,7 +68,7 @@ def test_user():
 
 
 @responses.activate
-def test_user_without_authorization():
+def test_user_object_is_empty_when_not_authenticated():
     responses.add(
         responses.GET,
         'https://www.campusnet.dtu.dk/data/CurrentUser/UserInfo',
@@ -69,7 +80,7 @@ def test_user_without_authorization():
 
 
 @responses.activate
-def test_grades():
+def test_grades_objects_are_returned_when_authenticated():
     responses.add(
         responses.GET,
         'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
@@ -81,7 +92,7 @@ def test_grades():
 
 
 @responses.activate
-def test_grades_without_authorization():
+def test_grades_is_empty_when_not_authenticated():
     responses.add(
         responses.GET,
         'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
