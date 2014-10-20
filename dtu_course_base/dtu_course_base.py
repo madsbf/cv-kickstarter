@@ -17,7 +17,7 @@ class CourseExtractor(object):
             self._title(),
             self._course_number(),
             self._contents(),
-            self._course_objectives()
+            self._course_objectives_text()
         )
 
     def _course_number(self):
@@ -29,7 +29,7 @@ class CourseExtractor(object):
     def _contents(self):
         return self.course_xml.find("Txt[@Lang='da-DK']/Contents").text
 
-    def _course_objectives(self):
+    def _course_objectives_text(self):
         return self.course_xml.find(
             "Txt[@Lang='da-DK']/Course_Objectives"
         ).text
