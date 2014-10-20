@@ -17,7 +17,8 @@ class CourseExtractor(object):
             self._title(),
             self._course_number(),
             self._contents(),
-            self._course_objectives_text()
+            self._course_objectives_text(),
+            self._course_objectives()
         )
 
     def _course_number(self):
@@ -34,10 +35,25 @@ class CourseExtractor(object):
             "Txt[@Lang='da-DK']/Course_Objectives"
         ).text
 
+    def _course_objectives(self):
+        course_objectives_xml = self.course_xml.findall(
+            "DTU_ObjectiveKeyword/Txt[@Lang='da-DK']"
+        )
+        return [objective_xml.attrib['Txt']
+                for objective_xml in course_objectives_xml]
+
 
 class Course(object):
-    def __init__(self, title, course_number, contents, course_objectives_text):
+    def __init__(
+        self,
+        title,
+        course_number,
+        contents,
+        course_objectives_text,
+        course_objectives
+    ):
         self.title = title
         self.course_number = course_number
         self.contents = contents
         self.course_objectives_text = course_objectives_text
+        self.course_objectives = course_objectives

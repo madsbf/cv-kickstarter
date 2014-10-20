@@ -69,35 +69,35 @@ Scheme B for the programs Architectural Engineering, Civil Engineering, Earth an
 Scheme C for the programs Electrical Engineering, Mathematics and Technology, Network Technology and IT, Software Technology and Strategic Analysis and Systems Design.</Remark>
         </Txt>
         <DTU_ObjectiveKeyword SortID="1">
-          <Txt Lang="da-DK" Txt="Benytte den algebraiske og den geometriske repræsentation af de komplekse tal samt den komplekse eksponentialfunktion." />
+          <Txt Lang="da-DK" Txt="Benytte den algebraiske og den geometriske repræsentation af de..." />
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <DTU_ObjectiveKeyword SortID="1">
-          <Txt Lang="da-DK" Txt="Benytte matrixregning og Gausselimination i forbindelse med løsning af lineære ligningssystemer, og" />
+          <Txt Lang="da-DK" Txt="Benytte matrixregning og Gausselimination i forbindelse med løsning..." />
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <DTU_ObjectiveKeyword SortID="1">
-          <Txt Lang="da-DK" Txt="Analysere og forklare løsningsmængder i vektorrum ud fra struktursætningen." />
+          <Txt Lang="da-DK" Txt="Analysere og forklare løsningsmængder i vektorrum ud fra..." />
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <DTU_ObjectiveKeyword SortID="1">
-          <Txt Lang="da-DK" Txt=" Kunne udføre simple beregninger med de elementære funktioner, herunder deres inverse." />
+          <Txt Lang="da-DK" Txt="Kunne udføre simple beregninger med de elementære funktioner," />
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <DTU_ObjectiveKeyword SortID="1">
-          <Txt Lang="da-DK" Txt="Benytte de forskellige varianter af Taylors formel til approksimationer og grænseværdibestemmelse." />
+          <Txt Lang="da-DK" Txt="Benytte de forskellige varianter af Taylors formel til..." />
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <DTU_ObjectiveKeyword SortID="1">
-          <Txt Lang="da-DK" Txt="Kunne løse simple første og anden ordens differentialligninger og differentialligningssytemer." />
+          <Txt Lang="da-DK" Txt="Kunne løse simple første og anden ordens differentialligninger..." />
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <DTU_ObjectiveKeyword SortID="1">
-          <Txt Lang="da-DK" Txt="Beregne ekstrema for funktioner af flere variable, herunder på områder med rand." />
+          <Txt Lang="da-DK" Txt="Beregne ekstrema for funktioner af flere variable, herunder på områder." />
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <DTU_ObjectiveKeyword SortID="1">
-          <Txt Lang="da-DK" Txt="Kunne parametrisere simple kurver, flader og  rumlige områder, samt beregne simple kurve-, flade- og rumintegraler." />
+          <Txt Lang="da-DK" Txt="Kunne parametrisere simple kurver, flader og  rumlige områder, samt..." />
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <DTU_ObjectiveKeyword SortID="1">
@@ -105,15 +105,15 @@ Scheme C for the programs Electrical Engineering, Mathematics and Technology, Ne
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <DTU_ObjectiveKeyword SortID="1">
-          <Txt Lang="da-DK" Txt="Kunne anvende matematisk terminologi og ræsonnement i forbindelse med mundtlig og skriftlig fremstilling. " />
+          <Txt Lang="da-DK" Txt="Kunne anvende matematisk terminologi og ræsonnement i forbindelse med.." />
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <DTU_ObjectiveKeyword SortID="1">
-          <Txt Lang="da-DK" Txt="Organisere samarbejdet i en projektgruppe omkring  matematiske begreber og metoder i en større anvendelsesmæssig sammenhæng." />
+          <Txt Lang="da-DK" Txt="Organisere samarbejdet i en projektgruppe omkring  matematiske..." />
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <DTU_ObjectiveKeyword SortID="1">
-          <Txt Lang="da-DK" Txt="Benytte symbolske software-værktøjer, for tiden Maple, til løsning og grafisk illustration af matematiske problemer." />
+          <Txt Lang="da-DK" Txt="Benytte symbolske software-værktøjer, for tiden Maple, til løsning..." />
           <Txt Lang="en-GB" Txt="See the Danish version" />
         </DTU_ObjectiveKeyword>
         <Course_Home_Page Lang="da-DK" URL="http://01005.mat.dtu.dk/" />
