@@ -28,7 +28,7 @@ To fetch the grades of the given user:
 
 To fetch the user infor of the given user:
 
-    >>> api.user_info()
+    >>> user = api.user_info()
 """
 
 import requests
