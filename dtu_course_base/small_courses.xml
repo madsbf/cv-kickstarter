@@ -49,10 +49,9 @@
           </Place>
         </Sign_Up>
         <Txt Lang="da-DK">
-          <Contents>Lineære ligninger og lineære afbildninger. Matrixalgebra. Vektorrum.  Egenværdiproblemet. Symmetriske og ortogonale matricer. Komplekse tal. Lineære differentialligninger. Elementære funktioner. Funktioner af én og flere reelle variable: linearisering og partielle afledede,Taylors formel og kvadratiske former, ekstrema og niveaukurver, flade-, rum-, og kurve-integral. Vektorfelter, Gauss' og Stokes' sætning.
-Anvendelse af MAPLE i de ovennævnte emner. Anvendelser i ingeniørvidenskaberne.</Contents>
+          <Contents>Lineære ligninger og lineære afbildninger. Matrixalgebra.</Contents>
           <Teaching_And_Learning_Methods>Pr. uge: 2 forelæsninger, 5 timers  gruppearbejde/klasseundervisning og 2 timers skemalagt selvstudium. Derudover projektarbejde i nogle uger.</Teaching_And_Learning_Methods>
-          <Course_Objectives>Kursets emner udgør det matematiske grundlag for en lang række tekniske fag og er samtidig basis for videregående studier inden for matematik og anvendt matematik. Et gennemgående tema er linearitet. Målet er at sætte de studerende i stand til at benytte basale matematiske værktøjer, både teoretisk og i anvendelsesorienterede projekter. Begge aspekter understøttes ved brug af moderne edb-programmer.</Course_Objectives>
+          <Course_Objectives>Kursets emner udgør det matematiske grundlag for en lang...</Course_Objectives>
           <Remark>Kurset er et to-semesterkursus for bachelor-studerende, som er opdelt i skemagrupper (forelæsningshold) således:
 Skema A for linjerne Bioteknologi, Design og Innovation, Kemi &amp; Teknologi, Medicin &amp; Teknologi, Teknisk Biomedicin og Vand, Bioressourcer og Miljømanagement .
 Skema B for linjerne Byggeteknologi, Bygningsdesign, Geofysik &amp; rumteknologi, Produktion &amp; Konstruktion og Fysik &amp; Nanoteknologi.

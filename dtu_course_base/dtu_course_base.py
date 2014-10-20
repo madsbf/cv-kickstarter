@@ -15,7 +15,9 @@ class CourseExtractor(object):
     def course(self):
         return Course(
             self._title(),
-            self._course_number()
+            self._course_number(),
+            self._contents(),
+            self._course_objectives()
         )
 
     def _course_number(self):
@@ -24,8 +26,18 @@ class CourseExtractor(object):
     def _title(self):
         return self.course_xml.find("Title[@Lang='da-DK']").attrib['Title']
 
+    def _contents(self):
+        return self.course_xml.find("Txt[@Lang='da-DK']/Contents").text
+
+    def _course_objectives(self):
+        return self.course_xml.find(
+            "Txt[@Lang='da-DK']/Course_Objectives"
+        ).text
+
 
 class Course(object):
-    def __init__(self, title, course_number):
+    def __init__(self, title, course_number, contents, course_objectives_text):
         self.title = title
         self.course_number = course_number
+        self.contents = contents
+        self.course_objectives_text = course_objectives_text
