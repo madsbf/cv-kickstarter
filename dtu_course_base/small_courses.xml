@@ -58,11 +58,9 @@ Skema B for linjerne Byggeteknologi, Bygningsdesign, Geofysik &amp; rumteknologi
 Skema C for linjerne Elektroteknologi, Matematik &amp; Teknologi, Netværksteknologi og IT, Softwareteknologi og Strategisk Analyse og Systemdesign.</Remark>
         </Txt>
         <Txt Lang="en-GB">
-          <Contents>Linear equations and linear maps. Matrix algebra. Vektor spaces. Eigenvalue problems. Symmetric and orthogonal matrices. Complex numbers. Linear differential equations. Standard functions.
-Functions of one and several real variables: linear approximations and partial derivatives, Taylor expansions and quadratic forms, extrema and level curves, line, surface and volume integrals. Vector fields, Gauss' and Stokes' theorem.
-Applications of MAPLE in the above areas. Examples of applications in the engineering sciences.</Contents>
+          <Contents>Linear equations and linear maps. Matrix algebra.</Contents>
           <Teaching_And_Learning_Methods>Pr.week: 2 lectures, 5h tutorials. Projectwork in some weeks.</Teaching_And_Learning_Methods>
-          <Course_Objectives>The course content is the mathematical basis for a broad range of technical fields and also provides a starting point for further studies in mathematics and applied mathematics. The dominating theme of the course is linearity. The goal is to give students the ability to employ fundamental tools of mathematics in theoretical studies as well as in applied projects. The use of modern computer software supports both of these aspects.</Course_Objectives>
+          <Course_Objectives>The course content is the mathematical basis for a broad...</Course_Objectives>
           <Remark>The course is a two-semester course for students following one of the preliminary four-semester programs:
 Scheme A for the programs Chemical Engineering, Biotechnology, Design and Innovation, Environmental Engineering, Medicine &amp; Technology and Human Life Science Engineering.
 Scheme B for the programs Architectural Engineering, Civil Engineering, Earth and Space Physics and Engineering, Mechanical Engineering and Physics and Nanotechnology.

@@ -5,12 +5,12 @@ from the DTU Course Base.
 import xml.etree.ElementTree as xmlET
 
 
-def courses_from_xml(courses_xml_text):
+def courses_from_xml(courses_xml_text, language='en-GB'):
     """Extracts course objects based on xml with courses"""
     courses = xmlET.fromstring(courses_xml_text).findall(
         'Courses/FullXML/Course'
     )
-    return [CourseExtractor(course).course() for course in courses]
+    return [CourseExtractor(course, language).course() for course in courses]
 
 
 class CourseExtractor(object):
@@ -18,8 +18,14 @@ class CourseExtractor(object):
     on a course xml object.
     """
 
-    def __init__(self, course_xml):
+    def __init__(self, course_xml, language):
+        """Construct CourseExtractor based on course xml and a language.
+
+        The language can be either 'en-GB' or 'da-DK' for respectively
+        english or danish
+        """
         self.course_xml = course_xml
+        self.language = language
 
     def course(self):
         """Returns a Course object with information based on the given
@@ -37,14 +43,18 @@ class CourseExtractor(object):
         return self.course_xml.attrib['CourseCode']
 
     def _title(self):
-        return self.course_xml.find("Title[@Lang='da-DK']").attrib['Title']
+        return self.course_xml.find(
+            "Title[@Lang='%s']" % self.language
+        ).attrib['Title']
 
     def _contents(self):
-        return self.course_xml.find("Txt[@Lang='da-DK']/Contents").text
+        return self.course_xml.find(
+            "Txt[@Lang='%s']/Contents" % self.language
+        ).text
 
     def _course_objectives_text(self):
         return self.course_xml.find(
-            "Txt[@Lang='da-DK']/Course_Objectives"
+            "Txt[@Lang='%s']/Course_Objectives" % self.language
         ).text
 
     def _course_objectives(self):
@@ -53,7 +63,7 @@ class CourseExtractor(object):
 
     def _course_objectives_xml(self):
         return self.course_xml.findall(
-            "DTU_ObjectiveKeyword/Txt[@Lang='da-DK']"
+            "DTU_ObjectiveKeyword/Txt[@Lang='%s']" % self.language
         )
 
 
