@@ -23,7 +23,7 @@ api.authenticate('secret-password')
 grades = api.grades()
 
 # Fetch user info
-user = api.user_info()
+user = api.user()
 ```
 
 ## Credentials

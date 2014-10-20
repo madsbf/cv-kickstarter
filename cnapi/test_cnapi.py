@@ -43,28 +43,28 @@ def test_unauthorized():
 
 
 @responses.activate
-def test_user_info():
+def test_user():
     responses.add(
         responses.GET,
         'https://www.campusnet.dtu.dk/data/CurrentUser/UserInfo',
-        body=load_fixture('user_info.xml')
+        body=load_fixture('user.xml')
     )
     api = new_api('21EF8196-ED05-4BAB-9081-44313ABD3D32')
-    student = api.user_info()
+    student = api.user()
     assert student.first_name == 'Anders'
     assert student.last_name == 'And'
     assert student.email == 's123456@student.dtu.dk'
 
 
 @responses.activate
-def test_user_info_without_authorization():
+def test_user_without_authorization():
     responses.add(
         responses.GET,
         'https://www.campusnet.dtu.dk/data/CurrentUser/UserInfo',
         body=load_fixture('unauthorized_request.xml')
     )
     api = new_api()
-    student = api.user_info()
+    student = api.user()
     assert student is None
 
 

@@ -28,7 +28,7 @@ To fetch the grades of the given user:
 
 To fetch the user infor of the given user:
 
-    >>> user = api.user_info()
+    >>> user = api.user()
 """
 
 import requests
@@ -60,7 +60,7 @@ class CampusNetApi:
         """Fetches the grades for the authenticated user"""
         return UserGradesExtractor(self._client().get('Grades').text).extract()
 
-    def user_info(self):
+    def user(self):
         """Fetches user infor for the authenticated user"""
         return UserInfoExtractor(self._client().get('UserInfo').text).extract()
 
