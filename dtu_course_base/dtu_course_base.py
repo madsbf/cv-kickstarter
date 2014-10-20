@@ -17,6 +17,7 @@ class CourseExtractor(object):
     """Class that is able to extract and return course objects based
     on a course xml object.
     """
+
     def __init__(self, course_xml):
         self.course_xml = course_xml
 
@@ -58,6 +59,7 @@ class CourseExtractor(object):
 
 class Course(object):
     """Structured class for course info from DTU Course Base"""
+
     def __init__(
         self,
         title,
