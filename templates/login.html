@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-offset-2 col-sm-8">
+          <h1 class="login-header">CV Kickstarter</h1>
+          <p>Generate your <strong>CV</strong> based on your DTU activity that emphasises the <strong>skills</strong> you've gained through the hard work on your studies.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="login col-sm-8 col-sm-offset-2">
+        <div class="row">
+          <form class="login-form col-sm-7 col-sm-push-5 col-md-push-4">
+            <div class="input-group form-group">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-user"></span>
+              </span>
+              <input type="email" class="form-control input-lg" id="exampleInputEmail1" placeholder="DTU Login">
+            </div>
+            <div class="input-group form-group">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-lock"></span>
+              </span>
+              <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Generate CV</button>
+          </form>
+          <div class="login-dtu-logo col-sm-5 col-sm-pull-7 hidden-xs">
+            <img src="{{ url_for('static', filename='images/DTU_logo.svg') }}" class="login-dtu-logo-image img-responsive"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
