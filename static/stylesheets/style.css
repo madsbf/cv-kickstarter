@@ -1,0 +1,29 @@
+/* Login page */
+.login-dtu-logo {
+  width: 200px;
+}
+
+.login-form {
+  margin-top: 40px;
+}
+
+/* CV Page */
+.cv-student-jumbatron {
+  background-color: #e5e5e5;
+  height: 300px;
+
+}
+
+.cv-student {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+
+.cv-student-programme {
+  font-size: 22px;
+}
+
+.cv-student-name {
+  font-size: 50px;
+}
