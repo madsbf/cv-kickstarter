@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 
 
@@ -5,13 +6,15 @@ app = Flask(__name__)
 
 
 app.config.update(dict(
-    DEBUG=True
+    host='0.0.0.0',
+    debug=True,
+    port=int(os.environ.get('PORT', 5000))
 ))
 
 
-@app.route('/', methods=['GET'])
-def login():
-    return 'Hello world', 200
+@app.route('/')
+def hello():
+    return 'Hello World!'
 
 
 if __name__ == '__main__':
