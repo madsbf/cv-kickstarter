@@ -58,17 +58,23 @@ class CampusNetApi:
 
     def grades(self):
         """Fetches the grades for the authenticated user"""
-        return UserGradesExtractor(self._client().get('Grades').text).extract()
+        return UserGradesExtractor(self._get_grades_text()).extract()
 
     def user(self):
         """Fetches user infor for the authenticated user"""
-        return UserInfoExtractor(self._client().get('UserInfo').text).extract()
+        return UserInfoExtractor(self._get_user_info_text()).extract()
 
     def _get_auth_token(self, password):
         return Authenticator(self.app_name, self.api_token).auth_token(
             self.student_number,
             password
         )
+
+    def _get_grades_text(self):
+        return self._client().get('Grades').text
+
+    def _get_user_info_text(self):
+        return self._client().get('UserInfo').text
 
     def _client(self):
         return UserClient(
