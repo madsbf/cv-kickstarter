@@ -47,7 +47,7 @@ def auth():
 
 @app.route('/cv')
 def cv_page():
-    if 'auth_token' not in session or 'student_id' not in session:
+    if not is_authenticated_with_session():
         return authenticate()
     campus_net_client.authenticate_with_token(
         session['student_id'],
@@ -62,6 +62,10 @@ def unauthorized():
 
 def authenticate():
     return redirect('/')
+
+
+def is_authenticated_with_session():
+    return 'auth_token' in session or 'student_id' in session
 
 
 if __name__ == '__main__':
