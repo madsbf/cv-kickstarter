@@ -11,6 +11,10 @@ from flask_sslify import SSLify
 app = Flask(__name__)
 env = os.environ
 app.secret_key = env['SECRET_KEY']
+campus_net_client = CampusNetApi(
+    env['CAMPUS_NET_APP_NAME'],
+    env['CAMPUS_NET_APP_TOKEN']
+)
 
 # Enforce https on Heroku
 if 'DYNO' in os.environ:
@@ -32,15 +36,10 @@ def auth():
     auth = request.authorization
     if auth is None:
         return unauthorized()
-    api = CampusNetApi(
-        env['CAMPUS_NET_APP_NAME'],
-        env['CAMPUS_NET_APP_TOKEN'],
-        auth.username
-    )
-    api.authenticate(auth.password)
-    if api.is_authenticated():
+    campus_net_client.authenticate(auth.password)
+    if campus_net_client.is_authenticated():
         session['student_id'] = auth.username
-        session['auth_token'] = api.auth_token
+        session['auth_token'] = campus_net_client.auth_token
         return '', 200
     else:
         return unauthorized()
@@ -50,13 +49,11 @@ def auth():
 def cv_page():
     if 'auth_token' not in session or 'student_id' not in session:
         return authenticate()
-    api = CampusNetApi(
-        env['CAMPUS_NET_APP_NAME'],
-        env['CAMPUS_NET_APP_TOKEN'],
+    campus_net_client.authenticate_with_token(
         session['student_id'],
         session['auth_token']
     )
-    return render_template('cv.html', user=api.user())
+    return render_template('cv.html', user=campus_net_client.user())
 
 
 def unauthorized():
