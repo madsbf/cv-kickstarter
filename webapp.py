@@ -33,12 +33,16 @@ def login():
 @app.route('/auth')
 @consumes('application/json')
 def auth():
+    basic_auth = RequestBasicAuth(request.authorization)
+    session_auth = SessionAuthentication(session)
     if not basic_auth.is_credentials_given():
         return unauthorized()
-    campus_net_client.authenticate(basic_auth.password)
+    campus_net_client.authenticate(basic_auth.username, basic_auth.password)
     if campus_net_client.is_authenticated():
-        session['student_id'] = basic_auth.username
-        session['auth_token'] = campus_net_client.auth_token
+        session_auth.authenticate(
+            basic_auth.username,
+            campus_net_client.auth_token
+        )
         return '', 200
     else:
         return unauthorized()
@@ -46,11 +50,12 @@ def auth():
 
 @app.route('/cv')
 def cv_page():
-    if not is_authenticated_with_session():
+    session_auth = SessionAuthentication(session)
+    if not session_auth.is_authenticated():
         return authenticate()
     campus_net_client.authenticate_with_token(
-        session['student_id'],
-        session['auth_token']
+        session_auth.student_id,
+        session_auth.auth_token
     )
     return render_template('cv.html', user=campus_net_client.user())
 
@@ -63,13 +68,24 @@ def authenticate():
     return redirect('/')
 
 
-@property
-def basic_auth():
-    return RequestBasicAuth(request.authorization)
+class SessionAuthentication(object):
+    def __init__(self, session_dict):
+        self.session_dict = session_dict
 
+    def is_authenticated(self):
+        return self.student_id is not None and self.auth_token is not None
 
-def is_authenticated_with_session():
-    return 'auth_token' in session or 'student_id' in session
+    def authenticate(self, student_id, auth_token):
+        session['student_id'] = student_id
+        session['auth_token'] = auth_token
+
+    @property
+    def student_id(self):
+        return session.get('student_id')
+
+    @property
+    def auth_token(self):
+        return session.get('auth_token')
 
 
 class RequestBasicAuth(object):
