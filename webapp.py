@@ -9,7 +9,8 @@ from cnapi import CampusNetApi
 from flask_sslify import SSLify
 
 app = Flask(__name__)
-app.secret_key = os.environ['SECRET_KEY']
+env = os.environ
+app.secret_key = env['SECRET_KEY']
 
 # Enforce https on Heroku
 if 'DYNO' in os.environ:
@@ -32,8 +33,8 @@ def auth():
     if auth is None:
         return unauthorized()
     api = CampusNetApi(
-        'StudyPlanner3000',
-        '03157abb-4cb1-47c3-8b52-cdad0f82e78a',
+        env['CAMPUS_NET_APP_NAME'],
+        env['CAMPUS_NET_APP_TOKEN'],
         auth.username
     )
     api.authenticate(auth.password)
@@ -50,8 +51,8 @@ def cv_page():
     if 'auth_token' not in session or 'student_id' not in session:
         return authenticate()
     api = CampusNetApi(
-        'StudyPlanner3000',
-        '03157abb-4cb1-47c3-8b52-cdad0f82e78a',
+        env['CAMPUS_NET_APP_NAME'],
+        env['CAMPUS_NET_APP_TOKEN'],
         session['student_id'],
         session['auth_token']
     )
