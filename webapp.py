@@ -33,12 +33,11 @@ def login():
 @app.route('/auth')
 @consumes('application/json')
 def auth():
-    auth = request.authorization
-    if auth is None:
+    if not basic_auth.is_credentials_given():
         return unauthorized()
-    campus_net_client.authenticate(auth.password)
+    campus_net_client.authenticate(basic_auth.password)
     if campus_net_client.is_authenticated():
-        session['student_id'] = auth.username
+        session['student_id'] = basic_auth.username
         session['auth_token'] = campus_net_client.auth_token
         return '', 200
     else:
@@ -64,8 +63,29 @@ def authenticate():
     return redirect('/')
 
 
+@property
+def basic_auth():
+    return RequestBasicAuth(request.authorization)
+
+
 def is_authenticated_with_session():
     return 'auth_token' in session or 'student_id' in session
+
+
+class RequestBasicAuth(object):
+    def __init__(self, request_authorization):
+        self.request_authorization = request_authorization
+
+    def is_credentials_given(self):
+        return self.request_authorization is not None
+
+    @property
+    def username(self):
+        return self.request_authorization.username
+
+    @property
+    def password(self):
+        return self.request_authorization.password
 
 
 if __name__ == '__main__':
