@@ -6,26 +6,36 @@ Data Mining using Python project repository
 
 # CNApi
 
-The campusnet api is a python module for retrieving grades and user info about student at DTU.
+This library is designed for having a nice interface for integrating with
+the CampusNet API. The library provides an interface for the network requests
+as well as objects for wrapping the data returned by the CampusNet API.
 
-## Usage
+For documentation of the Campusnet API, see:
 
-```python
-app_name = 'MyCampusNetApp'
-app_token = 'sh2870272-2ush292-ji2u98s2-2h2821-jsw9j2ihs982'
-student_number = 's123456'
+https://www.campusnet.dtu.dk/data/Documentation/CampusNet%20public%20API.pdf
 
-api = cnapi.CampusNetApi(app_name, app_token, student_number)
+Example of usage:
 
-api.authenticate('secret-password')
+At first instantiate the api:
 
-# Fetch grades
-grades = api.grades()
+    >>> app_name = 'MyCampusNetApp'
+    >>> app_token = 'sh2870272-2ush292-ji2u98s2-2h2821-jsw9j2ihs982'
 
-# Fetch user info
-user = api.user()
-```
+    >>> api = cnapi.CampusNetApi(app_name, app_token)
 
-## Credentials
+In order to fetch information, authenticate the student with the student number
+and password:
 
-In order to use the api token you need to register an app at CampusNet (https://www.campusnet.dtu.dk/data/Documentation/Index.aspx).
+    >>> api.authenticate('s123456', 'secret-password')
+
+or if the auth token is already in posession use:
+
+    >>> api.authenticate_with_token('s123456', '21EF8196-ED05-4BAB-9081')
+
+To fetch the grades of the given user:
+
+    >>> grades = api.grades()
+
+To fetch the user infor of the given user:
+
+    >>> user = api.user()

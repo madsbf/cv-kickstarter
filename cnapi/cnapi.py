@@ -14,13 +14,17 @@ At first instantiate the api:
 
     >>> app_name = 'MyCampusNetApp'
     >>> app_token = 'sh2870272-2ush292-ji2u98s2-2h2821-jsw9j2ihs982'
-    >>> student_number = 's123456'
 
-    >>> api = cnapi.CampusNetApi(app_name, app_token, student_number)
+    >>> api = cnapi.CampusNetApi(app_name, app_token)
 
-In order to fetch information, authenticate with the password of the user:
+In order to fetch information, authenticate the student with the student number
+and password:
 
-    >>> api.authenticate('secret-password')
+    >>> api.authenticate('s123456', 'secret-password')
+
+or if the auth token is already in posession use:
+
+    >>> api.authenticate_with_token('s123456', '21EF8196-ED05-4BAB-9081')
 
 To fetch the grades of the given user:
 
@@ -42,14 +46,20 @@ class CampusNetApi:
     behaviour needed for fetching relevant information from from the API.
     """
 
-    def __init__(self, app_name, api_token, student_number, auth_token=None):
+    def __init__(self, app_name, api_token):
         self.app_name = app_name
         self.api_token = api_token
+        self.student_number = None
+        self.auth_token = None
+
+    def authenticate_with_token(self, student_number, auth_token):
+        """Authenticates the given user by the given authentication token"""
         self.student_number = student_number
         self.auth_token = auth_token
 
-    def authenticate(self, password):
+    def authenticate(self, student_number, password):
         """Authenticates the given user by fetching an authentication token"""
+        self.student_number = student_number
         self.auth_token = self._get_auth_token(password)
 
     def is_authenticated(self):

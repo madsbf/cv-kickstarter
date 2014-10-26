@@ -8,13 +8,17 @@ def load_fixture(fixture_path):
     return open('fixtures/%s' % fixture_path).read()
 
 
-def new_api(auth_token=None):
+def new_api():
     return cnapi.CampusNetApi(
         "AppName3000",
-        "secure-app-token",
-        's123456',
-        auth_token
+        "secure-app-token"
     )
+
+
+def new_authenticated_api():
+    api = new_api()
+    api.authenticate_with_token('s123456', '21EF8196-ED05-4BAB-9081')
+    return api
 
 
 @responses.activate
@@ -25,8 +29,8 @@ def test_auth_token_is_set_with_successfull_authentication():
         body=load_fixture('authentication.xml')
     )
     api = new_api()
-    api.authenticate('security')
-    assert api.auth_token == '21EF8196-ED05-4BAB-9081-44313ABD3D32'
+    api.authenticate('s123456', 'security')
+    assert api.auth_token == '21EF8196-ED05-4BAB-9081'
 
 
 @responses.activate
@@ -37,8 +41,26 @@ def test_user_is_authenticated_with_successfull_authentication():
         body=load_fixture('authentication.xml')
     )
     api = new_api()
-    api.authenticate('security')
+    api.authenticate('s123456', 'security')
     assert api.is_authenticated() is True
+
+
+def test_authentication_with_token_is_authenticated():
+    api = new_api()
+    api.authenticate_with_token('s123456', '21EF8196-ED05-4BAB-9081')
+    assert api.is_authenticated() is True
+
+
+def test_authentication_with_token_sets_student_number():
+    api = new_api()
+    api.authenticate_with_token('s123456', '21EF8196-ED05-4BAB-9081')
+    assert api.student_number is 's123456'
+
+
+def test_authentication_with_token_sets_auth_token():
+    api = new_api()
+    api.authenticate_with_token('s123456', '21EF8196-ED05-4BAB-9081')
+    assert api.auth_token is '21EF8196-ED05-4BAB-9081'
 
 
 @responses.activate
@@ -49,7 +71,7 @@ def test_user_is_not_authenticated_with_wrong_authentication():
         body=load_fixture('wrong_authentication.xml')
     )
     api = new_api()
-    api.authenticate('bad-password')
+    api.authenticate('s123456', 'bad-password')
     assert api.is_authenticated() is False
 
 
@@ -60,7 +82,7 @@ def test_user_object_is_returned_when_authenticated():
         'https://www.campusnet.dtu.dk/data/CurrentUser/UserInfo',
         body=load_fixture('user.xml')
     )
-    api = new_api('21EF8196-ED05-4BAB-9081-44313ABD3D32')
+    api = new_authenticated_api()
     student = api.user()
     assert student.first_name == 'Anders'
     assert student.last_name == 'And'
@@ -86,7 +108,7 @@ def test_grades_objects_are_returned_when_authenticated():
         'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
         body=load_fixture('grades.xml')
     )
-    api = new_api('21EF8196-ED05-4BAB-9081-44313ABD3D32')
+    api = new_authenticated_api()
     grades = api.grades()
     first_grade = grades[1]
     assert first_grade.ects_points == 5.0
