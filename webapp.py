@@ -6,9 +6,14 @@ import os
 from flask import Flask, render_template, request, session, redirect
 from flask_negotiate import consumes
 from cnapi import CampusNetApi
+from flask_sslify import SSLify
 
 app = Flask(__name__)
 app.secret_key = os.environ['SECRET_KEY']
+
+# Enforce https on Heroku
+if 'DYNO' in os.environ:
+    sslify = SSLify(app)
 
 app.config.update(dict(
     DEBUG=True,
