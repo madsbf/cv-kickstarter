@@ -1,4 +1,5 @@
 from __future__ import division
+from go_jobs import GoJobs
 
 __author__ = 'Mads'
 
@@ -16,3 +17,5 @@ class KeywordEvaluator:
         totalJobs = self.job_searcher.find_results_amount()
         keywordJobs = self.job_searcher.find_results_amount(keyword)
         return keywordJobs / totalJobs * 100
+
+print GoJobs('70498191-2018-4788-b7a3-f2973b8a178c').find_results(keywords=['software'])

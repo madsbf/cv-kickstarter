@@ -29,16 +29,14 @@ class CareerBuilder (JobSearcher):
         data = soup(response.text, features='xml')
         return int(data.ResponseJobSearch.TotalCount.contents[0])
 
-    def find_results(self, keywords=None, amount=25):
-        keywordString = ','.join(keywords)
-
+    def find_results(self, keywords=None, amount=5):
         request_url = self.BASE_URL + \
                       '?' + self.PARAM_DEV_KEY + \
                       '=' + self.developer_key + \
                       '&' + self.PARAM_PER_PAGE + \
                       '=' + str(amount) + \
                       '&' + self.PARAM_KEYWORDS + \
-                      '=' + keywordString
+                      '=' + ','.join(keywords)
 
         response = requests.request('GET', request_url)
         data = soup(response.text, features='xml')

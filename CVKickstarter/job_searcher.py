@@ -6,8 +6,9 @@ class JobSearcher:
 
     def find_results_amount(self, keyword=''):
         """Finds the amount of results for a given keyword """
+        raise NotImplementedError
 
-    def find_results(self, keywords=None, amount=25):
+    def find_results(self, keywords=None, amount=5):
         """ Performs a job search
         :param keywords: Keywords, that should be contained in the returned results
         :param amount: The amount of results wanted
