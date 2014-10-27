@@ -7,6 +7,13 @@
   margin-top: 40px;
 }
 
+.login-form-spinner {
+  background-image: url('/static/images/spinner.gif');
+  background-position: 15px 12px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+
 /* CV Page */
 .cv-student-jumbatron {
   background-color: #e5e5e5;

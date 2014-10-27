@@ -3,11 +3,13 @@ $(document).ready(function() {
     submitButtonElement: $("form#login-form button[type='submit']"),
     errorMessageElement: $("#login-form-error"),
 
-    disableLoginButton: function() {
-      this.submitButtonElement.attr('disabled', true)
+    onSubmission: function() {
+      this._disableLoginButton();
+      this._showSpinner();
     },
-    enableLoginButton: function() {
-      this.submitButtonElement.attr('disabled', false)
+    onSubmissionComplete: function() {
+      this._enableLoginButton();
+      this._hideSpinner();
     },
     showErrorMessage: function(errorMessage) {
       this.errorMessageElement.removeClass('hidden').html(errorMessage)
@@ -17,7 +19,19 @@ $(document).ready(function() {
     },
     goToPage: function(url) {
       window.location.href = url;
-    }
+    },
+    _showSpinner: function() {
+      this.submitButtonElement.addClass('login-form-spinner');
+    },
+    _hideSpinner: function() {
+      this.submitButtonElement.removeClass('login-form-spinner');
+    },
+    _disableLoginButton: function() {
+      this.submitButtonElement.attr('disabled', true);
+    },
+    _enableLoginButton: function() {
+      this.submitButtonElement.attr('disabled', false);
+    },
   };
 
   $('form#login-form').submit(function(e) {
@@ -29,11 +43,10 @@ $(document).ready(function() {
       type: "GET",
       url: "/auth",
       contentType: 'application/json',
-      async: false,
       username: username,
       password: password,
       beforeSend: function (xhr) {
-        loginViewModel.disableLoginButton();
+        loginViewModel.onSubmission();
         xhr.setRequestHeader(
           "Authorization",
           "Basic " + btoa(username + ":" + password)
@@ -50,7 +63,7 @@ $(document).ready(function() {
         loginViewModel.goToPage('/cv');
       },
       complete: function(xhr, textStatus) {
-        loginViewModel.enableLoginButton();
+        loginViewModel.onSubmissionComplete();
       }
     });
 

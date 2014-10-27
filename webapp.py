@@ -7,7 +7,7 @@ import os
 from session_authentication import SessionAuthentication
 from request_basic_auth import RequestBasicAuth
 from flask import Flask, render_template, request, session, redirect, jsonify
-from flask_negotiate import consumes, produces
+from flask_negotiate import consumes
 from cnapi import CampusNetApi
 from flask_sslify import SSLify
 
