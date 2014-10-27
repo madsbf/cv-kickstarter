@@ -15,4 +15,11 @@
       </div>
     </div>
   </div>
+  <div class="container">
+    <ul>
+    {% for grade in user_view.grades %}
+      <li>{{ grade.course.title }} {{ grade.ects_points }}</li>
+    {% endfor %}
+    </ul>
+  </div>
 {% endblock %}
