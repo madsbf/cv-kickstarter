@@ -51,6 +51,13 @@ def auth():
         return unauthorized()
 
 
+@app.route('/log_out', methods=['POST'])
+def log_out():
+    session_auth = SessionAuthentication(session)
+    session_auth.log_out()
+    return redirect('/')
+
+
 @app.route('/cv')
 def cv_page():
     session_auth = SessionAuthentication(session)
@@ -81,6 +88,10 @@ class SessionAuthentication(object):
     def authenticate(self, student_id, auth_token):
         self.session_dict['student_id'] = student_id
         self.session_dict['auth_token'] = auth_token
+
+    def log_out(self):
+        self.session_dict.pop('student_id')
+        self.session_dict.pop('auth_token')
 
     @property
     def student_id(self):
