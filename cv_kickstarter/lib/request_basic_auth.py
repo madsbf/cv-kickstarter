@@ -7,8 +7,12 @@ class RequestBasicAuth(object):
 
     @property
     def username(self):
+        if not self.is_credentials_given():
+            return None
         return self.request_authorization.username
 
     @property
     def password(self):
+        if not self.is_credentials_given():
+            return None
         return self.request_authorization.password

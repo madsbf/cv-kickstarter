@@ -41,8 +41,6 @@ def login():
 def auth():
     basic_auth = RequestBasicAuth(request.authorization)
     session_auth = SessionAuthentication(session)
-    if not basic_auth.is_credentials_given():
-        return unauthorized()
     campus_net_client.authenticate(basic_auth.username, basic_auth.password)
     if campus_net_client.is_authenticated():
         session_auth.authenticate(
