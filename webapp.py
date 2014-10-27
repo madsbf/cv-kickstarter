@@ -82,7 +82,7 @@ def picture():
         session_auth.auth_token
     )
     user = campus_net_client.user()
-    picture = campus_net_client.user_picture(user)
+    picture = campus_net_client.user_picture(user.user_id)
     return Response(stream_picture(picture))
 
 
