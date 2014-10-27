@@ -36,11 +36,9 @@ class CareerBuilder:
                       '&' + self.PARAM_KEYWORDS + \
                       '=' + keywordString
 
-        print request_url
-
         response = requests.request('GET', request_url)
         data = soup(response.text, features='xml')
         return data.ResponseJobSearch
 
 print CareerBuilder('WDHQ66567NQJB7C8NCH4').find_result_amount('developer')
-print CareerBuilder('WDHQ66567NQJB7C8NCH4').find_results(['developer','java'], 25)
+# print CareerBuilder('WDHQ66567NQJB7C8NCH4').find_results(['developer','java'], 25)
