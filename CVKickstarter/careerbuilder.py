@@ -1,3 +1,4 @@
+from job import Job
 from job_searcher import JobSearcher
 
 __author__ = 'Mads'
@@ -39,5 +40,18 @@ class CareerBuilder (JobSearcher):
                       '=' + ','.join(keywords)
 
         response = requests.request('GET', request_url)
-        data = soup(response.text, features='xml')
-        return data.ResponseJobSearch
+        jobs = self.soup_to_jobs(soup(response.text, features='xml'))
+
+        return jobs
+
+    def soup_to_jobs(self, soup):
+        jobs = []
+        results = soup.find_all('JobSearchResult')
+
+        for result in results:
+            jobs.append(Job(title=result.JobTitle.text,
+                   company_name=result.Company.text,
+                   teaser=result.DescriptionTeaser.text,
+                   job_url=result.JobDetailsURL.text))
+
+        return jobs

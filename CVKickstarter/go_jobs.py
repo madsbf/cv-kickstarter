@@ -68,4 +68,7 @@ class GoJobs (JobSearcher):
 
     def json_to_job(self, jsonText):
         jsonJob = json.loads(jsonText)['d']
-        return Job(title=jsonJob['jobTitle'], company_name=jsonJob['companyName'], teaser=jsonJob['teaser'], job_url='http://go.dk/job/' + str(jsonJob['jobId']))
+        return Job(title=jsonJob['jobTitle'],
+                   company_name=jsonJob['companyName'],
+                   teaser=jsonJob['teaser'],
+                   job_url='http://go.dk/job/' + str(jsonJob['jobId']))
