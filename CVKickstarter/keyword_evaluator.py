@@ -1,5 +1,6 @@
-__author__ = 'Mads'
+from __future__ import division
 
+__author__ = 'Mads'
 
 class KeywordEvaluator:
 
@@ -7,6 +8,6 @@ class KeywordEvaluator:
         self.job_searcher = job_searcher
 
     def evaluate_keyword(self, keyword):
-        totalJobs = self.job_searcher.find_results_amount("")
+        totalJobs = self.job_searcher.find_results_amount()
         keywordJobs = self.job_searcher.find_results_amount(keyword)
         return keywordJobs / totalJobs * 100

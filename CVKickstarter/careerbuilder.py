@@ -12,7 +12,7 @@ class CareerBuilder:
     def __init__(self, developer_key):
         self.developer_key = developer_key
 
-    def find_result_amount(self, keyword):
+    def find_results_amount(self, keyword=''):
         request_url = self.BASE_URL + \
                       '?' + self.PARAM_DEV_KEY + \
                       '=' + self.developer_key + \
@@ -21,12 +21,10 @@ class CareerBuilder:
 
         response = requests.request('GET', request_url)
         data = soup(response.text, features='xml')
-        return data.ResponseJobSearch.TotalCount.contents[0]
+        return int(data.ResponseJobSearch.TotalCount.contents[0])
 
-    def find_results(self, keywords, amount):
-        keywordString = keywords[0]
-        for keyword in keywords[1:]:
-            keywordString += "," + keyword
+    def find_results(self, keywords=None, amount=25):
+        keywordString = ','.join(keywords)
 
         request_url = self.BASE_URL + \
                       '?' + self.PARAM_DEV_KEY + \
@@ -39,6 +37,3 @@ class CareerBuilder:
         response = requests.request('GET', request_url)
         data = soup(response.text, features='xml')
         return data.ResponseJobSearch
-
-print CareerBuilder('WDHQ66567NQJB7C8NCH4').find_result_amount('developer')
-# print CareerBuilder('WDHQ66567NQJB7C8NCH4').find_results(['developer','java'], 25)
