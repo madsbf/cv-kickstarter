@@ -1,11 +1,13 @@
 import sys
 
 sys.path.append('cv_kickstarter/lib')
+sys.path.append('cv_kickstarter/view_objects')
 sys.path.append('cnapi')
 
 import os
 from session_authentication import SessionAuthentication
 from request_basic_auth import RequestBasicAuth
+from user_cv import UserCV, UserCVBuilder
 from flask import (Flask, render_template, request, session, redirect, jsonify,
                    Response)
 from flask_negotiate import consumes
@@ -69,7 +71,8 @@ def cv_page():
         session_auth.student_id,
         session_auth.auth_token
     )
-    return render_template('cv.html', user=campus_net_client.user())
+    user_view = UserCVBuilder(campus_net_client).build()
+    return render_template('cv.html', user_view=user_view)
 
 
 @app.route('/cv/picture')

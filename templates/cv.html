@@ -6,7 +6,7 @@
         <img src="{{ url_for('picture') }}" class="cv-student-picture-img" />
       </div>
       <div class="cv-student-information col-sm-8 col-md-7">
-        <h1 class="cv-student-name">{{ user.first_name }} {{ user.last_name }}</h1>
+        <h1 class="cv-student-name">{{ user_view.full_name }}</h1>
       </div>
       <div class="cv-student-actions col-sm-12 col-md-3">
         <form action="{{ url_for('log_out') }}" method="POST">
