@@ -7,6 +7,14 @@
       </div>
       <div class="cv-student-information col-sm-8 col-md-7">
         <h1 class="cv-student-name">{{ user_view.full_name }}</h1>
+        <div class="cv-student-programmes">
+          <h4 class="cv-student-programme">
+            Bachelor (Softwaretek.) <span class="cv-student-programme-label glyphicon glyphicon-ok"></span>
+          </h4>
+          <h4 class="cv-student-programme">
+            Master (Informationtech.) <span class="badge">Current</span>
+          </h4>
+        </div>
       </div>
       <div class="cv-student-actions col-sm-12 col-md-3">
         <form action="{{ url_for('log_out') }}" method="POST">
