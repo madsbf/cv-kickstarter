@@ -5,14 +5,16 @@
       <div class="cv-student-picture col-sm-4 col-md-2">
         <img src="https://www.campusnet.dtu.dk/cnnet/UserPicture.ashx?x=140&UserId=133808" />
       </div>
-      <div class="cv-student-information col-sm-8 col-md-10">
+      <div class="cv-student-information col-sm-8 col-md-7">
         <h1 class="cv-student-name">{{ user.first_name }} {{ user.last_name }}</h1>
         <div class="cv-student-programme">B.sc: Software Technology</div>
         <div class="cv-student-programme">M.sc: Computer Science</div>
       </div>
-      <form action="{{ url_for('log_out') }}" method="POST">
-        <input type="submit" class="btn btn-danger" value="Log Out" />
-      </form>
+      <div class="cv-student-actions col-sm-12 col-md-3">
+        <form action="{{ url_for('log_out') }}" method="POST">
+          <input type="submit" class="btn btn-danger" value="Log Out" />
+        </form>
+      </div>
     </div>
   </div>
 {% endblock %}
