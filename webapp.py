@@ -6,7 +6,8 @@ sys.path.append('cnapi')
 import os
 from session_authentication import SessionAuthentication
 from request_basic_auth import RequestBasicAuth
-from flask import Flask, render_template, request, session, redirect, jsonify
+from flask import (Flask, render_template, request, session, redirect, jsonify,
+                   Response)
 from flask_negotiate import consumes
 from cnapi import CampusNetApi
 from flask_sslify import SSLify
@@ -71,8 +72,27 @@ def cv_page():
     return render_template('cv.html', user=campus_net_client.user())
 
 
+@app.route('/cv/picture')
+def picture():
+    session_auth = SessionAuthentication(session)
+    if not session_auth.is_authenticated():
+        return authenticate()
+    campus_net_client.authenticate_with_token(
+        session_auth.student_id,
+        session_auth.auth_token
+    )
+    user = campus_net_client.user()
+    picture = campus_net_client.user_picture(user)
+    return Response(stream_picture(picture))
+
+
 def authenticate():
     return redirect('/')
+
+
+def stream_picture(picture):
+    for chunk in picture.iter_content(1024):
+        yield chunk
 
 
 if __name__ == '__main__':
