@@ -102,6 +102,32 @@ def test_user_object_is_empty_when_not_authenticated():
 
 
 @responses.activate
+def test_user_picture_is_none_when_not_authenticated():
+    responses.add(
+        responses.GET,
+        'https://www.campusnet.dtu.dk/data/CurrentUser/Users/1234/Picture',
+        body=load_fixture('unauthorized_request.xml'),
+        content_type="application/xml; charset='uft-8'"
+    )
+    api = new_api()
+    image = api.user_picture('1234')
+    assert image is None
+
+
+@responses.activate
+def test_user_picture_is_returned_when_authenticated():
+    responses.add(
+        responses.GET,
+        'https://www.campusnet.dtu.dk/data/CurrentUser/Users/1234/Picture',
+        body=load_fixture('image.png'),
+        content_type="image/jpeg"
+    )
+    api = new_authenticated_api()
+    picture = api.user_picture('1234')
+    assert picture.text == '12345image\n'
+
+
+@responses.activate
 def test_grades_objects_are_returned_when_authenticated():
     responses.add(
         responses.GET,

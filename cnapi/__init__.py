@@ -37,6 +37,7 @@ To fetch the user infor of the given user:
 
 import requests
 import xml.etree.ElementTree
+import re
 
 
 class CampusNetApi:
@@ -74,6 +75,14 @@ class CampusNetApi:
         """Fetches user infor for the authenticated user"""
         return UserInfoExtractor(self._get_user_info_text()).extract()
 
+    def user_picture(self, user_id):
+        """"Fetches the user picture"""
+        image = self._get_user_picture(user_id)
+        if re.search('image', image.headers['content-type']):
+            return image
+        else:
+            return None
+
     def _get_auth_token(self, password):
         return Authenticator(self.app_name, self.api_token).auth_token(
             self.student_number,
@@ -85,6 +94,9 @@ class CampusNetApi:
 
     def _get_user_info_text(self):
         return self._client().get('UserInfo').text
+
+    def _get_user_picture(self, user_id):
+        return self._client().get('Users/%s/Picture' % user_id)
 
     def _client(self):
         return UserClient(
