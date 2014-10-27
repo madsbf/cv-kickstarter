@@ -196,7 +196,8 @@ class UserInfoExtractor(AbstractXmlInfoExtractor):
         return Student(
             student_info_xml['GivenName'],
             student_info_xml['FamilyName'],
-            student_info_xml['Email']
+            student_info_xml['Email'],
+            student_info_xml['UserId']
         )
 
 
@@ -286,10 +287,11 @@ class Authenticator:
 class Student:
     """Structured class for user info from CampusNet API"""
 
-    def __init__(self, first_name, last_name, email):
+    def __init__(self, first_name, last_name, email, user_id):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
+        self.user_id = user_id
 
 
 class ExamResult:

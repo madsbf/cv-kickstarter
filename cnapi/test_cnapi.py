@@ -87,6 +87,7 @@ def test_user_object_is_returned_when_authenticated():
     assert student.first_name == 'Anders'
     assert student.last_name == 'And'
     assert student.email == 's123456@student.dtu.dk'
+    assert student.user_id == '1234'
 
 
 @responses.activate
