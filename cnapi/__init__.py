@@ -78,7 +78,7 @@ class CampusNetApi:
     def user_picture(self, user_id):
         """"Fetches the user picture"""
         image = self._get_user_picture(user_id)
-        if re.search('image', image.headers['content-type']):
+        if self._is_image_response(image):
             return image
         else:
             return None
@@ -97,6 +97,9 @@ class CampusNetApi:
 
     def _get_user_picture(self, user_id):
         return self._client().get('Users/%s/Picture' % user_id)
+
+    def _is_image_response(self, response):
+        return re.search('image', response.headers['content-type'])
 
     def _client(self):
         return UserClient(
