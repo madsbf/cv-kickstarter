@@ -27,6 +27,9 @@ app.config.update(dict(
 
 @app.route('/')
 def login():
+    session_auth = SessionAuthentication(session)
+    if session_auth.is_authenticated():
+        return redirect('/cv')
     return render_template('login.html')
 
 
