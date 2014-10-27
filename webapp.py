@@ -79,16 +79,16 @@ class SessionAuthentication(object):
         return self.student_id is not None and self.auth_token is not None
 
     def authenticate(self, student_id, auth_token):
-        session['student_id'] = student_id
-        session['auth_token'] = auth_token
+        self.session_dict['student_id'] = student_id
+        self.session_dict['auth_token'] = auth_token
 
     @property
     def student_id(self):
-        return session.get('student_id')
+        return self.session_dict.get('student_id')
 
     @property
     def auth_token(self):
-        return session.get('auth_token')
+        return self.session_dict.get('auth_token')
 
 
 class RequestBasicAuth(object):
