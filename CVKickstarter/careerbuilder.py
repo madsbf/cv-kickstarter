@@ -1,15 +1,21 @@
+from job_searcher import JobSearcher
+
 __author__ = 'Mads'
 
 import requests
 from bs4 import BeautifulSoup as soup
 
-class CareerBuilder:
+class CareerBuilder (JobSearcher):
+    """ JobSearcher for CareerBuilder.com"""
+
     BASE_URL = 'http://api.careerbuilder.com/v2/jobsearch'
     PARAM_DEV_KEY = 'DeveloperKey'
     PARAM_KEYWORDS = 'keywords'
     PARAM_PER_PAGE = "perpage"
 
     def __init__(self, developer_key):
+        """ :param developer_key: Needed for identification"""
+
         self.developer_key = developer_key
 
     def find_results_amount(self, keyword=''):
