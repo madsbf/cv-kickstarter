@@ -6,8 +6,8 @@ sys.path.append('cnapi')
 import os
 from session_authentication import SessionAuthentication
 from request_basic_auth import RequestBasicAuth
-from flask import Flask, render_template, request, session, redirect
-from flask_negotiate import consumes
+from flask import Flask, render_template, request, session, redirect, jsonify
+from flask_negotiate import consumes, produces
 from cnapi import CampusNetApi
 from flask_sslify import SSLify
 
@@ -49,7 +49,7 @@ def auth():
         )
         return '', 200
     else:
-        return unauthorized()
+        return jsonify(**{'error': 'Wrong student id or password'}), 401
 
 
 @app.route('/log_out', methods=['POST'])
@@ -69,10 +69,6 @@ def cv_page():
         session_auth.auth_token
     )
     return render_template('cv.html', user=campus_net_client.user())
-
-
-def unauthorized():
-    return 'Unauthorized', 401
 
 
 def authenticate():

@@ -15,6 +15,7 @@
       <div class="login col-sm-8 col-sm-offset-2">
         <div class="row">
           <form id="login-form" action="{{ url_for('auth') }}" method="GET" class="login-form col-sm-7 col-sm-push-5 col-md-push-4">
+            <div id="login-form-error" class="login-form-error hidden alert alert-danger" role="alert"></div>
             <div class="input-group form-group">
               <span class="input-group-addon">
                 <span class="glyphicon glyphicon-user"></span>
