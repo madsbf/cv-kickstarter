@@ -28,8 +28,8 @@ class GoKeywordEvaluator:
     @staticmethod
     def find_results(keywords, amount):
         keywordString = keywords[0]
-        for keyword in keywords:
-            keywordString += keyword + ", "
+        for keyword in keywords[1:]:
+            keywordString += " " + keyword
 
         request_data = {'guid' : GoKeywordEvaluator.GUID,
                 'amount' : amount,

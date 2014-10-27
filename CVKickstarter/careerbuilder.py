@@ -3,10 +3,11 @@ __author__ = 'Mads'
 import requests
 from bs4 import BeautifulSoup as soup
 
-class CareerBuilderKeywordEvaluator:
+class CareerBuilder:
     BASE_URL = 'http://api.careerbuilder.com/v2/jobsearch'
     PARAM_DEV_KEY = 'DeveloperKey'
     PARAM_KEYWORDS = 'keywords'
+    PARAM_PER_PAGE = "perpage"
 
     def __init__(self, developer_key):
         self.developer_key = developer_key
@@ -22,20 +23,24 @@ class CareerBuilderKeywordEvaluator:
         data = soup(response.text, features='xml')
         return data.ResponseJobSearch.TotalCount.contents[0]
 
-    def find_results(self, keywords):
+    def find_results(self, keywords, amount):
         keywordString = keywords[0]
-        for keyword in keywords:
-            keywordString += keyword + ", "
+        for keyword in keywords[1:]:
+            keywordString += "," + keyword
 
         request_url = self.BASE_URL + \
                       '?' + self.PARAM_DEV_KEY + \
                       '=' + self.developer_key + \
+                      '&' + self.PARAM_PER_PAGE + \
+                      '=' + str(amount) + \
                       '&' + self.PARAM_KEYWORDS + \
                       '=' + keywordString
+
+        print request_url
 
         response = requests.request('GET', request_url)
         data = soup(response.text, features='xml')
         return data.ResponseJobSearch
 
-print CareerBuilderKeywordEvaluator('WDHQ66567NQJB7C8NCH4').find_result_amount('developer')
-print CareerBuilderKeywordEvaluator('WDHQ66567NQJB7C8NCH4').find_results(['developer','java'])
+print CareerBuilder('WDHQ66567NQJB7C8NCH4').find_result_amount('developer')
+print CareerBuilder('WDHQ66567NQJB7C8NCH4').find_results(['developer','java'], 25)
