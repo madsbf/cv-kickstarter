@@ -143,6 +143,7 @@ def test_grades_objects_are_returned_when_authenticated():
     assert first_grade.year == 2013
     assert first_grade.course.title == u'Robuste softwaresystemer'
     assert first_grade.course.course_number == u'02241'
+    assert first_grade.programme == u'Bachelor (Softwaretek.)'
 
 
 @responses.activate

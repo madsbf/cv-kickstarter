@@ -208,19 +208,25 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
     """Is able to extract the grades of the given user"""
 
     def _extract_information(self, xml_response):
-        courses_xml = xml_response.findall(
-            "EducationProgramme/ExamResults/ExamResult"
+        programmes = xml_response.findall("EducationProgramme")
+        return self._flatten_array(
+            map(self._programme_to_exam_results, programmes)
         )
-        return [self._map_to_exam_results(course_xml.attrib)
+
+    def _programme_to_exam_results(self, program_xml):
+        courses_xml = program_xml.findall("ExamResults/ExamResult")
+        programme_name = program_xml.attrib['DisplayName']
+        return [self._map_to_exam_results(course_xml.attrib, programme_name)
                 for course_xml in courses_xml]
 
-    def _map_to_exam_results(self, course_xml):
+    def _map_to_exam_results(self, course_xml, programme_name):
         return ExamResult(
             self._map_to_course(course_xml),
             float(course_xml['EctsPoints']),
             self._parse_grade(course_xml['Grade']),
             course_xml['Period'],
-            int(course_xml['Year'])
+            int(course_xml['Year']),
+            programme_name
         )
 
     def _map_to_course(self, course_xml):
@@ -234,6 +240,9 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
             return int(grade)
         except ValueError:
             return grade
+
+    def _flatten_array(self, array):
+        return reduce(lambda x, y: x + y, array)
 
 
 class Authenticator:
@@ -300,12 +309,13 @@ class Student:
 class ExamResult:
     """Structured class for exam results from CampusNet API"""
 
-    def __init__(self, course, ects_points, grade, period, year):
+    def __init__(self, course, ects_points, grade, period, year, programme):
         self.course = course
         self.ects_points = ects_points
         self.grade = grade
         self.period = period
         self.year = year
+        self.programme = programme
 
 
 class Course:
