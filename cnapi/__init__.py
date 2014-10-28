@@ -216,10 +216,10 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
     def _programme_to_exam_results(self, program_xml):
         courses_xml = program_xml.findall("ExamResults/ExamResult")
         programme_name = program_xml.attrib['DisplayName']
-        return [self._map_to_exam_results(course_xml.attrib, programme_name)
+        return [self._xml_to_exam_result(course_xml.attrib, programme_name)
                 for course_xml in courses_xml]
 
-    def _map_to_exam_results(self, course_xml, programme_name):
+    def _xml_to_exam_result(self, course_xml, programme_name):
         return ExamResult(
             self._map_to_course(course_xml),
             float(course_xml['EctsPoints']),
