@@ -23,21 +23,23 @@
       </div>
     </div>
   </div>
-  <div class="cv-student-courses container">
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">Bachelor (Softwaretek.)</div>
+  {% for programme, exam_results in user_view.exam_results_grouped_by_programme %}
+    <div class="cv-student-courses container">
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">{{ programme }}</div>
 
-        <table class="table table-consended">
-          {% for exam_result in user_view.exam_results %}
-          <tr>
-            <td><a href="{{ exam_result.url }}" target="_blank">{{ exam_result.course_title }}</a></td>
-            <td>{{ exam_result.ects_points }}</td>
-            <td>{{ exam_result.grade }}</td>
-          </tr>
-          {% endfor %}
-        </table>
+          <table class="table table-consended">
+            {% for exam_result in exam_results %}
+            <tr>
+              <td><a href="{{ exam_result.url }}" target="_blank">{{ exam_result.course_title }}</a></td>
+              <td>{{ exam_result.ects_points }}</td>
+              <td>{{ exam_result.grade }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
       </div>
-    </div>
+    {% endfor %}
   </div>
 {% endblock %}

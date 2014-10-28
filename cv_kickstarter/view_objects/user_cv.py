@@ -1,4 +1,5 @@
 from werkzeug import cached_property
+from itertools import groupby
 
 
 class UserCVBuilder(object):
@@ -33,8 +34,22 @@ class UserCV(object):
         return " ".join([self.first_name, self.last_name])
 
     @cached_property
-    def exam_results(self):
-        return map(UserCVExamResult, self._exam_results)
+    def exam_results_grouped_by_programme(self):
+        return ExamResultProgrammeGrouper.grouped_by_programme(
+            map(UserCVExamResult, self._exam_results)
+        )
+
+
+class ExamResultProgrammeGrouper(object):
+    @staticmethod
+    def grouped_by_programme(exam_results):
+        grouped_exam_results = groupby(
+            exam_results,
+            lambda x: x.programme
+        )
+        return [(programme, list(programme_exam_results))
+                for programme, programme_exam_results
+                in grouped_exam_results]
 
 
 class UserCVExamResult(object):
@@ -60,3 +75,7 @@ class UserCVExamResult(object):
     @property
     def course_number(self):
         return self.exam_result.course.course_number
+
+    @property
+    def programme(self):
+        return self.exam_result.programme
