@@ -23,11 +23,40 @@ class UserCVBuilder(object):
 
 
 class UserCV(object):
-    def __init__(self, first_name, last_name, grades):
+    def __init__(self, first_name, last_name, exam_results):
         self.first_name = first_name
         self.last_name = last_name
-        self.grades = grades
+        self._exam_results = exam_results
 
     @property
     def full_name(self):
         return " ".join([self.first_name, self.last_name])
+
+    @cached_property
+    def exam_results(self):
+        return map(UserCVExamResult, self._exam_results)
+
+
+class UserCVExamResult(object):
+    def __init__(self, exam_result):
+        self.exam_result = exam_result
+
+    @property
+    def course_title(self):
+        return self.exam_result.course.title
+
+    @property
+    def ects_points(self):
+        return self.exam_result.ects_points
+
+    @property
+    def grade(self):
+        return self.exam_result.grade
+
+    @property
+    def url(self):
+        return "http://www.kurser.dtu.dk/%s.aspx" % self.course_number
+
+    @property
+    def course_number(self):
+        return self.exam_result.course.course_number
