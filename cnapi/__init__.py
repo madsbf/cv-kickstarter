@@ -231,7 +231,7 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
         return map(self._xml_to_exam_result, exam_result_xmls)
 
     def _xml_to_exam_result(self, exam_result_xml):
-        return ExamResultExtractor(exam_result_xml).extract()
+        return ExamResultXmlMapper(exam_result_xml).exam_result()
 
     def _active_status_to_boolean(self, active_status_string):
         if active_status_string == 'true':
@@ -240,11 +240,14 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
             return False
 
 
-class ExamResultExtractor(object):
+class ExamResultXmlMapper(object):
+    """Is able to extract and map exam result xml into ExamResult objects"""
+
     def __init__(self, exam_result_xml):
         self.exam_result_xml = exam_result_xml
 
-    def extract(self):
+    """Returns an exam result object with information given by the xml"""
+    def exam_result(self):
         exam_result_attributes = self.exam_result_xml.attrib
         return ExamResult(
             self._map_to_course(exam_result_attributes),
