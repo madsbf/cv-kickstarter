@@ -149,7 +149,7 @@ def test_grades_has_programme_with_four_courses():
     stub_successful_grade_request()
     api = new_authenticated_api()
     programmes = api.grades()
-    assert len(programmes[0].grades) == 4
+    assert len(programmes[0].exam_results) == 4
 
 
 @responses.activate
@@ -169,12 +169,12 @@ def test_grades_has_programme_with_correct_exam_result_information():
     api = new_authenticated_api()
     programmes = api.grades()
     first_programme = programmes[0]
-    second_grade = first_programme.grades[1]
-    assert second_grade.course_course_number == "02241"
-    assert second_grade.course_title == "Robuste softwaresystemer"
-    assert second_grade.ects_points == 5.0
-    assert second_grade.grade == 10
-    assert second_grade.year == 2013
+    second_exam_result = first_programme.exam_results[1]
+    assert second_exam_result.course_number == "02241"
+    assert second_exam_result.course_title == "Robuste softwaresystemer"
+    assert second_exam_result.ects_points == 5.0
+    assert second_exam_result.grade == 10
+    assert second_exam_result.year == 2013
 
 
 @responses.activate
