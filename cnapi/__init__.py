@@ -306,6 +306,13 @@ class Student:
         self.user_id = user_id
 
 
+# class ProgramExamResults:
+#     """Structured class for programme with exam results for CampusNet API"""
+
+#     def __init__(self, programme_name, ):
+
+
+
 class ExamResult:
     """Structured class for exam results from CampusNet API"""
 
