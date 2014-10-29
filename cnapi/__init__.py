@@ -224,16 +224,29 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
             self._programme_xml_to_exam_results(programme_xml)
         )
 
-    def _programme_xml_to_exam_results(self, programme_xml):
-        exam_result_xmls = programme_xml.findall("ExamResults/ExamResult")
-        exam_result_attributes = [exam_result_xml.attrib for exam_result_xml
-                                  in exam_result_xmls]
-        return map(self._xml_to_exam_result, exam_result_attributes)
-
     def _ects_passed(self, programme_xml):
         return float(programme_xml.find("PassedEctsSum").attrib["Total"])
 
-    def _xml_to_exam_result(self, exam_result_attributes):
+    def _programme_xml_to_exam_results(self, programme_xml):
+        exam_result_xmls = programme_xml.findall("ExamResults/ExamResult")
+        return map(self._xml_to_exam_result, exam_result_xmls)
+
+    def _xml_to_exam_result(self, exam_result_xml):
+        return ExamResultExtractor(exam_result_xml).extract()
+
+    def _active_status_to_boolean(self, active_status_string):
+        if active_status_string == 'true':
+            return True
+        else:
+            return False
+
+
+class ExamResultExtractor(object):
+    def __init__(self, exam_result_xml):
+        self.exam_result_xml = exam_result_xml
+
+    def extract(self):
+        exam_result_attributes = self.exam_result_xml.attrib
         return ExamResult(
             self._map_to_course(exam_result_attributes),
             float(exam_result_attributes['EctsPoints']),
@@ -242,23 +255,17 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
             int(exam_result_attributes['Year'])
         )
 
-    def _map_to_course(self, exam_result_attributes):
-        return Course(
-            exam_result_attributes["Name"],
-            exam_result_attributes["CourseCode"]
-        )
-
     def _parse_grade(self, grade):
         try:
             return int(grade)
         except ValueError:
             return grade
 
-    def _active_status_to_boolean(self, active_status_string):
-        if active_status_string == 'true':
-            return True
-        else:
-            return False
+    def _map_to_course(self, exam_result_attributes):
+        return Course(
+            exam_result_attributes["Name"],
+            exam_result_attributes["CourseCode"]
+        )
 
 
 class Authenticator:
