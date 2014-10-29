@@ -129,24 +129,60 @@ def test_user_picture_is_returned_when_authenticated():
 
 
 @responses.activate
-def test_grades_objects_are_returned_when_authenticated():
+def test_grades_has_two_programmes():
     responses.add(
         responses.GET,
         'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
         body=load_fixture('grades.xml')
     )
     api = new_authenticated_api()
-    grades = api.grades()
-    first_programme = grades[0]
-    first_grade = first_programme.grades[1]
+    programmes = api.grades()
+    assert len(programmes) == 2
+
+
+@responses.activate
+def test_grades_has_programme_with_four_courses():
+    responses.add(
+        responses.GET,
+        'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
+        body=load_fixture('grades.xml')
+    )
+    api = new_authenticated_api()
+    programmes = api.grades()
+    assert len(programmes[0].grades) == 4
+
+
+@responses.activate
+def test_grades_has_programme_with_correct_information():
+    responses.add(
+        responses.GET,
+        'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
+        body=load_fixture('grades.xml')
+    )
+    api = new_authenticated_api()
+    programmes = api.grades()
+    first_programme = programmes[0]
     assert first_programme.programme_name == "Bachelor (Softwaretek.)"
     assert first_programme.is_active is False
     assert first_programme.passed_ects_points == 20.0
-    assert first_grade.ects_points == 5.0
-    assert first_grade.grade == 10
-    assert first_grade.year == 2013
-    assert first_grade.course.title == u'Robuste softwaresystemer'
-    assert first_grade.course.course_number == u'02241'
+
+
+@responses.activate
+def test_grades_has_programme_with_correct_exam_result_information():
+    responses.add(
+        responses.GET,
+        'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
+        body=load_fixture('grades.xml')
+    )
+    api = new_authenticated_api()
+    programmes = api.grades()
+    first_programme = programmes[0]
+    second_grade = first_programme.grades[1]
+    assert second_grade.course.course_number == "02241"
+    assert second_grade.course.title == "Robuste softwaresystemer"
+    assert second_grade.ects_points == 5.0
+    assert second_grade.grade == 10
+    assert second_grade.year == 2013
 
 
 @responses.activate
