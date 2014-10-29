@@ -1,5 +1,4 @@
 from werkzeug import cached_property
-from itertools import groupby
 
 
 class UserCVBuilder(object):
@@ -18,38 +17,37 @@ class UserCVBuilder(object):
     def user(self):
         return self.campus_net_client.user()
 
-    @property
+    @cached_property
     def grades(self):
         return self.campus_net_client.grades()
 
 
 class UserCV(object):
-    def __init__(self, first_name, last_name, exam_results):
+    def __init__(self, first_name, last_name, programme_exam_results):
         self.first_name = first_name
         self.last_name = last_name
-        self._exam_results = exam_results
+        self._programme_exam_results = programme_exam_results
 
     @property
     def full_name(self):
         return " ".join([self.first_name, self.last_name])
 
-    @cached_property
-    def exam_results_grouped_by_programme(self):
-        return ExamResultProgrammeGrouper.grouped_by_programme(
-            map(UserCVExamResult, self._exam_results)
-        )
+    @property
+    def programme_exam_results(self):
+        return map(UserCVExamResultProgramme, self._programme_exam_results)
 
 
-class ExamResultProgrammeGrouper(object):
-    @staticmethod
-    def grouped_by_programme(exam_results):
-        grouped_exam_results = groupby(
-            exam_results,
-            lambda x: x.programme
-        )
-        return [(programme, list(programme_exam_results))
-                for programme, programme_exam_results
-                in grouped_exam_results]
+class UserCVExamResultProgramme(object):
+    def __init__(self, programme):
+        self.programme = programme
+
+    @property
+    def name(self):
+        return self.programme.name
+
+    @property
+    def exam_results(self):
+        return map(UserCVExamResult, self.programme.exam_results)
 
 
 class UserCVExamResult(object):
@@ -58,7 +56,7 @@ class UserCVExamResult(object):
 
     @property
     def course_title(self):
-        return self.exam_result.course.title
+        return self.exam_result.course_title
 
     @property
     def ects_points(self):
@@ -74,7 +72,7 @@ class UserCVExamResult(object):
 
     @property
     def course_number(self):
-        return self.exam_result.course.course_number
+        return self.exam_result.course_number
 
     @property
     def programme(self):

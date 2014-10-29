@@ -23,14 +23,14 @@
       </div>
     </div>
   </div>
-  {% for programme, exam_results in user_view.exam_results_grouped_by_programme %}
+  {% for programme in user_view.programme_exam_results %}
     <div class="cv-student-courses container">
       <div class="col-md-6">
         <div class="panel panel-default">
-          <div class="panel-heading">{{ programme }}</div>
+          <div class="panel-heading">{{ programme.name }}</div>
 
           <table class="table table-consended">
-            {% for exam_result in exam_results %}
+            {% for exam_result in programme.exam_results %}
             <tr>
               <td><a href="{{ exam_result.url }}" target="_blank">{{ exam_result.course_title }}</a></td>
               <td>{{ exam_result.ects_points }}</td>
