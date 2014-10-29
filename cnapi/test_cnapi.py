@@ -137,13 +137,16 @@ def test_grades_objects_are_returned_when_authenticated():
     )
     api = new_authenticated_api()
     grades = api.grades()
-    first_grade = grades[1]
+    first_programme = grades[0]
+    first_grade = first_programme.grades[1]
+    assert first_programme.programme_name == "Bachelor (Softwaretek.)"
+    assert first_programme.is_active is False
+    assert first_programme.passed_ects_points == 20.0
     assert first_grade.ects_points == 5.0
     assert first_grade.grade == 10
     assert first_grade.year == 2013
     assert first_grade.course.title == u'Robuste softwaresystemer'
     assert first_grade.course.course_number == u'02241'
-    assert first_grade.programme == u'Bachelor (Softwaretek.)'
 
 
 @responses.activate

@@ -208,31 +208,44 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
     """Is able to extract the grades of the given user"""
 
     def _extract_information(self, xml_response):
-        programmes = xml_response.findall("EducationProgramme")
-        return self._flatten_array(
-            map(self._programme_to_exam_results, programmes)
+        programme_xmls = xml_response.findall("EducationProgramme")
+        return self._xml_to_programme_exam_results(programme_xmls)
+
+    def _xml_to_programme_exam_results(self, programme_xmls):
+        return map(self._xml_to_programme_exam_result, programme_xmls)
+
+    def _xml_to_programme_exam_result(self, programme_xml):
+        attributes = programme_xml.attrib
+        print(attributes["Active"])
+        return ProgramExamResults(
+            attributes["DisplayName"],
+            self._active_status_to_boolean(attributes["Active"]),
+            self._ects_passed(programme_xml),
+            self._programme_xml_to_exam_results(programme_xml)
         )
 
-    def _programme_to_exam_results(self, program_xml):
-        courses_xml = program_xml.findall("ExamResults/ExamResult")
-        programme_name = program_xml.attrib['DisplayName']
-        return [self._xml_to_exam_result(course_xml.attrib, programme_name)
-                for course_xml in courses_xml]
+    def _programme_xml_to_exam_results(self, programme_xml):
+        exam_result_xmls = programme_xml.findall("ExamResults/ExamResult")
+        exam_result_attributes = [exam_result_xml.attrib for exam_result_xml
+                                  in exam_result_xmls]
+        return map(self._xml_to_exam_result, exam_result_attributes)
 
-    def _xml_to_exam_result(self, course_xml, programme_name):
+    def _ects_passed(self, programme_xml):
+        return float(programme_xml.find("PassedEctsSum").attrib["Total"])
+
+    def _xml_to_exam_result(self, exam_result_attributes):
         return ExamResult(
-            self._map_to_course(course_xml),
-            float(course_xml['EctsPoints']),
-            self._parse_grade(course_xml['Grade']),
-            course_xml['Period'],
-            int(course_xml['Year']),
-            programme_name
+            self._map_to_course(exam_result_attributes),
+            float(exam_result_attributes['EctsPoints']),
+            self._parse_grade(exam_result_attributes['Grade']),
+            exam_result_attributes['Period'],
+            int(exam_result_attributes['Year'])
         )
 
-    def _map_to_course(self, course_xml):
+    def _map_to_course(self, exam_result_attributes):
         return Course(
-            course_xml["Name"],
-            course_xml["CourseCode"]
+            exam_result_attributes["Name"],
+            exam_result_attributes["CourseCode"]
         )
 
     def _parse_grade(self, grade):
@@ -241,8 +254,11 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
         except ValueError:
             return grade
 
-    def _flatten_array(self, array):
-        return reduce(lambda x, y: x + y, array)
+    def _active_status_to_boolean(self, active_status_string):
+        if active_status_string == 'true':
+            return True
+        else:
+            return False
 
 
 class Authenticator:
@@ -306,23 +322,25 @@ class Student:
         self.user_id = user_id
 
 
-# class ProgramExamResults:
-#     """Structured class for programme with exam results for CampusNet API"""
+class ProgramExamResults:
+    """Structured class for programme with exam results for CampusNet API"""
 
-#     def __init__(self, programme_name, ):
-
+    def __init__(self, programme_name, is_active, passed_ects_points, grades):
+        self.programme_name = programme_name
+        self.is_active = is_active
+        self.passed_ects_points = passed_ects_points
+        self.grades = grades
 
 
 class ExamResult:
     """Structured class for exam results from CampusNet API"""
 
-    def __init__(self, course, ects_points, grade, period, year, programme):
+    def __init__(self, course, ects_points, grade, period, year):
         self.course = course
         self.ects_points = ects_points
         self.grade = grade
         self.period = period
         self.year = year
-        self.programme = programme
 
 
 class Course:
