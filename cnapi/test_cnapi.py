@@ -21,6 +21,14 @@ def new_authenticated_api():
     return api
 
 
+def stub_successful_grade_request():
+    responses.add(
+        responses.GET,
+        'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
+        body=load_fixture('grades.xml')
+    )
+
+
 @responses.activate
 def test_auth_token_is_set_with_successfull_authentication():
     responses.add(
@@ -130,11 +138,7 @@ def test_user_picture_is_returned_when_authenticated():
 
 @responses.activate
 def test_grades_has_two_programmes():
-    responses.add(
-        responses.GET,
-        'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
-        body=load_fixture('grades.xml')
-    )
+    stub_successful_grade_request()
     api = new_authenticated_api()
     programmes = api.grades()
     assert len(programmes) == 2
@@ -142,11 +146,7 @@ def test_grades_has_two_programmes():
 
 @responses.activate
 def test_grades_has_programme_with_four_courses():
-    responses.add(
-        responses.GET,
-        'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
-        body=load_fixture('grades.xml')
-    )
+    stub_successful_grade_request()
     api = new_authenticated_api()
     programmes = api.grades()
     assert len(programmes[0].grades) == 4
@@ -154,11 +154,7 @@ def test_grades_has_programme_with_four_courses():
 
 @responses.activate
 def test_grades_has_programme_with_correct_information():
-    responses.add(
-        responses.GET,
-        'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
-        body=load_fixture('grades.xml')
-    )
+    stub_successful_grade_request()
     api = new_authenticated_api()
     programmes = api.grades()
     first_programme = programmes[0]
@@ -169,11 +165,7 @@ def test_grades_has_programme_with_correct_information():
 
 @responses.activate
 def test_grades_has_programme_with_correct_exam_result_information():
-    responses.add(
-        responses.GET,
-        'https://www.campusnet.dtu.dk/data/CurrentUser/Grades',
-        body=load_fixture('grades.xml')
-    )
+    stub_successful_grade_request()
     api = new_authenticated_api()
     programmes = api.grades()
     first_programme = programmes[0]
