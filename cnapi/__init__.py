@@ -216,7 +216,6 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
 
     def _xml_to_programme_exam_result(self, programme_xml):
         attributes = programme_xml.attrib
-        print(attributes["Active"])
         return ProgramExamResults(
             attributes["DisplayName"],
             self._active_status_to_boolean(attributes["Active"]),
