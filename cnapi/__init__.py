@@ -334,11 +334,11 @@ class Student:
 class ProgramExamResults:
     """Structured class for programme with exam results for CampusNet API"""
 
-    def __init__(self, programme_name, is_active, passed_ects_points, grades):
-        self.programme_name = programme_name
+    def __init__(self, name, is_active, passed_ects_points, exam_results):
+        self.name = name
         self.is_active = is_active
         self.passed_ects_points = passed_ects_points
-        self.grades = grades
+        self.exam_results = exam_results
 
 
 class ExamResult:
