@@ -351,10 +351,12 @@ class ExamResult:
         self.period = period
         self.year = year
 
+    @property
     def course_title(self):
         """Returns the title of the course. Delegation to course."""
         return self.course.title
 
+    @property
     def course_number(self):
         """Returns the course number. Delegation to course."""
         return self.course.course_number
