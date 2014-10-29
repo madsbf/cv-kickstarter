@@ -158,7 +158,7 @@ def test_grades_has_programme_with_correct_information():
     api = new_authenticated_api()
     programmes = api.grades()
     first_programme = programmes[0]
-    assert first_programme.programme_name == "Bachelor (Softwaretek.)"
+    assert first_programme.name == "Bachelor (Softwaretek.)"
     assert first_programme.is_active is False
     assert first_programme.passed_ects_points == 20.0
 
