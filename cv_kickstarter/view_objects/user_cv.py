@@ -1,4 +1,5 @@
 from werkzeug import cached_property
+import re
 
 
 class UserCVBuilder(object):
@@ -48,6 +49,16 @@ class UserCVExamResultProgramme(object):
     @property
     def exam_results(self):
         return map(UserCVExamResult, self.programme.exam_results)
+
+    @property
+    def is_done(self):
+        if re.search(r"Bachelor", self.programme.name):
+            return self._has_passed(180.0)
+        elif re.search(r"Master", self.programme.name):
+            return self._has_passed(120.0)
+
+    def _has_passed(self, ects_points):
+        return self.programme.passed_ects_points >= ects_points
 
 
 class UserCVExamResult(object):
