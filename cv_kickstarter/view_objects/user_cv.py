@@ -1,4 +1,4 @@
-import re
+from user_cv_exam_result_programme import UserCVExamResultProgramme
 
 
 class UserCV(object):
@@ -14,55 +14,3 @@ class UserCV(object):
     @property
     def programme_exam_results(self):
         return map(UserCVExamResultProgramme, self._programme_exam_results)
-
-
-class UserCVExamResultProgramme(object):
-    def __init__(self, programme):
-        self.programme = programme
-
-    @property
-    def name(self):
-        return self.programme.name
-
-    @property
-    def exam_results(self):
-        return map(UserCVExamResult, self.programme.exam_results)
-
-    @property
-    def is_done(self):
-        if re.search(r"Bachelor", self.programme.name):
-            return self._has_passed(180.0)
-        elif re.search(r"Master", self.programme.name):
-            return self._has_passed(120.0)
-
-    def _has_passed(self, ects_points):
-        return self.programme.passed_ects_points >= ects_points
-
-
-class UserCVExamResult(object):
-    def __init__(self, exam_result):
-        self.exam_result = exam_result
-
-    @property
-    def course_title(self):
-        return self.exam_result.course_title
-
-    @property
-    def ects_points(self):
-        return self.exam_result.ects_points
-
-    @property
-    def grade(self):
-        return self.exam_result.grade
-
-    @property
-    def url(self):
-        return "http://www.kurser.dtu.dk/%s.aspx" % self.course_number
-
-    @property
-    def course_number(self):
-        return self.exam_result.course_number
-
-    @property
-    def programme(self):
-        return self.exam_result.programme
