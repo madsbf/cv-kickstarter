@@ -22,7 +22,7 @@
       </div>
     </div>
   </div>
-  {% for programme in user_view.programme_exam_results %}
+  {% for programme in user_view.exam_result_programmes %}
     <div class="cv-student-courses container">
       <div class="col-md-6">
         <div class="panel panel-default">
@@ -31,7 +31,7 @@
           <table class="table table-consended">
             {% for exam_result in programme.exam_results %}
             <tr>
-              <td><a href="{{ exam_result.url }}" target="_blank">{{ exam_result.course_title }}</a></td>
+              <td><a href="http://www.kurser.dtu.dk/{{ exam_result.course_number }}.aspx" target="_blank">{{ exam_result.course_title }}</a></td>
               <td>{{ exam_result.ects_points }}</td>
               <td>{{ exam_result.grade }}</td>
             </tr>

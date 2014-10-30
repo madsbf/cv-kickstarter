@@ -15,10 +15,6 @@ class ExamResult(object):
         return self.exam_result.grade
 
     @property
-    def url(self):
-        return "http://www.kurser.dtu.dk/%s.aspx" % self.course_number
-
-    @property
     def course_number(self):
         return self.exam_result.course_number
 
