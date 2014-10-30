@@ -8,7 +8,7 @@
       <div class="cv-student-information col-sm-8 col-md-7">
         <h1 class="cv-student-name">{{ user_view.full_name }}</h1>
         <div class="cv-student-programmes">
-          {% for programme in user_view.programme_exam_results %}
+          {% for programme in user_view.exam_result_programmes %}
             <h4 class="cv-student-programme">
               {{ programme.name}} {% if programme.is_done %}<span class="cv-student-programme-label glyphicon glyphicon-ok"></span>{% endif %}
             </h4>
