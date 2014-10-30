@@ -1,5 +1,5 @@
 import re
-from user_cv_exam_result import UserCVExamResult
+from exam_result import ExamResult
 
 
 class UserCVExamResultProgramme(object):
@@ -12,7 +12,7 @@ class UserCVExamResultProgramme(object):
 
     @property
     def exam_results(self):
-        return map(UserCVExamResult, self.programme.exam_results)
+        return map(ExamResult, self.programme.exam_results)
 
     @property
     def is_done(self):

@@ -1,4 +1,4 @@
-class UserCVExamResult(object):
+class ExamResult(object):
     def __init__(self, exam_result):
         self.exam_result = exam_result
 
