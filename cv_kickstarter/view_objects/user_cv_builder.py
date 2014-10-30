@@ -1,7 +1,6 @@
 from werkzeug import cached_property
 from user_cv import UserCV
 from exam_result_programme import ExamResultProgramme
-from exam_result import ExamResult
 
 
 class UserCVBuilder(object):
@@ -31,13 +30,5 @@ class UserCVBuilder(object):
         return ExamResultProgramme(
             exam_result_programme.name,
             exam_result_programme.passed_ects_points,
-            map(self._map_exam_results, exam_result_programme.exam_results)
-        )
-
-    def _map_exam_results(self, exam_result):
-        return ExamResult(
-            exam_result.course.title,
-            exam_result.course.course_number,
-            exam_result.ects_points,
-            exam_result.grade
+            exam_result_programme.exam_results
         )
