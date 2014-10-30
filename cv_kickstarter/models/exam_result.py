@@ -1,23 +1,6 @@
 class ExamResult(object):
-    def __init__(self, exam_result):
-        self.exam_result = exam_result
-
-    @property
-    def course_title(self):
-        return self.exam_result.course_title
-
-    @property
-    def ects_points(self):
-        return self.exam_result.ects_points
-
-    @property
-    def grade(self):
-        return self.exam_result.grade
-
-    @property
-    def course_number(self):
-        return self.exam_result.course_number
-
-    @property
-    def programme(self):
-        return self.exam_result.programme
+    def __init__(self, course_title, course_number, ects_points, grade):
+        self.course_title = course_title
+        self.course_number = course_number
+        self.ects_points = ects_points
+        self.grade = grade

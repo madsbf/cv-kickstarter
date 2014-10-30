@@ -35,4 +35,9 @@ class UserCVBuilder(object):
         )
 
     def _map_exam_results(self, exam_result):
-        return ExamResult(exam_result)
+        return ExamResult(
+            exam_result.course.title,
+            exam_result.course.course_number,
+            exam_result.ects_points,
+            exam_result.grade
+        )
