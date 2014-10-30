@@ -3,9 +3,12 @@
 import cnapi
 import responses
 
+import os
+test_path = os.path.dirname(__file__)
+
 
 def load_fixture(fixture_path):
-    return open('fixtures/%s' % fixture_path).read()
+    return open(os.path.join(test_path, 'fixtures', fixture_path)).read()
 
 
 def new_api():

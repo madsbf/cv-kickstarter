@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import dtu_course_base
+import os
+test_path = os.path.dirname(__file__)
 
 
 expected_course_objectives = [
@@ -20,7 +22,8 @@ expected_course_objectives = [
 
 
 def first_course(language):
-    courses_xml = open('fixtures/course.xml').read()
+    course_fixture_path = os.path.join(test_path, 'fixtures', 'course.xml')
+    courses_xml = open(course_fixture_path).read()
     courses = dtu_course_base.courses_from_xml(courses_xml, language)
     return courses[0]
 
