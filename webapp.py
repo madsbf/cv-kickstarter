@@ -7,7 +7,7 @@ sys.path.append('cnapi')
 import os
 from session_authentication import SessionAuthentication
 from request_basic_auth import RequestBasicAuth
-from user_cv import UserCV, UserCVBuilder
+from user_cv_builder import UserCVBuilder
 from flask import (Flask, render_template, request, session, redirect, jsonify,
                    Response)
 from flask_negotiate import consumes
