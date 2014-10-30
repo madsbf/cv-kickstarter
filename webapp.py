@@ -2,6 +2,7 @@ import sys
 
 sys.path.append('cv_kickstarter/lib')
 sys.path.append('cv_kickstarter/view_objects')
+sys.path.append('cv_kickstarter/models')
 sys.path.append('cnapi')
 
 import os
