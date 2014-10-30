@@ -2,7 +2,7 @@ import re
 from exam_result import ExamResult
 
 
-class UserCVExamResultProgramme(object):
+class ExamResultProgramme(object):
     def __init__(self, programme):
         self.programme = programme
 

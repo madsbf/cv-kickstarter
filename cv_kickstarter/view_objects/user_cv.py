@@ -1,4 +1,4 @@
-from user_cv_exam_result_programme import UserCVExamResultProgramme
+from exam_result_programme import ExamResultProgramme
 
 
 class UserCV(object):
@@ -13,4 +13,4 @@ class UserCV(object):
 
     @property
     def programme_exam_results(self):
-        return map(UserCVExamResultProgramme, self._programme_exam_results)
+        return map(ExamResultProgramme, self._programme_exam_results)
