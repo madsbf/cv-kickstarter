@@ -247,8 +247,8 @@ class ExamResultXmlMapper(object):
     def __init__(self, exam_result_xml):
         self.exam_result_xml = exam_result_xml
 
-    """Returns an exam result object with information given by the xml"""
     def exam_result(self):
+        """Returns an exam result object with information given by the xml"""
         exam_result_attributes = self.exam_result_xml.attrib
         return ExamResult(
             self._map_to_course(exam_result_attributes),
