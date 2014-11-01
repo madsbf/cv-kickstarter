@@ -7,6 +7,8 @@ class GradeAverageCalculator(object):
         self.exam_results = exam_results
 
     def average_grade(self):
+        if not self.exam_results:
+            return None
         return round(self._raw_average_grade(), 1)
 
     def _raw_average_grade(self):
