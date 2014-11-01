@@ -15,10 +15,10 @@
 }
 
 /* CV Page */
-.cv-student-jumbatron {
-  background-color: #e5e5e5;
-  height: 300px;
-
+.cv-student-action-bar {
+  background-color: #fafafa;
+  border: 1px solid #f0f0f0;
+  padding: 8px 0;
 }
 
 .cv-student {
@@ -35,14 +35,21 @@
 }
 
 .cv-student-name {
+  margin-top: 0;
   font-size: 50px;
 }
 
 .cv-student-picture-img {
-  width: 120px;
+  width: 150px;
+}
+
+.cv-student-programme {
+  margin-bottom: 0;
 }
 
 .cv-student-programmes {
+  margin-top: 25px;
+  font-size: 1.1em;
   color: #4d4d4d;
 }
 
