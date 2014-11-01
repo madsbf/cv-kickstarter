@@ -7,7 +7,6 @@ sys.path.append('cnapi')
 
 import os
 from session_authentication import SessionAuthentication
-from request_basic_auth import RequestBasicAuth
 from user_cv_builder import UserCVBuilder
 from flask import (Flask, render_template, request, session, redirect, jsonify,
                    Response)
@@ -43,11 +42,13 @@ def login():
 @app.route('/auth')
 @consumes('application/json')
 def auth():
-    basic_auth = RequestBasicAuth(request.authorization)
-    session_auth = SessionAuthentication(session)
-    campus_net_client.authenticate(basic_auth.username, basic_auth.password)
+    basic_auth = request.authorization
+    campus_net_client.authenticate(
+        basic_auth.get('username'),
+        basic_auth.get('password')
+    )
     if campus_net_client.is_authenticated():
-        session_auth.authenticate(
+        SessionAuthentication(session).authenticate(
             basic_auth.username,
             campus_net_client.auth_token
         )
