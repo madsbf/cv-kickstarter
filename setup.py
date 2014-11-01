@@ -1,7 +1,7 @@
 import os
 import sys
 
-from setuptools import setup, find_packages
+from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
 __name__ = 'CVKickstarter'
@@ -25,7 +25,7 @@ setup(
     author=__author__,
     license='MIT',
     keywords='cv kickstarter dtu student',
-    packages=find_packages(),
+
     install_requires=[
         'requests'
     ],
