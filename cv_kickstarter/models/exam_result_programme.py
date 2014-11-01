@@ -18,6 +18,3 @@ class ExamResultProgramme(object):
 
     def _has_passed(self, ects_points):
         return self.passed_ects >= ects_points
-
-    def _ects_sum_of_graded_courses(self):
-        return sum()
