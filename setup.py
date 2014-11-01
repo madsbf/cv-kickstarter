@@ -25,11 +25,7 @@ setup(
     author=__author__,
     license='MIT',
     keywords='cv kickstarter dtu student',
-
     install_requires=[
-        'requests'
-    ],
-    python_modules=[
         'requests'
     ],
     url='http://github.com/MadsFrandsen/PyCampus',
