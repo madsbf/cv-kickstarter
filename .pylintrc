@@ -1,0 +1,5 @@
+[DESIGN]
+min-public-methods=1
+
+[MESSAGES CONTROL]
+disable=W0141
