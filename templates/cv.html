@@ -2,10 +2,10 @@
 {% block body %}
   <div class="cv-student-jumbatron">
     <div class="cv-student container">
-      <div class="cv-student-picture col-sm-4 col-md-2">
+      <div class="cv-student-picture col-sm-3 col-md-3">
         <img src="{{ url_for('picture') }}" class="cv-student-picture-img" />
       </div>
-      <div class="cv-student-main-information col-sm-8 col-md-7">
+      <div class="cv-student-main-information col-sm-9 col-md-9">
         <h1 class="cv-student-name">{{ user_view.full_name }}</h1>
         <div class="cv-student-programmes">
           {% for programme in user_view.exam_result_programmes %}
