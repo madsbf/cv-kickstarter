@@ -1,16 +1,16 @@
 {
   "title": "CV Kickstarter",
-  "members": [ 
+  "members": [
     {
       "name": "Mads Bjerg Frandsen",
       "study_number": "s082972"
-    }, 
+    },
     {
       "name": "Anders Emil Nielsen",
       "study_number": "s103457"
     }
   ],
-  "git": "git@github.com:MadsFrandsen/PyCampus.git", 
+  "git": "git@github.com:MadsFrandsen/PyCampus.git",
   "description": "We will create one module for analysis of course descriptions from CampusNet, to determine keywords, that are relevant for a given DTU student. We will create another module to determine which keywords are relevant for current jobs, by analysing data from LinkedIn. These two modules will be used as the main building blocks to present a given DTU student with a CV kickstarter service, that gives relevant information to improve their CV's. The end-user will access the service through a web front-end.",
-  "modules": []
+  "modules": ["nltk", "flask"]
 }
