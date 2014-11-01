@@ -209,7 +209,7 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
 
     def _extract_information(self, xml_response):
         programme_xmls = xml_response.findall("EducationProgramme")
-        return self._xml_to_programme_exam_results(programme_xmls)
+        return list(self._xml_to_programme_exam_results(programme_xmls))
 
     def _xml_to_programme_exam_results(self, programme_xmls):
         return map(self._xml_to_programme_exam_result, programme_xmls)
@@ -228,7 +228,7 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
 
     def _programme_xml_to_exam_results(self, programme_xml):
         exam_result_xmls = programme_xml.findall("ExamResults/ExamResult")
-        return map(self._xml_to_exam_result, exam_result_xmls)
+        return list(map(self._xml_to_exam_result, exam_result_xmls))
 
     def _xml_to_exam_result(self, exam_result_xml):
         return ExamResultXmlMapper(exam_result_xml).exam_result()
