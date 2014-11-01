@@ -36,7 +36,7 @@ setup(
     long_description=open('README.rst').read(),
     install_requires=[
         'requests',
-        'flask',
+        'Flask',
         'flask-negotiate',
         'flask-sslify',
         'gunicorn'
