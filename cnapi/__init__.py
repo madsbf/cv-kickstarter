@@ -183,7 +183,7 @@ class AbstractXmlInfoExtractor:
         else:
             return None
 
-    def _extract_information(self):
+    def _extract_information(self, xml_response):
         raise NotImplementedError(
             'Xml Info Extractors need to implement _extract_information'
         )
