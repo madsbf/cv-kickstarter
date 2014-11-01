@@ -15,7 +15,7 @@ def test_grade_average_is_calculated_correctly():
     assert GradeAverageCalculator([
         MagicMock(ects_points=10.0, grade=10),
         MagicMock(ects_points=7.5, grade=-3),
-        MagicMock(ects_points=5.0, grade=02),
+        MagicMock(ects_points=5.0, grade=2),
         MagicMock(ects_points=17.5, grade=0)
     ]).average_grade() == 2.2
 
