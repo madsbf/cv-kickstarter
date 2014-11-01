@@ -16,3 +16,4 @@ dist/
 
 # Unit test / coverage reports
 .cache
+.coverage
