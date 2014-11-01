@@ -8,7 +8,8 @@ venv/
 env/
 build/
 dist/
-.egg/
+*.egg/
+*.egg
 *.egg-info/
 
 # Tox
