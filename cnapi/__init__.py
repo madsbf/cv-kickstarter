@@ -251,7 +251,8 @@ class ExamResultXmlMapper(object):
         """Returns an exam result object with information given by the xml"""
         exam_result_attributes = self.exam_result_xml.attrib
         return ExamResult(
-            self._map_to_course(exam_result_attributes),
+            exam_result_attributes["Name"],
+            exam_result_attributes["CourseCode"],
             float(exam_result_attributes['EctsPoints']),
             self._parse_grade(exam_result_attributes['Grade']),
             exam_result_attributes['Period'],
@@ -263,12 +264,6 @@ class ExamResultXmlMapper(object):
             return int(grade)
         except ValueError:
             return grade
-
-    def _map_to_course(self, exam_result_attributes):
-        return Course(
-            exam_result_attributes["Name"],
-            exam_result_attributes["CourseCode"]
-        )
 
 
 class Authenticator:
@@ -328,7 +323,6 @@ ProgramExamResults = namedtuple('ProgramExamResults',
                                 ['name', 'is_active',
                                  'passed_ects_points', 'exam_results'])
 
-ExamResult = namedtuple('ExamResult', ['course', 'ects_points', 'grade',
+ExamResult = namedtuple('ExamResult', ['course_title', 'course_number',
+                                       'ects_points', 'grade',
                                        'period', 'year'])
-
-Course = namedtuple('Course', ['title', 'course_number'])

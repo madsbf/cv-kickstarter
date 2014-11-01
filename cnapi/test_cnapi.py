@@ -173,8 +173,8 @@ def test_grades_has_programme_with_correct_exam_result_information():
     programmes = api.grades()
     first_programme = programmes[0]
     second_exam_result = first_programme.exam_results[1]
-    assert second_exam_result.course.course_number == "02241"
-    assert second_exam_result.course.title == "Robuste softwaresystemer"
+    assert second_exam_result.course_number == "02241"
+    assert second_exam_result.course_title == "Robuste softwaresystemer"
     assert second_exam_result.ects_points == 5.0
     assert second_exam_result.grade == 10
     assert second_exam_result.year == 2013
