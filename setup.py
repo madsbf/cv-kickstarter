@@ -25,10 +25,8 @@ setup(
     author=__author__,
     license='MIT',
     keywords='cv kickstarter dtu student',
-    install_requires=[
-        'requests'
-    ],
-    url='http://github.com/MadsFrandsen/PyCampus',
-    cmdclass={'test': ToxTestCommand},
+    install_requires=['requests'],
     tests_require=['tox'],
+    url='http://github.com/MadsFrandsen/PyCampus',
+    cmdclass={'test': ToxTestCommand}
 )
