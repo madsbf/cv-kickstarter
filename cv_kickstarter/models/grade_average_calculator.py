@@ -6,15 +6,13 @@ class GradeAverageCalculator(object):
         return round(self._raw_average_grade(), 1)
 
     def _raw_average_grade(self):
-        return (self._sum_of_products_of_grade_and_ects() /
+        return (sum(self._products_of_grades_and_ects()) /
                 self._total_ects_points())
 
-    def _sum_of_products_of_grade_and_ects(self):
-        return sum(
-            map(
-                self._product_of_grade_and_ects,
-                self._exam_results_with_grade()
-            )
+    def _products_of_grades_and_ects(self):
+        return map(
+            self._product_of_grade_and_ects,
+            self._exam_results_with_grade()
         )
 
     def _total_ects_points(self):
