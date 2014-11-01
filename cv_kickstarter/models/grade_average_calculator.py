@@ -1,4 +1,8 @@
 class GradeAverageCalculator(object):
+    @staticmethod
+    def exam_results_average_grade(exam_results):
+        GradeAverageCalculator(exam_results).average_grade()
+
     def __init__(self, exam_results):
         self.exam_results = exam_results
 
