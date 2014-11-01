@@ -37,6 +37,7 @@ To fetch the user infor of the given user:
 
 import requests
 import xml.etree.ElementTree
+from collections import namedtuple
 import re
 
 
@@ -320,51 +321,14 @@ class Authenticator:
     def _is_authenticated(self, response_text_xml):
         return response_text_xml.find('LimitedAccess') is not None
 
+Student = namedtuple('Student',
+                     ['first_name', 'last_name', 'email', 'user_id'])
 
-class Student:
-    """Structured class for user info from CampusNet API"""
+ProgramExamResults = namedtuple('ProgramExamResults',
+                                ['name', 'is_active',
+                                 'passed_ects_points', 'exam_results'])
 
-    def __init__(self, first_name, last_name, email, user_id):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email = email
-        self.user_id = user_id
+ExamResult = namedtuple('ExamResult', ['course', 'ects_points', 'grade',
+                                       'period', 'year'])
 
-
-class ProgramExamResults:
-    """Structured class for programme with exam results for CampusNet API"""
-
-    def __init__(self, name, is_active, passed_ects_points, exam_results):
-        self.name = name
-        self.is_active = is_active
-        self.passed_ects_points = passed_ects_points
-        self.exam_results = exam_results
-
-
-class ExamResult:
-    """Structured class for exam results from CampusNet API"""
-
-    def __init__(self, course, ects_points, grade, period, year):
-        self.course = course
-        self.ects_points = ects_points
-        self.grade = grade
-        self.period = period
-        self.year = year
-
-    @property
-    def course_title(self):
-        """Returns the title of the course. Delegation to course."""
-        return self.course.title
-
-    @property
-    def course_number(self):
-        """Returns the course number. Delegation to course."""
-        return self.course.course_number
-
-
-class Course:
-    """Structured class for courses from CampusNet API"""
-
-    def __init__(self, title, course_number):
-        self.title = title
-        self.course_number = course_number
+Course = namedtuple('Course', ['title', 'course_number'])
