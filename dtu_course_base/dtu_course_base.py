@@ -3,6 +3,7 @@ from the DTU Course Base.
 """
 
 import xml.etree.ElementTree as xmlET
+from collections import namedtuple
 
 
 def courses_from_xml(courses_xml_text, language='en-GB'):
@@ -67,19 +68,5 @@ class CourseExtractor(object):
         )
 
 
-class Course(object):
-    """Structured class for course info from DTU Course Base"""
-
-    def __init__(
-        self,
-        title,
-        course_number,
-        contents,
-        course_objectives_text,
-        course_objectives
-    ):
-        self.title = title
-        self.course_number = course_number
-        self.contents = contents
-        self.course_objectives_text = course_objectives_text
-        self.course_objectives = course_objectives
+Course = namedtuple("Course", ['title', 'course_number', 'contents',
+                               'course_objectives_text', 'course_objectives'])
