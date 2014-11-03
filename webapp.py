@@ -81,7 +81,7 @@ def cv_page():
 def picture():
     session_auth = SessionAuthentication(session)
     if not session_auth.is_authenticated():
-        return authenticate()
+        return '', 401
     campus_net_client.authenticate_with_token(
         session_auth.student_id,
         session_auth.auth_token

@@ -7,9 +7,14 @@ os.environ['CAMPUS_NET_APP_TOKEN'] = '1234'
 
 from webapp import app, SessionAuthentication, UserCVBuilder
 from pytest import yield_fixture
-from mock import Mock
+from mock import Mock, MagicMock
 from base64 import b64encode as base64
 import webapp
+
+
+class FakeCampusNetPicture(object):
+    def iter_content(self, size):
+        return ['user', '_picture']
 
 
 class FakeCampusNetClient(object):
@@ -27,7 +32,10 @@ class FakeCampusNetClient(object):
         pass
 
     def user(self):
-        pass
+        return MagicMock(user_id=1234)
+
+    def user_picture(self, user_id):
+        return FakeCampusNetPicture()
 
 
 class FakeSessionAuth(object):
@@ -133,3 +141,19 @@ def test_cv_page_renders_the_cv_for_authenticated_users(api, monkeypatch,
     monkeypatch.setattr(UserCVBuilder, 'build', lambda self: NullObject())
     response = api.get('/cv')
     assert response.status_code == 200
+
+
+def test_picture_responds_with_401_when_uanauthenticate(api, monkeypatch,
+                                                        fake_cn_client):
+    fake_cn_client.success = False
+    response = api.get('/cv/picture')
+    assert response.status_code == 401
+
+
+def test_picture_responds_with_image_when_authenticated(api, monkeypatch,
+                                                        fake_cn_client):
+    monkeypatch.setattr(SessionAuthentication, 'is_authenticated',
+                        lambda self: True)
+    response = api.get('/cv/picture')
+    assert response.status_code == 200
+    assert response.data == 'user_picture'
