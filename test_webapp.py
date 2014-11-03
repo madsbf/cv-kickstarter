@@ -4,7 +4,6 @@ os.environ['SECRET_KEY'] = '1234'
 os.environ['CAMPUS_NET_APP_NAME'] = '123'
 os.environ['CAMPUS_NET_APP_TOKEN'] = '1234'
 
-
 from webapp import app, SessionAuthentication, UserCVBuilder
 from pytest import yield_fixture
 from mock import Mock, MagicMock
@@ -83,11 +82,7 @@ def _auth_headers():
 
 
 def assert_redirected_to(response, path):
-    assert response.headers['Location'] == "http://localhost%s" % path
-
-
-def fake_authenticate(username, password):
-    pass
+    assert response.location == "http://localhost%s" % path
 
 
 def test_root_simply_render(api):
