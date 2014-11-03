@@ -37,14 +37,6 @@ class FakeCampusNetClient(object):
         return FakeCampusNetPicture()
 
 
-class FakeSessionAuth(object):
-    def __init__(self):
-        self.success = True
-
-    def is_authenticate(self):
-        return self.success
-
-
 class NullObject(object):
     def __call__(self):
         return NullObject()
