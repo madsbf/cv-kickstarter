@@ -74,6 +74,7 @@ def _auth_headers():
 
 
 def assert_redirected_to(response, path):
+    assert response.status_code == 302
     assert response.location == "http://localhost%s" % path
 
 
@@ -86,7 +87,6 @@ def test_authenticated_users_are_redirected_to_cv_in_root(api, monkeypatch):
     monkeypatch.setattr(SessionAuthentication, 'is_authenticated',
                         lambda self: True)
     response = api.get('/', follow_redirects=False)
-    assert response.status_code == 302
     assert_redirected_to(response, '/cv')
 
 
@@ -112,12 +112,25 @@ def test_bad_authentication_responds_with_401(api, monkeypatch,
     assert response.status_code == 401
 
 
+def test_log_out_invokes_session_log_out(api, monkeypatch):
+    session_auth_mock = Mock(return_value=None)
+    monkeypatch.setattr(SessionAuthentication, 'log_out',
+                        session_auth_mock)
+    api.post('/log_out')
+    session_auth_mock.assert_called_with()
+
+
+def test_log_out_redirects_to_root(api, monkeypatch):
+    monkeypatch.setattr(SessionAuthentication, 'log_out', lambda x: None)
+    response = api.post('/log_out')
+    assert_redirected_to(response, '/')
+
+
 def test_cv_page_redirects_to_root_when_unauthenticated(api, monkeypatch,
                                                         fake_cn_client):
     monkeypatch.setattr(SessionAuthentication, 'is_authenticated',
                         lambda self: False)
     response = api.get('/cv')
-    assert response.status_code == 302
     assert_redirected_to(response, '/')
 
 
