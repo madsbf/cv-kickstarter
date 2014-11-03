@@ -4,7 +4,8 @@ os.environ['SECRET_KEY'] = '1234'
 os.environ['CAMPUS_NET_APP_NAME'] = '123'
 os.environ['CAMPUS_NET_APP_TOKEN'] = '1234'
 
-from webapp import app, SessionAuthentication
+
+from webapp import app, SessionAuthentication, UserCVBuilder
 from pytest import yield_fixture
 from mock import Mock
 from base64 import b64encode as base64
@@ -35,6 +36,20 @@ class FakeSessionAuth(object):
 
     def is_authenticate(self):
         return self.success
+
+
+class NullObject(object):
+    def __call__(self):
+        return NullObject()
+
+    def __getattr__(self, name):
+        return NullObject()
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        raise StopIteration
 
 
 @yield_fixture
@@ -111,9 +126,10 @@ def test_cv_page_redirects_to_root_when_unauthenticated(api, monkeypatch,
     assert_redirected_to(response, '/')
 
 
-# def test_cv_page_renders_the_cv_for_authenticated_users(api, monkeypatch,
-#                                                         fake_cn_client):
-#     monkeypatch.setattr(SessionAuthentication, 'is_authenticated',
-#                         lambda self: True)
-#     response = api.get('/cv')
-#     assert response.status_code == 200
+def test_cv_page_renders_the_cv_for_authenticated_users(api, monkeypatch,
+                                                        fake_cn_client):
+    monkeypatch.setattr(SessionAuthentication, 'is_authenticated',
+                        lambda self: True)
+    monkeypatch.setattr(UserCVBuilder, 'build', lambda self: NullObject())
+    response = api.get('/cv')
+    assert response.status_code == 200
