@@ -1,2 +1,2 @@
 [run]
-omit = venv/*, .tox/*, venv34/*
+omit = venv/*, .tox/*, venv34/*, setup.py
