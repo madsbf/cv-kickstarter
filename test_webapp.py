@@ -47,8 +47,11 @@ class NullObject(object):
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         raise StopIteration
+
+    def next(self):
+        self.__next__()
 
 
 @yield_fixture
@@ -66,9 +69,9 @@ def fake_cn_client(monkeypatch):
 
 
 def _auth_headers():
-    basic_auth_username_password = base64("%s:%s" % ('usrname', 'secret'))
+    basic_auth_creds = base64("usrname:secret".encode('ascii'))
     return {
-        'Authorization': 'Basic %s' % basic_auth_username_password,
+        'Authorization': 'Basic %s' % basic_auth_creds.decode('ascii'),
         'Content-Type': 'application/json'
     }
 
@@ -156,4 +159,4 @@ def test_picture_responds_with_image_when_authenticated(api, monkeypatch,
                         lambda self: True)
     response = api.get('/cv/picture')
     assert response.status_code == 200
-    assert response.data == 'user_picture'
+    assert response.data == 'user_picture'.encode('ascii')

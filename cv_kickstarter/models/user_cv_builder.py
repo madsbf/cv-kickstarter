@@ -21,10 +21,10 @@ class UserCVBuilder(object):
 
     @cached_property
     def grades(self):
-        return map(
+        return list(map(
             self._map_exam_result_programme,
             self.campus_net_client.grades()
-        )
+        ))
 
     def _map_exam_result_programme(self, exam_result):
         return CampusNetExamResultMapper(
