@@ -99,6 +99,14 @@ def test_correct_authentications_responds_with_200(api, monkeypatch,
     assert response.status_code == 200
 
 
+def test_authentication_with_correct_credentials(api, monkeypatch):
+    campus_net_client_mock = Mock(auth_token='LSSJK-28SJS')
+    monkeypatch.setattr(webapp, 'campus_net_client', campus_net_client_mock)
+    api.get('/auth', headers=_auth_headers())
+    campus_net_client_mock.authenticate.assert_called_with('usrname',
+                                                           'secret')
+
+
 def test_correct_authentication_updates_session(api, monkeypatch,
                                                 fake_cn_client):
     session_auth_mock = Mock(return_value=None)
