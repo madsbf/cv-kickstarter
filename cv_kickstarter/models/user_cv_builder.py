@@ -1,6 +1,7 @@
 from werkzeug import cached_property
 from user_cv import UserCV
 from campus_net_exam_result_mapper import CampusNetExamResultMapper
+import tokenize_evaluator
 
 
 class UserCVBuilder(object):
@@ -12,7 +13,8 @@ class UserCVBuilder(object):
         return UserCV(
             self.user.first_name,
             self.user.last_name,
-            self.grades
+            self.grades,
+            tokenize_evaluator.final_keywords(self.grades)
         )
 
     @cached_property

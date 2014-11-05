@@ -29,12 +29,11 @@
       </div>
     </div>
   </div>
-  {% for programme in user_view.exam_result_programmes %}
-    <div class="cv-student-courses container">
-      <div class="col-md-6">
+  <div class="cv-student-courses container">
+    <div class="col-md-6">
+      {% for programme in user_view.exam_result_programmes %}
         <div class="panel panel-default">
           <div class="panel-heading">{{ programme.name }}</div>
-
           <table class="table table-consended">
             {% for exam_result in programme.exam_results %}
             <tr>
@@ -45,7 +44,26 @@
             {% endfor %}
           </table>
         </div>
+      {% endfor %}
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Skills</div>
+          <div class="panel-body">
+            <div class="ranked-course-keywords-description">
+              These skills are extracted from the title, contents, course objectives and learning objectives from the courses the student have passed and ranked by the grade gained in the different courses.
+            </div>
+            {% for keyword in user_view.highest_ranked_keywords %}
+              <div class="ranked-course-keyword">
+                <div class="ranked-course-keyword-keyword">{{ keyword.keyword }}</div>
+                <div class="ranked-course-keyword-courses">
+                  Obtained from
+                  {% for course in keyword.course_numbers %}{{ course.title}}{% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
       </div>
-    {% endfor %}
+    </div>
   </div>
 {% endblock %}
