@@ -18,5 +18,3 @@ class KeywordEvaluator:
         totalJobs = self.job_searcher.find_results_amount()
         keywordJobs = self.job_searcher.find_results_amount(keyword)
         return keywordJobs / totalJobs * 100
-
-print KeywordEvaluator(CareerBuilder('WDHQ66567NQJB7C8NCH4')).evaluate_keyword('developer')

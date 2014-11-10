@@ -22,7 +22,7 @@ class CareerBuilder (JobSearcher):
     def find_results_amount(self, keyword=''):
         args = {self.PARAM_DEV_KEY: self.developer_key,
                 self.PARAM_KEYWORDS: keyword}
-        response = requests.get(self.BASE_URL, args)
+        response = requests.get(self.BASE_URL, params=args)
         data = soup(response.text, features='xml')
         return int(data.ResponseJobSearch.TotalCount.contents[0])
 
@@ -30,7 +30,7 @@ class CareerBuilder (JobSearcher):
         args = {self.PARAM_DEV_KEY: self.developer_key,
                 self.PARAM_PER_PAGE: str(amount),
                 self.PARAM_KEYWORDS: ','.join(keywords)}
-        response = requests.get(self.BASE_URL, args)
+        response = requests.get(self.BASE_URL, params=args)
         jobs = self.soup_to_jobs(soup(response.text, features='xml'))
         return jobs
 
