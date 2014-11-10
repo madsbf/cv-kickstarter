@@ -3,6 +3,7 @@ from job_searcher import JobSearcher
 
 __author__ = 'Mads'
 
+from flask import url_for
 import requests
 import json
 
@@ -15,7 +16,9 @@ class GoJobs (JobSearcher):
 
     HEADERS = {"Content-type": "application/json",
            "Accept": "text/plain"}
-    PASS = '02e19abe-b6f4-4a7e-bb70-9e613fcb43c2' # Needed to communicate with the server
+    PASS = '02e19abe-b6f4-4a7e-bb70-9e613fcb43c2' # Needed to communicate with the server - This is included
+                                                    # in every request from iPhones and Android phones
+                                                    # to the server, and is NOT secret.
 
     def __init__(self, guid):
         """ :param guid: Needed for identification """
