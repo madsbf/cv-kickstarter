@@ -9,7 +9,8 @@ class CourseExamResultBuilder(object):
     def course_exam_result(self):
         return ExamResult(
             self.exam_result.grade,
-            self._course_from_course_base(self.exam_result.course_number)
+            self._course_from_course_base(self.exam_result.course_number),
+            self.exam_result.ects_points
         )
 
     def _course_from_course_base(self, course_number):

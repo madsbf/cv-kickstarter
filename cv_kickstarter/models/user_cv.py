@@ -8,7 +8,7 @@ class UserCV(object):
 
     @property
     def highest_ranked_keywords(self):
-        return self.keywords[:10]
+        return self.keywords[:50]
 
     @property
     def full_name(self):
