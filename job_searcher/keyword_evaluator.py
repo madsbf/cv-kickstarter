@@ -4,6 +4,7 @@ from go_jobs import GoJobs
 
 __author__ = 'Mads'
 
+
 class KeywordEvaluator:
     """ This class is used to evaluate keywords with a given job searcher """
 
@@ -15,6 +16,6 @@ class KeywordEvaluator:
         :param keyword: The keyword to evaluate
         :return: The percentage of jobs, that contain the given keyword
         """
-        totalJobs = self.job_searcher.find_results_amount()
-        keywordJobs = self.job_searcher.find_results_amount(keyword)
-        return keywordJobs / totalJobs * 100
+        total_jobs = self.job_searcher.find_results_amount()
+        keyword_jobs = self.job_searcher.find_results_amount(keyword)
+        return keyword_jobs / total_jobs * 100

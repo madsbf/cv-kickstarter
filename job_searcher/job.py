@@ -1,5 +1,6 @@
 __author__ = 'Mads'
 
+
 class Job:
 
     def __init__(self, title, company_name, teaser, job_url):
