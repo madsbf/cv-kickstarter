@@ -1,6 +1,4 @@
 from __future__ import division
-from careerbuilder import CareerBuilder
-from go_jobs import GoJobs
 
 __author__ = 'Mads'
 
