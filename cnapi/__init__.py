@@ -225,7 +225,11 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
         )
 
     def _ects_passed(self, programme_xml):
-        return float(programme_xml.find("PassedEctsSum").attrib["Total"])
+        passed_ects_element = programme_xml.find("PassedEctsSum")
+        if passed_ects_element is not None:
+            return float(passed_ects_element.attrib["Total"])
+        else:
+            return 0.0
 
     def _programme_xml_to_exam_results(self, programme_xml):
         exam_result_xmls = programme_xml.findall("ExamResults/ExamResult")

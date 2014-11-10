@@ -144,7 +144,7 @@ def test_grades_has_two_programmes():
     stub_successful_grade_request()
     api = new_authenticated_api()
     programmes = api.grades()
-    assert len(programmes) == 2
+    assert len(programmes) == 3
 
 
 @responses.activate
