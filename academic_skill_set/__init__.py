@@ -1,11 +1,12 @@
 from itertools import groupby
 import nltk
 import numpy
-from collection import namedtuple
+from collections import namedtuple
 
 
 def skill_set(tokenized_exam_results):
-    word_scores = global_word_score(tokenized_exam_results)
+    keyword_ranker = KeywordWordFrequencyRanker()
+    word_scores = keyword_ranker.word_scores(tokenized_exam_results)
     return map(
         map_rank_tuples_to_ranked_course_keyword,
         merge_ranks(
@@ -25,6 +26,35 @@ def map_rank_tuples_to_ranked_course_keyword(ranks):
     )
 
 
+class KeywordWordFrequencyRanker(object):
+    def word_scores(self, tokenized_course_exam_results):
+        all_chunks = reduce(
+            lambda x, y: x + y,
+            map(lambda x: x.tokens, tokenized_course_exam_results)
+        )
+        tokenized_chunks = map(
+            lambda x: nltk.word_tokenize(x),
+            all_chunks
+        )
+        return self._calculate_word_scores(tokenized_chunks)
+
+
+    def _calculate_word_scores(self, phrase_list):
+        word_freq = nltk.FreqDist()
+        word_degree = nltk.FreqDist()
+        for phrase in phrase_list:
+          degree = len(phrase) - 1
+          for word in phrase:
+            word_freq[word] += 1
+            word_degree[word] += degree
+        for word in word_freq.keys():
+          word_degree[word] = word_degree[word] + word_freq[word]
+        word_scores = {}
+        for word in word_freq.keys():
+          word_scores[word] = word_degree[word] / word_freq[word]
+        return word_scores
+
+
 def rank_tokens_for_course2(word_scores, tokenized_course_exam_result):
     course = None
     if tokenized_course_exam_result.course:
@@ -38,7 +68,7 @@ def rank_tokens_for_course2(word_scores, tokenized_course_exam_result):
     grade = tokenized_course_exam_result.exam_result.grade
     grade_score = 1.0
     if type(grade) is float or type(grade) is int:
-        grade_score = grade / 8.5 # Hard coded average
+        grade_score = grade / 8.5 # Hard coded average_score
     grade_ranked_chunk_scores = [(word, rank*grade_score, course) for word, rank
                                  in chunk_scores.items()]
     return sorted(grade_ranked_chunk_scores, key=lambda x: -x[1])
@@ -49,13 +79,7 @@ def _average_chunk_scores(chunk_scores):
     return dict([(word, score - average_score) for word, score in chunk_scores.items()])
 
 
-def global_word_score(tokenized_course_exam_results):
-    all_chunks = reduce(lambda x, y: x + y, map(lambda x: x.tokens, tokenized_course_exam_results))
-    tokenized_chunks = map(
-        lambda x: nltk.word_tokenize(x),
-        all_chunks
-    )
-    return _calculate_word_scores(tokenized_chunks)
+
 
 
 def rank_tokens_for_courses2(word_scores, tokenized_course_exam_results):
@@ -81,22 +105,6 @@ def merge_grouped_ranks(grouped_ranks):
         grouped_ranks,
         ('', 0.0, [])
     )
-
-
-def _calculate_word_scores(phrase_list):
-    word_freq = nltk.FreqDist()
-    word_degree = nltk.FreqDist()
-    for phrase in phrase_list:
-      degree = len(phrase) - 1
-      for word in phrase:
-        word_freq[word] += 1
-        word_degree[word] += degree
-    for word in word_freq.keys():
-      word_degree[word] = word_degree[word] + word_freq[word]
-    word_scores = {}
-    for word in word_freq.keys():
-      word_scores[word] = word_degree[word] / word_freq[word]
-    return word_scores
 
 
 def _calculate_phrase_scores(phrase_list, word_scores):
