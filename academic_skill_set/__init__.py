@@ -1,9 +1,10 @@
 from itertools import groupby
 import nltk
 import numpy
+from collection import namedtuple
 
 
-def skills(tokenized_exam_results):
+def skill_set(tokenized_exam_results):
     word_scores = global_word_score(tokenized_exam_results)
     return map(
         map_rank_tuples_to_ranked_course_keyword,
@@ -22,12 +23,6 @@ def map_rank_tuples_to_ranked_course_keyword(ranks):
         ranks[1],
         ranks[2]
     )
-
-class RankedCourseKeyword(object):
-    def __init__(self, keyword, rank, course_numbers):
-        self.keyword = keyword
-        self.rank = rank
-        self.course_numbers = course_numbers
 
 
 def rank_tokens_for_course2(word_scores, tokenized_course_exam_result):
@@ -114,4 +109,6 @@ def _calculate_phrase_scores(phrase_list, word_scores):
       phrase_scores[" ".join(phrase)] = phrase_score
     return phrase_scores
 
+RankedCourseKeyword = namedtuple("RankedCourseKeyword",
+                                 ['keyword', 'rank', 'course_numbers'])
 
