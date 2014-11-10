@@ -1,6 +1,7 @@
 import nltk
 
 
+# Inspired by Finn Nielsens code from Data Mining using Python 02819 at DTU.
 class TextChunkifier(object):
     def text_chunks(self, text):
         return self._extract_chunks(
