@@ -6,13 +6,13 @@ import numpy
 
 sys.path.append('cv_kickstarter/lib')
 sys.path.append('cv_kickstarter/models')
-sys.path.append('dtu_course_base')
+
 
 import base64
 import cnapi
-import dtu_course_base
 from werkzeug import cached_property
 
+from xml_course_base_repo_builder import XmlCourseBaseRepoBuilder
 from course_keyword_tokenizer import CourseKeywordTokenizer
 from course_base_repo import CourseBaseRepo
 from campus_net_course_base_merger import CampusNetCourseBaseMerger
@@ -47,7 +47,7 @@ class RankedCourseKeyword(object):
 
 
 def course_exam_results(exam_result_programmes):
-    course_base = XmlCourseBaseRepositoryBuilder(
+    course_base = XmlCourseBaseRepoBuilder(
         'courses.xml'
     ).course_base_repo()
 
@@ -182,17 +182,3 @@ class TokenizedCourseExamResult(object):
     @property
     def course(self):
         return self.exam_result.course
-
-
-class XmlCourseBaseRepositoryBuilder(object):
-    def __init__(self, course_xml_path):
-        self.course_xml_path = course_xml_path
-
-    def course_base_repo(self):
-        return CourseBaseRepo(self._courses_from_xml())
-
-    def _courses_from_xml(self):
-        return dtu_course_base.courses_from_xml(self._course_xml())
-
-    def _course_xml(self):
-        return open('courses.xml').read()
