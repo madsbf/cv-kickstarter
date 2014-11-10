@@ -37,3 +37,9 @@ def test_grade_average_ignores_results_without_grade():
         MagicMock(ects_points=7.5, grade=0),
         MagicMock(ects_points=10.0, grade='BE')
     ]).average_grade() == 2.3
+
+
+def test_grade_average_without_meaningful_grades():
+    assert GradeAverageCalculator([
+        MagicMock(ects_points=10.0, grade='BE')
+    ]).average_grade() is None
