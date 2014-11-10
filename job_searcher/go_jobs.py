@@ -25,7 +25,7 @@ class GoJobs (JobSearcher):
 
     def find_results_amount(self, keyword=''):
         request_data = {'guid': self.guid,
-                        "amount": 2147483647, #Int32 maximum
+                        "amount": 2147483647,  # Int32 maximum
                         'text': keyword,
                         'geoIds': [-1],
                         'networkId': 3,
