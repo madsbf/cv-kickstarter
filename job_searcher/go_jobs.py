@@ -16,7 +16,8 @@ class GoJobs (JobSearcher):
 
     HEADERS = {"Content-type": "application/json",
                "Accept": "text/plain"}
-    PASS = '02e19abe-b6f4-4a7e-bb70-9e613fcb43c2'  # Needed to communicate with the server - NOT secret
+    # Needed to communicate with the server - NOT secret
+    PASS = '02e19abe-b6f4-4a7e-bb70-9e613fcb43c2'
 
     def __init__(self, guid):
         """ :param guid: Needed for identification """
@@ -24,7 +25,7 @@ class GoJobs (JobSearcher):
 
     def find_results_amount(self, keyword=''):
         request_data = {'guid': self.guid,
-                        "amount": 2147483647,  # Int32 maximum - Anything above will result in a server error
+                        "amount": 2147483647, #Int32 maximum
                         'text': keyword,
                         'geoIds': [-1],
                         'networkId': 3,
@@ -52,7 +53,9 @@ class GoJobs (JobSearcher):
                                         self.URL_EXTENSION_SEARCH,
                                         data=json.dumps(request_search_data),
                                         headers=self.HEADERS)
-        job_ids = json.loads(response_search.text)['d'][:-3]  # The last 3 elements returned are always 0's
+
+        # The last 3 elements returned are always 0's
+        job_ids = json.loads(response_search.text)['d'][:-3]
         jobs = []
 
         for job_id in job_ids:
