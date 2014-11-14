@@ -1,14 +1,21 @@
 from itertools import groupby
+from functools import reduce
 import nltk
 import numpy
 from collections import namedtuple
 import ects_average_grade
 
 
-def skill_set(tokenized_exam_results):
+def skill_set(tokenized_exam_results,
+              min_keyword_length=4,
+              suspicious_course_amount=6):
     return StudentSkillSet(
         WordFrequencyScoreCalculator().word_scores(tokenized_exam_results),
-        GradeBoosterBuilder.build(tokenized_exam_results)
+        GradeBoosterBuilder.build(tokenized_exam_results),
+        StudentSkillSetNoiceFilter(
+            min_keyword_length,
+            suspicious_course_amount
+        )
     ).skill_set(tokenized_exam_results)
 
 
@@ -22,19 +29,23 @@ class GradeBoosterBuilder(object):
 
 
 class StudentSkillSetNoiceFilter(object):
-    @classmethod
-    def filtered_skill_set(klass, course_keywords):
-        return filter(klass._valid_keyword, course_keywords)
+    def __init__(self, min_keyword_length, suspicious_course_amount):
+        self.min_keyword_length = min_keyword_length
+        self.suspicious_course_amount = suspicious_course_amount
 
-    @classmethod
-    def _valid_keyword(_class, keyword):
-        return len(keyword.course_numbers) < 7 and len(keyword.keyword) >= 4
+    def filtered_skill_set(self, course_keywords):
+        return filter(self._valid_keyword, course_keywords)
+
+    def _valid_keyword(self, keyword):
+        return (len(keyword.course_numbers) <= self.min_keyword_length
+                and len(keyword.keyword) >= self.suspicious_course_amount)
 
 
 class StudentSkillSet(object):
-    def __init__(self, word_scores, grade_booster):
+    def __init__(self, word_scores, grade_booster, noice_filter):
         self.word_scores = word_scores
         self.grade_booster = grade_booster
+        self.noice_filter = noice_filter
 
     def skill_set(self, tokenized_exam_results):
         course_kewords = self._rank_tokens_for_courses2(
@@ -45,7 +56,7 @@ class StudentSkillSet(object):
         student_skill_set = CourseSkillSetMerger().student_skill_set(
             course_skills
         )
-        return StudentSkillSetNoiceFilter.filtered_skill_set(
+        return self.noice_filter.filtered_skill_set(
             self._course_keywords_sorted_by_rank(student_skill_set)
         )
 
