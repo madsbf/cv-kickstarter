@@ -17,7 +17,7 @@ def skill_set(tokenized_exam_results):
         grade_booster
     )
     course_skills = reduce(lambda x, y: x + y, course_kewords)
-    student_skill_set = StudentSkillSet().student_skill_set(course_skills)
+    student_skill_set = CourseSkillSetMerger().student_skill_set(course_skills)
     return sorted(
         student_skill_set,
         key=lambda course_keyword: -course_keyword.rank
@@ -55,7 +55,7 @@ def rank_tokens_for_courses2(word_scores, tokenized_course_exam_results,
     )
 
 
-class StudentSkillSet(object):
+class CourseSkillSetMerger(object):
     def student_skill_set(self, passed_courses_skills):
         skills_grouped_by_word = groupby(passed_courses_skills,
                                          lambda x: x.keyword)
