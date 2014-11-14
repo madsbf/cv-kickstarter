@@ -21,7 +21,7 @@ def fake_course_base():
 
 @yield_fixture
 def good_exam_result():
-    yield MagicMock(grade=12, course_number='02819')
+    yield MagicMock(grade=12, course_number='02819', ects_points=7.5)
 
 
 def test_exam_result_with_correct_paramters(monkeypatch, fake_course_base,
@@ -34,7 +34,7 @@ def test_exam_result_with_correct_paramters(monkeypatch, fake_course_base,
         good_exam_result,
         fake_course_base
     ).course_exam_result()
-    exam_result_init.assert_called_with(12, course)
+    exam_result_init.assert_called_with(12, course, 7.5)
 
 
 def test_exam_result_object_is_returned(fake_course_base, good_exam_result):
