@@ -6,20 +6,30 @@ import ects_average_grade
 
 
 def skill_set(tokenized_exam_results):
-    return StudentSkillSet().skill_set(tokenized_exam_results)
+    return StudentSkillSet(
+        WordFrequencyScoreCalculator().word_scores(tokenized_exam_results),
+        GradeBoosterBuilder.build(tokenized_exam_results)
+    ).skill_set(tokenized_exam_results)
 
 
-class StudentSkillSet(object):
-    def skill_set(self, tokenized_exam_results):
-        keyword_ranker = WordFrequencyScoreCalculator()
-        word_scores = keyword_ranker.word_scores(tokenized_exam_results)
+class GradeBoosterBuilder(object):
+    @classmethod
+    def build(_class, tokenized_exam_results):
         exam_results = map(lambda ter: ter.exam_result, tokenized_exam_results)
         average_grade = ects_average_grade.average_grade(exam_results)
         grade_booster = KeywordGradeBooster(average_grade)
+        return grade_booster
+
+
+class StudentSkillSet(object):
+    def __init__(self, word_scores, grade_booster):
+        self.word_scores = word_scores
+        self.grade_booster = grade_booster
+
+    def skill_set(self, tokenized_exam_results):
         course_kewords = self._rank_tokens_for_courses2(
-            word_scores,
             tokenized_exam_results,
-            grade_booster
+            self.grade_booster
         )
         course_skills = reduce(lambda x, y: x + y, course_kewords)
         student_skill_set = CourseSkillSetMerger().student_skill_set(
@@ -33,11 +43,10 @@ class StudentSkillSet(object):
             key=lambda course_keyword: -course_keyword.rank
         )
 
-    def _rank_tokens_for_courses2(self, word_scores,
-                                  tokenized_course_exam_results,
+    def _rank_tokens_for_courses2(self, tokenized_course_exam_results,
                                   grade_booster):
         return map(
-            CourseSkillSet(grade_booster, word_scores).skill_set,
+            CourseSkillSet(grade_booster, self.word_scores).skill_set,
             tokenized_course_exam_results
         )
 
