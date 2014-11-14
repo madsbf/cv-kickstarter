@@ -21,6 +21,16 @@ class GradeBoosterBuilder(object):
         return grade_booster
 
 
+class StudentSkillSetNoiceFilter(object):
+    @classmethod
+    def filtered_skill_set(klass, course_keywords):
+        return filter(klass._valid_keyword, course_keywords)
+
+    @classmethod
+    def _valid_keyword(_class, keyword):
+        return len(keyword.course_numbers) < 7 and len(keyword.keyword) >= 4
+
+
 class StudentSkillSet(object):
     def __init__(self, word_scores, grade_booster):
         self.word_scores = word_scores
@@ -35,7 +45,9 @@ class StudentSkillSet(object):
         student_skill_set = CourseSkillSetMerger().student_skill_set(
             course_skills
         )
-        return self._course_keywords_sorted_by_rank(student_skill_set)
+        return StudentSkillSetNoiceFilter.filtered_skill_set(
+            self._course_keywords_sorted_by_rank(student_skill_set)
+        )
 
     def _course_keywords_sorted_by_rank(self, student_skill_set):
         return sorted(
