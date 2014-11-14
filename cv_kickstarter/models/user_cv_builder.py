@@ -15,16 +15,12 @@ class UserCVBuilder(object):
             self.user.first_name,
             self.user.last_name,
             self.grades,
-            DtuSkillSet(self.grades, self.course_base_repo).skill_set()
+            self._keywords
         )
 
     @cached_property
     def user(self):
         return self.campus_net_client.user()
-
-    @property
-    def course_base_repo(self):
-        return XmlCourseBaseRepoBuilder('courses.xml').course_base_repo()
 
     @cached_property
     def grades(self):
@@ -32,6 +28,16 @@ class UserCVBuilder(object):
             self._map_exam_result_programme,
             self.campus_net_client.grades()
         ))
+
+    @property
+    def _keywords(self):
+        return DtuSkillSet(
+            self.grades,
+            self._course_base_repo()
+        ).skill_set()
+
+    def _course_base_repo(self):
+        return XmlCourseBaseRepoBuilder('courses.xml').course_base_repo()
 
     def _map_exam_result_programme(self, exam_result):
         return CampusNetExamResultMapper(
