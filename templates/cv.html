@@ -56,10 +56,9 @@
             {% for keyword in user_view.highest_ranked_keywords %}
               <div class="ranked-course-keyword">
                 <div class="ranked-course-keyword-keyword">{{ keyword.keyword }}</div>
-                <div class="ranked-course-keyword-rank">{{ keyword.rank }}</div>
                 <div class="ranked-course-keyword-courses">
                   Obtained from
-                  {% for course in keyword.course_numbers %}{{ course.title}}{% endfor %}
+                  {{ user_view.course_title_sentence(keyword) }}
                 </div>
               </div>
             {% endfor %}
