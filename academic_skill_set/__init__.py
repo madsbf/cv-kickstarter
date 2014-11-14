@@ -24,23 +24,33 @@ def skill_set(tokenized_exam_results):
     )
 
 
-def rank_tokens_for_course2(word_scores, tokenized_exam_result, booster):
-    chunk_scores = KeywordScoreCalculator().keyword_scores(
-        tokenized_exam_result,
-        word_scores
-    )
-    normalizer = KeywordScoreNormalizer()
-    chunk_scores = normalizer.normalized_keyword_scores(chunk_scores)
-    return booster.boosted_keyword_scores(
-        tokenized_exam_result,
-        chunk_scores
-    )
+class CourseSkillSet(object):
+    def __init__(self, grade_booster, word_scores):
+        self.grade_booster = grade_booster
+        self.word_scores = word_scores
+
+    def skill_set(self, tokenized_exam_result):
+        return self.grade_booster.boosted_keyword_scores(
+            tokenized_exam_result,
+            self._normalized_keyword_scores(tokenized_exam_result)
+        )
+
+    def _normalized_keyword_scores(self, tokenized_exam_result):
+        return KeywordScoreNormalizer().normalized_keyword_scores(
+            self._keyword_scores(tokenized_exam_result)
+        )
+
+    def _keyword_scores(self, tokenized_exam_result):
+        return KeywordScoreCalculator().keyword_scores(
+            tokenized_exam_result,
+            self.word_scores
+        )
 
 
 def rank_tokens_for_courses2(word_scores, tokenized_course_exam_results,
-                             booster):
+                             grade_booster):
     return map(
-        lambda ex_res: rank_tokens_for_course2(word_scores, ex_res, booster),
+        CourseSkillSet(grade_booster, word_scores).skill_set,
         tokenized_course_exam_results
     )
 
