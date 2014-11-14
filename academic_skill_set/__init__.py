@@ -115,7 +115,7 @@ class KeywordScoreCalculator(object):
     def keyword_scores(self, tokenized_exam_result, word_scores):
         tokenized_tokens = map(
             lambda x: nltk.word_tokenize(x),
-            tokenized_exam_result.tokens
+            list(set(tokenized_exam_result.tokens))
         )
         return [CourseKeyword(
             " ".join(keyword),
