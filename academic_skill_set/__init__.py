@@ -67,7 +67,11 @@ class CourseSkillSet(object):
 
 class CourseSkillSetMerger(object):
     def student_skill_set(self, passed_courses_skills):
-        skills_grouped_by_word = groupby(passed_courses_skills,
+        sorted_courses_skills = sorted(
+            passed_courses_skills,
+            key=lambda skill: skill.keyword
+        )
+        skills_grouped_by_word = groupby(sorted_courses_skills,
                                          lambda x: x.keyword)
         course_keyword_grouped_by_word = [list(course_keyword)
                                           for word, course_keyword
