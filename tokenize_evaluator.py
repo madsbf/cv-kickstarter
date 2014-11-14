@@ -1,6 +1,7 @@
 from __future__ import division
 
 import sys
+from collections import namedtuple
 
 sys.path.append('cv_kickstarter/lib')
 sys.path.append('cv_kickstarter/models')
@@ -32,15 +33,11 @@ def course_exam_results(exam_result_programmes):
 def tokenized_course_exam_result(exam_result):
     return TokenizedCourseExamResult(
         exam_result,
-        CourseKeywordTokenizer(exam_result.course).tokens()
+        CourseKeywordTokenizer(exam_result.course).tokens(),
+        exam_result.course
     )
 
-
-class TokenizedCourseExamResult(object):
-    def __init__(self, exam_result, tokens):
-        self.exam_result = exam_result
-        self.tokens = tokens
-
-    @property
-    def course(self):
-        return self.exam_result.course
+TokenizedCourseExamResult = namedtuple(
+    "TokenizedCourseExamResult",
+    ['exam_result', 'tokens', 'course']
+)
