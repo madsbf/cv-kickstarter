@@ -3,7 +3,7 @@ from functools import reduce
 import nltk
 import numpy
 from collections import namedtuple
-import ects_average_grade
+import ects_grade_calculator
 
 
 def skill_set(tokenized_exam_results,
@@ -23,7 +23,7 @@ class GradeBoosterBuilder(object):
     @classmethod
     def build(_class, tokenized_exam_results):
         exam_results = map(lambda ter: ter.exam_result, tokenized_exam_results)
-        average_grade = ects_average_grade.average_grade(exam_results)
+        average_grade = ects_grade_calculator.average_grade(exam_results)
         grade_booster = KeywordGradeBooster(average_grade)
         return grade_booster
 
