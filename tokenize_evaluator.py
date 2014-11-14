@@ -7,35 +7,36 @@ sys.path.append('cv_kickstarter/lib')
 sys.path.append('cv_kickstarter/models')
 
 import academic_skill_set
-
-from xml_course_base_repo_builder import XmlCourseBaseRepoBuilder
 from course_keyword_tokenizer import CourseKeywordTokenizer
 from campus_net_course_base_merger import CampusNetCourseBaseMerger
 
 
-def final_keywords(grades):
-    exam_results = course_exam_results(grades)
-    tokenized_courses = map(tokenized_course_exam_result, exam_results)
-    return academic_skill_set.skill_set(tokenized_courses)
+class DtuSkillSet(object):
+    def __init__(self, exam_result_programmes, course_base_repo):
+        self.exam_result_programmes = exam_result_programmes
+        self.course_base_repo = course_base_repo
 
+    def skill_set(self):
+        return academic_skill_set.skill_set(self._tokenized_exam_results())
 
-def course_exam_results(exam_result_programmes):
-    course_base = XmlCourseBaseRepoBuilder(
-        'courses.xml'
-    ).course_base_repo()
+    def _tokenized_exam_results(self):
+        return map(
+            self._map_to_tokenized_exam_result,
+            self._course_exam_results()
+        )
 
-    return CampusNetCourseBaseMerger(
-        exam_result_programmes,
-        course_base
-    ).course_exam_results()
+    def _course_exam_results(self):
+        return CampusNetCourseBaseMerger(
+            self.exam_result_programmes,
+            self.course_base_repo
+        ).course_exam_results()
 
-
-def tokenized_course_exam_result(exam_result):
-    return TokenizedCourseExamResult(
-        exam_result,
-        CourseKeywordTokenizer(exam_result.course).tokens(),
-        exam_result.course
-    )
+    def _map_to_tokenized_exam_result(self, exam_result):
+        return TokenizedCourseExamResult(
+            exam_result,
+            CourseKeywordTokenizer(exam_result.course).tokens(),
+            exam_result.course
+        )
 
 TokenizedCourseExamResult = namedtuple(
     "TokenizedCourseExamResult",
