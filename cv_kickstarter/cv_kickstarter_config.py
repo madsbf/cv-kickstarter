@@ -1,11 +1,17 @@
-import ConfigParser
+try:
+    # Try to parse for Python 3
+    from configparser import ConfigParser
+except ImportError:
+    # Fall back to the Python 2 way
+    from ConfigParser import ConfigParser
+
 import os
 env = os.environ
 
 
 class CvKickstarterConfig(object):
     def __init__(self):
-        self.config = ConfigParser.ConfigParser()
+        self.config = ConfigParser()
         self.config.read("app.cfg")
 
     def secret_key(self):
