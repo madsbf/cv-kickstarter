@@ -3,7 +3,7 @@ class GradeAverageCalculator(object):
         self.exam_results = exam_results
 
     def average_grade(self):
-        if not self.exam_results:
+        if not self.exam_results or not self._contains_graded_courses():
             return None
         return round(self._raw_average_grade(), 1)
 
@@ -19,6 +19,9 @@ class GradeAverageCalculator(object):
 
     def _total_ects_points(self):
         return sum(self._ects_points_of_exam_results_with_grade())
+
+    def _contains_graded_courses(self):
+        return len(list(self._ects_points_of_exam_results_with_grade())) > 0
 
     def _product_of_grade_and_ects(self, exam_result):
         return exam_result.grade * exam_result.ects_points
