@@ -41,6 +41,7 @@
 
 .cv-student-picture-img {
   width: 150px;
+    border-radius: 15px;
 }
 
 .cv-student-programme {
@@ -50,9 +51,35 @@
 .cv-student-programmes {
   margin-top: 25px;
   font-size: 1.1em;
-  color: #4d4d4d;
+  color: #fafafa;
 }
 
 .cv-student-programme-label {
-  color: #5cb85c;
+  color: #004D40;
+}
+
+.cv-student-jumbatron {
+    background-color: #009688;
+    color: #ffffff;
+}
+
+.btn-danger {
+  background-color: #F44336;
+    border-color: #ffffff;
+}
+
+a:link {
+    color: #009688;
+}
+
+a:visited {
+    color: #004D40;
+}
+
+a:hover {
+    color: #00796B;
+}
+
+a:active {
+    color: #004D40;
 }
