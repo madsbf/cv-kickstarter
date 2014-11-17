@@ -1,14 +1,7 @@
-from __future__ import division
-
-import sys
-from collections import namedtuple
-
-sys.path.append('cv_kickstarter/lib')
-sys.path.append('cv_kickstarter/models')
-
 import academic_skill_set
 from course_keyword_tokenizer import CourseKeywordTokenizer
 from campus_net_course_base_merger import CampusNetCourseBaseMerger
+from tokenized_course_exam_result import TokenizedCourseExamResult
 
 
 class DtuSkillSet(object):
@@ -37,8 +30,3 @@ class DtuSkillSet(object):
             CourseKeywordTokenizer(exam_result.course).tokens(),
             exam_result.course
         )
-
-TokenizedCourseExamResult = namedtuple(
-    "TokenizedCourseExamResult",
-    ['exam_result', 'tokens', 'course']
-)

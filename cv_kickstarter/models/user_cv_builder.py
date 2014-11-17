@@ -2,7 +2,7 @@ from werkzeug import cached_property
 from user_cv import UserCV
 from campus_net_exam_result_mapper import CampusNetExamResultMapper
 from xml_course_base_repo_builder import XmlCourseBaseRepoBuilder
-from tokenize_evaluator import DtuSkillSet
+from dtu_skill_set import DtuSkillSet
 
 
 class UserCVBuilder(object):
