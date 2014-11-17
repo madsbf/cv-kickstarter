@@ -40,7 +40,9 @@ setup(
         'flask-negotiate',
         'flask-sslify',
         'gunicorn',
-        'Werkzeug'
+        'Werkzeug',
+        'nltk',
+        'numpy'
     ],
     tests_require=['tox'],
     url='http://github.com/MadsFrandsen/PyCampus',
