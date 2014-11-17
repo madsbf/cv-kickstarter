@@ -1,6 +1,8 @@
 from werkzeug import cached_property
 from user_cv import UserCV
 from campus_net_exam_result_mapper import CampusNetExamResultMapper
+from xml_course_base_repo_builder import XmlCourseBaseRepoBuilder
+from dtu_skill_set import DtuSkillSet
 
 
 class UserCVBuilder(object):
@@ -12,7 +14,8 @@ class UserCVBuilder(object):
         return UserCV(
             self.user.first_name,
             self.user.last_name,
-            self.grades
+            self.grades,
+            self._keywords
         )
 
     @cached_property
@@ -25,6 +28,16 @@ class UserCVBuilder(object):
             self._map_exam_result_programme,
             self.campus_net_client.grades()
         ))
+
+    @property
+    def _keywords(self):
+        return DtuSkillSet(
+            self.grades,
+            self._course_base_repo()
+        ).skill_set()
+
+    def _course_base_repo(self):
+        return XmlCourseBaseRepoBuilder('courses.xml').course_base_repo()
 
     def _map_exam_result_programme(self, exam_result):
         return CampusNetExamResultMapper(

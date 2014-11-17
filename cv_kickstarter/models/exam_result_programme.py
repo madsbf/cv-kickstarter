@@ -1,4 +1,4 @@
-from grade_average_calculator import GradeAverageCalculator
+import ects_grade_calculator
 
 
 class ExamResultProgramme(object):
@@ -14,7 +14,7 @@ class ExamResultProgramme(object):
 
     @property
     def average_grade(self):
-        return GradeAverageCalculator(self.exam_results).average_grade()
+        return ects_grade_calculator.average_grade(self.exam_results)
 
     def _has_passed(self, ects_points):
         return self.passed_ects >= ects_points

@@ -104,3 +104,19 @@ a:hover {
 a:active {
     color: #004D40;
 }
+
+/* Ranked keywords */
+.ranked-course-keywords-description {
+  padding-bottom: 15px;
+}
+
+.ranked-course-keyword {
+  padding: 4px 6px 4px 0;
+  border-top: 1px solid #cccccc;
+}
+
+
+.ranked-course-keyword-courses {
+  font-size: 0.7em;
+  color: #cccccc;
+}
