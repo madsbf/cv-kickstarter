@@ -29,40 +29,41 @@
             </div>
         </div>
     </div>
-    {% for programme in user_view.exam_result_programmes %}
-        <div class="cv-student-courses container">
-        <div class="col-md-6">
+    <div class="cv-student-courses container">
+        {% for programme in user_view.exam_result_programmes %}
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ programme.name }}</div>
+
+                    <table class="table table-consended">
+                        {% for exam_result in programme.exam_results %}
+                            <tr>
+                                <td><a href="http://www.kurser.dtu.dk/{{ exam_result.course_number }}.aspx" target="_blank">{{ exam_result.course_title }}</a></td>
+                                <td>{{ exam_result.ects_points }}</td>
+                                <td>{{ exam_result.grade }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="cv-student-jobs container">
+        <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">{{ programme.name }}</div>
+                <div class="panel-heading">Jobs</div>
 
                 <table class="table table-consended">
-                    {% for exam_result in programme.exam_results %}
+
+                    {% for job in jobs_view %}
                         <tr>
-                            <td><a href="http://www.kurser.dtu.dk/{{ exam_result.course_number }}.aspx" target="_blank">{{ exam_result.course_title }}</a></td>
-                            <td>{{ exam_result.ects_points }}</td>
-                            <td>{{ exam_result.grade }}</td>
+                            <td><a href={{ job.url }} target="_blank">{{ job.title }}</a></td>
+                            <td>{{ job.teaser }}</td>
+                            <td>{{ job.company_name }}</td>
                         </tr>
                     {% endfor %}
                 </table>
             </div>
-        </div>
-    {% endfor %}
-</div>
-    <div class="cv-student-jobs container">
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">Jobs</div>
-
-            <table class="table table-consended">
-
-                {% for job in jobs_view %}
-                    <tr>
-                        <td><a href={{ job.url }} target="_blank">{{ job.title }}</a></td>
-                        <td>{{ job.teaser }}</td>
-                        <td>{{ job.company_name }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
         </div>
     </div>
 {% endblock %}
