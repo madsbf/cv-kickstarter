@@ -1,10 +1,10 @@
 /* Login page */
 .login-dtu-logo {
-  width: 200px;
+  width: 96px;
 }
 
 .login-form {
-  margin-top: 40px;
+  margin-top: 48px;
 }
 
 .login-form-spinner {
@@ -14,6 +14,10 @@
   background-repeat: no-repeat;
 }
 
+.login {
+    margin-top: 48px;
+}
+
 /* CV Page */
 .cv-student-action-bar {
   background-color: #fafafa;
@@ -21,27 +25,22 @@
   padding: 8px 0;
 }
 
-.cv-student {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
 .cv-student-courses {
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 .cv-student-programme {
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .cv-student-name {
   margin-top: 0;
-  font-size: 50px;
+  font-size: 48px;
 }
 
 .cv-student-picture-img {
-  width: 150px;
-    border-radius: 15px;
+  width: 100px;
+    border-radius: 24px;
 }
 
 .cv-student-programme {
@@ -58,13 +57,19 @@
   color: #004D40;
 }
 
-.cv-student-jumbatron {
+.jumbotron {
     background-color: #009688;
     color: #ffffff;
+    margin-bottom: 0px;
 }
 
 .btn-danger {
   background-color: #F44336;
+    border-color: #ffffff;
+}
+
+.btn-login {
+    background-color: #009688
     border-color: #ffffff;
 }
 
