@@ -1,51 +1,69 @@
 {% extends "layout.html" %}
 {% block body %}
-  <div class="cv-student-jumbatron">
-    <div class="cv-student container">
-      <div class="cv-student-picture col-sm-3 col-md-3">
-        <img src="{{ url_for('picture') }}" class="cv-student-picture-img" />
-      </div>
-      <div class="cv-student-main-information col-sm-9 col-md-9">
-        <h1 class="cv-student-name">{{ user_view.full_name }}</h1>
-        <div class="cv-student-programmes">
-          {% for programme in user_view.exam_result_programmes %}
-            <h4 class="cv-student-programme">
-              {{ programme.name}} {% if programme.is_done %}<span class="cv-student-programme-label glyphicon glyphicon-ok"></span>{% endif %}
-            </h4>
-            <div class="cv-student-programme-short-info">
-              {{ programme.passed_ects }} ECTS -  {{ programme.average_grade }} avg. grade
+    <div class="cv-student-jumbatron">
+        <div class="cv-student container">
+            <div class="cv-student-picture col-sm-3 col-md-3">
+                <img src="{{ url_for('picture') }}" class="cv-student-picture-img" />
             </div>
-          {% endfor %}
+            <div class="cv-student-main-information col-sm-9 col-md-9">
+                <h1 class="cv-student-name">{{ user_view.full_name }}</h1>
+                <div class="cv-student-programmes">
+                    {% for programme in user_view.exam_result_programmes %}
+                        <h4 class="cv-student-programme">
+                            {{ programme.name}} {% if programme.is_done %}<span class="cv-student-programme-label glyphicon glyphicon-ok"></span>{% endif %}
+                        </h4>
+                        <div class="cv-student-programme-short-info">
+                            {{ programme.passed_ects }} ECTS -  {{ programme.average_grade }} avg. grade
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="cv-student-action-bar">
-    <div class="container">
-      <div class="cv-student-actions col-sm-offset-8 col-sm-4">
-        <form action="{{ url_for('log_out') }}" method="POST">
-          <input type="submit" class="btn btn-danger" value="Log Out" />
-        </form>
-      </div>
+    <div class="cv-student-action-bar">
+        <div class="container">
+            <div class="cv-student-actions col-sm-offset-8 col-sm-4">
+                <form action="{{ url_for('log_out') }}" method="POST">
+                    <input type="submit" class="btn btn-danger" value="Log Out" />
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-  {% for programme in user_view.exam_result_programmes %}
-    <div class="cv-student-courses container">
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">{{ programme.name }}</div>
+    {% for programme in user_view.exam_result_programmes %}
+        <div class="cv-student-courses container">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ programme.name }}</div>
 
-          <table class="table table-consended">
-            {% for exam_result in programme.exam_results %}
-            <tr>
-              <td><a href="http://www.kurser.dtu.dk/{{ exam_result.course_number }}.aspx" target="_blank">{{ exam_result.course_title }}</a></td>
-              <td>{{ exam_result.ects_points }}</td>
-              <td>{{ exam_result.grade }}</td>
-            </tr>
-            {% endfor %}
-          </table>
+                <table class="table table-consended">
+                    {% for exam_result in programme.exam_results %}
+                        <tr>
+                            <td><a href="http://www.kurser.dtu.dk/{{ exam_result.course_number }}.aspx" target="_blank">{{ exam_result.course_title }}</a></td>
+                            <td>{{ exam_result.ects_points }}</td>
+                            <td>{{ exam_result.grade }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
-      </div>
     {% endfor %}
-  </div>
+</div>
+    {% for job in jobs_view %}
+        <div class="cv-student-jobs container">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ job.name }}</div>
+
+                <table class="table table-consended">
+                    {% for exam_result in programme.exam_results %}
+                        <tr>
+                            <td><a href="http://www.kurser.dtu.dk/{{ exam_result.course_number }}.aspx" target="_blank">{{ exam_result.course_title }}</a></td>
+                            <td>{{ exam_result.ects_points }}</td>
+                            <td>{{ exam_result.grade }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}

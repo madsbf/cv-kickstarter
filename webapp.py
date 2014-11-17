@@ -4,6 +4,7 @@ sys.path.append('cv_kickstarter/lib')
 sys.path.append('cv_kickstarter/view_objects')
 sys.path.append('cv_kickstarter/models')
 sys.path.append('cnapi')
+sys.path.append('job_searcher')
 
 import os
 from session_authentication import SessionAuthentication
@@ -13,6 +14,7 @@ from flask import (Flask, render_template, request, session, redirect, jsonify,
 from flask_negotiate import consumes
 from cnapi import CampusNetApi
 from flask_sslify import SSLify
+from careerbuilder import CareerBuilder
 
 app = Flask(__name__)
 env = os.environ
@@ -21,6 +23,7 @@ campus_net_client = CampusNetApi(
     env['CAMPUS_NET_APP_NAME'],
     env['CAMPUS_NET_APP_TOKEN']
 )
+career_builder_key = env['CAREER_BUILDER_DEVELOPER_KEY']
 
 # Enforce https on Heroku
 if 'DYNO' in os.environ:
@@ -74,7 +77,8 @@ def cv_page():
         session_auth.auth_token
     )
     user_view = UserCVBuilder(campus_net_client).build()
-    return render_template('cv.html', user_view=user_view)
+    jobs_view = CareerBuilder(career_builder_key)
+    return render_template('cv.html', user_view=user_view, jobs_view=jobs_view)
 
 
 @app.route('/cv/picture')
