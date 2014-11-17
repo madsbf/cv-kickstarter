@@ -27,7 +27,7 @@ class CareerBuilder (JobSearcher):
         data = BeautifulSoup(response.text, features='xml')
         return int(data.ResponseJobSearch.TotalCount.contents[0])
 
-    def find_results(self, keywords=(), amount=5):
+    def find_results(self, keywords=[], amount=5):
         args = {self.PARAM_DEV_KEY: self.developer_key,
                 self.PARAM_PER_PAGE: str(amount),
                 self.PARAM_KEYWORDS: ','.join(keywords)}

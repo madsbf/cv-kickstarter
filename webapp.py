@@ -77,7 +77,8 @@ def cv_page():
         session_auth.auth_token
     )
     user_view = UserCVBuilder(campus_net_client).build()
-    jobs_view = CareerBuilder(career_builder_key).find_results(keywords="developer")
+    jobs_view = CareerBuilder(career_builder_key)\
+        .find_results(keywords=["developer"])
     return render_template('cv.html', user_view=user_view, jobs_view=jobs_view)
 
 
