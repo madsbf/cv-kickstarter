@@ -40,7 +40,8 @@ setup(
         'flask-negotiate',
         'flask-sslify',
         'gunicorn',
-        'Werkzeug'
+        'Werkzeug',
+        'bs4'
     ],
     tests_require=['tox'],
     url='http://github.com/MadsFrandsen/PyCampus',
