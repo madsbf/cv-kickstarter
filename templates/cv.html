@@ -48,21 +48,24 @@
             </div>
         {% endfor %}
     </div>
-    <div class="cv-student-jobs container">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Jobs</div>
+    <div class="cv-student-jobs">
+        <div class="container">
+            <span class="glyphicon glyphicon-briefcase cv-job-logo" aria-hidden="true"></span>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">We found some jobs for you!</div>
 
-                <table class="table table-consended">
+                    <table class="table table-consended">
 
-                    {% for job in jobs_view %}
-                        <tr>
-                            <td><a href={{ job.job_url }} target="_blank">{{ job.title }}</a></td>
-                            <td>{{ job.teaser }}</td>
-                            <td>{{ job.company_name }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
+                        {% for job in jobs_view %}
+                            <tr>
+                                <td><a href={{ job.job_url }} target="_blank">{{ job.title }}</a></td>
+                                <td>{{ job.teaser }}</td>
+                                <td>{{ job.company_name }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
         </div>
     </div>
