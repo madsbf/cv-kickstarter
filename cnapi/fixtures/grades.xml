@@ -18,4 +18,9 @@
     </ExamResults>
     <CreditResults />
   </EducationProgramme>
+  <EducationProgramme DisplayName="Uden uddannelse" Active="false">
+    <ExamResults>
+      <ExamResult CourseCode="26027" EctsGiven="false" EctsPoints="5" Grade="EM" Period="Summer" Year="2010" Name="Grundlæggende kemi"/>
+    </ExamResults>
+  </EducationProgramme>
 </EducationProgrammes>
