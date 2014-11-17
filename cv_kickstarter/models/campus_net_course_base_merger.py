@@ -1,3 +1,4 @@
+from functools import reduce
 from course_exam_result_builder import CourseExamResultBuilder
 
 
@@ -24,5 +25,6 @@ class CampusNetCourseBaseMerger(object):
             map(
                 lambda x: x.exam_results,
                 self.exam_result_programmes
-            )
+            ),
+            []
         )

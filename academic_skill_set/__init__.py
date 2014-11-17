@@ -22,7 +22,9 @@ def skill_set(tokenized_exam_results,
 class GradeBoosterBuilder(object):
     @classmethod
     def build(_class, tokenized_exam_results):
-        exam_results = map(lambda ter: ter.exam_result, tokenized_exam_results)
+        exam_results = list(
+            map(lambda ter: ter.exam_result, tokenized_exam_results)
+        )
         average_grade = ects_grade_calculator.average_grade(exam_results)
         grade_booster = KeywordGradeBooster(average_grade)
         return grade_booster

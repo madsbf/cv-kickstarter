@@ -1,3 +1,4 @@
+from functools import reduce
 from text_chunkifier import TextChunkifier
 from course_sentence_extractor import CourseSentenceExtractor
 
@@ -11,7 +12,8 @@ class CourseKeywordTokenizer(object):
             return []
         return reduce(
             lambda x, y: x + y,
-            map(TextChunkifier().text_chunks, self._course_sentences())
+            map(TextChunkifier().text_chunks, self._course_sentences()),
+            []
         )
 
     def _course_sentences(self):

@@ -1,3 +1,4 @@
+from functools import reduce
 import nltk
 
 
@@ -8,7 +9,8 @@ class CourseSentenceExtractor(object):
     def sentences(self):
         return reduce(
             lambda x, y: x + y,
-            map(lambda x: nltk.sent_tokenize(x), self._course_texts())
+            map(lambda x: nltk.sent_tokenize(x), self._course_texts()),
+            []
         )
 
     def _course_texts(self):

@@ -1,4 +1,4 @@
-from test_fakes import FakeTokenizedExamResult, FakeExamResult, FakeCourse
+from .test_fakes import FakeTokenizedExamResult, FakeExamResult, FakeCourse
 import academic_skill_set
 
 tokenized_exam_results = [
@@ -27,4 +27,6 @@ def test_skills_from_sentences():
 
 
 def assert_skill_keywords_in_order(actual_skill_set, expected_keywords):
-    assert expected_keywords == map(lambda x: x.keyword, actual_skill_set)
+    assert expected_keywords == list(
+        map(lambda x: x.keyword, actual_skill_set)
+    )
