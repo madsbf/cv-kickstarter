@@ -16,6 +16,16 @@ job suggestions based on your best skills.
 """
 
 
+class NLTKDataDownloader(object):
+    @classmethod
+    def download(_class):
+        import nltk
+        nltk.download(
+            ['maxent_treebank_pos_tagger', 'punkt'],
+            download_dir='./nltk_data'
+        )
+
+
 class ToxTestCommand(TestCommand):
 
     def finalize_options(self):
@@ -24,9 +34,7 @@ class ToxTestCommand(TestCommand):
         self.test_suite = True
 
     def run_tests(self):
-        import nltk
-        nltk.download('punkt', download_dir='./nltk_data')
-        nltk.data.path.append('./nltk_data')
+        NLTKDataDownloader.download()
         sys.exit(os.system('tox'))
 
 setup(
