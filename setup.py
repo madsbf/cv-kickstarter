@@ -3,6 +3,7 @@ import sys
 
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
+import nltk
 
 __name__ = 'CVKickstarter'
 __version__ = '0.1.0'
@@ -24,6 +25,7 @@ class ToxTestCommand(TestCommand):
         self.test_suite = True
 
     def run_tests(self):
+        nltk.download('all')
         sys.exit(os.system('tox'))
 
 setup(
