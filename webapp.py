@@ -15,15 +15,20 @@ from flask_negotiate import consumes
 from cnapi import CampusNetApi
 from flask_sslify import SSLify
 from careerbuilder import CareerBuilder
+import ConfigParser
 
 app = Flask(__name__)
 env = os.environ
-app.secret_key = env['SECRET_KEY']
+config = ConfigParser.ConfigParser()
+config.read("app.cfg")
+
+app.secret_key = config.get("flask", "secret_key") or env['SECRET_KEY']
 campus_net_client = CampusNetApi(
-    env['CAMPUS_NET_APP_NAME'],
-    env['CAMPUS_NET_APP_TOKEN']
+    config.get("campusnet", "app_name") or env['CAMPUS_NET_APP_NAME'],
+    config.get("campusnet", "app_token") or env['CAMPUS_NET_APP_TOKEN']
 )
-career_builder_key = env['CAREER_BUILDER_DEVELOPER_KEY']
+career_builder_key = config.get("careerbuilder", "developer_key") or env['CAREER_BUILDER_DEVELOPER_KEY']
+go_key = config.get("godk", "guid") or env['GO_DEVELOPER_KEY']
 
 # Enforce https on Heroku
 if 'DYNO' in os.environ:

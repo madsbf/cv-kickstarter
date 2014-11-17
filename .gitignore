@@ -22,3 +22,6 @@ dist/
 *.secret
 .idea/
 job_searcher/.idea/
+
+# Config
+app.cfg
