@@ -1,7 +1,7 @@
 import sys
 sys.path.append('cv_kickstarter/models')
 
-from text_chunkifier import TextChunkifier
+from course_keyword_tokenizer import TextChunkifier
 
 
 def assert_chunkification(text, chunks):

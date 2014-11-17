@@ -1,7 +1,7 @@
 import sys
 sys.path.append('cv_kickstarter/models')
 
-from course_sentence_extractor import CourseSentenceExtractor
+from course_keyword_tokenizer import CourseSentenceExtractor
 from mock import MagicMock
 
 
