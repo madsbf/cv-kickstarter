@@ -1,5 +1,5 @@
 from functools import reduce
-from course_exam_result_builder import CourseExamResultBuilder
+from exam_result import ExamResult
 
 
 class CampusNetCourseBaseMerger(object):
@@ -14,10 +14,13 @@ class CampusNetCourseBaseMerger(object):
         ))
 
     def _map_campus_net_exam_result(self, exam_result):
-        return CourseExamResultBuilder(
-            exam_result,
-            self.course_base
-        ).course_exam_result()
+        return ExamResult(
+            exam_result.grade,
+            self.course_base.find_by_course_number(
+                exam_result.course_number
+            ),
+            exam_result.ects_points
+        )
 
     def _campus_net_exam_results(self):
         return reduce(
