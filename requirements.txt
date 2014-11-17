@@ -8,4 +8,4 @@ gunicorn==19.1.1
 itsdangerous==0.24
 requests==2.4.3
 wsgiref==0.1.2
-bs4==4.3.1
+beautifulsoup4==4.3.1
