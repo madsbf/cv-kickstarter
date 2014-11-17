@@ -3,6 +3,7 @@ import sys
 sys.path.append('cv_kickstarter/lib')
 sys.path.append('cv_kickstarter/view_objects')
 sys.path.append('cv_kickstarter/models')
+sys.path.append('cv_kickstarter')
 sys.path.append('cnapi')
 
 import os
@@ -13,20 +14,18 @@ from flask import (Flask, render_template, request, session, redirect, jsonify,
 from flask_negotiate import consumes
 from cnapi import CampusNetApi
 from flask_sslify import SSLify
-import ConfigParser
+from cv_kickstarter_config import CvKickstarterConfig
 
 app = Flask(__name__)
-env = os.environ
-config = ConfigParser.ConfigParser()
-config.read("app.cfg")
+config = CvKickstarterConfig()
 
-app.secret_key = config.get("flask", "secret_key") or env['SECRET_KEY']
+app.secret_key = config.secret_key()
 campus_net_client = CampusNetApi(
-    config.get("campusnet", "app_name") or env['CAMPUS_NET_APP_NAME'],
-    config.get("campusnet", "app_token") or env['CAMPUS_NET_APP_TOKEN']
+    config.campus_net_app_name(),
+    config.campus_net_app_token()
 )
-career_builder_key = config.get("careerbuilder", "developer_key") or env['CAREER_BUILDER_DEVELOPER_KEY']
-go_key = config.get("godk", "guid") or env['GO_DEVELOPER_KEY']
+career_builder_key = config.career_builder_key()
+go_key = config.go_key()
 
 # Enforce https on Heroku
 if 'DYNO' in os.environ:
