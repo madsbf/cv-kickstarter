@@ -1,6 +1,6 @@
 from user_cv_builder import (UserCVBuilder, UserCV,
                              CampusNetExamResultMapper, DtuSkillSet,
-                             XmlCourseBaseRepoBuilder)
+                             CourseRepository)
 from mock import MagicMock, Mock
 from pytest import yield_fixture
 
@@ -24,9 +24,9 @@ def test_build_with_correct_values(monkeypatch, cn_client):
     keywords = MagicMock()
     monkeypatch.setattr(UserCV, '__init__', user_cv_init_mock)
     monkeypatch.setattr(DtuSkillSet, 'skill_set', lambda x: keywords)
-    monkeypatch.setattr(XmlCourseBaseRepoBuilder,
-                        'course_base_repo',
-                        lambda x: MagicMock())
+    monkeypatch.setattr(CourseRepository,
+                        '__init__',
+                        MagicMock(return_value=None))
     monkeypatch.setattr(CampusNetExamResultMapper,
                         'mapped_exam_result',
                         lambda x: mapped_exam_result)
@@ -44,9 +44,9 @@ def test_build_returns_user_cv(monkeypatch, cn_client):
     monkeypatch.setattr(CampusNetExamResultMapper,
                         'mapped_exam_result',
                         lambda x: x)
-    monkeypatch.setattr(XmlCourseBaseRepoBuilder,
-                        'course_base_repo',
-                        lambda x: MagicMock())
+    monkeypatch.setattr(CourseRepository,
+                        '__init__',
+                        MagicMock(return_value=None))
     campus_net_client = FakeCampusNetClient()
     user_cv = UserCVBuilder(campus_net_client).build()
     assert type(user_cv) == UserCV

@@ -8,6 +8,7 @@ sys.path.append('cnapi')
 
 import os
 from session_authentication import SessionAuthentication
+from mongo_store import MongoStore
 from user_cv_builder import UserCVBuilder
 from flask import (Flask, render_template, request, session, redirect, jsonify,
                    Response)
@@ -34,6 +35,8 @@ if 'DYNO' in os.environ:
 app.config.update(dict(
     DEBUG=True,
 ))
+
+mongo_store = MongoStore('cv_kickstarter', config.mongo_url())
 
 
 @app.route('/')
@@ -78,7 +81,7 @@ def cv_page():
         session_auth.student_id,
         session_auth.auth_token
     )
-    user_view = UserCVBuilder(campus_net_client).build()
+    user_view = UserCVBuilder(campus_net_client, mongo_store).build()
     return render_template('cv.html', user_view=user_view)
 
 
