@@ -10,6 +10,7 @@ build/
 dist/
 *.egg/
 *.egg
+*.eggs/
 *.egg-info/
 nltk_data/
 
