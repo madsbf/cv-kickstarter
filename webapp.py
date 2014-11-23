@@ -33,7 +33,7 @@ if 'DYNO' in os.environ:
     sslify = SSLify(app)
 
 app.config.update(dict(
-    DEBUG=True,
+    DEBUG=True
 ))
 
 mongo_store = MongoStore('cv_kickstarter', config.mongo_url())
