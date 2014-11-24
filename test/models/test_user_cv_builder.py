@@ -18,7 +18,13 @@ def cn_client():
     yield FakeCampusNetClient()
 
 
-def test_build_with_correct_values(monkeypatch, cn_client):
+@yield_fixture
+def fake_mongo_store():
+    yield MagicMock()
+
+
+def test_build_with_correct_values(monkeypatch, cn_client,
+                                   fake_mongo_store):
     mapped_exam_result = MagicMock()
     user_cv_init_mock = Mock(return_value=None)
     keywords = MagicMock()
@@ -30,7 +36,7 @@ def test_build_with_correct_values(monkeypatch, cn_client):
     monkeypatch.setattr(CampusNetExamResultMapper,
                         'mapped_exam_result',
                         lambda x: mapped_exam_result)
-    UserCVBuilder(cn_client).build()
+    UserCVBuilder(cn_client, fake_mongo_store).build()
     user_cv_init_mock.assert_called_with(
         'Don',
         'Duck',
@@ -39,7 +45,7 @@ def test_build_with_correct_values(monkeypatch, cn_client):
     )
 
 
-def test_build_returns_user_cv(monkeypatch, cn_client):
+def test_build_returns_user_cv(monkeypatch, cn_client, fake_mongo_store):
     monkeypatch.setattr(DtuSkillSet, 'skill_set', lambda x: x)
     monkeypatch.setattr(CampusNetExamResultMapper,
                         'mapped_exam_result',
@@ -48,5 +54,5 @@ def test_build_returns_user_cv(monkeypatch, cn_client):
                         '__init__',
                         MagicMock(return_value=None))
     campus_net_client = FakeCampusNetClient()
-    user_cv = UserCVBuilder(campus_net_client).build()
+    user_cv = UserCVBuilder(campus_net_client, fake_mongo_store).build()
     assert type(user_cv) == UserCV
