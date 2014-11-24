@@ -31,11 +31,11 @@ class CareerBuilder (JobSearcher):
                 self.PARAM_PER_PAGE: str(amount),
                 self.PARAM_KEYWORDS: ','.join(keywords)}
         response = requests.get(self.BASE_URL, params=args)
-        jobs = self.soup_to_jobs(response.text)
+        jobs = self.xml_to_jobs(response.text)
         return jobs
 
     @staticmethod
-    def soup_to_jobs(xml):
+    def xml_to_jobs(xml):
         """ Converts xml to a list of jobs
         :param soup: The xml string, that should be parsed.
         :return: A list of jobs

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResponseJobSearch>
+  <Errors />
+  <TimeResponseSent>11/24/2014 7:24:37 AM</TimeResponseSent>
+  <TimeElapsed>0.1872108</TimeElapsed>
+  <TotalPages>800</TotalPages>
+  <TotalCount>16892</TotalCount>
+  <FirstItemIndex>1</FirstItemIndex>
+  <LastItemIndex>5</LastItemIndex>
+  <Results>
+    <JobSearchResult>
+      <Company>Everett Kelley Associates, Inc.</Company>
+      <CompanyDID>chq3tb5y5jvqw1x3fht</CompanyDID>
+      <CompanyDetailsURL>http://www.careerbuilder.com/jobs/company/chq3tb5y5jvqw1x3fht/everett-kelley-associates-inc?sc_cmp1=13_JobRes_ComDet</CompanyDetailsURL>
+      <DID>JHR0PP5Z1YVB42FD92M</DID>
+      <OnetCode>15-1021.00</OnetCode>
+      <ONetFriendlyTitle>Computer Programmers</ONetFriendlyTitle>
+      <DescriptionTeaser>Developer Large, Pennsylvania based, growing organization has an immediate need for a ...  Developer Requirements Microsoft SQL Server and associated...</DescriptionTeaser>
+      <Distance />
+      <EmploymentType>Full-Time</EmploymentType>
+      <EducationRequired>Not Specified</EducationRequired>
+      <ExperienceRequired>Not Specified</ExperienceRequired>
+      <JobDetailsURL>http://api.careerbuilder.com/v1/joblink?TrackingID=UNTRKD&amp;HostSite=US&amp;DID=JHR0PP5Z1YVB42FD92M</JobDetailsURL>
+      <JobServiceURL>https://api.careerbuilder.com/v1/job?DID=JHR0PP5Z1YVB42FD92M&amp;HostSite=US&amp;DeveloperKey=WDHQ66567NQJB7C8NCH4</JobServiceURL>
+      <Location>PA - Warrington</Location>
+      <DisplayCity></DisplayCity>
+      <City>Warrington</City>
+      <State>PA</State>
+      <LocationLatitude>40.2476</LocationLatitude>
+      <LocationLongitude>-75.1421</LocationLongitude>
+      <PostedDate>10/29/2014</PostedDate>
+      <PostedTime>10/29/2014 11:28:09 AM</PostedTime>
+      <Pay>$70k - $75k/year</Pay>
+      <SimilarJobsURL>http://www.careerbuilder.com/jobs/similarjobs.aspx?ipath=JELO&amp;job_did=JHR0PP5Z1YVB42FD92M</SimilarJobsURL>
+      <JobTitle>Developer</JobTitle>
+      <CompanyImageURL></CompanyImageURL>
+      <JobBrandingIcons>PIcon</JobBrandingIcons>
+      <ApplyRequirements>
+        <ApplyRequirement>CanBulkApply</ApplyRequirement>
+      </ApplyRequirements>
+      <Skills>
+        <Skill>web development</Skill>
+        <Skill>database</Skill>
+        <Skill>visual basic</Skill>
+        <Skill>data warehouse</Skill>
+        <Skill>asp.net</Skill>
+        <Skill>microsoft sql server</Skill>
+        <Skill>sdlc</Skill>
+        <Skill>microsoft dynamics ax</Skill>
+        <Skill>sql</Skill>
+        <Skill>microsoft visual studio</Skill>
+        <Skill>c (programming language)</Skill>
+        <Skill>microsoft dynamics</Skill>
+        <Skill>computer security</Skill>
+        <Skill>sql server reporting services</Skill>
+        <Skill>data integration</Skill>
+      </Skills>
+    </JobSearchResult>
+    <JobSearchResult>
+      <Company>Meridian Staffing Services</Company>
+      <CompanyDID>chv3kf64cjh4kgb51c0</CompanyDID>
+      <CompanyDetailsURL>http://www.careerbuilder.com/jobs/company/chv3kf64cjh4kgb51c0/meridian-staffing-services?sc_cmp1=13_JobRes_ComDet</CompanyDetailsURL>
+      <DID>JHP81K5XZMR1GDMXNL2</DID>
+      <OnetCode>15-1031.00</OnetCode>
+      <ONetFriendlyTitle>Computer Software Engineers, Applications</ONetFriendlyTitle>
+      <DescriptionTeaser>Software Developer Role: You love working with a team of hard-core product developers learning ...  Software Developer Role: You love working with a...</DescriptionTeaser>
+      <Distance />
+      <EmploymentType>Full-Time</EmploymentType>
+      <EducationRequired>Not Specified</EducationRequired>
+      <ExperienceRequired>Not Specified</ExperienceRequired>
+      <JobDetailsURL>http://api.careerbuilder.com/v1/joblink?TrackingID=UNTRKD&amp;HostSite=US&amp;DID=JHP81K5XZMR1GDMXNL2</JobDetailsURL>
+      <JobServiceURL>https://api.careerbuilder.com/v1/job?DID=JHP81K5XZMR1GDMXNL2&amp;HostSite=US&amp;DeveloperKey=WDHQ66567NQJB7C8NCH4</JobServiceURL>
+      <Location>GA - Atlanta</Location>
+      <DisplayCity></DisplayCity>
+      <City>Atlanta</City>
+      <State>GA</State>
+      <LocationLatitude>33.74831</LocationLatitude>
+      <LocationLongitude>-84.39111</LocationLongitude>
+      <PostedDate>11/24/2014</PostedDate>
+      <PostedTime>11/24/2014 1:01:31 AM</PostedTime>
+      <Pay>$60k - $80k/year</Pay>
+      <SimilarJobsURL>http://www.careerbuilder.com/jobs/similarjobs.aspx?ipath=JELO&amp;job_did=JHP81K5XZMR1GDMXNL2</SimilarJobsURL>
+      <JobTitle>Software Developer</JobTitle>
+      <CompanyImageURL>http://emj.icbdr.com/mediamanagement/rz/mw041167l1fkfczxvrz.jpg</CompanyImageURL>
+      <JobBrandingIcons></JobBrandingIcons>
+      <ApplyRequirements>
+        <ApplyRequirement>CanBulkApply</ApplyRequirement>
+      </ApplyRequirements>
+      <Skills>
+        <Skill>apache http server</Skill>
+        <Skill>amazon web services</Skill>
+        <Skill>Apache Camel</Skill>
+        <Skill>representational state transfer</Skill>
+        <Skill>html5</Skill>
+        <Skill>web service</Skill>
+        <Skill>soap</Skill>
+        <Skill>mapreduce</Skill>
+        <Skill>Unified Modeling Language</Skill>
+        <Skill>xml</Skill>
+        <Skill>mobile application development</Skill>
+        <Skill>SAP</Skill>
+        <Skill>java database connectivity</Skill>
+        <Skill>javascript</Skill>
+        <Skill>bash</Skill>
+        <Skill>software development</Skill>
+        <Skill>User Interface design</Skill>
+        <Skill>profiling (computer programming)</Skill>
+        <Skill>eclipse</Skill>
+        <Skill>Linux</Skill>
+        <Skill>java (programming language)</Skill>
+        <Skill>User Experience</Skill>
+        <Skill>python (programming language)</Skill>
+        <Skill>sql</Skill>
+        <Skill>amazon elastic compute cloud</Skill>
+        <Skill>json</Skill>
+      </Skills>
+    </JobSearchResult>
+  </Results>
+  <SearchMetaData>
+    <ResultsAlteredByUsersSearchPreferences>false</ResultsAlteredByUsersSearchPreferences>
+    <SearchLocations>
+      <SearchLocation>
+        <City></City>
+        <StateCode></StateCode>
+        <CountryCode>US</CountryCode>
+        <PostalCode></PostalCode>
+        <Valid>True</Valid>
+      </SearchLocation>
+    </SearchLocations>
+  </SearchMetaData>
+</ResponseJobSearch>
