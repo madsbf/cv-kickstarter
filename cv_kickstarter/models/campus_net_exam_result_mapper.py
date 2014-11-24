@@ -1,4 +1,4 @@
-from exam_result_programme import ExamResultProgramme
+from cv_kickstarter.models.exam_result_programme import ExamResultProgramme
 import re
 
 

@@ -1,6 +1,6 @@
 from functools import reduce
 import nltk
-import nltk_data_downloader
+from cv_kickstarter import nltk_data_downloader
 
 nltk_data_downloader.download()
 

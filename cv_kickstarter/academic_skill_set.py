@@ -3,9 +3,9 @@ from functools import reduce
 import nltk
 import numpy
 from collections import namedtuple
-import ects_grade_calculator
+from cv_kickstarter import ects_grade_calculator
 
-import nltk_data_downloader
+from cv_kickstarter import nltk_data_downloader
 
 nltk_data_downloader.download()
 

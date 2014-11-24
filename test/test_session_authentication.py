@@ -1,4 +1,4 @@
-from session_authentication import SessionAuthentication
+from cv_kickstarter.session_authentication import SessionAuthentication
 
 
 def test_authentication_sets_credentials_on_session():

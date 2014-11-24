@@ -1,6 +1,7 @@
-from user_cv_builder import (UserCVBuilder, UserCV,
-                             CampusNetExamResultMapper, DtuSkillSet,
-                             CourseRepository)
+from cv_kickstarter.models.user_cv_builder import (
+    UserCVBuilder, UserCV, CampusNetExamResultMapper, DtuSkillSet,
+    CourseRepository
+)
 from mock import MagicMock, Mock
 from pytest import yield_fixture
 

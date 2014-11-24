@@ -1,5 +1,5 @@
-from cv_kickstarter.model.campus_net_exam_result_mapper import (
-  CampusNetExamResultMapper, ExamResultProgramme
+from cv_kickstarter.models.campus_net_exam_result_mapper import (
+    CampusNetExamResultMapper, ExamResultProgramme
 )
 from mock import Mock, MagicMock
 from collections import namedtuple
