@@ -1,6 +1,3 @@
-import sys
-sys.path.append('cv_kickstarter/lib')
-
 from session_authentication import SessionAuthentication
 
 
