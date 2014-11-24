@@ -56,24 +56,42 @@ class GoJobs (JobSearcher):
 
         # The last 3 elements returned are always 0's
         job_ids = json.loads(response_search.text)['d'][:-3]
+        return self.get_details_for_jobs(job_ids)
+
+    def get_details_for_jobs(self, job_ids):
+        """ Gets job details for the given job id's
+        :param job_ids: Id's for the jobs, that you want to retrieve.
+        :return: A list of the given jobs
+        """
         jobs = []
 
         for job_id in job_ids:
-            request_job_data = {'guid': self.guid,
-                                'id': job_id,
-                                'networkId': 3,
-                                'pass': GoJobs.PASS}
-
-            response_job = requests.post(self.BASE_URL +
-                                         self.URL_EXTENSION_GET_JOB,
-                                         data=json.dumps(request_job_data),
-                                         headers=self.HEADERS)
-            jobs.append(self.json_to_job(response_job.text))
-
+            jobs.append(self.get_details_for_job(job_id))
         return jobs
+
+    def get_details_for_job(self, job_id):
+        """ Gets job details for the given job id
+        :param job_id: Id for the job, that you want to retrieve.
+        :return: A job
+        """
+        request_job_data = {'guid': self.guid,
+                            'id': job_id,
+                            'networkId': 3,
+                            'pass': GoJobs.PASS}
+
+        response_job = requests.post(self.BASE_URL +
+                                     self.URL_EXTENSION_GET_JOB,
+                                     data=json.dumps(request_job_data),
+                                     headers=self.HEADERS)
+
+        return GoJobs.json_to_job(response_job.text)
 
     @staticmethod
     def json_to_job(json_text):
+        """ Converts a json string to a job
+        :param json_text: The json string, that should be parsed.
+        :return: A job
+        """
         json_job = json.loads(json_text)['d']
         return Job(title=json_job['jobTitle'],
                    company_name=json_job['companyName'],

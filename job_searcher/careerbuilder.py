@@ -17,7 +17,6 @@ class CareerBuilder (JobSearcher):
 
     def __init__(self, developer_key):
         """ :param developer_key: Needed for identification"""
-
         self.developer_key = developer_key
 
     def find_results_amount(self, keyword=''):
@@ -32,14 +31,19 @@ class CareerBuilder (JobSearcher):
                 self.PARAM_PER_PAGE: str(amount),
                 self.PARAM_KEYWORDS: ','.join(keywords)}
         response = requests.get(self.BASE_URL, params=args)
-        jobs = self.soup_to_jobs(BeautifulSoup(response.text, features='xml'))
+        jobs = self.soup_to_jobs(response.text)
         return jobs
 
     @staticmethod
-    def soup_to_jobs(soup):
-        jobs = []
+    def soup_to_jobs(xml):
+        """ Converts xml to a list of jobs
+        :param soup: The xml string, that should be parsed.
+        :return: A list of jobs
+        """
+        soup = BeautifulSoup(xml, features='xml')
         results = soup.find_all('JobSearchResult')
 
+        jobs = []
         for result in results:
             jobs.append(Job(title=result.JobTitle.text,
                             company_name=result.Company.text,

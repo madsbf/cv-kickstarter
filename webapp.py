@@ -82,7 +82,7 @@ def cv_page():
     )
     user_view = UserCVBuilder(campus_net_client).build()
     jobs_view = CareerBuilder(career_builder_key)\
-        .find_results(keywords=["developer"])
+        .find_results(keywords=[keyword.keyword for keyword in user_view.highest_ranked_keywords][:4])
     return render_template('cv.html', user_view=user_view, jobs_view=jobs_view)
 
 
