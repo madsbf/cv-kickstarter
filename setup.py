@@ -38,13 +38,13 @@ setup(
     long_description=open('README.rst').read(),
     install_requires=[
         'requests',
-        'Flask',
+        'Flask==0.10.1',
         'flask-negotiate',
         'flask-sslify',
         'gunicorn',
         'Werkzeug',
-        'nltk',
-        'numpy'
+        'nltk==3.0.0',
+        'numpy',
         'Flask-PyMongo'
     ],
     tests_require=['tox'],
