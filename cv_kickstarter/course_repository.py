@@ -1,6 +1,4 @@
-import sys
-sys.path.append("cv_kickstarter/models")
-from course import Course
+from collections import namedtuple
 
 
 class CourseRepository(object):
@@ -41,3 +39,7 @@ class CourseRepository(object):
             mongo_course['course_objectives'],
             mongo_course['tokens']
         )
+
+Course = namedtuple("Course", ['title', 'course_number', 'contents',
+                               'course_objectives_text', 'course_objectives',
+                               'tokens'])

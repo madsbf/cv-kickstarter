@@ -1,10 +1,7 @@
-import sys
-sys.path.append("cv_kickstarter/repos")
-
 from werkzeug import cached_property
 from user_cv import UserCV
 from campus_net_exam_result_mapper import CampusNetExamResultMapper
-from course_repository import CourseRepository
+from cv_kickstarter.course_repository import CourseRepository
 from dtu_skill_set import DtuSkillSet
 
 

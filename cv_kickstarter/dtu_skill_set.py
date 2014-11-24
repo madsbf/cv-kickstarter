@@ -1,6 +1,6 @@
+from collections import namedtuple
 import academic_skill_set
 from campus_net_course_base_merger import CampusNetCourseBaseMerger
-from tokenized_course_exam_result import TokenizedCourseExamResult
 
 
 class DtuSkillSet(object):
@@ -29,3 +29,8 @@ class DtuSkillSet(object):
             exam_result.course_tokens,
             exam_result.course
         )
+
+TokenizedCourseExamResult = namedtuple(
+    "TokenizedCourseExamResult",
+    ['exam_result', 'tokens', 'course']
+)

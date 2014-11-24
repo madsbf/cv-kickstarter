@@ -24,8 +24,6 @@ class ToxTestCommand(TestCommand):
         self.test_suite = True
 
     def run_tests(self):
-        import nltk_data_downloader
-        nltk_data_downloader.download()
         sys.exit(os.system('tox'))
 
 setup(
