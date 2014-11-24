@@ -18,7 +18,7 @@ from flask_sslify import SSLify
 from cv_kickstarter_config import CvKickstarterConfig
 
 app = Flask(__name__)
-config = CvKickstarterConfig()
+config = CvKickstarterConfig(os.environ.get("CONFIG_FILE") or "app.cfg")
 
 app.secret_key = config.secret_key()
 campus_net_client = CampusNetApi(

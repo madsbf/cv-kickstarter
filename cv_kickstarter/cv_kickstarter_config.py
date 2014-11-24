@@ -10,9 +10,9 @@ env = os.environ
 
 
 class CvKickstarterConfig(object):
-    def __init__(self):
+    def __init__(self, config_file_path):
         self.config = ConfigParser()
-        self.config.read("app.cfg")
+        self.config.read(config_file_path)
 
     def secret_key(self):
         return (env.get('SECRET_KEY') or

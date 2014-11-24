@@ -3,10 +3,10 @@ import os
 os.environ['SECRET_KEY'] = '1234'
 os.environ['CAMPUS_NET_APP_NAME'] = '123'
 os.environ['CAMPUS_NET_APP_TOKEN'] = '1234'
+os.environ['CONFIG_FILE'] = 'app.cfg.example'
 
-from webapp import (app, SessionAuthentication, UserCVBuilder,
-                    CvKickstarterConfig)
-from pytest import yield_fixture, fixture
+from webapp import (app, SessionAuthentication, UserCVBuilder)
+from pytest import yield_fixture
 from mock import Mock, MagicMock
 from base64 import b64encode as base64
 import webapp
@@ -53,12 +53,6 @@ class NullObject(object):
 
     def next(self):
         self.__next__()
-
-
-@fixture(autouse=True)
-def no_config(monkeypatch):
-    config = MagicMock(return_value=None)
-    monkeypatch.setattr(CvKickstarterConfig, '__init__', config)
 
 
 @yield_fixture
