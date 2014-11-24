@@ -2,6 +2,8 @@ __author__ = 'Mads'
 
 
 class Job:
+    """ Simple job class, used to expose a generic interface for jobs
+    across different job searchers"""
 
     def __init__(self, title, company_name, teaser, job_url):
         self.title = title
