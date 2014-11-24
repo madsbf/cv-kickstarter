@@ -16,7 +16,7 @@ For optimization reasons, the course information is fetched from a MongoDB datab
 
 ::
 
-      python -c "import course_importer; course_importer.import_courses()"
+      python course_importer.py"
 
 
 Configuration

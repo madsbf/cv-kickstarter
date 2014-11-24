@@ -1,5 +1,5 @@
 from cv_kickstarter import dtu_course_base
-import course_keyword_tokenizer
+from cv_kickstarter import course_keyword_tokenizer
 from cv_kickstarter.course_repository import CourseRepository
 from cv_kickstarter.mongo_store import MongoStore
 
@@ -17,3 +17,6 @@ def import_courses():
             course_keyword_tokenizer.course_tokens(course)
         )
         index = index + 1
+
+if __name__ == '__main__':
+    import_courses()
