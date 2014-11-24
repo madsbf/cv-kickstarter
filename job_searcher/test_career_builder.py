@@ -50,4 +50,9 @@ def test_find_results_amount():
 
 
 def test_xml_to_jobs():
-    assert CareerBuilder.xml_to_jobs(xml) == jobs
+    found_jobs = CareerBuilder.xml_to_jobs(xml)
+    for found_job, job in zip(found_jobs, jobs):
+        assert found_job.title == job.title
+        assert found_job.company_name == job.company_name
+        assert found_job.teaser == job.teaser
+        assert found_job.job_url == job.job_url
