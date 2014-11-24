@@ -37,7 +37,7 @@ class CareerBuilder (JobSearcher):
     @staticmethod
     def xml_to_jobs(xml):
         """ Converts xml to a list of jobs
-        :param soup: The xml string, that should be parsed.
+        :param xml: The xml string, that should be parsed.
         :return: A list of jobs
         """
         soup = BeautifulSoup(xml, features='xml')

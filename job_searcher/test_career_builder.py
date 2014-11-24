@@ -21,5 +21,6 @@ jobs = [Job(title='Developer',
             job_url='http://api.careerbuilder.com/v1/joblink?TrackingID=UNTRKD'
                     '&amp;HostSite=US&amp;DID=JHP81K5XZMR1GDMXNL2')]
 
+
 def test_xml_to_jobs():
     assert CareerBuilder.xml_to_jobs(xml) == jobs
