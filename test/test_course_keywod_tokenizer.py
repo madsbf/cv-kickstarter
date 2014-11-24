@@ -1,4 +1,6 @@
-from course_keyword_tokenizer import CourseSentenceExtractor, TextChunkifier
+from cv_kickstarter.course_keyword_tokenizer import (
+    CourseSentenceExtractor, TextChunkifier
+)
 from mock import MagicMock
 
 

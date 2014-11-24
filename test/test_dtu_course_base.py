@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import dtu_course_base
+from cv_kickstarter import dtu_course_base
 import os
 test_path = os.path.dirname(__file__)
 

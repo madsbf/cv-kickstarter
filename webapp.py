@@ -1,19 +1,15 @@
-import sys
-
-sys.path.append('cv_kickstarter/models')
-sys.path.append('cv_kickstarter')
-sys.path.append('cnapi')
-
 import os
-from session_authentication import SessionAuthentication
-from mongo_store import MongoStore
-from user_cv_builder import UserCVBuilder
 from flask import (Flask, render_template, request, session, redirect, jsonify,
                    Response)
 from flask_negotiate import consumes
-from cnapi import CampusNetApi
 from flask_sslify import SSLify
-from cv_kickstarter_config import CvKickstarterConfig
+
+from cnapi import CampusNetApi
+
+from cv_kickstarter.models.user_cv_builder import UserCVBuilder
+from cv_kickstarter.session_authentication import SessionAuthentication
+from cv_kickstarter.mongo_store import MongoStore
+from cv_kickstarter.config import CvKickstarterConfig
 
 app = Flask(__name__)
 config = CvKickstarterConfig(os.environ.get("CONFIG_FILE") or "app.cfg")

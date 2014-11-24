@@ -1,6 +1,8 @@
 from collections import namedtuple
-import academic_skill_set
-from campus_net_course_base_merger import CampusNetCourseBaseMerger
+from cv_kickstarter import academic_skill_set
+from cv_kickstarter.models.campus_net_course_base_merger import (
+    CampusNetCourseBaseMerger
+)
 
 
 class DtuSkillSet(object):
