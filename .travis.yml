@@ -1,3 +1,4 @@
 language: python
 install: pip install tox
 script: python setup.py test
+cache: false
