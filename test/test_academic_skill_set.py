@@ -1,5 +1,18 @@
-from .test_fakes import FakeTokenizedExamResult, FakeExamResult, FakeCourse
 import academic_skill_set
+
+from collections import namedtuple
+
+FakeTokenizedExamResult = namedtuple(
+    'FakeTokenizedExamResult',
+    ['exam_result', 'course', 'tokens']
+)
+
+FakeExamResult = namedtuple(
+    'FakeExamResult',
+    ['grade', 'ects_points']
+)
+
+FakeCourse = namedtuple('FakeCourse', ['course_number'])
 
 tokenized_exam_results = [
     FakeTokenizedExamResult(
