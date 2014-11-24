@@ -54,7 +54,8 @@ setup(
         'Werkzeug',
         'beautifulsoup4',
         'nltk',
-        'numpy'
+        'numpy',
+        'lxml'
     ],
     tests_require=['tox'],
     url='http://github.com/MadsFrandsen/PyCampus',
