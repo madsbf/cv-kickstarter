@@ -52,7 +52,7 @@ setup(
         'flask-sslify',
         'gunicorn',
         'Werkzeug',
-        'beautifulsoup4'
+        'beautifulsoup4',
         'nltk',
         'numpy'
     ],
