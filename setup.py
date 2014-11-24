@@ -1,7 +1,7 @@
 import os
 import sys
 
-from setuptools import setup
+from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 
 import cv_kickstarter
@@ -23,6 +23,7 @@ setup(
     author=cv_kickstarter.__author__,
     license='MIT',
     description=cv_kickstarter.__doc__,
+    packages=find_packages(),
     keywords='cv kickstarter dtu student',
     long_description=open('README.rst').read(),
     install_requires=[
