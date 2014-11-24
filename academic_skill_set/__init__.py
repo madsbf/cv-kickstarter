@@ -4,10 +4,10 @@ import nltk
 import numpy
 from collections import namedtuple
 import ects_grade_calculator
-import os
-nltk.data.path.append(
-    os.path.join(os.path.dirname(__file__), '../nltk_data')
-)
+
+import nltk_data_downloader
+
+nltk_data_downloader.download()
 
 
 def skill_set(tokenized_exam_results,

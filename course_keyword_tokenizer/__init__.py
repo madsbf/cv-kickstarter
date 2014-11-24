@@ -1,9 +1,8 @@
-import os
 from functools import reduce
 import nltk
-nltk.data.path.append(
-    os.path.join(os.path.dirname(__file__), '../nltk_data')
-)
+import nltk_data_downloader
+
+nltk_data_downloader.download()
 
 
 def course_tokens(course):
