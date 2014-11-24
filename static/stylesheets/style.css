@@ -1,9 +1,10 @@
 /* Login page */
 .login-dtu-logo {
-  width: 96px;
+  width: 150px;
+
 }
 
-.login-form {
+.login-form, .login-dtu-logo {
   margin-top: 48px;
 }
 
