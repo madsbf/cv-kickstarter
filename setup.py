@@ -4,16 +4,7 @@ import sys
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
-__name__ = 'CVKickstarter'
-__version__ = '0.1.0'
-__author__ = 'Mads Frandsen & Anders Nielsen'
-__author_email__ = 's082972@student.dtu.dk & aemilnielsen@gmail.com'
-__doc__ = """
-CVKickstarter is a web app that is able to analyse your DTU information
-and provide you with a prefilled CV with your education information, courses
-you've passed, the performance of your study, the skills you've gained and
-job suggestions based on your best skills.
-"""
+import cv_kickstarter
 
 
 class ToxTestCommand(TestCommand):
@@ -27,11 +18,11 @@ class ToxTestCommand(TestCommand):
         sys.exit(os.system('tox'))
 
 setup(
-    name=__name__,
-    version=__version__,
-    author=__author__,
+    name=cv_kickstarter.__name__,
+    version=cv_kickstarter.__version__,
+    author=cv_kickstarter.__author__,
     license='MIT',
-    description=__doc__,
+    description=cv_kickstarter.__doc__,
     keywords='cv kickstarter dtu student',
     long_description=open('README.rst').read(),
     install_requires=[
