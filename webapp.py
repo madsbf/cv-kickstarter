@@ -9,17 +9,18 @@ sys.path.append('job_searcher')
 
 import os
 from session_authentication import SessionAuthentication
+from mongo_store import MongoStore
 from user_cv_builder import UserCVBuilder
 from flask import (Flask, render_template, request, session, redirect, jsonify,
                    Response)
 from flask_negotiate import consumes
 from cnapi import CampusNetApi
 from flask_sslify import SSLify
-from careerbuilder import CareerBuilder
+from career_builder import CareerBuilder
 from cv_kickstarter_config import CvKickstarterConfig
 
 app = Flask(__name__)
-config = CvKickstarterConfig()
+config = CvKickstarterConfig(os.environ.get("CONFIG_FILE") or "app.cfg")
 
 app.secret_key = config.secret_key()
 campus_net_client = CampusNetApi(
@@ -34,8 +35,10 @@ if 'DYNO' in os.environ:
     sslify = SSLify(app)
 
 app.config.update(dict(
-    DEBUG=True,
+    DEBUG=True
 ))
+
+mongo_store = MongoStore('cv_kickstarter', config.mongo_url())
 
 
 @app.route('/')
@@ -80,9 +83,10 @@ def cv_page():
         session_auth.student_id,
         session_auth.auth_token
     )
-    user_view = UserCVBuilder(campus_net_client).build()
+    user_view = UserCVBuilder(campus_net_client, mongo_store).build()
+    k = [keyword.keyword for keyword in user_view.highest_ranked_keywords][:4]
     jobs_view = CareerBuilder(career_builder_key)\
-        .find_results(keywords=[keyword.keyword for keyword in user_view.highest_ranked_keywords][:4])
+        .find_results(keywords=k)
     return render_template('cv.html', user_view=user_view, jobs_view=jobs_view)
 
 

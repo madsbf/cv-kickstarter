@@ -16,16 +16,6 @@ job suggestions based on your best skills.
 """
 
 
-class NLTKDataDownloader(object):
-    @classmethod
-    def download(_class):
-        import nltk
-        nltk.download(
-            ['maxent_treebank_pos_tagger', 'punkt'],
-            download_dir='./nltk_data'
-        )
-
-
 class ToxTestCommand(TestCommand):
 
     def finalize_options(self):
@@ -34,7 +24,8 @@ class ToxTestCommand(TestCommand):
         self.test_suite = True
 
     def run_tests(self):
-        NLTKDataDownloader.download()
+        import nltk_data_downloader
+        nltk_data_downloader.download()
         sys.exit(os.system('tox'))
 
 setup(
@@ -46,16 +37,17 @@ setup(
     keywords='cv kickstarter dtu student',
     long_description=open('README.rst').read(),
     install_requires=[
-        'requests',
-        'Flask',
-        'flask-negotiate',
-        'flask-sslify',
-        'gunicorn',
-        'Werkzeug',
-        'beautifulsoup4',
-        'nltk',
-        'numpy',
-        'lxml'
+        'requests>=2.4.3,<2.5.0',
+        'Flask>=0.10.1,<0.11.0',
+        'flask-negotiate>=0.1.0,<0.2.0',
+        'flask-sslify>=0.1.4,<0.2.0',
+        'gunicorn>=19.1.1,<19.2.0',
+        'Werkzeug>=0.9.6,<1.0.0',
+        'nltk>=3.0.0,<3.1.0',
+        'numpy>=1.9.1,<2.0.0',
+        'Flask-PyMongo>=0.3.0,<0.4.0',
+        'beautifulsoup4==4.3.1',
+        'lxml==3.4.1'
     ],
     tests_require=['tox'],
     url='http://github.com/MadsFrandsen/PyCampus',

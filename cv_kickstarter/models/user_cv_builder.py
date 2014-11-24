@@ -1,14 +1,18 @@
+import sys
+sys.path.append("cv_kickstarter/repos")
+
 from werkzeug import cached_property
 from user_cv import UserCV
 from campus_net_exam_result_mapper import CampusNetExamResultMapper
-from xml_course_base_repo_builder import XmlCourseBaseRepoBuilder
+from course_repository import CourseRepository
 from dtu_skill_set import DtuSkillSet
 
 
 class UserCVBuilder(object):
 
-    def __init__(self, campus_net_client):
+    def __init__(self, campus_net_client, mongo_store):
         self.campus_net_client = campus_net_client
+        self.mongo_store = mongo_store
 
     def build(self):
         return UserCV(
@@ -37,7 +41,7 @@ class UserCVBuilder(object):
         ).skill_set()
 
     def _course_base_repo(self):
-        return XmlCourseBaseRepoBuilder('courses.xml').course_base_repo()
+        return CourseRepository(self.mongo_store)
 
     def _map_exam_result_programme(self, exam_result):
         return CampusNetExamResultMapper(

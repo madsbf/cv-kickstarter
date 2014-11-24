@@ -1,5 +1,4 @@
 import academic_skill_set
-from course_keyword_tokenizer import CourseKeywordTokenizer
 from campus_net_course_base_merger import CampusNetCourseBaseMerger
 from tokenized_course_exam_result import TokenizedCourseExamResult
 
@@ -27,6 +26,6 @@ class DtuSkillSet(object):
     def _map_to_tokenized_exam_result(self, exam_result):
         return TokenizedCourseExamResult(
             exam_result,
-            CourseKeywordTokenizer(exam_result.course).tokens(),
+            exam_result.course_tokens,
             exam_result.course
         )

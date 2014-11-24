@@ -5,6 +5,10 @@ import numpy
 from collections import namedtuple
 import ects_grade_calculator
 
+import nltk_data_downloader
+
+nltk_data_downloader.download()
+
 
 def skill_set(tokenized_exam_results,
               min_keyword_length=4,

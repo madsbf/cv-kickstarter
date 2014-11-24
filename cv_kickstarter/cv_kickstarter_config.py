@@ -10,9 +10,9 @@ env = os.environ
 
 
 class CvKickstarterConfig(object):
-    def __init__(self):
+    def __init__(self, config_file_path):
         self.config = ConfigParser()
-        self.config.read("app.cfg")
+        self.config.read(config_file_path)
 
     def secret_key(self):
         return (env.get('SECRET_KEY') or
@@ -33,6 +33,9 @@ class CvKickstarterConfig(object):
     def go_key(self):
         return (env.get('GO_DEVELOPER_KEY') or
                 self._get_from_config_file("godk", "guid"))
+
+    def mongo_url(self):
+        return env.get("MONGO_URL")
 
     def _get_from_config_file(self, group, key):
         return self.config.get(group, key)
