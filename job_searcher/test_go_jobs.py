@@ -2,11 +2,18 @@
 from go_jobs import GoJobs
 from job import Job
 import os
+import responses
 
 test_path = os.path.dirname(__file__)
-json_path = os.path.join(test_path, 'go_jobs_test_job.json')
+job_json_path = os.path.join(test_path, 'go_jobs_test_job.json')
+job_ids_json_path = os.path.join(test_path, 'go_jobs_test_job_ids.json')
+job_ids_simple_json_path = \
+    os.path.join(test_path, 'go_jobs_test_job_ids_simple.json')
 
-json = open(json_path).read()
+
+job_json = open(job_json_path).read()
+job_ids_json = open(job_ids_json_path).read()
+job_ids_simple_json = open(job_ids_simple_json_path).read()
 job = Job(title='Revisorer til den offentlige sektor-gruppe i EY',
           company_name='EY',
           teaser='EY er en af verdens førende organisationer inden for '
@@ -21,5 +28,30 @@ job = Job(title='Revisorer til den offentlige sektor-gruppe i EY',
           job_url='http://go.dk/job/572362')
 
 
+@responses.activate
+def test_find_results():
+    responses.add(responses.GET,
+                  GoJobs.BASE_URL + GoJobs.URL_EXTENSION_SEARCH,
+                  body=job_ids_simple_json,
+                  content_type="application/json")
+
+    responses.add(responses.GET,
+                  GoJobs.BASE_URL + GoJobs.URL_EXTENSION_GET_JOB,
+                  body=job_json,
+                  content_type="application/json")
+
+    assert GoJobs('guid').find_results('udivkler') == job
+
+
+@responses.activate
+def test_find_results_amount():
+    responses.add(responses.GET,
+                  GoJobs.BASE_URL + GoJobs.URL_EXTENSION_SEARCH,
+                  body=job_ids_json,
+                  content_type="application/json")
+
+    assert GoJobs('guid').find_results_amount('udvikler') == 433
+
+
 def test_json_to_job():
-    assert GoJobs.json_to_job(json) == job
+    assert GoJobs.json_to_job(job_json) == job

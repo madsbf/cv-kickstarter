@@ -1,6 +1,7 @@
 from career_builder import CareerBuilder
 from job import Job
 import os
+import responses
 
 test_path = os.path.dirname(__file__)
 xml_path = os.path.join(test_path, 'career_builder_test_jobs.xml')

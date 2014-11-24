@@ -33,10 +33,12 @@ class GoJobs (JobSearcher):
                         'jobTypeIds': [-1],
                         'pass': GoJobs.PASS}
 
-        response = requests.post(GoJobs.BASE_URL,
+        response = requests.post(GoJobs.BASE_URL +
+                                 self.URL_EXTENSION_SEARCH,
                                  data=json.dumps(request_data),
                                  headers=GoJobs.HEADERS)
-        response_data = json.loads(response.text)['d']
+
+        response_data = json.loads(response.text)['d'][:-3]
         return len(response_data)
 
     def find_results(self, keywords=(), amount=5):
