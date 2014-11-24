@@ -41,6 +41,18 @@ or to run with gunicorn, execute:
 
       gunicorn webapp:app --log-file=-
 
+
+Commmand Line Integration (CV Export)
+=====================================
+
+The CV can also be exported in a json format through the CLI by using the command:
+
+::
+
+      jsoncv s123456 secret
+
+where s123456 should be your student id and secret be your password to CampusNet.
+
 Tests
 =====
 
