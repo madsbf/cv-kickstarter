@@ -23,5 +23,24 @@ jobs = [Job(title='Developer',
                     '&amp;HostSite=US&amp;DID=JHP81K5XZMR1GDMXNL2')]
 
 
+@responses.activate
+def test_find_results():
+    responses.add(responses.GET,
+                  CareerBuilder.BASE_URL,
+                  body=xml,
+                  content_type="application/xml")
+
+    assert CareerBuilder('developerkey').find_results(['developer']) == jobs
+
+
+@responses.activate
+def test_find_results_amount():
+    responses.add(responses.GET,
+                  CareerBuilder.BASE_URL,
+                  body=xml,
+                  content_type="application/xml")
+
+    assert CareerBuilder('developerkey').find_results_amount('developer') == 16892
+
 def test_xml_to_jobs():
     assert CareerBuilder.xml_to_jobs(xml) == jobs

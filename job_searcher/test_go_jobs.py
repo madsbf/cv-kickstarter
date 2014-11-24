@@ -30,22 +30,22 @@ job = Job(title='Revisorer til den offentlige sektor-gruppe i EY',
 
 @responses.activate
 def test_find_results():
-    responses.add(responses.GET,
+    responses.add(responses.POST,
                   GoJobs.BASE_URL + GoJobs.URL_EXTENSION_SEARCH,
                   body=job_ids_simple_json,
                   content_type="application/json")
 
-    responses.add(responses.GET,
+    responses.add(responses.POST,
                   GoJobs.BASE_URL + GoJobs.URL_EXTENSION_GET_JOB,
                   body=job_json,
                   content_type="application/json")
 
-    assert GoJobs('guid').find_results('udivkler') == job
+    assert GoJobs('guid').find_results('udivkler') == [job]
 
 
 @responses.activate
 def test_find_results_amount():
-    responses.add(responses.GET,
+    responses.add(responses.POST,
                   GoJobs.BASE_URL + GoJobs.URL_EXTENSION_SEARCH,
                   body=job_ids_json,
                   content_type="application/json")
