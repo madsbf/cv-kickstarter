@@ -40,7 +40,11 @@ def test_find_results():
                   body=job_json,
                   content_type="application/json")
 
-    assert GoJobs('guid').find_results('udivkler') == [job]
+    found_job = GoJobs('guid').find_results('udivkler')[0]
+    assert found_job.title == job.title
+    assert found_job.company_name == job.company_name
+    assert found_job.teaser == job.teaser
+    assert found_job.job_url == job.job_url
 
 
 @responses.activate

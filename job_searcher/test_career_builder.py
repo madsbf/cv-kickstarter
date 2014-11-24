@@ -30,7 +30,12 @@ def test_find_results():
                   body=xml,
                   content_type="application/xml")
 
-    assert CareerBuilder('developerkey').find_results(['developer']) == jobs
+    found_jobs = CareerBuilder('developerkey').find_results(['developer'])
+    for found_job, job in zip(found_jobs, jobs):
+        assert found_job.title == job.title
+        assert found_job.company_name == job.company_name
+        assert found_job.teaser == job.teaser
+        assert found_job.job_url == job.job_url
 
 
 @responses.activate
@@ -40,7 +45,9 @@ def test_find_results_amount():
                   body=xml,
                   content_type="application/xml")
 
-    assert CareerBuilder('developerkey').find_results_amount('developer') == 16892
+    amount = CareerBuilder('developerkey').find_results_amount('developer')
+    assert amount == 16892
+
 
 def test_xml_to_jobs():
     assert CareerBuilder.xml_to_jobs(xml) == jobs
