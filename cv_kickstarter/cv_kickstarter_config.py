@@ -10,7 +10,7 @@ env = os.environ
 
 
 class CvKickstarterConfig(object):
-    def __init__(self, config_file_path):
+    def __init__(self, config_file_path='app.cfg'):
         self.config = ConfigParser()
         self.config.read(config_file_path)
 
