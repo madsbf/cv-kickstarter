@@ -2,11 +2,10 @@ import sys
 
 sys.path.append("dtu_course_base")
 sys.path.append("cv_kickstarter/lib")
-sys.path.append("cv_kickstarter/repos")
 
 import dtu_course_base
 import course_keyword_tokenizer
-from course_repository import CourseRepository
+from cv_kickstarter.course_repository import CourseRepository
 from mongo_store import MongoStore
 
 
