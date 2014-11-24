@@ -34,9 +34,11 @@ setup(
         'Werkzeug>=0.9.6,<1.0.0',
         'nltk>=3.0.0,<3.1.0',
         'numpy>=1.9.1,<2.0.0',
-        'Flask-PyMongo>=0.3.0,<0.4.0'
+        'Flask-PyMongo>=0.3.0,<0.4.0',
+        'docopt>=0.6.0,<0.7.0'
     ],
     tests_require=['tox'],
+    scripts=['bin/jsoncv'],
     url='http://github.com/MadsFrandsen/PyCampus',
     cmdclass={'test': ToxTestCommand}
 )
