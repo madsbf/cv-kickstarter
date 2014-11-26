@@ -35,7 +35,7 @@ setup(
         'Werkzeug>=0.9.6,<1.0.0',
         'nltk>=3.0.0,<3.1.0',
         'numpy>=1.9.1,<2.0.0',
-        'PyMongo>=2.8.0,<2.9.0',
+        'PyMongo>=2.7.0,<2.8.0',
         'docopt>=0.6.0,<0.7.0'
     ],
     tests_require=['tox'],
