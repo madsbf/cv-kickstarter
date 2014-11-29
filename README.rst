@@ -16,15 +16,15 @@ For optimization reasons, the course information is fetched from a MongoDB datab
 
 ::
 
-      python course_importer.py"
+      python course_import.py
 
 
 Configuration
 =============
 
-To configure the application, it is possible to either add an app.cfg file that contains the relevant configurations (see app.cfg.example for an example configuration file) or environment variables (see cv_kickstarter_config.py for environment variables used).
+To configure the application, it is possible to either add an app.cfg file that contains the relevant configurations (see app.cfg.example for an example configuration file) or environment variables (see `cv_kickstarter_config.py` for environment variables used).
 
-The app defaults to using MongoDB through localhost unless a MONGO_URL environment variable is given.
+The app defaults to using MongoDB through localhost unless a `MONGO_URL` environment variable is given.
 
 Run webserver
 =============
@@ -42,7 +42,7 @@ or to run with gunicorn, execute:
       gunicorn webapp:app --log-file=-
 
 
-Commmand Line Integration (CV Export)
+Commmand Line Integration
 =====================================
 
 The CV can also be exported in a json format through the CLI by using the command:
@@ -51,7 +51,7 @@ The CV can also be exported in a json format through the CLI by using the comman
 
       jsoncv s123456 secret
 
-where s123456 should be your student id and secret be your password to CampusNet.
+where 's123456' should be your student id and 'secret' be your password to CampusNet.
 
 Tests
 =====
