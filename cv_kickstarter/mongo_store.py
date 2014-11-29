@@ -26,6 +26,6 @@ class MongoStore(object):
     @cached_property
     def _connection(self):
         if self.mongo_db_url:
-            return Connection('localhost', 27017)
-        else:
             return Connection(self.mongo_db_url)
+        else:
+            return Connection('localhost', 27017)
