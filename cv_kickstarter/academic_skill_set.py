@@ -141,11 +141,7 @@ class KeywordScoreCalculator(object):
         ) for keyword in tokenized_tokens]
 
     def _calculate_phrase_scores(self, phrase_tokens, word_scores):
-        phrase_score = 0
-        for word in phrase_tokens:
-            word_word_score = word_scores[word]
-            phrase_score += word_word_score
-        return phrase_score
+        return sum(word_scores[word] for word in phrase_tokens)
 
 
 class KeywordGradeBooster(object):
