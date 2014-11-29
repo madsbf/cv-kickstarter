@@ -14,31 +14,34 @@ def import_courses():
     course_repo = CourseRepository(
         MongoStore('cv_kickstarter', config.mongo_url())
     )
-    index = 1
-    course_size = len(courses)
-    for course in courses:
-        update_progress(index, course_size)
+    progress_bar = ProgressBar(len(courses))
+    for index, course in enumerate(courses):
+        progress_bar.update(index)
         course_repo.remove(course.course_number)
         course_repo.create(
             course,
             course_keyword_tokenizer.course_tokens(course)
         )
-        index = index + 1
 
 
-def update_progress(index, course_size):
-    progress = int(index / course_size * 100)
-    hashes = '=' * progress + '>'
-    spaces = '.' * (100 - progress)
-    sys.stdout.write(
-        "\rImporting courses: [{0}] {1}%, course {2}/{3}".format(
-            hashes + spaces,
-            progress,
-            index,
-            course_size
+class ProgressBar(object):
+    def __init__(self, enumeration_size):
+        self.enumeration_size = enumeration_size
+
+    def update(self, index):
+        progress = int(index / self.enumeration_size * 100)
+        hashes = '=' * progress + '>'
+        spaces = '.' * (100 - progress)
+        sys.stdout.write(
+            "\rImporting courses: [{0}] {1}%, course {2}/{3}".format(
+                hashes + spaces,
+                progress,
+                index,
+                self.enumeration_size
+            )
         )
-    )
-    sys.stdout.flush()
+        sys.stdout.flush()
+
 
 if __name__ == '__main__':
     import_courses()
