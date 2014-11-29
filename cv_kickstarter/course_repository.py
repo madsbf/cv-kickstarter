@@ -2,7 +2,7 @@ from collections import namedtuple
 
 
 class CourseRepository(object):
-    def __init__(self, mongo_store, collection='dtu_student_cvs'):
+    def __init__(self, mongo_store, collection='courses'):
         self.mongo_store = mongo_store
         self.collection = collection
 
