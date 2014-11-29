@@ -12,7 +12,7 @@ def import_courses():
     courses = dtu_course_base.courses_from_xml(open('courses.xml').read())
     config = CvKickstarterConfig()
     course_repo = CourseRepository(
-        MongoStore('cv_kickstarter', config.mongo_url())
+        MongoStore(config.mongo_db_name(), config.mongo_url())
     )
     progress_bar = ProgressBar(len(courses))
     for index, course in enumerate(courses):

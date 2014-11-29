@@ -37,5 +37,9 @@ class CvKickstarterConfig(object):
     def mongo_url(self):
         return env.get("MONGO_URL")
 
+    def mongo_db_name(self):
+        return (env.get("MONGO_DB_NAME") or
+                self._get_from_config_file("mongo", "db_name"))
+
     def _get_from_config_file(self, group, key):
         return self.config.get(group, key)

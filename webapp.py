@@ -30,7 +30,7 @@ app.config.update(dict(
     DEBUG=True
 ))
 
-mongo_store = MongoStore('cv_kickstarter', config.mongo_url())
+mongo_store = MongoStore(config.mongo_db_name(), config.mongo_url())
 
 
 @app.route('/')
