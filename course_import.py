@@ -1,3 +1,6 @@
+from __future__ import division
+import sys
+
 from cv_kickstarter import dtu_course_base
 from cv_kickstarter import course_keyword_tokenizer
 from cv_kickstarter.course_repository import CourseRepository
@@ -14,13 +17,28 @@ def import_courses():
     index = 1
     course_size = len(courses)
     for course in courses:
-        print("importing course %s/%s" % (index, course_size))
+        update_progress(index, course_size)
         course_repo.remove(course.course_number)
         course_repo.create(
             course,
             course_keyword_tokenizer.course_tokens(course)
         )
         index = index + 1
+
+
+def update_progress(index, course_size):
+    progress = int(index / course_size * 100)
+    hashes = '=' * progress + '>'
+    spaces = '.' * (100 - progress)
+    sys.stdout.write(
+        "\rImporting courses: [{0}] {1}%, course {2}/{3}".format(
+            hashes + spaces,
+            progress,
+            index,
+            course_size
+        )
+    )
+    sys.stdout.flush()
 
 if __name__ == '__main__':
     import_courses()
