@@ -192,34 +192,6 @@ class KeywordScoreNormalizer(object):
         return score / average
 
 
-class RakeScoreCalculator(object):
-    def word_scores(self, tokenized_course_exam_results):
-        all_chunks = reduce(
-            lambda x, y: x + y,
-            map(lambda x: x.tokens, tokenized_course_exam_results)
-        )
-        tokenized_chunks = map(
-            lambda x: nltk.word_tokenize(x),
-            all_chunks
-        )
-        return self._calculate_word_scores(tokenized_chunks)
-
-    def _calculate_word_scores(self, phrase_list):
-        word_freq = nltk.FreqDist()
-        word_degree = nltk.FreqDist()
-        for phrase in phrase_list:
-            degree = len(phrase)
-            for word in phrase:
-                word_freq[word] += 1
-                word_degree[word] += degree
-        for word in word_freq.keys():
-            word_degree[word] = word_degree[word] + word_freq[word]
-        word_scores = {}
-        for word in word_freq.keys():
-            word_scores[word] = word_degree[word] / word_freq[word]
-        return word_scores
-
-
 class WordFrequencyScoreCalculator(object):
     def word_scores(self, tokenized_course_exam_results):
         all_chunks = reduce(
