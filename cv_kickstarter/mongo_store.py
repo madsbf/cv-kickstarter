@@ -21,7 +21,7 @@ class MongoStore(object):
 
     @cached_property
     def _database(self):
-        return self._connection.db[self._database_name]
+        return self._connection[self._database_name]
 
     @cached_property
     def _connection(self):
