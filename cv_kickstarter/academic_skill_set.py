@@ -205,11 +205,8 @@ class WordFrequencyScoreCalculator(object):
         return self._calculate_word_scores(tokenized_chunks)
 
     def _calculate_word_scores(self, phrase_list):
-        word_freq = nltk.FreqDist()
-        for phrase in phrase_list:
-            for word in phrase:
-                word_freq[word] += 1
-        return dict(word_freq.items())
+        words = [word for phrase in phrase_list for word in phrase]
+        return dict(nltk.FreqDist(words).items())
 
 CourseKeyword = namedtuple("CourseKeyword",
                            ['keyword', 'rank', 'course_numbers'])
