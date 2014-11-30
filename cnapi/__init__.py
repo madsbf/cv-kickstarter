@@ -42,42 +42,44 @@ import re
 
 
 class CampusNetApi:
-    """The interface class for the API
+
+    """The interface class for the API.
 
     This class acts as the top level interface of the api and wraps the
     behaviour needed for fetching relevant information from from the API.
     """
 
     def __init__(self, app_name, api_token):
+        """Initialization of the CampusNetApi."""
         self.app_name = app_name
         self.api_token = api_token
         self.student_number = None
         self.auth_token = None
 
     def authenticate_with_token(self, student_number, auth_token):
-        """Authenticates the given user by the given authentication token"""
+        """Authenticate the given user by the given authentication token."""
         self.student_number = student_number
         self.auth_token = auth_token
 
     def authenticate(self, student_number, password):
-        """Authenticates the given user by fetching an authentication token"""
+        """Authenticate the given user by fetching an authentication token."""
         self.student_number = student_number
         self.auth_token = self._get_auth_token(password)
 
     def is_authenticated(self):
-        """Returns a boolean indicating whether the user is authenticated"""
+        """Return a boolean indicating whether the user is authenticated."""
         return self.auth_token is not None
 
     def grades(self):
-        """Fetches the grades for the authenticated user"""
+        """Fetch the grades for the authenticated user."""
         return UserGradesExtractor(self._get_grades_text()).extract()
 
     def user(self):
-        """Fetches user infor for the authenticated user"""
+        """Fetch user infor for the authenticated user."""
         return UserInfoExtractor(self._get_user_info_text()).extract()
 
     def user_picture(self, user_id):
-        """"Fetches the user picture"""
+        """"Fetch the user picture."""
         image = self._get_user_picture(user_id)
         if self._is_image_response(image):
             return image
@@ -112,19 +114,18 @@ class CampusNetApi:
 
 
 class UserClient:
-    """Network client for fetching information about the user
-    through the CampusNet API. This class knows about the relevant urls and
-    headers in order to perform the given request.
-    """
+
+    """Network client for fetching user information CampusNet API."""
+
     def __init__(self, app_name, api_token, student_number, access_token):
+        """Initialize UserClient."""
         self.app_name = app_name
         self.api_token = api_token
         self.student_number = student_number
         self.access_token = access_token
 
     def get(self, path):
-        """Performs a GET request to fetch information about the given user
-        and includes the relevant headers for appname, token and language.
+        """Perform a GET request to fetch information about the given user.
 
         For example:
 
@@ -158,18 +159,20 @@ class UserClient:
 
 
 class AbstractXmlInfoExtractor:
-    """An abstract class for classes that extract information from the xml
-    returned by the CampusNet API.
+
+    """An abstract class for classes that extract information from xml.
 
     The inheriting class needs to implement:
 
         _extract_information
     """
+
     def __init__(self, response_text):
+        """Initialize AbstractXmlInfoExtractor with response_text."""
         self.response_text = response_text
 
     def extract(self):
-        """Extract the information from the given xml
+        """Extract the information from the given xml.
 
         Returns a structure given by the child class implementing
         '_extract_information'.
@@ -193,7 +196,8 @@ class AbstractXmlInfoExtractor:
 
 
 class UserInfoExtractor(AbstractXmlInfoExtractor):
-    """Is able to extract user info based on xml describe the user"""
+
+    """Is able to extract user info based on xml describe the user."""
 
     def _extract_information(self, xml_response):
         student_info_xml = xml_response.attrib
@@ -206,7 +210,8 @@ class UserInfoExtractor(AbstractXmlInfoExtractor):
 
 
 class UserGradesExtractor(AbstractXmlInfoExtractor):
-    """Is able to extract the grades of the given user"""
+
+    """Is able to extract the grades of the given user."""
 
     def _extract_information(self, xml_response):
         programme_xmls = xml_response.findall("EducationProgramme")
@@ -246,13 +251,15 @@ class UserGradesExtractor(AbstractXmlInfoExtractor):
 
 
 class ExamResultXmlMapper(object):
-    """Is able to extract and map exam result xml into ExamResult objects"""
+
+    """Is able to extract and map exam result xml into ExamResult objects."""
 
     def __init__(self, exam_result_xml):
+        """Initialize ExamResultXmlMapper with exam_result_xml."""
         self.exam_result_xml = exam_result_xml
 
     def exam_result(self):
-        """Returns an exam result object with information given by the xml"""
+        """Return an exam result object with information given by the xml."""
         exam_result_attributes = self.exam_result_xml.attrib
         return ExamResult(
             exam_result_attributes["Name"],
@@ -271,8 +278,11 @@ class ExamResultXmlMapper(object):
 
 
 class Authenticator:
-    """Can authenticate a user based on a user name and a password by
-    requesting an auth token from the API.
+
+    """Can authenticate a user based on a user name and a password.
+
+    The authentication fetches an auth_token from the CampusNet API that
+    authenticates the user.
 
     Example usage:
 
@@ -281,11 +291,13 @@ class Authenticator:
     """
 
     def __init__(self, app_name, api_token):
+        """Initialize Authenticator with app_name and api_token."""
         self.app_name = app_name
         self.api_token = api_token
 
     def auth_token(self, username, password):
-        """Fetches and returns an authentication token from CampusNet API.
+        """Fetch and return an authentication token from CampusNet API.
+
         The request is a POST request send the given app name, app token,
         username and password.
 
