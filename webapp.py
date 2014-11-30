@@ -8,7 +8,7 @@ from cnapi import CampusNetApi
 
 from cv_kickstarter.models.user_cv_builder import UserCVBuilder
 from cv_kickstarter.session_authentication import SessionAuthentication
-from cv_kickstarter.mongo_store import MongoStore
+from cv_kickstarter.course_repository import MongoStore
 from cv_kickstarter.cv_kickstarter_config import CvKickstarterConfig
 
 app = Flask(__name__)

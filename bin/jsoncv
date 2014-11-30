@@ -15,7 +15,7 @@ import cv_kickstarter
 from cv_kickstarter.cv_kickstarter_config import CvKickstarterConfig
 from cnapi import CampusNetApi
 from cv_kickstarter.models.user_cv_builder import UserCVBuilder
-from cv_kickstarter.mongo_store import MongoStore
+from cv_kickstarter.course_repository import MongoStore
 from flask import jsonify
 from cv_kickstarter.models.user_cv_dictionary_mapper import (
     UserCVDictionaryMapper
