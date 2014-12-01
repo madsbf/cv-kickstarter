@@ -1,3 +1,8 @@
+"""Extract raw keywords from course.
+
+course_keyword_tokenizer extracts raw keyword tokens from courses with
+noun phrase chunking.
+"""
 import nltk
 from cv_kickstarter import nltk_data_downloader
 
@@ -5,28 +10,43 @@ nltk_data_downloader.download()
 
 
 def course_keyword_tokens(course):
-    return CourseKeywordTokenizer(course).tokens()
+    """Return keyword tokens for course."""
+    return CourseKeywordTokenizer(course).keyword_tokens()
 
 
 class CourseKeywordTokenizer(object):
+
+    """Can extract keyword tokens from course."""
+
     def __init__(self, course):
+        """Initialize with course."""
         self.course = course
 
-    def tokens(self):
+    def keyword_tokens(self):
+        """Return keyword tokens for course."""
         if self.course is None:
             return []
         return [token for sentence in self._course_sentences()
-                for token in TextChunkifier().text_chunks(sentence)]
+                for token in TextKeywordChunkifier().chunks(sentence)]
 
     def _course_sentences(self):
         return CourseSentenceExtractor(self.course).sentences()
 
 
 class CourseSentenceExtractor(object):
+
+    """Can extact sentences from course object."""
+
     def __init__(self, course):
+        """Initialize with course."""
         self.course = course
 
     def sentences(self):
+        """Return sentences for course.
+
+        The sentences are based on title, contents, course_objectives_text
+        and course_objectives
+        """
         return [sentence for text in self._course_texts()
                 for sentence in nltk.sent_tokenize(text)]
 
@@ -38,9 +58,19 @@ class CourseSentenceExtractor(object):
         ] + list(self.course.course_objectives)
 
 
-# Inspired by Finn Nielsens code from Data Mining using Python 02819 at DTU.
-class TextChunkifier(object):
-    def text_chunks(self, text):
+class TextKeywordChunkifier(object):
+
+    """Can split text into several chunks by noun phrase chunking.
+
+    The chunks are extracted with noun phrase chunking with nouns and preceding
+    adjectives (if there are any).
+
+    The code in this class is inspired by the NLTK book and Finn Nielsens
+    code from Data Mining using Python 02819 from DTU.
+    """
+
+    def chunks(self, text):
+        """Return keyword chunks from the given text."""
         return self._extract_chunks(
             self._grammar_parser().parse(
                 nltk.pos_tag(nltk.word_tokenize(text))
