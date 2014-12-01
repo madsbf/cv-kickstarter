@@ -232,7 +232,7 @@ class KeywordGradeBooster(object):
         return keyword_score * self._grade_score(grade)
 
     def _grade_score(self, grade):
-        if type(grade) is not float:
+        if type(grade) is not int:
             return 1.0
         return grade / self.average_grade
 
