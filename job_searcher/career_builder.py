@@ -1,3 +1,5 @@
+""" Module for job searching on CareerBuilder.com. """
+
 from job import Job
 from job_searcher import JobSearcher
 
@@ -8,7 +10,8 @@ from bs4 import BeautifulSoup
 
 
 class CareerBuilder (JobSearcher):
-    """ JobSearcher for CareerBuilder.com"""
+
+    """ JobSearcher for CareerBuilder.com. """
 
     BASE_URL = 'http://api.careerbuilder.com/v2/jobsearch'
     PARAM_DEV_KEY = 'DeveloperKey'
@@ -16,10 +19,11 @@ class CareerBuilder (JobSearcher):
     PARAM_PER_PAGE = "perpage"
 
     def __init__(self, developer_key):
-        """ :param developer_key: Needed for identification"""
+        """ :param developer_key: Needed for identification. """
         self.developer_key = developer_key
 
     def find_results_amount(self, keyword=''):
+        """Find the amount of results for a given keyword. """
         args = {self.PARAM_DEV_KEY: self.developer_key,
                 self.PARAM_KEYWORDS: keyword}
         response = requests.get(self.BASE_URL, params=args)
@@ -27,6 +31,13 @@ class CareerBuilder (JobSearcher):
         return int(data.ResponseJobSearch.TotalCount.contents[0])
 
     def find_results(self, keywords=[], amount=5):
+        """ Perform a job search.
+
+        :param keywords: Keywords, that should be contained in the returned
+        results.
+        :param amount: The amount of results wanted.
+        :return: The jobs found by the given search parameters.
+        """
         args = {self.PARAM_DEV_KEY: self.developer_key,
                 self.PARAM_PER_PAGE: str(amount),
                 self.PARAM_KEYWORDS: ','.join(keywords)}
@@ -35,6 +46,16 @@ class CareerBuilder (JobSearcher):
         return jobs
 
     def find_results_best_match(self, keywords=[], amount=5):
+        """ Perform a job matching.
+
+        Performs a job search for each keyword, and finds the best matching
+        jobs.
+
+        :param keywords: Keywords, that should be contained in the returned
+        results.
+        :param amount: The amount of results wanted.
+        :return: The jobs found by the given search parameters.
+        """
         all_jobs = []
         for keyword in keywords:
             all_jobs.append(self.find_results([keyword]))
@@ -42,9 +63,10 @@ class CareerBuilder (JobSearcher):
 
     @staticmethod
     def xml_to_jobs(xml):
-        """ Converts xml to a list of jobs
+        """ Convert xml to a list of jobs.
+
         :param xml: The xml string, that should be parsed.
-        :return: A list of jobs
+        :return: A list of jobs.
         """
         soup = BeautifulSoup(xml, features='xml')
         results = soup.find_all('JobSearchResult')

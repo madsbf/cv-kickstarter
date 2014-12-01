@@ -1,3 +1,5 @@
+""" Module for job searching on Go.dk. """
+
 from job import Job
 from job_searcher import JobSearcher
 
@@ -8,7 +10,8 @@ import json
 
 
 class GoJobs (JobSearcher):
-    """ JobSearcher for Go.dk"""
+
+    """ JobSearcher for Go.dk. """
 
     BASE_URL = 'http://moveon.dk/webservice/mobile.asmx/'
     URL_EXTENSION_SEARCH = 'SearchJobsV3'
@@ -20,10 +23,11 @@ class GoJobs (JobSearcher):
     PASS = '02e19abe-b6f4-4a7e-bb70-9e613fcb43c2'
 
     def __init__(self, guid):
-        """ :param guid: Needed for identification """
+        """ :param guid: Needed for identification. """
         self.guid = guid
 
     def find_results_amount(self, keyword=''):
+        """Find the amount of results for a given keyword. """
         request_data = {'guid': self.guid,
                         "amount": 2147483647,  # Int32 maximum
                         'text': keyword,
@@ -42,6 +46,13 @@ class GoJobs (JobSearcher):
         return len(response_data)
 
     def find_results(self, keywords=(), amount=5):
+        """ Perform a job search.
+
+        :param keywords: Keywords, that should be contained in the returned
+        results.
+        :param amount: The amount of results wanted.
+        :return: The jobs found by the given search parameters.
+        """
         request_search_data = {'guid': self.guid,
                                'amount': amount,
                                'text': ','.join(keywords),
@@ -61,9 +72,10 @@ class GoJobs (JobSearcher):
         return self.get_details_for_jobs(job_ids)
 
     def get_details_for_jobs(self, job_ids):
-        """ Gets job details for the given job id's
+        """ Get job details for the given job id's.
+
         :param job_ids: Id's for the jobs, that you want to retrieve.
-        :return: A list of the given jobs
+        :return: A list of the given jobs.
         """
         jobs = []
 
@@ -72,9 +84,10 @@ class GoJobs (JobSearcher):
         return jobs
 
     def get_details_for_job(self, job_id):
-        """ Gets job details for the given job id
+        """ Get job details for the given job id.
+
         :param job_id: Id for the job, that you want to retrieve.
-        :return: A job
+        :return: A job.
         """
         request_job_data = {'guid': self.guid,
                             'id': job_id,
@@ -90,9 +103,10 @@ class GoJobs (JobSearcher):
 
     @staticmethod
     def json_to_job(json_text):
-        """ Converts a json string to a job
+        """ Convert a json string to a job.
+
         :param json_text: The json string, that should be parsed.
-        :return: A job
+        :return: A job.
         """
         json_job = json.loads(json_text)['d']
         return Job(title=json_job['jobTitle'],
