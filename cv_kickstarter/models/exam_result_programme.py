@@ -1,4 +1,4 @@
-import ects_grade_calculator
+from cv_kickstarter import ects_grade_calculator
 
 
 class ExamResultProgramme(object):

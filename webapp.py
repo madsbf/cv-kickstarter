@@ -1,21 +1,20 @@
 import sys
-
-sys.path.append('cv_kickstarter/models')
-sys.path.append('cv_kickstarter')
-sys.path.append('cnapi')
 sys.path.append('job_searcher')
 
+
 import os
-from session_authentication import SessionAuthentication
-from mongo_store import MongoStore
-from user_cv_builder import UserCVBuilder
 from flask import (Flask, render_template, request, session, redirect, jsonify,
                    Response)
 from flask_negotiate import consumes
-from cnapi import CampusNetApi
 from flask_sslify import SSLify
 from career_builder import CareerBuilder
-from cv_kickstarter_config import CvKickstarterConfig
+
+from cnapi import CampusNetApi
+
+from cv_kickstarter.models.user_cv_builder import UserCVBuilder
+from cv_kickstarter.session_authentication import SessionAuthentication
+from cv_kickstarter.course_repository import MongoStore
+from cv_kickstarter.cv_kickstarter_config import CvKickstarterConfig
 
 app = Flask(__name__)
 config = CvKickstarterConfig(os.environ.get("CONFIG_FILE") or "app.cfg")
@@ -36,7 +35,7 @@ app.config.update(dict(
     DEBUG=True
 ))
 
-mongo_store = MongoStore('cv_kickstarter', config.mongo_url())
+mongo_store = MongoStore(config.mongo_db_name(), config.mongo_url())
 
 
 @app.route('/')

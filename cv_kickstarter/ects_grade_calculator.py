@@ -1,12 +1,21 @@
+"""Calculates average grade based on grades weighted by ECTS-point."""
+
+
 def average_grade(exam_results):
+    """Return the average grade from a list of exam_results."""
     return GradeAverageCalculator(exam_results).average_grade()
 
 
 class GradeAverageCalculator(object):
+
+    """Class that is able to calculate average based on ECTS exam_results."""
+
     def __init__(self, exam_results):
+        """Initialize GradeAverageCalculator with exam_results."""
         self.exam_results = exam_results
 
     def average_grade(self):
+        """Return the average grade."""
         if not self.exam_results or not self._contains_graded_courses():
             return None
         return round(self._raw_average_grade(), 1)

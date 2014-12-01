@@ -1,7 +1,6 @@
-import sys
-sys.path.append('cv_kickstarter/models')
-
-from exam_result_programme import ExamResultProgramme, ects_grade_calculator
+from cv_kickstarter.models.exam_result_programme import (
+    ExamResultProgramme, ects_grade_calculator
+)
 
 
 def test_is_done_when_passed_ects_is_equal_to_total_ects():

@@ -10,3 +10,6 @@ app_token: campus-net-app-token-1234
 
 [flask]
 secret_key: a-long-secret-1234-54321
+
+[mongo]
+db_name: cv_kickstarter

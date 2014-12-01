@@ -1,4 +1,4 @@
-import academic_skill_set
+from cv_kickstarter import academic_skill_set
 
 from collections import namedtuple
 

@@ -1,0 +1,44 @@
+#! /usr/bin/env python
+"""CV Kickstarter json CV exporter.
+Usage:
+    jsoncv <student_id> <password> [--output=<output>]
+    jsoncv --version
+    jsoncv (-h | --help)
+
+Options:
+    -h --help          Show this screen
+    --output=<output>  The path to output the json cv file [default: 'cv_<student_id>.json']
+"""
+
+from docopt import docopt
+import cv_kickstarter
+from cv_kickstarter.cv_kickstarter_config import CvKickstarterConfig
+from cnapi import CampusNetApi
+from cv_kickstarter.models.user_cv_builder import UserCVBuilder
+from cv_kickstarter.course_repository import MongoStore
+from flask import jsonify
+from cv_kickstarter.models.user_cv_dictionary_mapper import (
+    UserCVDictionaryMapper
+)
+import json
+
+if __name__ == '__main__':
+    args = docopt(__doc__, version=cv_kickstarter.__version__)
+    student_id = args['<student_id>']
+    password = args['<password>']
+    output_path = args['--output'] or ("cv_%s.json" % student_id)
+
+    config = CvKickstarterConfig()
+    campus_net_client = CampusNetApi(
+        config.campus_net_app_name(),
+        config.campus_net_app_token()
+    )
+    campus_net_client.authenticate(student_id, password)
+    mongo_store = MongoStore('cv_kickstarter', config.mongo_url())
+    user_cv = UserCVBuilder(campus_net_client, mongo_store).build()
+    with open(output_path, 'w') as f:
+        user_cv_dict = UserCVDictionaryMapper().user_cv_dict(
+            user_cv,
+            campus_net_client.student_number
+        )
+        f.write(json.dumps(user_cv_dict))

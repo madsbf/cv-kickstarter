@@ -1,4 +1,6 @@
-from course_keyword_tokenizer import CourseSentenceExtractor, TextChunkifier
+from cv_kickstarter.course_keyword_tokenizer import (
+    CourseSentenceExtractor, TextKeywordChunkifier
+)
 from mock import MagicMock
 
 
@@ -30,7 +32,7 @@ def test_extraction_of_sentences_from_course():
 
 
 def assert_chunkification(text, chunks):
-    assert TextChunkifier().text_chunks(text) == chunks
+    assert TextKeywordChunkifier().chunks(text) == chunks
 
 
 def test_sane_chunks_from_course_goals():

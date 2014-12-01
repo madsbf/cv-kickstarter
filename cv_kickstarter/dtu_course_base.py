@@ -1,13 +1,11 @@
-"""Python library for structuring courses based on xml response
-from the DTU Course Base.
-"""
+"""Structuring courses based on xml response from the DTU Course Base."""
 
 import xml.etree.ElementTree as xmlET
 from collections import namedtuple
 
 
 def courses_from_xml(courses_xml_text, language='en-GB'):
-    """Extracts course objects based on xml with courses"""
+    """Extract course objects based on xml with courses."""
     courses = xmlET.fromstring(courses_xml_text).findall(
         'Courses/FullXML/Course'
     )
@@ -15,9 +13,8 @@ def courses_from_xml(courses_xml_text, language='en-GB'):
 
 
 class CourseExtractor(object):
-    """Class that is able to extract and return course objects based
-    on a course xml object.
-    """
+
+    """Responsible for extracting course objects based on a course xml."""
 
     def __init__(self, course_xml, language):
         """Construct CourseExtractor based on course xml and a language.
@@ -29,9 +26,7 @@ class CourseExtractor(object):
         self.language = language
 
     def course(self):
-        """Returns a Course object with information based on the given
-        course xml
-        """
+        """Return a Course object based on the given course xml."""
         return Course(
             self._title(),
             self._course_number(),

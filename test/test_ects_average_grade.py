@@ -1,5 +1,5 @@
 from mock import MagicMock
-import ects_grade_calculator
+from cv_kickstarter import ects_grade_calculator
 
 
 def test_grade_average_is_calculated_correctly():
