@@ -1,9 +1,12 @@
+"""Utilizes the a session dictionary as authentication storage.
+
+Integrates with the Flask session.
+"""
+
+
 class SessionAuthentication(object):
 
-    """Utilizes the a session dictionary as authentication storage.
-
-    Integrates with the Flask session.
-    """
+    """Utilizes the a session dictionary as authentication storage."""
 
     def __init__(self, session_dict):
         """Initialize SessionAuthentication with a session dictionary."""
