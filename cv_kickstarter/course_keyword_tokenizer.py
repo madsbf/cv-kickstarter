@@ -4,7 +4,7 @@ from cv_kickstarter import nltk_data_downloader
 nltk_data_downloader.download()
 
 
-def course_tokens(course):
+def course_keyword_tokens(course):
     return CourseKeywordTokenizer(course).tokens()
 
 

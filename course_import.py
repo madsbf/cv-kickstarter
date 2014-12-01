@@ -19,7 +19,7 @@ def import_courses():
         course_repo.remove(course.course_number)
         course_repo.create(
             course,
-            course_keyword_tokenizer.course_tokens(course)
+            course_keyword_tokenizer.course_keyword_tokens(course)
         )
 
 
