@@ -34,6 +34,12 @@ class CareerBuilder (JobSearcher):
         jobs = self.xml_to_jobs(response.text)
         return jobs
 
+    def find_results_best_match(self, keywords=[], amount=5):
+        all_jobs = []
+        for keyword in keywords:
+            all_jobs.append(self.find_results([keyword]))
+        return all_jobs[:amount]
+
     @staticmethod
     def xml_to_jobs(xml):
         """ Converts xml to a list of jobs

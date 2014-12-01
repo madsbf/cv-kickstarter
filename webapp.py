@@ -82,7 +82,7 @@ def cv_page():
         session_auth.auth_token
     )
     user_view = UserCVBuilder(campus_net_client, mongo_store).build()
-    k = [keyword.keyword for keyword in user_view.highest_ranked_keywords][:4]
+    k = [keyword.keyword for keyword in user_view.highest_ranked_keywords][:3]
     jobs_view = CareerBuilder(career_builder_key)\
         .find_results(keywords=k)
     return render_template('cv.html', user_view=user_view, jobs_view=jobs_view)
