@@ -7,7 +7,7 @@ Usage:
 
 Options:
     -h --help          Show this screen
-    --output=<output>  The path to output the json cv file [default: 'cv_<student_id>.json']
+    --output=<output>  The path to output the json cv file
 """
 
 from docopt import docopt
