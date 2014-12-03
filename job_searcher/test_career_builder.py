@@ -13,14 +13,14 @@ jobs = [Job(title='Developer',
                    'has an immediate need for a ...  Developer Requirements '
                    'Microsoft SQL Server and associated...',
             job_url='http://api.careerbuilder.com/v1/joblink?TrackingID=UNTRKD'
-                    '&amp;HostSite=US&amp;DID=JHR0PP5Z1YVB42FD92M'),
+                    '&;HostSite=US&;DID=JHR0PP5Z1YVB42FD92M'),
         Job(title='Software Developer',
             company_name='Meridian Staffing Services',
             teaser='Software Developer Role: You love working with a team of '
                    'hard-core product developers learning ...  Software '
                    'Developer Role: You love working with a...',
             job_url='http://api.careerbuilder.com/v1/joblink?TrackingID=UNTRKD'
-                    '&amp;HostSite=US&amp;DID=JHP81K5XZMR1GDMXNL2')]
+                    '&;HostSite=US&;DID=JHP81K5XZMR1GDMXNL2')]
 
 
 @responses.activate
