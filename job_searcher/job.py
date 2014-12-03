@@ -2,6 +2,7 @@
 
 class Job:
 
+
     """ Generic Job interface.
 
     Simple job class, used to expose a generic interface for jobs

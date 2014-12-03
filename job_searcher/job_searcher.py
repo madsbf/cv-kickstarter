@@ -2,6 +2,7 @@
 
 class JobSearcher:
 
+
     """ Class for job searching.
 
     JobSearcher finds jobs for a given keyword, or just

@@ -5,7 +5,7 @@ from job_searcher import JobSearcher
 
 import requests
 import json
-
+from __future__ import unicode_literals
 
 class GoJobs (JobSearcher):
 

@@ -2,6 +2,7 @@ from go_jobs import GoJobs
 from job import Job
 import os
 import responses
+from __future__ import unicode_literals
 
 test_path = os.path.dirname(__file__)
 job_json_path = os.path.join(test_path, 'go_jobs_test_job.json')
@@ -57,4 +58,8 @@ def test_find_results_amount():
 
 
 def test_json_to_job():
-    assert GoJobs.json_to_job(job_json) == job
+    found_job = GoJobs.json_to_job(job_json)
+    assert found_job.title == job.title
+    assert found_job.company_name == job.company_name
+    assert found_job.teaser == job.teaser
+    assert found_job.job_url == job.job_url

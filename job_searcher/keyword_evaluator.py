@@ -4,6 +4,7 @@ from __future__ import division
 
 class KeywordEvaluator:
 
+
     """ A class used to evaluate keywords with a given job searcher. """
 
     def __init__(self, job_searcher):

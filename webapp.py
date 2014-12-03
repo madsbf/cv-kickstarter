@@ -84,7 +84,9 @@ def cv_page():
     k = [keyword for keyword in user_view.highest_ranked_keywords][:3]
     jobs_view = CareerBuilder(career_builder_key)\
         .find_results_best_match(keywords=k)
-    return render_template('cv.html', user_view=user_view, jobs_view=jobs_view)
+    return render_template('cv.html',
+                           user_view=user_view,
+                           jobs_view=jobs_view)
 
 
 @app.route('/cv/picture')

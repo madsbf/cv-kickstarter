@@ -4,7 +4,6 @@ from job import Job
 from job_searcher import JobSearcher
 
 import requests
-import collections
 from bs4 import BeautifulSoup
 
 

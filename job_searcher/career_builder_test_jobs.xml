@@ -20,8 +20,8 @@
       <EmploymentType>Full-Time</EmploymentType>
       <EducationRequired>Not Specified</EducationRequired>
       <ExperienceRequired>Not Specified</ExperienceRequired>
-      <JobDetailsURL>http://api.careerbuilder.com/v1/joblink?TrackingID=UNTRKD&;HostSite=US&;DID=JHR0PP5Z1YVB42FD92M</JobDetailsURL>
-      <JobServiceURL>https://api.careerbuilder.com/v1/job?DID=JHR0PP5Z1YVB42FD92M&;HostSite=US&;DeveloperKey=WDHQ66567NQJB7C8NCH4</JobServiceURL>
+      <JobDetailsURL>http://api.careerbuilder.com/v1/joblink?TrackingID=UNTRKD&amp;HostSite=US&amp;DID=JHR0PP5Z1YVB42FD92M</JobDetailsURL>
+      <JobServiceURL>https://api.careerbuilder.com/v1/job?DID=JHR0PP5Z1YVB42FD92M&amp;HostSite=US&amp;DeveloperKey=WDHQ66567NQJB7C8NCH4</JobServiceURL>
       <Location>PA - Warrington</Location>
       <DisplayCity></DisplayCity>
       <City>Warrington</City>
@@ -31,7 +31,7 @@
       <PostedDate>10/29/2014</PostedDate>
       <PostedTime>10/29/2014 11:28:09 AM</PostedTime>
       <Pay>$70k - $75k/year</Pay>
-      <SimilarJobsURL>http://www.careerbuilder.com/jobs/similarjobs.aspx?ipath=JELO&;job_did=JHR0PP5Z1YVB42FD92M</SimilarJobsURL>
+      <SimilarJobsURL>http://www.careerbuilder.com/jobs/similarjobs.aspx?ipath=JELO&amp;job_did=JHR0PP5Z1YVB42FD92M</SimilarJobsURL>
       <JobTitle>Developer</JobTitle>
       <CompanyImageURL></CompanyImageURL>
       <JobBrandingIcons>PIcon</JobBrandingIcons>
@@ -68,8 +68,8 @@
       <EmploymentType>Full-Time</EmploymentType>
       <EducationRequired>Not Specified</EducationRequired>
       <ExperienceRequired>Not Specified</ExperienceRequired>
-      <JobDetailsURL>http://api.careerbuilder.com/v1/joblink?TrackingID=UNTRKD&;HostSite=US&;DID=JHP81K5XZMR1GDMXNL2</JobDetailsURL>
-      <JobServiceURL>https://api.careerbuilder.com/v1/job?DID=JHP81K5XZMR1GDMXNL2&;HostSite=US&;DeveloperKey=WDHQ66567NQJB7C8NCH4</JobServiceURL>
+      <JobDetailsURL>http://api.careerbuilder.com/v1/joblink?TrackingID=UNTRKD&amp;HostSite=US&amp;DID=JHP81K5XZMR1GDMXNL2</JobDetailsURL>
+      <JobServiceURL>https://api.careerbuilder.com/v1/job?DID=JHP81K5XZMR1GDMXNL2&amp;HostSite=US&amp;DeveloperKey=WDHQ66567NQJB7C8NCH4</JobServiceURL>
       <Location>GA - Atlanta</Location>
       <DisplayCity></DisplayCity>
       <City>Atlanta</City>
@@ -79,7 +79,7 @@
       <PostedDate>11/24/2014</PostedDate>
       <PostedTime>11/24/2014 1:01:31 AM</PostedTime>
       <Pay>$60k - $80k/year</Pay>
-      <SimilarJobsURL>http://www.careerbuilder.com/jobs/similarjobs.aspx?ipath=JELO&;job_did=JHP81K5XZMR1GDMXNL2</SimilarJobsURL>
+      <SimilarJobsURL>http://www.careerbuilder.com/jobs/similarjobs.aspx?ipath=JELO&amp;job_did=JHP81K5XZMR1GDMXNL2</SimilarJobsURL>
       <JobTitle>Software Developer</JobTitle>
       <CompanyImageURL>http://emj.icbdr.com/mediamanagement/rz/mw041167l1fkfczxvrz.jpg</CompanyImageURL>
       <JobBrandingIcons></JobBrandingIcons>
