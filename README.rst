@@ -1,5 +1,5 @@
-CVKickstarter
-=============
+CV Kickstarter
+==============
 
 Data Mining using Python project repository
 
