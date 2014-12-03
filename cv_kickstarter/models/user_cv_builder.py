@@ -27,10 +27,12 @@ class UserCVBuilder(object):
 
     @cached_property
     def grades(self):
-        return list(map(
+        exam_result_programmes = map(
             self._map_exam_result_programme,
             self.campus_net_client.grades()
-        ))
+        )
+        return [programme for programme
+                in exam_result_programmes if programme is not None]
 
     @property
     def _keywords(self):
