@@ -1,69 +1,90 @@
 {% extends "layout.html" %}
 {% block body %}
-  <div class="jumbotron">
-    <div class="cv-student container">
-      <div class="cv-student-picture col-sm-2 col-md-2">
-        <img src="{{ url_for('picture') }}" class="cv-student-picture-img" />
-      </div>
-      <div class="cv-student-main-information col-sm-9 col-md-9">
-        <h1 class="cv-student-name">{{ user_view.full_name }}</h1>
-        <div class="cv-student-programmes">
-          {% for programme in user_view.exam_result_programmes %}
-            <h4 class="cv-student-programme">
-              {{ programme.name}} {% if programme.is_done %}<span class="cv-student-programme-label glyphicon glyphicon-ok"></span>{% endif %}
-            </h4>
-            <div class="cv-student-programme-short-info">
-              {{ programme.passed_ects }} ECTS -  {{ programme.average_grade }} avg. grade
+    <div class="jumbotron">
+        <div class="cv-student container">
+            <div class="cv-student-picture col-sm-2 col-md-2">
+                <img src="{{ url_for('picture') }}" class="cv-student-picture-img" />
             </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="cv-student-action-bar">
-    <div class="container">
-      <div class="cv-student-actions col-sm-offset-8 col-sm-4">
-        <form action="{{ url_for('log_out') }}" method="POST">
-          <input type="submit" class="btn btn-danger" value="Log Out" />
-        </form>
-      </div>
-    </div>
-  </div>
-  <div class="cv-student-courses container">
-    <div class="col-md-6">
-      {% for programme in user_view.exam_result_programmes %}
-        <div class="panel panel-default">
-          <div class="panel-heading">{{ programme.name }}</div>
-          <table class="table table-consended">
-            {% for exam_result in programme.exam_results %}
-            <tr>
-              <td><a href="http://www.kurser.dtu.dk/{{ exam_result.course_number }}.aspx" target="_blank">{{ exam_result.course_title }}</a></td>
-              <td>{{ exam_result.ects_points }}</td>
-              <td>{{ exam_result.grade }}</td>
-            </tr>
-            {% endfor %}
-          </table>
-        </div>
-      {% endfor %}
-    </div>
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">Skills</div>
-          <div class="panel-body">
-            <div class="ranked-course-keywords-description">
-              These skills are extracted from the title, contents, course objectives and learning objectives from the courses the student have passed and ranked by the grade gained in the different courses.
-            </div>
-            {% for keyword in user_view.highest_ranked_keywords %}
-              <div class="ranked-course-keyword">
-                <div class="ranked-course-keyword-keyword">{{ keyword.keyword }}</div>
-                <div class="ranked-course-keyword-courses">
-                  Obtained from
-                  {{ user_view.course_title_sentence(keyword) }}
+            <div class="cv-student-main-information col-sm-9 col-md-9">
+                <h1 class="cv-student-name">{{ user_view.full_name }}</h1>
+                <div class="cv-student-programmes">
+                    {% for programme in user_view.exam_result_programmes %}
+                        <h4 class="cv-student-programme">
+                            {{ programme.name}} {% if programme.is_done %}<span class="cv-student-programme-label glyphicon glyphicon-ok"></span>{% endif %}
+                        </h4>
+                        <div class="cv-student-programme-short-info">
+                            {{ programme.passed_ects }} ECTS -  {{ programme.average_grade }} avg. grade
+                        </div>
+                    {% endfor %}
                 </div>
-              </div>
-            {% endfor %}
-          </div>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
+    <div class="cv-student-action-bar">
+        <div class="container">
+            <div class="cv-student-actions col-sm-offset-8 col-sm-4">
+                <form action="{{ url_for('log_out') }}" method="POST">
+                    <input type="submit" class="btn btn-danger" value="Log Out" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="cv-student-courses container">
+        <div class="col-md-6">
+            {% for programme in user_view.exam_result_programmes %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ programme.name }}</div>
+                    <table class="table table-consended">
+                        {% for exam_result in programme.exam_results %}
+                            <tr>
+                                <td><a href="http://www.kurser.dtu.dk/{{ exam_result.course_number }}.aspx" target="_blank">{{ exam_result.course_title }}</a></td>
+                                <td>{{ exam_result.ects_points }}</td>
+                                <td>{{ exam_result.grade }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Skills</div>
+                <div class="panel-body">
+                    <div class="ranked-course-keywords-description">
+                        These skills are extracted from the title, contents, course objectives and learning objectives from the courses the student have passed and ranked by the grade gained in the different courses.
+                    </div>
+                    {% for keyword in user_view.highest_ranked_keywords %}
+                        <div class="ranked-course-keyword">
+                            <div class="ranked-course-keyword-keyword">{{ keyword.keyword }}</div>
+                            <div class="ranked-course-keyword-courses">
+                                Obtained from
+                                {{ user_view.course_title_sentence(keyword) }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cv-student-jobs">
+        <div class="container">
+            <span class="glyphicon glyphicon-briefcase cv-job-logo" aria-hidden="true"></span>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">We found some jobs for you!</div>
+
+                    <table class="table table-consended">
+
+                        {% for job in jobs_view %}
+                            <tr>
+                                <td><a href={{ job.job_url }} target="_blank">{{ job.title }}</a></td>
+                                <td>{{ job.teaser }}</td>
+                                <td>{{ job.company_name }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

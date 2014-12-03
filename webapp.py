@@ -1,9 +1,14 @@
 """Web app for CV Kickstarter."""
+
+import sys
+sys.path.append('job_searcher')
+
 import os
 from flask import (Flask, render_template, request, session, redirect, jsonify,
                    Response)
 from flask_negotiate import consumes
 from flask_sslify import SSLify
+from career_builder import CareerBuilder
 
 from cnapi import CampusNetApi
 
@@ -91,7 +96,12 @@ def cv_page():
         session_auth.auth_token
     )
     user_view = UserCVBuilder(campus_net_client, mongo_store).build()
-    return render_template('cv.html', user_view=user_view)
+    k = [keyword for keyword in user_view.highest_ranked_keywords][:3]
+    jobs_view = CareerBuilder(career_builder_key)\
+        .find_results_best_match(keywords=k)
+    return render_template('cv.html',
+                           user_view=user_view,
+                           jobs_view=jobs_view)
 
 
 @app.route('/cv/picture')
