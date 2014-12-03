@@ -1,4 +1,4 @@
-from cv_kickstarter.models.campus_net_exam_result_mapper import (
+from cv_kickstarter.models.user_cv_builder import (
     CampusNetExamResultMapper, ExamResultProgramme
 )
 from mock import Mock, MagicMock
