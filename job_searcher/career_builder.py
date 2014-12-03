@@ -3,9 +3,8 @@
 from job import Job
 from job_searcher import JobSearcher
 
-__author__ = 'Mads'
-
 import requests
+import collections
 from bs4 import BeautifulSoup
 
 
@@ -44,22 +43,6 @@ class CareerBuilder (JobSearcher):
         response = requests.get(self.BASE_URL, params=args)
         jobs = self.xml_to_jobs(response.text)
         return jobs
-
-    def find_results_best_match(self, keywords=[], amount=5):
-        """ Perform a job matching.
-
-        Performs a job search for each keyword, and finds the best matching
-        jobs.
-
-        :param keywords: Keywords, that should be contained in the returned
-        results.
-        :param amount: The amount of results wanted.
-        :return: The jobs found by the given search parameters.
-        """
-        all_jobs = []
-        for keyword in keywords:
-            all_jobs.append(self.find_results([keyword]))
-        return all_jobs[:amount]
 
     @staticmethod
     def xml_to_jobs(xml):

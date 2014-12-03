@@ -1,8 +1,5 @@
 """ Generic job module. """
 
-__author__ = 'Mads'
-
-
 class Job:
 
     """ Generic Job interface.

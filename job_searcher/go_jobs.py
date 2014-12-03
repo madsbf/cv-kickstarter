@@ -3,8 +3,6 @@
 from job import Job
 from job_searcher import JobSearcher
 
-__author__ = 'Mads'
-
 import requests
 import json
 
