@@ -18,15 +18,13 @@ nltk_data_downloader.download()
 
 
 def skill_set(tokenized_exam_results,
-              min_keyword_length=4,
-              max_keyword_courses=6):
+              min_keyword_length=4):
     """Extract skill set based on tokenized exam results.
 
     Tokenized exam results are exam results with tokens for each course.
 
     Optimal arguments are
         min_keyword_length: The minimum amount of characters in a keyword
-        max_keyword_courses: The maximum amount of courses for a keyword
 
     The last max_keyword_courses is used for filtering away keywords that
     are too common in the courses (e.g. 'course', 'analysis').
@@ -34,10 +32,7 @@ def skill_set(tokenized_exam_results,
     return StudentSkillSet(
         WordFrequencyScoreCalculator().word_scores(tokenized_exam_results),
         _build_grade_booster(tokenized_exam_results),
-        StudentSkillSetNoiceFilter(
-            min_keyword_length,
-            max_keyword_courses
-        )
+        StudentSkillSetNoiceFilter(min_keyword_length)
     ).skill_set(tokenized_exam_results)
 
 
@@ -57,22 +52,19 @@ class StudentSkillSetNoiceFilter(object):
     Filters away noice meaning unwanted keywords in the skill set.
     """
 
-    def __init__(self, min_keyword_length, max_keyword_courses):
-        """Initialize with min_keyword_length and max_keyword_courses.
+    def __init__(self, min_keyword_length):
+        """Initialize with min_keyword_length.
 
         min_keyword_length: The minimum amount of characters in a keyword
-        max_keyword_courses: The maximum amount of courses for a keyword
         """
         self.min_keyword_length = min_keyword_length
-        self.max_keyword_courses = max_keyword_courses
 
     def filtered_skill_set(self, course_keywords):
         """Return a filtered set of skills."""
         return filter(self._valid_keyword, course_keywords)
 
     def _valid_keyword(self, keyword):
-        return (len(keyword.course_numbers) <= self.min_keyword_length
-                and len(keyword.keyword) >= self.max_keyword_courses)
+        return len(keyword.keyword) >= self.min_keyword_length
 
 
 class StudentSkillSet(object):
