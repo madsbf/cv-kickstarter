@@ -1,5 +1,12 @@
+"""Maps a UserCV into a dictionary."""
+
+
 class UserCVDictionaryMapper(object):
+
+    """Maps a UserCV into a dictionary."""
+
     def user_cv_dict(self, user_cv, student_number):
+        """Return a dictionary based on the UserCV."""
         return {
             "student_number": student_number,
             "first_name": user_cv.first_name,
