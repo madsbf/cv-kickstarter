@@ -1,3 +1,10 @@
+"""Import courses from the course base into MongoDB.
+
+Because of optimization reasons all courses are imported into MongoDB from
+the course xml.
+
+NB: This import is necessary to display course skills and job recommendations.
+"""
 from __future__ import division
 import sys
 
@@ -7,7 +14,8 @@ from cv_kickstarter.course_repository import CourseRepository, MongoStore
 from cv_kickstarter.cv_kickstarter_config import CvKickstarterConfig
 
 
-def import_courses():
+def import_courses(course_xml_path='courses.xml'):
+    """Import courses from xml into MongoDB to be used by CVKickstarter."""
     courses = dtu_course_base.courses_from_xml(open('courses.xml').read())
     config = CvKickstarterConfig()
     course_repo = CourseRepository(
@@ -24,10 +32,15 @@ def import_courses():
 
 
 class ProgressBar(object):
+
+    """For displaying a progress bar with progress of the import."""
+
     def __init__(self, enumeration_size):
+        """Initialize with enumerate_size - the amount of objects iterated."""
         self.enumeration_size = enumeration_size
 
     def update(self, index):
+        """Update the progress bar by the given iteration index."""
         progress = int(index / self.enumeration_size * 100)
         hashes = '=' * progress + '>'
         spaces = '.' * (100 - progress)
