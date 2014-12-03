@@ -1,7 +1,7 @@
 """ Generic job module. """
 
-class Job:
 
+class Job:
 
     """ Generic Job interface.
 

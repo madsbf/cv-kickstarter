@@ -1,7 +1,7 @@
 """ Module for job searching. """
 
-class JobSearcher:
 
+class JobSearcher:
 
     """ Class for job searching.
 

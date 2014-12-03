@@ -2,8 +2,8 @@
 
 from __future__ import division
 
-class KeywordEvaluator:
 
+class KeywordEvaluator:
 
     """ A class used to evaluate keywords with a given job searcher. """
 

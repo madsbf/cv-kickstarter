@@ -1,8 +1,8 @@
+from __future__ import unicode_literals
 from go_jobs import GoJobs
 from job import Job
 import os
 import responses
-from __future__ import unicode_literals
 
 test_path = os.path.dirname(__file__)
 job_json_path = os.path.join(test_path, 'go_jobs_test_job.json')
