@@ -18,7 +18,7 @@ job = Job(title='Revisorer til den offentlige sektor-gruppe i EY',
           company_name='EY',
           teaser='EY er en af verdens bedste organisationer inden for '
                  'revision, skat, transaktioner og rådgivning. Den indsigt '
-                 'og de ydelser, vi leverer, hjælper med at opbygge tillid '
+                 'og de ydelser, vi leverer, opbygger tillid '
                  'til kapitalmarkederne. Vi udvikler '
                  'dygtige ledere og medarbejdere, som sammen leverer det, '
                  'vi lover vores interessenter og bidrager til, at '
