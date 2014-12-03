@@ -30,7 +30,7 @@ def skill_set(tokenized_exam_results,
     are too common in the courses (e.g. 'course', 'analysis').
     """
     return StudentSkillSet(
-        WordFrequencyScoreCalculator().word_scores(tokenized_exam_results),
+        WordFrequencyScoreCalculator(),
         _build_grade_booster(tokenized_exam_results),
         StudentSkillSetNoiceFilter(min_keyword_length)
     ).skill_set(tokenized_exam_results)
@@ -71,9 +71,9 @@ class StudentSkillSet(object):
 
     """Extract skill set of a student."""
 
-    def __init__(self, word_scores, grade_booster, noice_filter):
-        """Initialize with word_scores, grade_booster and noice_filter."""
-        self.word_scores = word_scores
+    def __init__(self, word_scorer, grade_booster, noice_filter):
+        """Initialize with word_scorer, grade_booster and noice_filter."""
+        self.word_scorer = word_scorer
         self.grade_booster = grade_booster
         self.noice_filter = noice_filter
 
@@ -100,7 +100,7 @@ class StudentSkillSet(object):
     def _rank_tokens_for_courses2(self, tokenized_course_exam_results,
                                   grade_booster):
         return map(
-            CourseSkillSet(grade_booster, self.word_scores).skill_set,
+            CourseSkillSet(grade_booster, self.word_scorer).skill_set,
             tokenized_course_exam_results
         )
 
@@ -109,27 +109,27 @@ class CourseSkillSet(object):
 
     """Extract skill gained in a given course."""
 
-    def __init__(self, grade_booster, word_scores):
-        """Initialize with a grade_booster and word_scores dictionary."""
+    def __init__(self, grade_booster, word_scorer):
+        """Initialize with a grade_booster and word_scorer dictionary."""
         self.grade_booster = grade_booster
-        self.word_scores = word_scores
+        self.word_scorer = word_scorer
 
     def skill_set(self, tokenized_exam_result):
         """Return a skill set gained in the given course."""
         return self.grade_booster.boosted_keyword_scores(
             tokenized_exam_result,
-            self._normalized_keyword_scores(tokenized_exam_result)
+            self._normalized_keyword_score(tokenized_exam_result)
         )
 
-    def _normalized_keyword_scores(self, tokenized_exam_result):
-        return KeywordScoreNormalizer().normalized_keyword_scores(
-            self._keyword_scores(tokenized_exam_result)
+    def _normalized_keyword_score(self, tokenized_exam_result):
+        return KeywordScoreNormalizer().normalized_keyword_score(
+            self._keyword_scorer(tokenized_exam_result)
         )
 
-    def _keyword_scores(self, tokenized_exam_result):
-        return KeywordScoreCalculator().keyword_scores(
+    def _keyword_scorer(self, tokenized_exam_result):
+        return KeywordScoreCalculator().keyword_scorer(
             tokenized_exam_result,
-            self.word_scores
+            self.word_scorer
         )
 
 
@@ -174,8 +174,9 @@ class KeywordScoreCalculator(object):
 
     """"Calculates the raw keyword scores based on the word scores."""
 
-    def keyword_scores(self, tokenized_exam_result, word_scores):
+    def keyword_scorer(self, tokenized_exam_result, word_scorer):
         """"Return keyword scores."""
+        word_scores = word_scorer.word_scorer(tokenized_exam_result)
         tokenized_tokens = map(
             lambda x: nltk.word_tokenize(x),
             list(set(tokenized_exam_result.tokens))
@@ -233,45 +234,44 @@ class KeywordScoreNormalizer(object):
 
     """Normalize the rank score of a keyword with average score in course."""
 
-    def normalized_keyword_scores(self, keyword_scores):
+    def normalized_keyword_score(self, keyword_scorer):
         """Return a list of keywords with rank divided by average rank."""
-        average_score = numpy.average(
-            [keyword_score.rank for keyword_score in keyword_scores]
-        )
+        ranks = [keyword_score.rank for keyword_score in keyword_scorer]
+        average_score = numpy.average(ranks)
+        score_std = numpy.std(ranks)
         return list(map(
             lambda old_score: CourseKeyword(
                 old_score.keyword,
-                self._normalized_score(old_score.rank, average_score),
+                self._normalized_score(
+                    old_score.rank,
+                    average_score,
+                    score_std),
                 old_score.course_numbers
             ),
-            keyword_scores
+            keyword_scorer
         ))
 
-    def _normalized_score(self, score, average):
-        return score / average
+    def _normalized_score(self, score, average, std):
+        return (score - average) / std
 
 
 class WordFrequencyScoreCalculator(object):
 
     """Builds a word score dictionary based on word frequency."""
 
-    def word_scores(self, tokenized_course_exam_results):
+    def word_scorer(self, tokenized_course_exam_result):
         """Return a dictionary of word scores.
 
         The score for each word is the frequency of the word in all
         exam results.
         """
-        all_chunks = reduce(
-            lambda x, y: x + y,
-            map(lambda x: x.tokens, tokenized_course_exam_results)
-        )
         tokenized_chunks = map(
             lambda x: nltk.word_tokenize(x),
-            all_chunks
+            tokenized_course_exam_result.tokens
         )
-        return self._calculate_word_scores(tokenized_chunks)
+        return self._calculate_word_scorer(tokenized_chunks)
 
-    def _calculate_word_scores(self, phrase_list):
+    def _calculate_word_scorer(self, phrase_list):
         words = [word for phrase in phrase_list for word in phrase]
         return dict(nltk.FreqDist(words).items())
 
