@@ -18,9 +18,9 @@ job_ids_json = open(job_ids_json_path).read()
 job_ids_simple_json = open(job_ids_simple_json_path).read()
 job = Job(title='Revisorer til den offentlige sektor-gruppe i EY',
           company_name='EY',
-          teaser=u'EY er en af verdens bedste organisationer inden for '
-                 'revision, skat, transaktioner og rådgivning. Den indsigt '
-                 'og de ydelser, vi leverer, opbygger tillid '
+          teaser='EY er en af verdens bedste organisationer inden for '
+                 'revision, skat, transaktioner og r\\u0102\\u013ddgivning. '
+                 'Den indsigt og de ydelser, vi leverer, opbygger tillid '
                  'til kapitalmarkederne. Vi udvikler '
                  'dygtige ledere og medarbejdere, som sammen leverer det, '
                  'vi lover vores interessenter og bidrager til, at '
