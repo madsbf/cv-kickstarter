@@ -16,7 +16,7 @@ from cv_kickstarter.cv_kickstarter_config import CvKickstarterConfig
 
 def import_courses(course_xml_path='courses.xml'):
     """Import courses from xml into MongoDB to be used by CVKickstarter."""
-    courses = dtu_course_base.courses_from_xml(open('courses.xml').read())
+    courses = dtu_course_base.courses_from_xml(open(course_xml_path).read())
     config = CvKickstarterConfig()
     course_repo = CourseRepository(
         MongoStore(config.mongo_db_name(), config.mongo_url())
