@@ -41,7 +41,7 @@ class ProgressBar(object):
 
     def update(self, index):
         """Update the progress bar by the given iteration index."""
-        progress = int(index / self.enumeration_size * 100)
+        progress = int((index + 1) / self.enumeration_size * 100)
         hashes = '=' * progress + '>'
         spaces = '.' * (100 - progress)
         sys.stdout.write(
