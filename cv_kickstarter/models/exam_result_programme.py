@@ -17,4 +17,4 @@ class ExamResultProgramme(object):
         return ects_grade_calculator.average_grade(self.exam_results)
 
     def _has_passed(self, ects_points):
-        return self.passed_ects >= ects_points
+        return ects_points is not None and self.passed_ects >= ects_points

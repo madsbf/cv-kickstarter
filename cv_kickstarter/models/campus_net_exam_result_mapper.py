@@ -17,5 +17,5 @@ class CampusNetExamResultMapper(object):
     def _total_programme_ects(self, programme_name):
         if re.search(r"Bachelor", programme_name):
             return 180.0
-        elif re.search(r"Master", programme_name):
+        elif re.search(r"Master|Kandidat", programme_name):
             return 120.0
