@@ -1,3 +1,4 @@
+"""Web app for CV Kickstarter."""
 import os
 from flask import (Flask, render_template, request, session, redirect, jsonify,
                    Response)
@@ -35,6 +36,10 @@ mongo_store = MongoStore(config.mongo_db_name(), config.mongo_url())
 
 @app.route('/')
 def login():
+    """Log in page.
+
+    The user will be redirected to the cv page (/cv) if already logged in
+    """
     session_auth = SessionAuthentication(session)
     if session_auth.is_authenticated():
         return redirect('/cv')
@@ -44,6 +49,11 @@ def login():
 @app.route('/auth')
 @consumes('application/json')
 def auth():
+    """Authenticate the user through CampusNet with basic authentication.
+
+    Success: 200 OK
+    Wrong auth: 401 Unauthorized
+    """
     basic_auth = request.authorization
     campus_net_client.authenticate(
         basic_auth.get('username'),
@@ -61,6 +71,7 @@ def auth():
 
 @app.route('/log_out', methods=['POST'])
 def log_out():
+    """Log the student out of cv kickstarter."""
     session_auth = SessionAuthentication(session)
     session_auth.log_out()
     return redirect('/')
@@ -68,6 +79,10 @@ def log_out():
 
 @app.route('/cv')
 def cv_page():
+    """The CV page for the student.
+
+    The user will be redirected to the login page if not authenticated.
+    """
     session_auth = SessionAuthentication(session)
     if not session_auth.is_authenticated():
         return authenticate()
@@ -81,6 +96,10 @@ def cv_page():
 
 @app.route('/cv/picture')
 def picture():
+    """Stream the picture of the student from CampusNet.
+
+    If the user is unauthenticeted, the response will be empty with 401.
+    """
     session_auth = SessionAuthentication(session)
     if not session_auth.is_authenticated():
         return '', 401
