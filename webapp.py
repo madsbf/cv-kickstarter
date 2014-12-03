@@ -85,7 +85,7 @@ def cv_page():
     """
     session_auth = SessionAuthentication(session)
     if not session_auth.is_authenticated():
-        return authenticate()
+        return _redirect_to_login()
     campus_net_client.authenticate_with_token(
         session_auth.student_id,
         session_auth.auth_token
@@ -109,14 +109,14 @@ def picture():
     )
     user = campus_net_client.user()
     picture = campus_net_client.user_picture(user.user_id)
-    return Response(stream_picture(picture))
+    return Response(_stream_picture(picture))
 
 
-def authenticate():
+def _redirect_to_login():
     return redirect('/')
 
 
-def stream_picture(picture):
+def _stream_picture(picture):
     for chunk in picture.iter_content(1024):
         yield chunk
 
