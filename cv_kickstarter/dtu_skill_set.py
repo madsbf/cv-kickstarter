@@ -30,8 +30,12 @@ class DtuSkillSet(object):
     def _tokenized_exam_results(self):
         return map(
             self._map_to_tokenized_exam_result,
-            self._course_exam_results()
+            self._passed_course_exam_results()
         )
+
+    def _passed_course_exam_results(self):
+        return [exam_result for exam_result
+                in self._course_exam_results() if exam_result.grade != 'EM']
 
     def _course_exam_results(self):
         return CampusNetCourseBaseMerger(
