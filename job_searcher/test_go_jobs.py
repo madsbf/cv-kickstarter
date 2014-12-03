@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 from go_jobs import GoJobs
 from job import Job
@@ -16,7 +18,7 @@ job_ids_json = open(job_ids_json_path).read()
 job_ids_simple_json = open(job_ids_simple_json_path).read()
 job = Job(title='Revisorer til den offentlige sektor-gruppe i EY',
           company_name='EY',
-          teaser='EY er en af verdens bedste organisationer inden for '
+          teaser=u'EY er en af verdens bedste organisationer inden for '
                  'revision, skat, transaktioner og rådgivning. Den indsigt '
                  'og de ydelser, vi leverer, opbygger tillid '
                  'til kapitalmarkederne. Vi udvikler '
