@@ -1,0 +1,1043 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cv_kickstarter package &mdash; cv_kickstarter  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="cv_kickstarter  documentation" href="index.html" />
+    <link rel="next" title="cv_kickstarter.models package" href="cv_kickstarter.models.html" />
+    <link rel="prev" title="Welcome to cv_kickstarter’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="cv_kickstarter.models.html" title="cv_kickstarter.models package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to cv_kickstarter’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">cv_kickstarter  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cv-kickstarter-package">
+<h1>cv_kickstarter package<a class="headerlink" href="#cv-kickstarter-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cv_kickstarter.models.html">cv_kickstarter.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cv_kickstarter.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cv_kickstarter.models.html#module-cv_kickstarter.models.exam_result_programme">cv_kickstarter.models.exam_result_programme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cv_kickstarter.models.html#module-cv_kickstarter.models.user_cv">cv_kickstarter.models.user_cv module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cv_kickstarter.models.html#module-cv_kickstarter.models.user_cv_builder">cv_kickstarter.models.user_cv_builder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cv_kickstarter.models.html#module-cv_kickstarter.models.user_cv_dictionary_mapper">cv_kickstarter.models.user_cv_dictionary_mapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cv_kickstarter.models.html#module-cv_kickstarter.models">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-cv_kickstarter.academic_skill_set">
+<span id="cv-kickstarter-academic-skill-set-module"></span><h2>cv_kickstarter.academic_skill_set module<a class="headerlink" href="#module-cv_kickstarter.academic_skill_set" title="Permalink to this headline">¶</a></h2>
+<p>Extracts a skill set based on keywords in exam results.</p>
+<p>AcademicSkillSet extracts a skill set based on keywords in the exam results.</p>
+<p>The keywords are ranked by the freqency and grades.</p>
+<dl class="class">
+<dt id="cv_kickstarter.academic_skill_set.CourseKeyword">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.academic_skill_set.</tt><tt class="descname">CourseKeyword</tt><a class="headerlink" href="#cv_kickstarter.academic_skill_set.CourseKeyword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+<p>CourseKeyword(keyword, rank, course_numbers)</p>
+<dl class="attribute">
+<dt id="cv_kickstarter.academic_skill_set.CourseKeyword.course_numbers">
+<tt class="descname">course_numbers</tt><a class="headerlink" href="#cv_kickstarter.academic_skill_set.CourseKeyword.course_numbers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.academic_skill_set.CourseKeyword.keyword">
+<tt class="descname">keyword</tt><a class="headerlink" href="#cv_kickstarter.academic_skill_set.CourseKeyword.keyword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.academic_skill_set.CourseKeyword.rank">
+<tt class="descname">rank</tt><a class="headerlink" href="#cv_kickstarter.academic_skill_set.CourseKeyword.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.academic_skill_set.CourseSkillSet">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.academic_skill_set.</tt><tt class="descname">CourseSkillSet</tt><big>(</big><em>grade_booster</em>, <em>word_scorer</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#CourseSkillSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.CourseSkillSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Extract skill gained in a given course.</p>
+<dl class="method">
+<dt id="cv_kickstarter.academic_skill_set.CourseSkillSet.skill_set">
+<tt class="descname">skill_set</tt><big>(</big><em>tokenized_exam_result</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#CourseSkillSet.skill_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.CourseSkillSet.skill_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a skill set gained in the given course.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.academic_skill_set.CourseSkillSetMerger">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.academic_skill_set.</tt><tt class="descname">CourseSkillSetMerger</tt><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#CourseSkillSetMerger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.CourseSkillSetMerger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Merges skill sets from several courses into a common skill set.</p>
+<dl class="method">
+<dt id="cv_kickstarter.academic_skill_set.CourseSkillSetMerger.student_skill_set">
+<tt class="descname">student_skill_set</tt><big>(</big><em>passed_courses_skills</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#CourseSkillSetMerger.student_skill_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.CourseSkillSetMerger.student_skill_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a raw skill set merged.</p>
+<p>Each course skill set is merged, which means that common skills from
+the different courses arge merged into one CourseKeyword, which
+lists both courses.</p>
+<p>For keywords contained in two course skill sets, the rank is summed as
+the keyword gained in more courses are considered more important.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.academic_skill_set.KeywordGradeBooster">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.academic_skill_set.</tt><tt class="descname">KeywordGradeBooster</tt><big>(</big><em>average_grade</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#KeywordGradeBooster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.KeywordGradeBooster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Boosts the keyword rank with the grade.</p>
+<p>Multiplies the given keyword rank score with a grade score from the course
+the course originated.</p>
+<dl class="method">
+<dt id="cv_kickstarter.academic_skill_set.KeywordGradeBooster.boosted_keyword_scores">
+<tt class="descname">boosted_keyword_scores</tt><big>(</big><em>tokenized_exam_result</em>, <em>scored_keywords</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#KeywordGradeBooster.boosted_keyword_scores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.KeywordGradeBooster.boosted_keyword_scores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of keywords with a rank boosted by grade.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.academic_skill_set.KeywordScoreCalculator">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.academic_skill_set.</tt><tt class="descname">KeywordScoreCalculator</tt><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#KeywordScoreCalculator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.KeywordScoreCalculator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>&#8220;Calculates the raw keyword scores based on the word scores.</p>
+<dl class="method">
+<dt id="cv_kickstarter.academic_skill_set.KeywordScoreCalculator.keyword_scorer">
+<tt class="descname">keyword_scorer</tt><big>(</big><em>tokenized_exam_result</em>, <em>word_scorer</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#KeywordScoreCalculator.keyword_scorer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.KeywordScoreCalculator.keyword_scorer" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;Return keyword scores.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.academic_skill_set.KeywordScoreNormalizer">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.academic_skill_set.</tt><tt class="descname">KeywordScoreNormalizer</tt><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#KeywordScoreNormalizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.KeywordScoreNormalizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Normalize the rank score of a keyword with average score in course.</p>
+<dl class="method">
+<dt id="cv_kickstarter.academic_skill_set.KeywordScoreNormalizer.normalized_keyword_score">
+<tt class="descname">normalized_keyword_score</tt><big>(</big><em>keyword_scorer</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#KeywordScoreNormalizer.normalized_keyword_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.KeywordScoreNormalizer.normalized_keyword_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of keywords with rank divided by average rank.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.academic_skill_set.StudentSkillSet">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.academic_skill_set.</tt><tt class="descname">StudentSkillSet</tt><big>(</big><em>word_scorer</em>, <em>grade_booster</em>, <em>noice_filter</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#StudentSkillSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.StudentSkillSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Extract skill set of a student.</p>
+<dl class="method">
+<dt id="cv_kickstarter.academic_skill_set.StudentSkillSet.skill_set">
+<tt class="descname">skill_set</tt><big>(</big><em>tokenized_exam_results</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#StudentSkillSet.skill_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.StudentSkillSet.skill_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a ranked skill set.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.academic_skill_set.StudentSkillSetNoiceFilter">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.academic_skill_set.</tt><tt class="descname">StudentSkillSetNoiceFilter</tt><big>(</big><em>min_keyword_length</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#StudentSkillSetNoiceFilter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.StudentSkillSetNoiceFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Filters away noice from the skill set.</p>
+<p>Filters away noice meaning unwanted keywords in the skill set.</p>
+<dl class="method">
+<dt id="cv_kickstarter.academic_skill_set.StudentSkillSetNoiceFilter.filtered_skill_set">
+<tt class="descname">filtered_skill_set</tt><big>(</big><em>course_keywords</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#StudentSkillSetNoiceFilter.filtered_skill_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.StudentSkillSetNoiceFilter.filtered_skill_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a filtered set of skills.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.academic_skill_set.WordFrequencyScoreCalculator">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.academic_skill_set.</tt><tt class="descname">WordFrequencyScoreCalculator</tt><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#WordFrequencyScoreCalculator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.WordFrequencyScoreCalculator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Builds a word score dictionary based on word frequency.</p>
+<dl class="method">
+<dt id="cv_kickstarter.academic_skill_set.WordFrequencyScoreCalculator.word_scorer">
+<tt class="descname">word_scorer</tt><big>(</big><em>tokenized_course_exam_result</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#WordFrequencyScoreCalculator.word_scorer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.WordFrequencyScoreCalculator.word_scorer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary of word scores.</p>
+<p>The score for each word is the frequency of the word in all
+exam results.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="cv_kickstarter.academic_skill_set.skill_set">
+<tt class="descclassname">cv_kickstarter.academic_skill_set.</tt><tt class="descname">skill_set</tt><big>(</big><em>tokenized_exam_results</em>, <em>min_keyword_length=4</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/academic_skill_set.html#skill_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.academic_skill_set.skill_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract skill set based on tokenized exam results.</p>
+<p>Tokenized exam results are exam results with tokens for each course.</p>
+<dl class="docutils">
+<dt>Optimal arguments are</dt>
+<dd>min_keyword_length: The minimum amount of characters in a keyword</dd>
+</dl>
+<p>The last max_keyword_courses is used for filtering away keywords that
+are too common in the courses (e.g. &#8216;course&#8217;, &#8216;analysis&#8217;).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.cnapi">
+<span id="cv-kickstarter-cnapi-module"></span><h2>cv_kickstarter.cnapi module<a class="headerlink" href="#module-cv_kickstarter.cnapi" title="Permalink to this headline">¶</a></h2>
+<p>Python client for the CampusNet API.</p>
+<p>This library is designed for having a nice interface for integrating with
+the CampusNet API. The library provides an interface for the network requests
+as well as objects for wrapping the data returned by the CampusNet API.</p>
+<p>For documentation of the Campusnet API, see:</p>
+<p><a class="reference external" href="https://www.campusnet.dtu.dk/data/Documentation/CampusNet%20public%20API.pdf">https://www.campusnet.dtu.dk/data/Documentation/CampusNet%20public%20API.pdf</a></p>
+<p>Example of usage:</p>
+<p>At first instantiate the api:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">app_name</span> <span class="o">=</span> <span class="s">&#39;MyCampusNetApp&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">app_token</span> <span class="o">=</span> <span class="s">&#39;sh2870272-2ush292-ji2u98s2-2h2821-jsw9j2ihs982&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">api</span> <span class="o">=</span> <span class="n">cnapi</span><span class="o">.</span><span class="n">CampusNetApi</span><span class="p">(</span><span class="n">app_name</span><span class="p">,</span> <span class="n">app_token</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In order to fetch information, authenticate the student with the student number
+and password:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">api</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s">&#39;s123456&#39;</span><span class="p">,</span> <span class="s">&#39;secret-password&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or if the auth token is already in posession use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">api</span><span class="o">.</span><span class="n">authenticate_with_token</span><span class="p">(</span><span class="s">&#39;s123456&#39;</span><span class="p">,</span> <span class="s">&#39;21EF8196-ED05-4BAB-9081&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To fetch the grades of the given user:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">grades</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">grades</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To fetch the user infor of the given user:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">user</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="cv_kickstarter.cnapi.AbstractXmlInfoExtractor">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.cnapi.</tt><tt class="descname">AbstractXmlInfoExtractor</tt><big>(</big><em>response_text</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#AbstractXmlInfoExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.AbstractXmlInfoExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abstract class for classes that extract information from xml.</p>
+<p>The inheriting class needs to implement:</p>
+<blockquote>
+<div>_extract_information</div></blockquote>
+<dl class="method">
+<dt id="cv_kickstarter.cnapi.AbstractXmlInfoExtractor.extract">
+<tt class="descname">extract</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#AbstractXmlInfoExtractor.extract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.AbstractXmlInfoExtractor.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the information from the given xml.</p>
+<p>Returns a structure given by the child class implementing
+&#8216;_extract_information&#8217;.</p>
+<p>Returns None if the CampusNet API returns a Fault</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.cnapi.Authenticator">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.cnapi.</tt><tt class="descname">Authenticator</tt><big>(</big><em>app_name</em>, <em>api_token</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#Authenticator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.Authenticator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Can authenticate a user based on a user name and a password.</p>
+<p>The authentication fetches an auth_token from the CampusNet API that
+authenticates the user.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="n">Authenticator</span><span class="p">(</span><span class="s">&#39;MyApp&#39;</span><span class="p">,</span> <span class="s">&#39;app-token-123&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">token</span> <span class="o">=</span> <span class="n">auth</span><span class="o">.</span><span class="n">auth_token</span><span class="p">(</span><span class="s">&#39;s1234&#39;</span><span class="p">,</span> <span class="s">&#39;secretpass&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="cv_kickstarter.cnapi.Authenticator.auth_token">
+<tt class="descname">auth_token</tt><big>(</big><em>username</em>, <em>password</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#Authenticator.auth_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.Authenticator.auth_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch and return an authentication token from CampusNet API.</p>
+<p>The request is a POST request send the given app name, app token,
+username and password.</p>
+<p>If the authentication fails, it will return None.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.cnapi.CampusNetApi">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.cnapi.</tt><tt class="descname">CampusNetApi</tt><big>(</big><em>app_name</em>, <em>api_token</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#CampusNetApi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.CampusNetApi" title="Permalink to this definition">¶</a></dt>
+<dd><p>The interface class for the API.</p>
+<p>This class acts as the top level interface of the api and wraps the
+behaviour needed for fetching relevant information from from the API.</p>
+<dl class="method">
+<dt id="cv_kickstarter.cnapi.CampusNetApi.authenticate">
+<tt class="descname">authenticate</tt><big>(</big><em>student_number</em>, <em>password</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#CampusNetApi.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.CampusNetApi.authenticate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate the given user by fetching an authentication token.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.cnapi.CampusNetApi.authenticate_with_token">
+<tt class="descname">authenticate_with_token</tt><big>(</big><em>student_number</em>, <em>auth_token</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#CampusNetApi.authenticate_with_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.CampusNetApi.authenticate_with_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate the given user by the given authentication token.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.cnapi.CampusNetApi.grades">
+<tt class="descname">grades</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#CampusNetApi.grades"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.CampusNetApi.grades" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch the grades for the authenticated user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.cnapi.CampusNetApi.is_authenticated">
+<tt class="descname">is_authenticated</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#CampusNetApi.is_authenticated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.CampusNetApi.is_authenticated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a boolean indicating whether the user is authenticated.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.cnapi.CampusNetApi.user">
+<tt class="descname">user</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#CampusNetApi.user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.CampusNetApi.user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch user infor for the authenticated user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.cnapi.CampusNetApi.user_picture">
+<tt class="descname">user_picture</tt><big>(</big><em>user_id</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#CampusNetApi.user_picture"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.CampusNetApi.user_picture" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;Fetch the user picture.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.cnapi.ExamResult">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.cnapi.</tt><tt class="descname">ExamResult</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ExamResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+<p>ExamResult(course_title, course_number, ects_points, grade, period, year)</p>
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.ExamResult.course_number">
+<tt class="descname">course_number</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ExamResult.course_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.ExamResult.course_title">
+<tt class="descname">course_title</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ExamResult.course_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.ExamResult.ects_points">
+<tt class="descname">ects_points</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ExamResult.ects_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.ExamResult.grade">
+<tt class="descname">grade</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ExamResult.grade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.ExamResult.period">
+<tt class="descname">period</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ExamResult.period" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.ExamResult.year">
+<tt class="descname">year</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ExamResult.year" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.cnapi.ExamResultXmlMapper">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.cnapi.</tt><tt class="descname">ExamResultXmlMapper</tt><big>(</big><em>exam_result_xml</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#ExamResultXmlMapper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.ExamResultXmlMapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Is able to extract and map exam result xml into ExamResult objects.</p>
+<dl class="method">
+<dt id="cv_kickstarter.cnapi.ExamResultXmlMapper.exam_result">
+<tt class="descname">exam_result</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#ExamResultXmlMapper.exam_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.ExamResultXmlMapper.exam_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an exam result object with information given by the xml.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.cnapi.ProgramExamResults">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.cnapi.</tt><tt class="descname">ProgramExamResults</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ProgramExamResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+<p>ProgramExamResults(name, is_active, passed_ects_points, exam_results)</p>
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.ProgramExamResults.exam_results">
+<tt class="descname">exam_results</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ProgramExamResults.exam_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.ProgramExamResults.is_active">
+<tt class="descname">is_active</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ProgramExamResults.is_active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.ProgramExamResults.name">
+<tt class="descname">name</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ProgramExamResults.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.ProgramExamResults.passed_ects_points">
+<tt class="descname">passed_ects_points</tt><a class="headerlink" href="#cv_kickstarter.cnapi.ProgramExamResults.passed_ects_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.cnapi.Student">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.cnapi.</tt><tt class="descname">Student</tt><a class="headerlink" href="#cv_kickstarter.cnapi.Student" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+<p>Student(first_name, last_name, email, user_id)</p>
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.Student.email">
+<tt class="descname">email</tt><a class="headerlink" href="#cv_kickstarter.cnapi.Student.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.Student.first_name">
+<tt class="descname">first_name</tt><a class="headerlink" href="#cv_kickstarter.cnapi.Student.first_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.Student.last_name">
+<tt class="descname">last_name</tt><a class="headerlink" href="#cv_kickstarter.cnapi.Student.last_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.cnapi.Student.user_id">
+<tt class="descname">user_id</tt><a class="headerlink" href="#cv_kickstarter.cnapi.Student.user_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.cnapi.UserClient">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.cnapi.</tt><tt class="descname">UserClient</tt><big>(</big><em>app_name</em>, <em>api_token</em>, <em>student_number</em>, <em>access_token</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#UserClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.UserClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Network client for fetching user information CampusNet API.</p>
+<dl class="method">
+<dt id="cv_kickstarter.cnapi.UserClient.get">
+<tt class="descname">get</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#UserClient.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.UserClient.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a GET request to fetch information about the given user.</p>
+<p>For example:</p>
+<blockquote>
+<div>user_client = UserClient(&#8216;MyApp&#8217;, &#8216;api-token-123&#8217;, &#8216;s123&#8217;, &#8216;atoke&#8217;)
+user_client.get(&#8216;Grades&#8217;)</div></blockquote>
+<p>will perform a GET request to:</p>
+<blockquote>
+<div><a class="reference external" href="https://www.campusnet.dtu.dk/data/CurrentUser/Grades">https://www.campusnet.dtu.dk/data/CurrentUser/Grades</a></div></blockquote>
+<p>with the headers:</p>
+<blockquote>
+<div>X-appname: &#8216;MyApp&#8217;
+X-token: &#8216;api-token-123&#8217;
+accept-language: &#8216;da-DK&#8217;
+X-Include-services-and-relations: &#8216;true&#8217;</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.cnapi.UserGradesExtractor">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.cnapi.</tt><tt class="descname">UserGradesExtractor</tt><big>(</big><em>response_text</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#UserGradesExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.UserGradesExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cv_kickstarter.cnapi.AbstractXmlInfoExtractor" title="cv_kickstarter.cnapi.AbstractXmlInfoExtractor"><tt class="xref py py-class docutils literal"><span class="pre">cv_kickstarter.cnapi.AbstractXmlInfoExtractor</span></tt></a></p>
+<p>Is able to extract the grades of the given user.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.cnapi.UserInfoExtractor">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.cnapi.</tt><tt class="descname">UserInfoExtractor</tt><big>(</big><em>response_text</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cnapi.html#UserInfoExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cnapi.UserInfoExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cv_kickstarter.cnapi.AbstractXmlInfoExtractor" title="cv_kickstarter.cnapi.AbstractXmlInfoExtractor"><tt class="xref py py-class docutils literal"><span class="pre">cv_kickstarter.cnapi.AbstractXmlInfoExtractor</span></tt></a></p>
+<p>Is able to extract user info based on xml describe the user.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.course_keyword_tokenizer">
+<span id="cv-kickstarter-course-keyword-tokenizer-module"></span><h2>cv_kickstarter.course_keyword_tokenizer module<a class="headerlink" href="#module-cv_kickstarter.course_keyword_tokenizer" title="Permalink to this headline">¶</a></h2>
+<p>Extract raw keywords from course.</p>
+<p>course_keyword_tokenizer extracts raw keyword tokens from courses with
+noun phrase chunking.</p>
+<dl class="class">
+<dt id="cv_kickstarter.course_keyword_tokenizer.CourseKeywordTokenizer">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.course_keyword_tokenizer.</tt><tt class="descname">CourseKeywordTokenizer</tt><big>(</big><em>course</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_keyword_tokenizer.html#CourseKeywordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_keyword_tokenizer.CourseKeywordTokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Can extract keyword tokens from course.</p>
+<dl class="method">
+<dt id="cv_kickstarter.course_keyword_tokenizer.CourseKeywordTokenizer.keyword_tokens">
+<tt class="descname">keyword_tokens</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_keyword_tokenizer.html#CourseKeywordTokenizer.keyword_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_keyword_tokenizer.CourseKeywordTokenizer.keyword_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return keyword tokens for course.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.course_keyword_tokenizer.CourseSentenceExtractor">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.course_keyword_tokenizer.</tt><tt class="descname">CourseSentenceExtractor</tt><big>(</big><em>course</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_keyword_tokenizer.html#CourseSentenceExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_keyword_tokenizer.CourseSentenceExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Can extact sentences from course object.</p>
+<dl class="method">
+<dt id="cv_kickstarter.course_keyword_tokenizer.CourseSentenceExtractor.sentences">
+<tt class="descname">sentences</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_keyword_tokenizer.html#CourseSentenceExtractor.sentences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_keyword_tokenizer.CourseSentenceExtractor.sentences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return sentences for course.</p>
+<p>The sentences are based on title, contents, course_objectives_text
+and course_objectives</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.course_keyword_tokenizer.TextKeywordChunkifier">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.course_keyword_tokenizer.</tt><tt class="descname">TextKeywordChunkifier</tt><a class="reference internal" href="_modules/cv_kickstarter/course_keyword_tokenizer.html#TextKeywordChunkifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_keyword_tokenizer.TextKeywordChunkifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Can split text into several chunks by noun phrase chunking.</p>
+<p>The chunks are extracted with noun phrase chunking with nouns and preceding
+adjectives (if there are any).</p>
+<p>The code in this class is inspired by the NLTK book and Finn Nielsens
+code from Data Mining using Python 02819 from DTU.</p>
+<dl class="method">
+<dt id="cv_kickstarter.course_keyword_tokenizer.TextKeywordChunkifier.chunks">
+<tt class="descname">chunks</tt><big>(</big><em>text</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_keyword_tokenizer.html#TextKeywordChunkifier.chunks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_keyword_tokenizer.TextKeywordChunkifier.chunks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return keyword chunks from the given text.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="cv_kickstarter.course_keyword_tokenizer.course_keyword_tokens">
+<tt class="descclassname">cv_kickstarter.course_keyword_tokenizer.</tt><tt class="descname">course_keyword_tokens</tt><big>(</big><em>course</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_keyword_tokenizer.html#course_keyword_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_keyword_tokenizer.course_keyword_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return keyword tokens for course.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.course_repository">
+<span id="cv-kickstarter-course-repository-module"></span><h2>cv_kickstarter.course_repository module<a class="headerlink" href="#module-cv_kickstarter.course_repository" title="Permalink to this headline">¶</a></h2>
+<p>Course Repository for storing and fetching courses from MongoDB.</p>
+<dl class="class">
+<dt id="cv_kickstarter.course_repository.Course">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.course_repository.</tt><tt class="descname">Course</tt><a class="headerlink" href="#cv_kickstarter.course_repository.Course" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+<p>Course(title, course_number, contents, course_objectives_text, course_objectives, tokens)</p>
+<dl class="attribute">
+<dt id="cv_kickstarter.course_repository.Course.contents">
+<tt class="descname">contents</tt><a class="headerlink" href="#cv_kickstarter.course_repository.Course.contents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.course_repository.Course.course_number">
+<tt class="descname">course_number</tt><a class="headerlink" href="#cv_kickstarter.course_repository.Course.course_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.course_repository.Course.course_objectives">
+<tt class="descname">course_objectives</tt><a class="headerlink" href="#cv_kickstarter.course_repository.Course.course_objectives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.course_repository.Course.course_objectives_text">
+<tt class="descname">course_objectives_text</tt><a class="headerlink" href="#cv_kickstarter.course_repository.Course.course_objectives_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.course_repository.Course.title">
+<tt class="descname">title</tt><a class="headerlink" href="#cv_kickstarter.course_repository.Course.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.course_repository.Course.tokens">
+<tt class="descname">tokens</tt><a class="headerlink" href="#cv_kickstarter.course_repository.Course.tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.course_repository.CourseRepository">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.course_repository.</tt><tt class="descname">CourseRepository</tt><big>(</big><em>mongo_store</em>, <em>collection='courses'</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_repository.html#CourseRepository"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_repository.CourseRepository" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Stores and fetches course objects.</p>
+<p>CourseRepository is able to fetch course data and deserialize to course
+objects and store given course objects by serializing to JSON and
+store in MongoDB through the mongo_store.</p>
+<dl class="method">
+<dt id="cv_kickstarter.course_repository.CourseRepository.create">
+<tt class="descname">create</tt><big>(</big><em>course</em>, <em>tokens</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_repository.html#CourseRepository.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_repository.CourseRepository.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create course with tokens in MongoDB by serializing into JSON.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.course_repository.CourseRepository.find_by_course_number">
+<tt class="descname">find_by_course_number</tt><big>(</big><em>course_number</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_repository.html#CourseRepository.find_by_course_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_repository.CourseRepository.find_by_course_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find course by given course number in MongoDB.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.course_repository.CourseRepository.remove">
+<tt class="descname">remove</tt><big>(</big><em>course_number</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_repository.html#CourseRepository.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_repository.CourseRepository.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove course with given course_number from MongoDB.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.course_repository.MongoStore">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.course_repository.</tt><tt class="descname">MongoStore</tt><big>(</big><em>database_name</em>, <em>mongo_db_url=None</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_repository.html#MongoStore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_repository.MongoStore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Database Client for MongoDB.</p>
+<dl class="method">
+<dt id="cv_kickstarter.course_repository.MongoStore.find">
+<tt class="descname">find</tt><big>(</big><em>collection</em>, <em>query</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_repository.html#MongoStore.find"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_repository.MongoStore.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find document in collection by query.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.course_repository.MongoStore.insert">
+<tt class="descname">insert</tt><big>(</big><em>collection</em>, <em>hash_data</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_repository.html#MongoStore.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_repository.MongoStore.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert hash_data (document) into collection.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.course_repository.MongoStore.remove">
+<tt class="descname">remove</tt><big>(</big><em>collection</em>, <em>query</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/course_repository.html#MongoStore.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.course_repository.MongoStore.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove document in collection by query.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.cv_kickstarter_config">
+<span id="cv-kickstarter-cv-kickstarter-config-module"></span><h2>cv_kickstarter.cv_kickstarter_config module<a class="headerlink" href="#module-cv_kickstarter.cv_kickstarter_config" title="Permalink to this headline">¶</a></h2>
+<p>Configuration for cv_kickstarter.</p>
+<dl class="class">
+<dt id="cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.cv_kickstarter_config.</tt><tt class="descname">CvKickstarterConfig</tt><big>(</big><em>config_file_path='app.cfg'</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cv_kickstarter_config.html#CvKickstarterConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Configuration for cv_kickstarter.</p>
+<dl class="method">
+<dt id="cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.campus_net_app_name">
+<tt class="descname">campus_net_app_name</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cv_kickstarter_config.html#CvKickstarterConfig.campus_net_app_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.campus_net_app_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the campus net app name for CampusNet API.</p>
+<p>Given by environment variable CAMPUS_NET_APP_NAME or in config file as
+[campusnet]
+app_name: my-app-name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.campus_net_app_token">
+<tt class="descname">campus_net_app_token</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cv_kickstarter_config.html#CvKickstarterConfig.campus_net_app_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.campus_net_app_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the campus net app token name for CampusNet API.</p>
+<p>Given by environment variable CAMPUS_NET_APP_TOKEN or in config file as
+[campusnet]
+app_token: secret-app-token</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.career_builder_key">
+<tt class="descname">career_builder_key</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cv_kickstarter_config.html#CvKickstarterConfig.career_builder_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.career_builder_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the career builder api key.</p>
+<p>Given by environment variable CAREER_BUILDER_DEVELOPER_KEY or
+in config file as
+[campusnet]
+app_token: secret-app-token</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.go_key">
+<tt class="descname">go_key</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cv_kickstarter_config.html#CvKickstarterConfig.go_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.go_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the go.dk api key.</p>
+<p>Given by environment variable GO_DEVELOPER_KEY or
+in config file as
+[godk]
+guid: secret-guid-key</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.mongo_db_name">
+<tt class="descname">mongo_db_name</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cv_kickstarter_config.html#CvKickstarterConfig.mongo_db_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.mongo_db_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the database name of the Mongo Database.</p>
+<p>Given by environment variable MONGO_DB_NAME  or in config file as
+[mongo]
+db_name: my_mongo_db_name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.mongo_url">
+<tt class="descname">mongo_url</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cv_kickstarter_config.html#CvKickstarterConfig.mongo_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.mongo_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the URL for the Mongo DB.</p>
+<p>This is not mandatory to get the app to work.</p>
+<p>Given by environment variable MONGO_URL.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.secret_key">
+<tt class="descname">secret_key</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/cv_kickstarter_config.html#CvKickstarterConfig.secret_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.secret_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the secret key for Flask app.</p>
+<p>Given by environment variable SECRET_KEY or in config file as
+[flask]
+secret_key: my-secret-key</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.dtu_course_base">
+<span id="cv-kickstarter-dtu-course-base-module"></span><h2>cv_kickstarter.dtu_course_base module<a class="headerlink" href="#module-cv_kickstarter.dtu_course_base" title="Permalink to this headline">¶</a></h2>
+<p>Structuring courses based on xml response from the DTU Course Base.</p>
+<dl class="class">
+<dt id="cv_kickstarter.dtu_course_base.Course">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.dtu_course_base.</tt><tt class="descname">Course</tt><a class="headerlink" href="#cv_kickstarter.dtu_course_base.Course" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+<p>Course(title, course_number, contents, course_objectives_text, course_objectives)</p>
+<dl class="attribute">
+<dt id="cv_kickstarter.dtu_course_base.Course.contents">
+<tt class="descname">contents</tt><a class="headerlink" href="#cv_kickstarter.dtu_course_base.Course.contents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.dtu_course_base.Course.course_number">
+<tt class="descname">course_number</tt><a class="headerlink" href="#cv_kickstarter.dtu_course_base.Course.course_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.dtu_course_base.Course.course_objectives">
+<tt class="descname">course_objectives</tt><a class="headerlink" href="#cv_kickstarter.dtu_course_base.Course.course_objectives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.dtu_course_base.Course.course_objectives_text">
+<tt class="descname">course_objectives_text</tt><a class="headerlink" href="#cv_kickstarter.dtu_course_base.Course.course_objectives_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.dtu_course_base.Course.title">
+<tt class="descname">title</tt><a class="headerlink" href="#cv_kickstarter.dtu_course_base.Course.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.dtu_course_base.CourseExtractor">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.dtu_course_base.</tt><tt class="descname">CourseExtractor</tt><big>(</big><em>course_xml</em>, <em>language</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/dtu_course_base.html#CourseExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.dtu_course_base.CourseExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Responsible for extracting course objects based on a course xml.</p>
+<dl class="method">
+<dt id="cv_kickstarter.dtu_course_base.CourseExtractor.course">
+<tt class="descname">course</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/dtu_course_base.html#CourseExtractor.course"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.dtu_course_base.CourseExtractor.course" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a Course object based on the given course xml.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="cv_kickstarter.dtu_course_base.courses_from_xml">
+<tt class="descclassname">cv_kickstarter.dtu_course_base.</tt><tt class="descname">courses_from_xml</tt><big>(</big><em>courses_xml_text</em>, <em>language='en-GB'</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/dtu_course_base.html#courses_from_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.dtu_course_base.courses_from_xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract course objects based on xml with courses.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.dtu_skill_set">
+<span id="cv-kickstarter-dtu-skill-set-module"></span><h2>cv_kickstarter.dtu_skill_set module<a class="headerlink" href="#module-cv_kickstarter.dtu_skill_set" title="Permalink to this headline">¶</a></h2>
+<p>Extract the skill set of a DTU student.</p>
+<p>This module is a layer on top of academic_skill_set that takes exam results
+as given by the CampusNet API, merges it with course information from
+the Course Base (through the course base repo).</p>
+<dl class="class">
+<dt id="cv_kickstarter.dtu_skill_set.CampusNetCourseBaseMerger">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.dtu_skill_set.</tt><tt class="descname">CampusNetCourseBaseMerger</tt><big>(</big><em>exam_result_programmes</em>, <em>course_base</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/dtu_skill_set.html#CampusNetCourseBaseMerger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.dtu_skill_set.CampusNetCourseBaseMerger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Merges exam results with information about the course.</p>
+<dl class="method">
+<dt id="cv_kickstarter.dtu_skill_set.CampusNetCourseBaseMerger.course_exam_results">
+<tt class="descname">course_exam_results</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/dtu_skill_set.html#CampusNetCourseBaseMerger.course_exam_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.dtu_skill_set.CampusNetCourseBaseMerger.course_exam_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return course exam results.</p>
+<p>A list of ExamResult, that contains exam result information and
+more detailed information about the course given by the returned
+course object from course base.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.dtu_skill_set.DtuSkillSet">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.dtu_skill_set.</tt><tt class="descname">DtuSkillSet</tt><big>(</big><em>exam_result_programmes</em>, <em>course_base_repo</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/dtu_skill_set.html#DtuSkillSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.dtu_skill_set.DtuSkillSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Responsible for extracting a skill set based on DTU data sources.</p>
+<dl class="method">
+<dt id="cv_kickstarter.dtu_skill_set.DtuSkillSet.skill_set">
+<tt class="descname">skill_set</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/dtu_skill_set.html#DtuSkillSet.skill_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.dtu_skill_set.DtuSkillSet.skill_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the skill set.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.dtu_skill_set.ExamResult">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.dtu_skill_set.</tt><tt class="descname">ExamResult</tt><big>(</big><em>grade</em>, <em>course</em>, <em>ects_points</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/dtu_skill_set.html#ExamResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.dtu_skill_set.ExamResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Exam result with grade, course and ects points.</p>
+<dl class="attribute">
+<dt id="cv_kickstarter.dtu_skill_set.ExamResult.course_tokens">
+<tt class="descname">course_tokens</tt><a class="reference internal" href="_modules/cv_kickstarter/dtu_skill_set.html#ExamResult.course_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.dtu_skill_set.ExamResult.course_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the tokens of the course.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.dtu_skill_set.TokenizedCourseExamResult">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.dtu_skill_set.</tt><tt class="descname">TokenizedCourseExamResult</tt><a class="headerlink" href="#cv_kickstarter.dtu_skill_set.TokenizedCourseExamResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+<p>TokenizedCourseExamResult(exam_result, tokens, course)</p>
+<dl class="attribute">
+<dt id="cv_kickstarter.dtu_skill_set.TokenizedCourseExamResult.course">
+<tt class="descname">course</tt><a class="headerlink" href="#cv_kickstarter.dtu_skill_set.TokenizedCourseExamResult.course" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.dtu_skill_set.TokenizedCourseExamResult.exam_result">
+<tt class="descname">exam_result</tt><a class="headerlink" href="#cv_kickstarter.dtu_skill_set.TokenizedCourseExamResult.exam_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.dtu_skill_set.TokenizedCourseExamResult.tokens">
+<tt class="descname">tokens</tt><a class="headerlink" href="#cv_kickstarter.dtu_skill_set.TokenizedCourseExamResult.tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.ects_grade_calculator">
+<span id="cv-kickstarter-ects-grade-calculator-module"></span><h2>cv_kickstarter.ects_grade_calculator module<a class="headerlink" href="#module-cv_kickstarter.ects_grade_calculator" title="Permalink to this headline">¶</a></h2>
+<p>Calculates average grade based on grades weighted by ECTS-point.</p>
+<dl class="class">
+<dt id="cv_kickstarter.ects_grade_calculator.GradeAverageCalculator">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.ects_grade_calculator.</tt><tt class="descname">GradeAverageCalculator</tt><big>(</big><em>exam_results</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/ects_grade_calculator.html#GradeAverageCalculator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.ects_grade_calculator.GradeAverageCalculator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Class that is able to calculate average based on ECTS exam_results.</p>
+<dl class="method">
+<dt id="cv_kickstarter.ects_grade_calculator.GradeAverageCalculator.average_grade">
+<tt class="descname">average_grade</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/ects_grade_calculator.html#GradeAverageCalculator.average_grade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.ects_grade_calculator.GradeAverageCalculator.average_grade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the average grade.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="cv_kickstarter.ects_grade_calculator.average_grade">
+<tt class="descclassname">cv_kickstarter.ects_grade_calculator.</tt><tt class="descname">average_grade</tt><big>(</big><em>exam_results</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/ects_grade_calculator.html#average_grade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.ects_grade_calculator.average_grade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the average grade from a list of exam_results.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.nltk_data_downloader">
+<span id="cv-kickstarter-nltk-data-downloader-module"></span><h2>cv_kickstarter.nltk_data_downloader module<a class="headerlink" href="#module-cv_kickstarter.nltk_data_downloader" title="Permalink to this headline">¶</a></h2>
+<p>Downloads nltk data relevant for the cv kickstarter project.</p>
+<p>If any new module needs data from nltk, it should be added here.</p>
+<dl class="function">
+<dt id="cv_kickstarter.nltk_data_downloader.download">
+<tt class="descclassname">cv_kickstarter.nltk_data_downloader.</tt><tt class="descname">download</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/nltk_data_downloader.html#download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.nltk_data_downloader.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download relevant nltk data for cv kickstarter.</p>
+<p>If there already exists a nltk_data folder in the root, it is not
+downloaded.</p>
+<p>If nltk data is added the nltk_data folder need to be removed for
+downloading the new data.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.session_authentication">
+<span id="cv-kickstarter-session-authentication-module"></span><h2>cv_kickstarter.session_authentication module<a class="headerlink" href="#module-cv_kickstarter.session_authentication" title="Permalink to this headline">¶</a></h2>
+<p>Utilizes the a session dictionary as authentication storage.</p>
+<p>Integrates with the Flask session.</p>
+<dl class="class">
+<dt id="cv_kickstarter.session_authentication.SessionAuthentication">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.session_authentication.</tt><tt class="descname">SessionAuthentication</tt><big>(</big><em>session_dict</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/session_authentication.html#SessionAuthentication"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.session_authentication.SessionAuthentication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Utilizes the a session dictionary as authentication storage.</p>
+<dl class="attribute">
+<dt id="cv_kickstarter.session_authentication.SessionAuthentication.auth_token">
+<tt class="descname">auth_token</tt><a class="reference internal" href="_modules/cv_kickstarter/session_authentication.html#SessionAuthentication.auth_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.session_authentication.SessionAuthentication.auth_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return authentication token from session.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.session_authentication.SessionAuthentication.authenticate">
+<tt class="descname">authenticate</tt><big>(</big><em>student_id</em>, <em>auth_token</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/session_authentication.html#SessionAuthentication.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.session_authentication.SessionAuthentication.authenticate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate a student by setting student_id and auth_token.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.session_authentication.SessionAuthentication.is_authenticated">
+<tt class="descname">is_authenticated</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/session_authentication.html#SessionAuthentication.is_authenticated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.session_authentication.SessionAuthentication.is_authenticated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return true if the user is authenticated in the session.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cv_kickstarter.session_authentication.SessionAuthentication.log_out">
+<tt class="descname">log_out</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/session_authentication.html#SessionAuthentication.log_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.session_authentication.SessionAuthentication.log_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log the user out by removing student_id and auth_token.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.session_authentication.SessionAuthentication.student_id">
+<tt class="descname">student_id</tt><a class="reference internal" href="_modules/cv_kickstarter/session_authentication.html#SessionAuthentication.student_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.session_authentication.SessionAuthentication.student_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return student id from session.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cv_kickstarter" title="Permalink to this headline">¶</a></h2>
+<p>CVKickstarer - generate CV with skills and job recommmendations.</p>
+<p>CVKickstarter is a web app that is able to analyse your DTU information
+and provide you with a prefilled CV with your education information, courses
+you&#8217;ve passed, the performance of your study, the skills you&#8217;ve gained and
+job suggestions based on your best skills.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">cv_kickstarter package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.academic_skill_set">cv_kickstarter.academic_skill_set module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.cnapi">cv_kickstarter.cnapi module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.course_keyword_tokenizer">cv_kickstarter.course_keyword_tokenizer module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.course_repository">cv_kickstarter.course_repository module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.cv_kickstarter_config">cv_kickstarter.cv_kickstarter_config module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.dtu_course_base">cv_kickstarter.dtu_course_base module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.dtu_skill_set">cv_kickstarter.dtu_skill_set module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.ects_grade_calculator">cv_kickstarter.ects_grade_calculator module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.nltk_data_downloader">cv_kickstarter.nltk_data_downloader module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.session_authentication">cv_kickstarter.session_authentication module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to cv_kickstarter&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cv_kickstarter.models.html"
+                        title="next chapter">cv_kickstarter.models package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/cv_kickstarter.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="cv_kickstarter.models.html" title="cv_kickstarter.models package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to cv_kickstarter’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">cv_kickstarter  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

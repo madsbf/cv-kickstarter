@@ -1,0 +1,32 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}cv\_kickstarter package}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Subpackages}{3}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}cv\_kickstarter.models package}{3}{subsection.1.1.1}
+\contentsline {subsubsection}{Submodules}{3}{subsubsection*.3}
+\contentsline {subsubsection}{cv\_kickstarter.models.exam\_result\_programme module}{3}{subsubsection*.4}
+\contentsline {subsubsection}{cv\_kickstarter.models.user\_cv module}{3}{subsubsection*.8}
+\contentsline {subsubsection}{cv\_kickstarter.models.user\_cv\_builder module}{4}{subsubsection*.13}
+\contentsline {subsubsection}{cv\_kickstarter.models.user\_cv\_dictionary\_mapper module}{4}{subsubsection*.20}
+\contentsline {subsubsection}{Module contents}{4}{subsubsection*.23}
+\contentsline {section}{\numberline {1.2}Submodules}{4}{section.1.2}
+\contentsline {section}{\numberline {1.3}cv\_kickstarter.academic\_skill\_set module}{4}{section.1.3}
+\contentsline {section}{\numberline {1.4}cv\_kickstarter.cnapi module}{6}{section.1.4}
+\contentsline {section}{\numberline {1.5}cv\_kickstarter.course\_keyword\_tokenizer module}{9}{section.1.5}
+\contentsline {section}{\numberline {1.6}cv\_kickstarter.course\_repository module}{10}{section.1.6}
+\contentsline {section}{\numberline {1.7}cv\_kickstarter.cv\_kickstarter\_config module}{11}{section.1.7}
+\contentsline {section}{\numberline {1.8}cv\_kickstarter.dtu\_course\_base module}{11}{section.1.8}
+\contentsline {section}{\numberline {1.9}cv\_kickstarter.dtu\_skill\_set module}{12}{section.1.9}
+\contentsline {section}{\numberline {1.10}cv\_kickstarter.ects\_grade\_calculator module}{13}{section.1.10}
+\contentsline {section}{\numberline {1.11}cv\_kickstarter.nltk\_data\_downloader module}{13}{section.1.11}
+\contentsline {section}{\numberline {1.12}cv\_kickstarter.session\_authentication module}{13}{section.1.12}
+\contentsline {section}{\numberline {1.13}Module contents}{14}{section.1.13}
+\contentsline {chapter}{\numberline {2}job\_searcher package}{15}{chapter.2}
+\contentsline {section}{\numberline {2.1}Submodules}{15}{section.2.1}
+\contentsline {section}{\numberline {2.2}job\_searcher.career\_builder module}{15}{section.2.2}
+\contentsline {section}{\numberline {2.3}job\_searcher.go\_jobs module}{15}{section.2.3}
+\contentsline {section}{\numberline {2.4}job\_searcher.job module}{16}{section.2.4}
+\contentsline {section}{\numberline {2.5}job\_searcher.keyword\_evaluator module}{16}{section.2.5}
+\contentsline {section}{\numberline {2.6}Module contents}{17}{section.2.6}
+\contentsline {chapter}{\numberline {3}Indices and tables}{19}{chapter.3}
+\contentsline {chapter}{Python Module Index}{21}{section*.160}
+\contentsline {chapter}{Index}{23}{section*.161}

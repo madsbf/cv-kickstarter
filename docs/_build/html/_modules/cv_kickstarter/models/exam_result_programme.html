@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cv_kickstarter.models.exam_result_programme &mdash; cv_kickstarter  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="cv_kickstarter  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for cv_kickstarter.models.exam_result_programme</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;The exam result programme with exam results for a given programme.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">cv_kickstarter</span> <span class="kn">import</span> <span class="n">ects_grade_calculator</span>
+
+
+<div class="viewcode-block" id="ExamResultProgramme"><a class="viewcode-back" href="../../../cv_kickstarter.models.html#cv_kickstarter.models.exam_result_programme.ExamResultProgramme">[docs]</a><span class="k">class</span> <span class="nc">ExamResultProgramme</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Representing exam results for a given programme (bachelor, master..).&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">passed_ects</span><span class="p">,</span> <span class="n">total_ects</span><span class="p">,</span> <span class="n">exam_results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize with name, passed_ects, total_ects and exam_results.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">passed_ects</span> <span class="o">=</span> <span class="n">passed_ects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_ects</span> <span class="o">=</span> <span class="n">total_ects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exam_results</span> <span class="o">=</span> <span class="n">exam_results</span>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ExamResultProgramme.is_done"><a class="viewcode-back" href="../../../cv_kickstarter.models.html#cv_kickstarter.models.exam_result_programme.ExamResultProgramme.is_done">[docs]</a>    <span class="k">def</span> <span class="nf">is_done</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if all the courses are passed for the programme.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_passed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total_ects</span><span class="p">)</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ExamResultProgramme.average_grade"><a class="viewcode-back" href="../../../cv_kickstarter.models.html#cv_kickstarter.models.exam_result_programme.ExamResultProgramme.average_grade">[docs]</a>    <span class="k">def</span> <span class="nf">average_grade</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the average grade of the student.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ects_grade_calculator</span><span class="o">.</span><span class="n">average_grade</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exam_results</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_has_passed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ects_points</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ects_points</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">passed_ects</span> <span class="o">&gt;=</span> <span class="n">ects_points</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

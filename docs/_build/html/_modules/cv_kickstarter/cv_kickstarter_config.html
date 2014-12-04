@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cv_kickstarter.cv_kickstarter_config &mdash; cv_kickstarter  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="cv_kickstarter  documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for cv_kickstarter.cv_kickstarter_config</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;Configuration for cv_kickstarter.&quot;&quot;&quot;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c"># Try to parse for Python 3</span>
+    <span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c"># Fall back to the Python 2 way</span>
+    <span class="kn">from</span> <span class="nn">ConfigParser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span>
+
+
+<div class="viewcode-block" id="CvKickstarterConfig"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig">[docs]</a><span class="k">class</span> <span class="nc">CvKickstarterConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Configuration for cv_kickstarter.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_file_path</span><span class="o">=</span><span class="s">&#39;app.cfg&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize configuration with config file path.</span>
+
+<span class="sd">        Defaults config_file_path to &#39;app.cfg&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">config_file_path</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CvKickstarterConfig.secret_key"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.secret_key">[docs]</a>    <span class="k">def</span> <span class="nf">secret_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the secret key for Flask app.</span>
+
+<span class="sd">        Given by environment variable SECRET_KEY or in config file as</span>
+<span class="sd">        [flask]</span>
+<span class="sd">        secret_key: my-secret-key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;SECRET_KEY&#39;</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_from_config_file</span><span class="p">(</span><span class="s">&quot;flask&quot;</span><span class="p">,</span> <span class="s">&quot;secret_key&quot;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="CvKickstarterConfig.campus_net_app_name"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.campus_net_app_name">[docs]</a>    <span class="k">def</span> <span class="nf">campus_net_app_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the campus net app name for CampusNet API.</span>
+
+<span class="sd">        Given by environment variable CAMPUS_NET_APP_NAME or in config file as</span>
+<span class="sd">        [campusnet]</span>
+<span class="sd">        app_name: my-app-name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;CAMPUS_NET_APP_NAME&#39;</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_from_config_file</span><span class="p">(</span><span class="s">&quot;campusnet&quot;</span><span class="p">,</span> <span class="s">&quot;app_name&quot;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="CvKickstarterConfig.campus_net_app_token"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.campus_net_app_token">[docs]</a>    <span class="k">def</span> <span class="nf">campus_net_app_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the campus net app token name for CampusNet API.</span>
+
+<span class="sd">        Given by environment variable CAMPUS_NET_APP_TOKEN or in config file as</span>
+<span class="sd">        [campusnet]</span>
+<span class="sd">        app_token: secret-app-token</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;CAMPUS_NET_APP_TOKEN&#39;</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_from_config_file</span><span class="p">(</span><span class="s">&quot;campusnet&quot;</span><span class="p">,</span> <span class="s">&quot;app_token&quot;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="CvKickstarterConfig.career_builder_key"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.career_builder_key">[docs]</a>    <span class="k">def</span> <span class="nf">career_builder_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the career builder api key.</span>
+
+<span class="sd">        Given by environment variable CAREER_BUILDER_DEVELOPER_KEY or</span>
+<span class="sd">        in config file as</span>
+<span class="sd">        [campusnet]</span>
+<span class="sd">        app_token: secret-app-token</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;CAREER_BUILDER_DEVELOPER_KEY&#39;</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_from_config_file</span><span class="p">(</span><span class="s">&quot;careerbuilder&quot;</span><span class="p">,</span> <span class="s">&quot;developer_key&quot;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="CvKickstarterConfig.go_key"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.go_key">[docs]</a>    <span class="k">def</span> <span class="nf">go_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the go.dk api key.</span>
+
+<span class="sd">        Given by environment variable GO_DEVELOPER_KEY or</span>
+<span class="sd">        in config file as</span>
+<span class="sd">        [godk]</span>
+<span class="sd">        guid: secret-guid-key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;GO_DEVELOPER_KEY&#39;</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_from_config_file</span><span class="p">(</span><span class="s">&quot;godk&quot;</span><span class="p">,</span> <span class="s">&quot;guid&quot;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="CvKickstarterConfig.mongo_url"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.mongo_url">[docs]</a>    <span class="k">def</span> <span class="nf">mongo_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the URL for the Mongo DB.</span>
+
+<span class="sd">        This is not mandatory to get the app to work.</span>
+
+<span class="sd">        Given by environment variable MONGO_URL.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;MONGO_URL&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="CvKickstarterConfig.mongo_db_name"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.cv_kickstarter_config.CvKickstarterConfig.mongo_db_name">[docs]</a>    <span class="k">def</span> <span class="nf">mongo_db_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the database name of the Mongo Database.</span>
+
+<span class="sd">        Given by environment variable MONGO_DB_NAME  or in config file as</span>
+<span class="sd">        [mongo]</span>
+<span class="sd">        db_name: my_mongo_db_name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;MONGO_DB_NAME&quot;</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_from_config_file</span><span class="p">(</span><span class="s">&quot;mongo&quot;</span><span class="p">,</span> <span class="s">&quot;db_name&quot;</span><span class="p">))</span>
+</div>
+    <span class="k">def</span> <span class="nf">_get_from_config_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

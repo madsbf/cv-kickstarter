@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cv_kickstarter.dtu_skill_set &mdash; cv_kickstarter  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="cv_kickstarter  documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for cv_kickstarter.dtu_skill_set</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;Extract the skill set of a DTU student.</span>
+
+<span class="sd">This module is a layer on top of academic_skill_set that takes exam results</span>
+<span class="sd">as given by the CampusNet API, merges it with course information from</span>
+<span class="sd">the Course Base (through the course base repo).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">cv_kickstarter</span> <span class="kn">import</span> <span class="n">academic_skill_set</span>
+
+
+<div class="viewcode-block" id="DtuSkillSet"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.dtu_skill_set.DtuSkillSet">[docs]</a><span class="k">class</span> <span class="nc">DtuSkillSet</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Responsible for extracting a skill set based on DTU data sources.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exam_result_programmes</span><span class="p">,</span> <span class="n">course_base_repo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize DtuSkillSet with exam results and course repo.</span>
+
+<span class="sd">        The exam_result_programmes are as they come from the cnapi. The</span>
+<span class="sd">        course base repo (or repository) should be able to find courses</span>
+<span class="sd">        from the course base.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exam_result_programmes</span> <span class="o">=</span> <span class="n">exam_result_programmes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">course_base_repo</span> <span class="o">=</span> <span class="n">course_base_repo</span>
+
+<div class="viewcode-block" id="DtuSkillSet.skill_set"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.dtu_skill_set.DtuSkillSet.skill_set">[docs]</a>    <span class="k">def</span> <span class="nf">skill_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the skill set.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">academic_skill_set</span><span class="o">.</span><span class="n">skill_set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokenized_exam_results</span><span class="p">())</span>
+</div>
+    <span class="k">def</span> <span class="nf">_tokenized_exam_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">map</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_map_to_tokenized_exam_result</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_passed_course_exam_results</span><span class="p">()</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_passed_course_exam_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">exam_result</span> <span class="k">for</span> <span class="n">exam_result</span>
+                <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_course_exam_results</span><span class="p">()</span> <span class="k">if</span> <span class="n">exam_result</span><span class="o">.</span><span class="n">grade</span> <span class="o">!=</span> <span class="s">&#39;EM&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_course_exam_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">CampusNetCourseBaseMerger</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exam_result_programmes</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">course_base_repo</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">course_exam_results</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_map_to_tokenized_exam_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exam_result</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">TokenizedCourseExamResult</span><span class="p">(</span>
+            <span class="n">exam_result</span><span class="p">,</span>
+            <span class="n">exam_result</span><span class="o">.</span><span class="n">course_tokens</span><span class="p">,</span>
+            <span class="n">exam_result</span><span class="o">.</span><span class="n">course</span>
+        <span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="CampusNetCourseBaseMerger"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.dtu_skill_set.CampusNetCourseBaseMerger">[docs]</a><span class="k">class</span> <span class="nc">CampusNetCourseBaseMerger</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Merges exam results with information about the course.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exam_result_programmes</span><span class="p">,</span> <span class="n">course_base</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize with exam results and course base.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exam_result_programmes</span> <span class="o">=</span> <span class="n">exam_result_programmes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">course_base</span> <span class="o">=</span> <span class="n">course_base</span>
+
+<div class="viewcode-block" id="CampusNetCourseBaseMerger.course_exam_results"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.dtu_skill_set.CampusNetCourseBaseMerger.course_exam_results">[docs]</a>    <span class="k">def</span> <span class="nf">course_exam_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return course exam results.</span>
+
+<span class="sd">        A list of ExamResult, that contains exam result information and</span>
+<span class="sd">        more detailed information about the course given by the returned</span>
+<span class="sd">        course object from course base.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_map_campus_net_exam_result</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_campus_net_exam_results</span><span class="p">()</span>
+        <span class="p">))</span>
+</div>
+    <span class="k">def</span> <span class="nf">_map_campus_net_exam_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exam_result</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ExamResult</span><span class="p">(</span>
+            <span class="n">exam_result</span><span class="o">.</span><span class="n">grade</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">course_base</span><span class="o">.</span><span class="n">find_by_course_number</span><span class="p">(</span>
+                <span class="n">exam_result</span><span class="o">.</span><span class="n">course_number</span>
+            <span class="p">),</span>
+            <span class="n">exam_result</span><span class="o">.</span><span class="n">ects_points</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_campus_net_exam_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span>
+            <span class="nb">map</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">exam_results</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">exam_result_programmes</span>
+            <span class="p">),</span>
+            <span class="p">[]</span>
+        <span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="ExamResult"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.dtu_skill_set.ExamResult">[docs]</a><span class="k">class</span> <span class="nc">ExamResult</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Exam result with grade, course and ects points.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grade</span><span class="p">,</span> <span class="n">course</span><span class="p">,</span> <span class="n">ects_points</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize with grade, course and ects_points.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grade</span> <span class="o">=</span> <span class="n">grade</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">course</span> <span class="o">=</span> <span class="n">course</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ects_points</span> <span class="o">=</span> <span class="n">ects_points</span>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ExamResult.course_tokens"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.dtu_skill_set.ExamResult.course_tokens">[docs]</a>    <span class="k">def</span> <span class="nf">course_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the tokens of the course.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">course</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">course</span><span class="o">.</span><span class="n">tokens</span>
+
+</div></div>
+<span class="n">TokenizedCourseExamResult</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span>
+    <span class="s">&quot;TokenizedCourseExamResult&quot;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s">&#39;exam_result&#39;</span><span class="p">,</span> <span class="s">&#39;tokens&#39;</span><span class="p">,</span> <span class="s">&#39;course&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

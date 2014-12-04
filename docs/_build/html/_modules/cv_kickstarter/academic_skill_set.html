@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cv_kickstarter.academic_skill_set &mdash; cv_kickstarter  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="cv_kickstarter  documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for cv_kickstarter.academic_skill_set</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;Extracts a skill set based on keywords in exam results.</span>
+
+<span class="sd">AcademicSkillSet extracts a skill set based on keywords in the exam results.</span>
+
+<span class="sd">The keywords are ranked by the freqency and grades.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">groupby</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">cv_kickstarter</span> <span class="kn">import</span> <span class="n">ects_grade_calculator</span>
+
+<span class="kn">from</span> <span class="nn">cv_kickstarter</span> <span class="kn">import</span> <span class="n">nltk_data_downloader</span>
+
+<span class="n">nltk_data_downloader</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="skill_set"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.skill_set">[docs]</a><span class="k">def</span> <span class="nf">skill_set</span><span class="p">(</span><span class="n">tokenized_exam_results</span><span class="p">,</span>
+              <span class="n">min_keyword_length</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract skill set based on tokenized exam results.</span>
+
+<span class="sd">    Tokenized exam results are exam results with tokens for each course.</span>
+
+<span class="sd">    Optimal arguments are</span>
+<span class="sd">        min_keyword_length: The minimum amount of characters in a keyword</span>
+
+<span class="sd">    The last max_keyword_courses is used for filtering away keywords that</span>
+<span class="sd">    are too common in the courses (e.g. &#39;course&#39;, &#39;analysis&#39;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">StudentSkillSet</span><span class="p">(</span>
+        <span class="n">WordFrequencyScoreCalculator</span><span class="p">(),</span>
+        <span class="n">_build_grade_booster</span><span class="p">(</span><span class="n">tokenized_exam_results</span><span class="p">),</span>
+        <span class="n">StudentSkillSetNoiceFilter</span><span class="p">(</span><span class="n">min_keyword_length</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">skill_set</span><span class="p">(</span><span class="n">tokenized_exam_results</span><span class="p">)</span>
+
+</div>
+<span class="k">def</span> <span class="nf">_build_grade_booster</span><span class="p">(</span><span class="n">tokenized_exam_results</span><span class="p">):</span>
+    <span class="n">exam_results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+        <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">ter</span><span class="p">:</span> <span class="n">ter</span><span class="o">.</span><span class="n">exam_result</span><span class="p">,</span> <span class="n">tokenized_exam_results</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">average_grade</span> <span class="o">=</span> <span class="n">ects_grade_calculator</span><span class="o">.</span><span class="n">average_grade</span><span class="p">(</span><span class="n">exam_results</span><span class="p">)</span>
+    <span class="n">grade_booster</span> <span class="o">=</span> <span class="n">KeywordGradeBooster</span><span class="p">(</span><span class="n">average_grade</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">grade_booster</span>
+
+
+<div class="viewcode-block" id="StudentSkillSetNoiceFilter"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.StudentSkillSetNoiceFilter">[docs]</a><span class="k">class</span> <span class="nc">StudentSkillSetNoiceFilter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Filters away noice from the skill set.</span>
+
+<span class="sd">    Filters away noice meaning unwanted keywords in the skill set.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">min_keyword_length</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize with min_keyword_length.</span>
+
+<span class="sd">        min_keyword_length: The minimum amount of characters in a keyword</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_keyword_length</span> <span class="o">=</span> <span class="n">min_keyword_length</span>
+
+<div class="viewcode-block" id="StudentSkillSetNoiceFilter.filtered_skill_set"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.StudentSkillSetNoiceFilter.filtered_skill_set">[docs]</a>    <span class="k">def</span> <span class="nf">filtered_skill_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">course_keywords</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a filtered set of skills.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_valid_keyword</span><span class="p">,</span> <span class="n">course_keywords</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_valid_keyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">keyword</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_keyword_length</span>
+
+</div>
+<div class="viewcode-block" id="StudentSkillSet"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.StudentSkillSet">[docs]</a><span class="k">class</span> <span class="nc">StudentSkillSet</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Extract skill set of a student.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_scorer</span><span class="p">,</span> <span class="n">grade_booster</span><span class="p">,</span> <span class="n">noice_filter</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize with word_scorer, grade_booster and noice_filter.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word_scorer</span> <span class="o">=</span> <span class="n">word_scorer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grade_booster</span> <span class="o">=</span> <span class="n">grade_booster</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noice_filter</span> <span class="o">=</span> <span class="n">noice_filter</span>
+
+<div class="viewcode-block" id="StudentSkillSet.skill_set"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.StudentSkillSet.skill_set">[docs]</a>    <span class="k">def</span> <span class="nf">skill_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenized_exam_results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a ranked skill set.&quot;&quot;&quot;</span>
+        <span class="n">course_kewords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rank_tokens_for_courses2</span><span class="p">(</span>
+            <span class="n">tokenized_exam_results</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grade_booster</span>
+        <span class="p">)</span>
+        <span class="n">course_skills</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="n">course_kewords</span><span class="p">)</span>
+        <span class="n">student_skill_set</span> <span class="o">=</span> <span class="n">CourseSkillSetMerger</span><span class="p">()</span><span class="o">.</span><span class="n">student_skill_set</span><span class="p">(</span>
+            <span class="n">course_skills</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">noice_filter</span><span class="o">.</span><span class="n">filtered_skill_set</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_course_keywords_sorted_by_rank</span><span class="p">(</span><span class="n">student_skill_set</span><span class="p">)</span>
+        <span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_course_keywords_sorted_by_rank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">student_skill_set</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span>
+            <span class="n">student_skill_set</span><span class="p">,</span>
+            <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">course_keyword</span><span class="p">:</span> <span class="o">-</span><span class="n">course_keyword</span><span class="o">.</span><span class="n">rank</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_rank_tokens_for_courses2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenized_course_exam_results</span><span class="p">,</span>
+                                  <span class="n">grade_booster</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">map</span><span class="p">(</span>
+            <span class="n">CourseSkillSet</span><span class="p">(</span><span class="n">grade_booster</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_scorer</span><span class="p">)</span><span class="o">.</span><span class="n">skill_set</span><span class="p">,</span>
+            <span class="n">tokenized_course_exam_results</span>
+        <span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="CourseSkillSet"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.CourseSkillSet">[docs]</a><span class="k">class</span> <span class="nc">CourseSkillSet</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Extract skill gained in a given course.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grade_booster</span><span class="p">,</span> <span class="n">word_scorer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize with a grade_booster and word_scorer dictionary.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grade_booster</span> <span class="o">=</span> <span class="n">grade_booster</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word_scorer</span> <span class="o">=</span> <span class="n">word_scorer</span>
+
+<div class="viewcode-block" id="CourseSkillSet.skill_set"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.CourseSkillSet.skill_set">[docs]</a>    <span class="k">def</span> <span class="nf">skill_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenized_exam_result</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a skill set gained in the given course.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grade_booster</span><span class="o">.</span><span class="n">boosted_keyword_scores</span><span class="p">(</span>
+            <span class="n">tokenized_exam_result</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_normalized_keyword_score</span><span class="p">(</span><span class="n">tokenized_exam_result</span><span class="p">)</span>
+        <span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_normalized_keyword_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenized_exam_result</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">KeywordScoreNormalizer</span><span class="p">()</span><span class="o">.</span><span class="n">normalized_keyword_score</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_keyword_scorer</span><span class="p">(</span><span class="n">tokenized_exam_result</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_keyword_scorer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenized_exam_result</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">KeywordScoreCalculator</span><span class="p">()</span><span class="o">.</span><span class="n">keyword_scorer</span><span class="p">(</span>
+            <span class="n">tokenized_exam_result</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">word_scorer</span>
+        <span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="CourseSkillSetMerger"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.CourseSkillSetMerger">[docs]</a><span class="k">class</span> <span class="nc">CourseSkillSetMerger</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Merges skill sets from several courses into a common skill set.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CourseSkillSetMerger.student_skill_set"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.CourseSkillSetMerger.student_skill_set">[docs]</a>    <span class="k">def</span> <span class="nf">student_skill_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">passed_courses_skills</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a raw skill set merged.</span>
+
+<span class="sd">        Each course skill set is merged, which means that common skills from</span>
+<span class="sd">        the different courses arge merged into one CourseKeyword, which</span>
+<span class="sd">        lists both courses.</span>
+
+<span class="sd">        For keywords contained in two course skill sets, the rank is summed as</span>
+<span class="sd">        the keyword gained in more courses are considered more important.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sorted_courses_skills</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+            <span class="n">passed_courses_skills</span><span class="p">,</span>
+            <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">skill</span><span class="p">:</span> <span class="n">skill</span><span class="o">.</span><span class="n">keyword</span>
+        <span class="p">)</span>
+        <span class="n">skills_grouped_by_word</span> <span class="o">=</span> <span class="n">groupby</span><span class="p">(</span><span class="n">sorted_courses_skills</span><span class="p">,</span>
+                                         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">keyword</span><span class="p">)</span>
+        <span class="n">course_keyword_grouped_by_word</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">course_keyword</span><span class="p">)</span>
+                                          <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">course_keyword</span>
+                                          <span class="ow">in</span> <span class="n">skills_grouped_by_word</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_merge_grouped_ranks</span><span class="p">,</span> <span class="n">course_keyword_grouped_by_word</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_merge_grouped_ranks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">course_keywords</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">prevres</span><span class="p">,</span> <span class="nb">next</span><span class="p">:</span> <span class="n">CourseKeyword</span><span class="p">(</span>
+                <span class="nb">next</span><span class="o">.</span><span class="n">keyword</span><span class="p">,</span>
+                <span class="nb">next</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="n">prevres</span><span class="o">.</span><span class="n">rank</span><span class="p">,</span>
+                <span class="nb">next</span><span class="o">.</span><span class="n">course_numbers</span> <span class="o">+</span> <span class="n">prevres</span><span class="o">.</span><span class="n">course_numbers</span>
+            <span class="p">),</span>
+            <span class="n">course_keywords</span><span class="p">,</span>
+            <span class="n">CourseKeyword</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="KeywordScoreCalculator"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.KeywordScoreCalculator">[docs]</a><span class="k">class</span> <span class="nc">KeywordScoreCalculator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;&quot;Calculates the raw keyword scores based on the word scores.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="KeywordScoreCalculator.keyword_scorer"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.KeywordScoreCalculator.keyword_scorer">[docs]</a>    <span class="k">def</span> <span class="nf">keyword_scorer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenized_exam_result</span><span class="p">,</span> <span class="n">word_scorer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;&quot;Return keyword scores.&quot;&quot;&quot;</span>
+        <span class="n">word_scores</span> <span class="o">=</span> <span class="n">word_scorer</span><span class="o">.</span><span class="n">word_scorer</span><span class="p">(</span><span class="n">tokenized_exam_result</span><span class="p">)</span>
+        <span class="n">tokenized_tokens</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+            <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">tokenized_exam_result</span><span class="o">.</span><span class="n">tokens</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">CourseKeyword</span><span class="p">(</span>
+            <span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keyword</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_phrase_scores</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">word_scores</span><span class="p">),</span>
+            <span class="p">[</span><span class="n">tokenized_exam_result</span><span class="o">.</span><span class="n">course</span><span class="p">]</span>
+        <span class="p">)</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">tokenized_tokens</span><span class="p">]</span>
+</div>
+    <span class="k">def</span> <span class="nf">_calculate_phrase_scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phrase_tokens</span><span class="p">,</span> <span class="n">word_scores</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">word_scores</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">phrase_tokens</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="KeywordGradeBooster"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.KeywordGradeBooster">[docs]</a><span class="k">class</span> <span class="nc">KeywordGradeBooster</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Boosts the keyword rank with the grade.</span>
+
+<span class="sd">    Multiplies the given keyword rank score with a grade score from the course</span>
+<span class="sd">    the course originated.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">average_grade</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize with the average_grade of the student.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">average_grade</span> <span class="o">=</span> <span class="n">average_grade</span>
+
+<div class="viewcode-block" id="KeywordGradeBooster.boosted_keyword_scores"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.KeywordGradeBooster.boosted_keyword_scores">[docs]</a>    <span class="k">def</span> <span class="nf">boosted_keyword_scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenized_exam_result</span><span class="p">,</span> <span class="n">scored_keywords</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a list of keywords with a rank boosted by grade.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">keyword</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_boosted_course_keyword</span><span class="p">(</span>
+                <span class="n">keyword</span><span class="p">,</span>
+                <span class="n">tokenized_exam_result</span> <span class="ow">and</span> <span class="n">tokenized_exam_result</span><span class="o">.</span><span class="n">course</span><span class="p">,</span>
+                <span class="n">tokenized_exam_result</span><span class="o">.</span><span class="n">exam_result</span><span class="o">.</span><span class="n">grade</span>
+            <span class="p">),</span>
+            <span class="n">scored_keywords</span>
+        <span class="p">))</span>
+</div>
+    <span class="k">def</span> <span class="nf">_boosted_course_keyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scored_keyword</span><span class="p">,</span> <span class="n">course</span><span class="p">,</span> <span class="n">grade</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">CourseKeyword</span><span class="p">(</span>
+            <span class="n">scored_keyword</span><span class="o">.</span><span class="n">keyword</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_boosted_keyword_score</span><span class="p">(</span><span class="n">scored_keyword</span><span class="o">.</span><span class="n">rank</span><span class="p">,</span> <span class="n">grade</span><span class="p">),</span>
+            <span class="n">scored_keyword</span><span class="o">.</span><span class="n">course_numbers</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_boosted_keyword_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword_score</span><span class="p">,</span> <span class="n">grade</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">keyword_score</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grade_score</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_grade_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grade</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">1.0</span>
+        <span class="k">return</span> <span class="n">grade</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">average_grade</span>
+
+</div>
+<div class="viewcode-block" id="KeywordScoreNormalizer"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.KeywordScoreNormalizer">[docs]</a><span class="k">class</span> <span class="nc">KeywordScoreNormalizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Normalize the rank score of a keyword with average score in course.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="KeywordScoreNormalizer.normalized_keyword_score"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.KeywordScoreNormalizer.normalized_keyword_score">[docs]</a>    <span class="k">def</span> <span class="nf">normalized_keyword_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword_scorer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a list of keywords with rank divided by average rank.&quot;&quot;&quot;</span>
+        <span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="n">keyword_score</span><span class="o">.</span><span class="n">rank</span> <span class="k">for</span> <span class="n">keyword_score</span> <span class="ow">in</span> <span class="n">keyword_scorer</span><span class="p">]</span>
+        <span class="n">average_score</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">ranks</span><span class="p">)</span>
+        <span class="n">score_std</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ranks</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">old_score</span><span class="p">:</span> <span class="n">CourseKeyword</span><span class="p">(</span>
+                <span class="n">old_score</span><span class="o">.</span><span class="n">keyword</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_normalized_score</span><span class="p">(</span>
+                    <span class="n">old_score</span><span class="o">.</span><span class="n">rank</span><span class="p">,</span>
+                    <span class="n">average_score</span><span class="p">,</span>
+                    <span class="n">score_std</span><span class="p">),</span>
+                <span class="n">old_score</span><span class="o">.</span><span class="n">course_numbers</span>
+            <span class="p">),</span>
+            <span class="n">keyword_scorer</span>
+        <span class="p">))</span>
+</div>
+    <span class="k">def</span> <span class="nf">_normalized_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="n">average</span><span class="p">,</span> <span class="n">std</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">score</span> <span class="o">-</span> <span class="n">average</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
+
+</div>
+<div class="viewcode-block" id="WordFrequencyScoreCalculator"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.WordFrequencyScoreCalculator">[docs]</a><span class="k">class</span> <span class="nc">WordFrequencyScoreCalculator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Builds a word score dictionary based on word frequency.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="WordFrequencyScoreCalculator.word_scorer"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.academic_skill_set.WordFrequencyScoreCalculator.word_scorer">[docs]</a>    <span class="k">def</span> <span class="nf">word_scorer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenized_course_exam_result</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a dictionary of word scores.</span>
+
+<span class="sd">        The score for each word is the frequency of the word in all</span>
+<span class="sd">        exam results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tokenized_chunks</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+            <span class="n">tokenized_course_exam_result</span><span class="o">.</span><span class="n">tokens</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_word_scorer</span><span class="p">(</span><span class="n">tokenized_chunks</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_calculate_word_scorer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phrase_list</span><span class="p">):</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">phrase</span> <span class="ow">in</span> <span class="n">phrase_list</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">phrase</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">FreqDist</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+</div>
+<span class="n">CourseKeyword</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&quot;CourseKeyword&quot;</span><span class="p">,</span>
+                           <span class="p">[</span><span class="s">&#39;keyword&#39;</span><span class="p">,</span> <span class="s">&#39;rank&#39;</span><span class="p">,</span> <span class="s">&#39;course_numbers&#39;</span><span class="p">])</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

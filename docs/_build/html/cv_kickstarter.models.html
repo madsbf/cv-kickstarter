@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cv_kickstarter.models package &mdash; cv_kickstarter  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="cv_kickstarter  documentation" href="index.html" />
+    <link rel="up" title="cv_kickstarter package" href="cv_kickstarter.html" />
+    <link rel="prev" title="cv_kickstarter package" href="cv_kickstarter.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="cv_kickstarter.html" title="cv_kickstarter package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="cv_kickstarter.html" accesskey="U">cv_kickstarter package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cv-kickstarter-models-package">
+<h1>cv_kickstarter.models package<a class="headerlink" href="#cv-kickstarter-models-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-cv_kickstarter.models.exam_result_programme">
+<span id="cv-kickstarter-models-exam-result-programme-module"></span><h2>cv_kickstarter.models.exam_result_programme module<a class="headerlink" href="#module-cv_kickstarter.models.exam_result_programme" title="Permalink to this headline">¶</a></h2>
+<p>The exam result programme with exam results for a given programme.</p>
+<dl class="class">
+<dt id="cv_kickstarter.models.exam_result_programme.ExamResultProgramme">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.models.exam_result_programme.</tt><tt class="descname">ExamResultProgramme</tt><big>(</big><em>name</em>, <em>passed_ects</em>, <em>total_ects</em>, <em>exam_results</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/models/exam_result_programme.html#ExamResultProgramme"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.exam_result_programme.ExamResultProgramme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Representing exam results for a given programme (bachelor, master..).</p>
+<dl class="attribute">
+<dt id="cv_kickstarter.models.exam_result_programme.ExamResultProgramme.average_grade">
+<tt class="descname">average_grade</tt><a class="reference internal" href="_modules/cv_kickstarter/models/exam_result_programme.html#ExamResultProgramme.average_grade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.exam_result_programme.ExamResultProgramme.average_grade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the average grade of the student.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.models.exam_result_programme.ExamResultProgramme.is_done">
+<tt class="descname">is_done</tt><a class="reference internal" href="_modules/cv_kickstarter/models/exam_result_programme.html#ExamResultProgramme.is_done"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.exam_result_programme.ExamResultProgramme.is_done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return true if all the courses are passed for the programme.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.models.user_cv">
+<span id="cv-kickstarter-models-user-cv-module"></span><h2>cv_kickstarter.models.user_cv module<a class="headerlink" href="#module-cv_kickstarter.models.user_cv" title="Permalink to this headline">¶</a></h2>
+<p>UserCV for displaying the students CV on the frontend.</p>
+<dl class="class">
+<dt id="cv_kickstarter.models.user_cv.UserCV">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.models.user_cv.</tt><tt class="descname">UserCV</tt><big>(</big><em>first_name</em>, <em>last_name</em>, <em>exam_result_programmes</em>, <em>keywords</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv.html#UserCV"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv.UserCV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>UserCV object works as an view object to be used in the view.</p>
+<dl class="method">
+<dt id="cv_kickstarter.models.user_cv.UserCV.course_title_sentence">
+<tt class="descname">course_title_sentence</tt><big>(</big><em>keyword</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv.html#UserCV.course_title_sentence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv.UserCV.course_title_sentence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a course title sentence.</p>
+<p>If one course: 01234 Course
+For two courses: 01234 Course 1 and 01235 Course 2
+For three courses: 01234 C1, 01235 C2 and 012346 C3</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.models.user_cv.UserCV.full_name">
+<tt class="descname">full_name</tt><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv.html#UserCV.full_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv.UserCV.full_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the full name of the student.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.models.user_cv.UserCV.highest_ranked_keywords">
+<tt class="descname">highest_ranked_keywords</tt><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv.html#UserCV.highest_ranked_keywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv.UserCV.highest_ranked_keywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the 50 highest ranked keywords.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.models.user_cv_builder">
+<span id="cv-kickstarter-models-user-cv-builder-module"></span><h2>cv_kickstarter.models.user_cv_builder module<a class="headerlink" href="#module-cv_kickstarter.models.user_cv_builder" title="Permalink to this headline">¶</a></h2>
+<p>Builds a User CV to display on the frontend.</p>
+<dl class="class">
+<dt id="cv_kickstarter.models.user_cv_builder.CampusNetExamResultMapper">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.models.user_cv_builder.</tt><tt class="descname">CampusNetExamResultMapper</tt><big>(</big><em>cn_exam_result_programme</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv_builder.html#CampusNetExamResultMapper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv_builder.CampusNetExamResultMapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Maps an exam result programme to an object ready for frontend.</p>
+<dl class="method">
+<dt id="cv_kickstarter.models.user_cv_builder.CampusNetExamResultMapper.mapped_exam_result">
+<tt class="descname">mapped_exam_result</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv_builder.html#CampusNetExamResultMapper.mapped_exam_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv_builder.CampusNetExamResultMapper.mapped_exam_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return mapped exam result.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cv_kickstarter.models.user_cv_builder.UserCVBuilder">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.models.user_cv_builder.</tt><tt class="descname">UserCVBuilder</tt><big>(</big><em>campus_net_client</em>, <em>mongo_store</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv_builder.html#UserCVBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv_builder.UserCVBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Builds a User CV to display on the frontend.</p>
+<dl class="method">
+<dt id="cv_kickstarter.models.user_cv_builder.UserCVBuilder.build">
+<tt class="descname">build</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv_builder.html#UserCVBuilder.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv_builder.UserCVBuilder.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a UserCV.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.models.user_cv_builder.UserCVBuilder.grades">
+<tt class="descname">grades</tt><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv_builder.html#UserCVBuilder.grades"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv_builder.UserCVBuilder.grades" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return grades from campus_net_client.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cv_kickstarter.models.user_cv_builder.UserCVBuilder.user">
+<tt class="descname">user</tt><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv_builder.html#UserCVBuilder.user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv_builder.UserCVBuilder.user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a user with information from the campus_net_client.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.models.user_cv_dictionary_mapper">
+<span id="cv-kickstarter-models-user-cv-dictionary-mapper-module"></span><h2>cv_kickstarter.models.user_cv_dictionary_mapper module<a class="headerlink" href="#module-cv_kickstarter.models.user_cv_dictionary_mapper" title="Permalink to this headline">¶</a></h2>
+<p>Maps a UserCV into a dictionary.</p>
+<dl class="class">
+<dt id="cv_kickstarter.models.user_cv_dictionary_mapper.UserCVDictionaryMapper">
+<em class="property">class </em><tt class="descclassname">cv_kickstarter.models.user_cv_dictionary_mapper.</tt><tt class="descname">UserCVDictionaryMapper</tt><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv_dictionary_mapper.html#UserCVDictionaryMapper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv_dictionary_mapper.UserCVDictionaryMapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Maps a UserCV into a dictionary.</p>
+<dl class="method">
+<dt id="cv_kickstarter.models.user_cv_dictionary_mapper.UserCVDictionaryMapper.user_cv_dict">
+<tt class="descname">user_cv_dict</tt><big>(</big><em>user_cv</em>, <em>student_number</em><big>)</big><a class="reference internal" href="_modules/cv_kickstarter/models/user_cv_dictionary_mapper.html#UserCVDictionaryMapper.user_cv_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cv_kickstarter.models.user_cv_dictionary_mapper.UserCVDictionaryMapper.user_cv_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary based on the UserCV.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cv_kickstarter.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cv_kickstarter.models" title="Permalink to this headline">¶</a></h2>
+<p>The domain specific code for this project.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">cv_kickstarter.models package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.models.exam_result_programme">cv_kickstarter.models.exam_result_programme module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.models.user_cv">cv_kickstarter.models.user_cv module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.models.user_cv_builder">cv_kickstarter.models.user_cv_builder module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.models.user_cv_dictionary_mapper">cv_kickstarter.models.user_cv_dictionary_mapper module</a></li>
+<li><a class="reference internal" href="#module-cv_kickstarter.models">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cv_kickstarter.html"
+                        title="previous chapter">cv_kickstarter package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/cv_kickstarter.models.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="cv_kickstarter.html" title="cv_kickstarter package"
+             >previous</a> |</li>
+        <li><a href="index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="cv_kickstarter.html" >cv_kickstarter package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

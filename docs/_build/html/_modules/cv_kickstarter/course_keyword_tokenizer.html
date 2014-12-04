@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cv_kickstarter.course_keyword_tokenizer &mdash; cv_kickstarter  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="cv_kickstarter  documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for cv_kickstarter.course_keyword_tokenizer</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;Extract raw keywords from course.</span>
+
+<span class="sd">course_keyword_tokenizer extracts raw keyword tokens from courses with</span>
+<span class="sd">noun phrase chunking.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">cv_kickstarter</span> <span class="kn">import</span> <span class="n">nltk_data_downloader</span>
+
+<span class="n">nltk_data_downloader</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="course_keyword_tokens"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.course_keyword_tokenizer.course_keyword_tokens">[docs]</a><span class="k">def</span> <span class="nf">course_keyword_tokens</span><span class="p">(</span><span class="n">course</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return keyword tokens for course.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">CourseKeywordTokenizer</span><span class="p">(</span><span class="n">course</span><span class="p">)</span><span class="o">.</span><span class="n">keyword_tokens</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="CourseKeywordTokenizer"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.course_keyword_tokenizer.CourseKeywordTokenizer">[docs]</a><span class="k">class</span> <span class="nc">CourseKeywordTokenizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Can extract keyword tokens from course.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">course</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize with course.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">course</span> <span class="o">=</span> <span class="n">course</span>
+
+<div class="viewcode-block" id="CourseKeywordTokenizer.keyword_tokens"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.course_keyword_tokenizer.CourseKeywordTokenizer.keyword_tokens">[docs]</a>    <span class="k">def</span> <span class="nf">keyword_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return keyword tokens for course.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">course</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_course_sentences</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">TextKeywordChunkifier</span><span class="p">()</span><span class="o">.</span><span class="n">chunks</span><span class="p">(</span><span class="n">sentence</span><span class="p">)]</span>
+</div>
+    <span class="k">def</span> <span class="nf">_course_sentences</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">CourseSentenceExtractor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">course</span><span class="p">)</span><span class="o">.</span><span class="n">sentences</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="CourseSentenceExtractor"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.course_keyword_tokenizer.CourseSentenceExtractor">[docs]</a><span class="k">class</span> <span class="nc">CourseSentenceExtractor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Can extact sentences from course object.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">course</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize with course.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">course</span> <span class="o">=</span> <span class="n">course</span>
+
+<div class="viewcode-block" id="CourseSentenceExtractor.sentences"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.course_keyword_tokenizer.CourseSentenceExtractor.sentences">[docs]</a>    <span class="k">def</span> <span class="nf">sentences</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return sentences for course.</span>
+
+<span class="sd">        The sentences are based on title, contents, course_objectives_text</span>
+<span class="sd">        and course_objectives</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">sentence</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_course_texts</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)]</span>
+</div>
+    <span class="k">def</span> <span class="nf">_course_texts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">course</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">course</span><span class="o">.</span><span class="n">contents</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">course</span><span class="o">.</span><span class="n">course_objectives_text</span>
+        <span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">course</span><span class="o">.</span><span class="n">course_objectives</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="TextKeywordChunkifier"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.course_keyword_tokenizer.TextKeywordChunkifier">[docs]</a><span class="k">class</span> <span class="nc">TextKeywordChunkifier</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Can split text into several chunks by noun phrase chunking.</span>
+
+<span class="sd">    The chunks are extracted with noun phrase chunking with nouns and preceding</span>
+<span class="sd">    adjectives (if there are any).</span>
+
+<span class="sd">    The code in this class is inspired by the NLTK book and Finn Nielsens</span>
+<span class="sd">    code from Data Mining using Python 02819 from DTU.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TextKeywordChunkifier.chunks"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.course_keyword_tokenizer.TextKeywordChunkifier.chunks">[docs]</a>    <span class="k">def</span> <span class="nf">chunks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return keyword chunks from the given text.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_chunks</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_grammar_parser</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+                <span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_extract_chunks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">tree_filter</span><span class="o">=</span><span class="s">&#39;NP&#39;</span><span class="p">):</span>
+        <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="s">&#39;label&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">tree</span><span class="o">.</span><span class="n">label</span><span class="p">()</span> <span class="o">==</span> <span class="n">tree_filter</span><span class="p">:</span>
+                <span class="n">leafWords</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_extract_word_from_leaf</span><span class="p">,</span> <span class="n">tree</span><span class="o">.</span><span class="n">leaves</span><span class="p">())</span>
+                <span class="n">chunks</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">leafWords</span><span class="p">)]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">tree</span><span class="p">:</span>
+                    <span class="n">cs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_chunks</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">tree_filter</span><span class="o">=</span><span class="n">tree_filter</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">cs</span> <span class="o">!=</span> <span class="p">[]:</span>
+                        <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">chunks</span>
+
+    <span class="k">def</span> <span class="nf">_extract_word_from_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">leaf</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">leaf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_grammar_parser</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">nltk</span><span class="o">.</span><span class="n">RegexpParser</span><span class="p">(</span><span class="s">&quot;NP: { &lt;JJ&gt;*&lt;NN.?&gt;+ }&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

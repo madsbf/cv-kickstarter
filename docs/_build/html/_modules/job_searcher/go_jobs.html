@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>job_searcher.go_jobs &mdash; cv_kickstarter  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="cv_kickstarter  documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for job_searcher.go_jobs</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot; Module for job searching on Go.dk. &quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">job</span> <span class="kn">import</span> <span class="n">Job</span>
+<span class="kn">from</span> <span class="nn">job_searcher</span> <span class="kn">import</span> <span class="n">JobSearcher</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+
+<div class="viewcode-block" id="GoJobs"><a class="viewcode-back" href="../../job_searcher.html#job_searcher.go_jobs.GoJobs">[docs]</a><span class="k">class</span> <span class="nc">GoJobs</span> <span class="p">(</span><span class="n">JobSearcher</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot; JobSearcher for Go.dk. &quot;&quot;&quot;</span>
+
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">&#39;http://moveon.dk/webservice/mobile.asmx/&#39;</span>
+    <span class="n">URL_EXTENSION_SEARCH</span> <span class="o">=</span> <span class="s">&#39;SearchJobsV3&#39;</span>
+    <span class="n">URL_EXTENSION_GET_JOB</span> <span class="o">=</span> <span class="s">&quot;GetJobLimitedV3&quot;</span>
+
+    <span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;Content-type&quot;</span><span class="p">:</span> <span class="s">&quot;application/json&quot;</span><span class="p">,</span>
+               <span class="s">&quot;Accept&quot;</span><span class="p">:</span> <span class="s">&quot;text/plain&quot;</span><span class="p">}</span>
+    <span class="c"># Needed to communicate with the server - NOT secret</span>
+    <span class="n">PASS</span> <span class="o">=</span> <span class="s">&#39;02e19abe-b6f4-4a7e-bb70-9e613fcb43c2&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; :param guid: Needed for identification. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">guid</span> <span class="o">=</span> <span class="n">guid</span>
+
+<div class="viewcode-block" id="GoJobs.find_results_amount"><a class="viewcode-back" href="../../job_searcher.html#job_searcher.go_jobs.GoJobs.find_results_amount">[docs]</a>    <span class="k">def</span> <span class="nf">find_results_amount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the amount of results for a given keyword. &quot;&quot;&quot;</span>
+        <span class="n">request_data</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;guid&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">guid</span><span class="p">,</span>
+                        <span class="s">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">2147483647</span><span class="p">,</span>  <span class="c"># Int32 maximum</span>
+                        <span class="s">&#39;text&#39;</span><span class="p">:</span> <span class="n">keyword</span><span class="p">,</span>
+                        <span class="s">&#39;geoIds&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="s">&#39;networkId&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                        <span class="s">&#39;uddIds&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="s">&#39;jobTypeIds&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="s">&#39;pass&#39;</span><span class="p">:</span> <span class="n">GoJobs</span><span class="o">.</span><span class="n">PASS</span><span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">GoJobs</span><span class="o">.</span><span class="n">BASE_URL</span> <span class="o">+</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">URL_EXTENSION_SEARCH</span><span class="p">,</span>
+                                 <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request_data</span><span class="p">),</span>
+                                 <span class="n">headers</span><span class="o">=</span><span class="n">GoJobs</span><span class="o">.</span><span class="n">HEADERS</span><span class="p">)</span>
+
+        <span class="n">response_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)[</span><span class="s">&#39;d&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="GoJobs.find_results"><a class="viewcode-back" href="../../job_searcher.html#job_searcher.go_jobs.GoJobs.find_results">[docs]</a>    <span class="k">def</span> <span class="nf">find_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keywords</span><span class="o">=</span><span class="p">(),</span> <span class="n">amount</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Perform a job search.</span>
+
+<span class="sd">        :param keywords: Keywords, that should be contained in the returned</span>
+<span class="sd">        results.</span>
+<span class="sd">        :param amount: The amount of results wanted.</span>
+<span class="sd">        :return: The jobs found by the given search parameters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request_search_data</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;guid&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">guid</span><span class="p">,</span>
+                               <span class="s">&#39;amount&#39;</span><span class="p">:</span> <span class="n">amount</span><span class="p">,</span>
+                               <span class="s">&#39;text&#39;</span><span class="p">:</span> <span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keywords</span><span class="p">),</span>
+                               <span class="s">&#39;geoIds&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                               <span class="s">&#39;networkId&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                               <span class="s">&#39;uddIds&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                               <span class="s">&#39;jobTypeIds&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                               <span class="s">&#39;pass&#39;</span><span class="p">:</span> <span class="n">GoJobs</span><span class="o">.</span><span class="n">PASS</span><span class="p">}</span>
+
+        <span class="n">response_search</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span> <span class="o">+</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">URL_EXTENSION_SEARCH</span><span class="p">,</span>
+                                        <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request_search_data</span><span class="p">),</span>
+                                        <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">HEADERS</span><span class="p">)</span>
+
+        <span class="c"># The last 3 elements returned are always 0&#39;s</span>
+        <span class="n">job_ids</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_search</span><span class="o">.</span><span class="n">text</span><span class="p">)[</span><span class="s">&#39;d&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_details_for_jobs</span><span class="p">(</span><span class="n">job_ids</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="GoJobs.get_details_for_jobs"><a class="viewcode-back" href="../../job_searcher.html#job_searcher.go_jobs.GoJobs.get_details_for_jobs">[docs]</a>    <span class="k">def</span> <span class="nf">get_details_for_jobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_ids</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get job details for the given job id&#39;s.</span>
+
+<span class="sd">        :param job_ids: Id&#39;s for the jobs, that you want to retrieve.</span>
+<span class="sd">        :return: A list of the given jobs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">jobs</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">job_id</span> <span class="ow">in</span> <span class="n">job_ids</span><span class="p">:</span>
+            <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_details_for_job</span><span class="p">(</span><span class="n">job_id</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">jobs</span>
+</div>
+<div class="viewcode-block" id="GoJobs.get_details_for_job"><a class="viewcode-back" href="../../job_searcher.html#job_searcher.go_jobs.GoJobs.get_details_for_job">[docs]</a>    <span class="k">def</span> <span class="nf">get_details_for_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get job details for the given job id.</span>
+
+<span class="sd">        :param job_id: Id for the job, that you want to retrieve.</span>
+<span class="sd">        :return: A job.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request_job_data</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;guid&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">guid</span><span class="p">,</span>
+                            <span class="s">&#39;id&#39;</span><span class="p">:</span> <span class="n">job_id</span><span class="p">,</span>
+                            <span class="s">&#39;networkId&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                            <span class="s">&#39;pass&#39;</span><span class="p">:</span> <span class="n">GoJobs</span><span class="o">.</span><span class="n">PASS</span><span class="p">}</span>
+
+        <span class="n">response_job</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span> <span class="o">+</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">URL_EXTENSION_GET_JOB</span><span class="p">,</span>
+                                     <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request_job_data</span><span class="p">),</span>
+                                     <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">HEADERS</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">GoJobs</span><span class="o">.</span><span class="n">json_to_job</span><span class="p">(</span><span class="n">response_job</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="GoJobs.json_to_job"><a class="viewcode-back" href="../../job_searcher.html#job_searcher.go_jobs.GoJobs.json_to_job">[docs]</a>    <span class="k">def</span> <span class="nf">json_to_job</span><span class="p">(</span><span class="n">json_text</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Convert a json string to a job.</span>
+
+<span class="sd">        :param json_text: The json string, that should be parsed.</span>
+<span class="sd">        :return: A job.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">json_job</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_text</span><span class="p">)[</span><span class="s">&#39;d&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">Job</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">json_job</span><span class="p">[</span><span class="s">&#39;jobTitle&#39;</span><span class="p">],</span>
+                   <span class="n">company_name</span><span class="o">=</span><span class="n">json_job</span><span class="p">[</span><span class="s">&#39;companyName&#39;</span><span class="p">],</span>
+                   <span class="n">teaser</span><span class="o">=</span><span class="n">json_job</span><span class="p">[</span><span class="s">&#39;teaser&#39;</span><span class="p">],</span>
+                   <span class="n">job_url</span><span class="o">=</span><span class="s">&#39;http://go.dk/job/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">json_job</span><span class="p">[</span><span class="s">&#39;jobId&#39;</span><span class="p">]))</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

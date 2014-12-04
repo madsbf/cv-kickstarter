@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>job_searcher package &mdash; cv_kickstarter  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="cv_kickstarter  documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">cv_kickstarter  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="job-searcher-package">
+<h1>job_searcher package<a class="headerlink" href="#job-searcher-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-job_searcher.career_builder">
+<span id="job-searcher-career-builder-module"></span><h2>job_searcher.career_builder module<a class="headerlink" href="#module-job_searcher.career_builder" title="Permalink to this headline">¶</a></h2>
+<p>Module for job searching on CareerBuilder.com.</p>
+<dl class="class">
+<dt id="job_searcher.career_builder.CareerBuilder">
+<em class="property">class </em><tt class="descclassname">job_searcher.career_builder.</tt><tt class="descname">CareerBuilder</tt><big>(</big><em>developer_key</em><big>)</big><a class="reference internal" href="_modules/job_searcher/career_builder.html#CareerBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.career_builder.CareerBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">job_searcher.job_searcher.JobSearcher</span></tt></p>
+<p>JobSearcher for CareerBuilder.com.</p>
+<dl class="attribute">
+<dt id="job_searcher.career_builder.CareerBuilder.BASE_URL">
+<tt class="descname">BASE_URL</tt><em class="property"> = 'http://api.careerbuilder.com/v2/jobsearch'</em><a class="headerlink" href="#job_searcher.career_builder.CareerBuilder.BASE_URL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="job_searcher.career_builder.CareerBuilder.PARAM_DEV_KEY">
+<tt class="descname">PARAM_DEV_KEY</tt><em class="property"> = 'DeveloperKey'</em><a class="headerlink" href="#job_searcher.career_builder.CareerBuilder.PARAM_DEV_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="job_searcher.career_builder.CareerBuilder.PARAM_KEYWORDS">
+<tt class="descname">PARAM_KEYWORDS</tt><em class="property"> = 'keywords'</em><a class="headerlink" href="#job_searcher.career_builder.CareerBuilder.PARAM_KEYWORDS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="job_searcher.career_builder.CareerBuilder.PARAM_PER_PAGE">
+<tt class="descname">PARAM_PER_PAGE</tt><em class="property"> = 'perpage'</em><a class="headerlink" href="#job_searcher.career_builder.CareerBuilder.PARAM_PER_PAGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="job_searcher.career_builder.CareerBuilder.find_results">
+<tt class="descname">find_results</tt><big>(</big><em>keywords=[]</em>, <em>amount=5</em><big>)</big><a class="reference internal" href="_modules/job_searcher/career_builder.html#CareerBuilder.find_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.career_builder.CareerBuilder.find_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a job search.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keywords</strong> &#8211; Keywords, that should be contained in the returned</td>
+</tr>
+</tbody>
+</table>
+<p>results.
+:param amount: The amount of results wanted.
+:return: The jobs found by the given search parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="job_searcher.career_builder.CareerBuilder.find_results_amount">
+<tt class="descname">find_results_amount</tt><big>(</big><em>keyword=''</em><big>)</big><a class="reference internal" href="_modules/job_searcher/career_builder.html#CareerBuilder.find_results_amount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.career_builder.CareerBuilder.find_results_amount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the amount of results for a given keyword.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="job_searcher.career_builder.CareerBuilder.xml_to_jobs">
+<em class="property">static </em><tt class="descname">xml_to_jobs</tt><big>(</big><em>xml</em><big>)</big><a class="reference internal" href="_modules/job_searcher/career_builder.html#CareerBuilder.xml_to_jobs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.career_builder.CareerBuilder.xml_to_jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert xml to a list of jobs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>xml</strong> &#8211; The xml string, that should be parsed.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of jobs.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-job_searcher.go_jobs">
+<span id="job-searcher-go-jobs-module"></span><h2>job_searcher.go_jobs module<a class="headerlink" href="#module-job_searcher.go_jobs" title="Permalink to this headline">¶</a></h2>
+<p>Module for job searching on Go.dk.</p>
+<dl class="class">
+<dt id="job_searcher.go_jobs.GoJobs">
+<em class="property">class </em><tt class="descclassname">job_searcher.go_jobs.</tt><tt class="descname">GoJobs</tt><big>(</big><em>guid</em><big>)</big><a class="reference internal" href="_modules/job_searcher/go_jobs.html#GoJobs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.go_jobs.GoJobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">job_searcher.job_searcher.JobSearcher</span></tt></p>
+<p>JobSearcher for Go.dk.</p>
+<dl class="attribute">
+<dt id="job_searcher.go_jobs.GoJobs.BASE_URL">
+<tt class="descname">BASE_URL</tt><em class="property"> = u'http://moveon.dk/webservice/mobile.asmx/'</em><a class="headerlink" href="#job_searcher.go_jobs.GoJobs.BASE_URL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="job_searcher.go_jobs.GoJobs.HEADERS">
+<tt class="descname">HEADERS</tt><em class="property"> = {u'Content-type': u'application/json', u'Accept': u'text/plain'}</em><a class="headerlink" href="#job_searcher.go_jobs.GoJobs.HEADERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="job_searcher.go_jobs.GoJobs.PASS">
+<tt class="descname">PASS</tt><em class="property"> = u'02e19abe-b6f4-4a7e-bb70-9e613fcb43c2'</em><a class="headerlink" href="#job_searcher.go_jobs.GoJobs.PASS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="job_searcher.go_jobs.GoJobs.URL_EXTENSION_GET_JOB">
+<tt class="descname">URL_EXTENSION_GET_JOB</tt><em class="property"> = u'GetJobLimitedV3'</em><a class="headerlink" href="#job_searcher.go_jobs.GoJobs.URL_EXTENSION_GET_JOB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="job_searcher.go_jobs.GoJobs.URL_EXTENSION_SEARCH">
+<tt class="descname">URL_EXTENSION_SEARCH</tt><em class="property"> = u'SearchJobsV3'</em><a class="headerlink" href="#job_searcher.go_jobs.GoJobs.URL_EXTENSION_SEARCH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="job_searcher.go_jobs.GoJobs.find_results">
+<tt class="descname">find_results</tt><big>(</big><em>keywords=()</em>, <em>amount=5</em><big>)</big><a class="reference internal" href="_modules/job_searcher/go_jobs.html#GoJobs.find_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.go_jobs.GoJobs.find_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a job search.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keywords</strong> &#8211; Keywords, that should be contained in the returned</td>
+</tr>
+</tbody>
+</table>
+<p>results.
+:param amount: The amount of results wanted.
+:return: The jobs found by the given search parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="job_searcher.go_jobs.GoJobs.find_results_amount">
+<tt class="descname">find_results_amount</tt><big>(</big><em>keyword=u''</em><big>)</big><a class="reference internal" href="_modules/job_searcher/go_jobs.html#GoJobs.find_results_amount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.go_jobs.GoJobs.find_results_amount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the amount of results for a given keyword.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="job_searcher.go_jobs.GoJobs.get_details_for_job">
+<tt class="descname">get_details_for_job</tt><big>(</big><em>job_id</em><big>)</big><a class="reference internal" href="_modules/job_searcher/go_jobs.html#GoJobs.get_details_for_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.go_jobs.GoJobs.get_details_for_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get job details for the given job id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>job_id</strong> &#8211; Id for the job, that you want to retrieve.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A job.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="job_searcher.go_jobs.GoJobs.get_details_for_jobs">
+<tt class="descname">get_details_for_jobs</tt><big>(</big><em>job_ids</em><big>)</big><a class="reference internal" href="_modules/job_searcher/go_jobs.html#GoJobs.get_details_for_jobs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.go_jobs.GoJobs.get_details_for_jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get job details for the given job id&#8217;s.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>job_ids</strong> &#8211; Id&#8217;s for the jobs, that you want to retrieve.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of the given jobs.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="job_searcher.go_jobs.GoJobs.json_to_job">
+<em class="property">static </em><tt class="descname">json_to_job</tt><big>(</big><em>json_text</em><big>)</big><a class="reference internal" href="_modules/job_searcher/go_jobs.html#GoJobs.json_to_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.go_jobs.GoJobs.json_to_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a json string to a job.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>json_text</strong> &#8211; The json string, that should be parsed.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A job.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-job_searcher.job">
+<span id="job-searcher-job-module"></span><h2>job_searcher.job module<a class="headerlink" href="#module-job_searcher.job" title="Permalink to this headline">¶</a></h2>
+<p>Generic job module.</p>
+<dl class="class">
+<dt id="job_searcher.job.Job">
+<em class="property">class </em><tt class="descclassname">job_searcher.job.</tt><tt class="descname">Job</tt><big>(</big><em>title</em>, <em>company_name</em>, <em>teaser</em>, <em>job_url</em><big>)</big><a class="reference internal" href="_modules/job_searcher/job.html#Job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.job.Job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generic Job interface.</p>
+<p>Simple job class, used to expose a generic interface for jobs
+across different job searchers.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-job_searcher.keyword_evaluator">
+<span id="job-searcher-keyword-evaluator-module"></span><h2>job_searcher.keyword_evaluator module<a class="headerlink" href="#module-job_searcher.keyword_evaluator" title="Permalink to this headline">¶</a></h2>
+<p>A module used for keyword evalution.</p>
+<dl class="class">
+<dt id="job_searcher.keyword_evaluator.KeywordEvaluator">
+<em class="property">class </em><tt class="descclassname">job_searcher.keyword_evaluator.</tt><tt class="descname">KeywordEvaluator</tt><big>(</big><em>job_searcher</em><big>)</big><a class="reference internal" href="_modules/job_searcher/keyword_evaluator.html#KeywordEvaluator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.keyword_evaluator.KeywordEvaluator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class used to evaluate keywords with a given job searcher.</p>
+<dl class="method">
+<dt id="job_searcher.keyword_evaluator.KeywordEvaluator.evaluate_keyword">
+<tt class="descname">evaluate_keyword</tt><big>(</big><em>keyword</em><big>)</big><a class="reference internal" href="_modules/job_searcher/keyword_evaluator.html#KeywordEvaluator.evaluate_keyword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.keyword_evaluator.KeywordEvaluator.evaluate_keyword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate a keyword for the given job searcher.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keyword</strong> &#8211; The keyword to evaluate.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The percentage of jobs, that contain the given keyword.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-job_searcher">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-job_searcher" title="Permalink to this headline">¶</a></h2>
+<p>Job searching module for searching jobs and evaluate skill relevanse.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">job_searcher package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-job_searcher.career_builder">job_searcher.career_builder module</a></li>
+<li><a class="reference internal" href="#module-job_searcher.go_jobs">job_searcher.go_jobs module</a></li>
+<li><a class="reference internal" href="#module-job_searcher.job">job_searcher.job module</a></li>
+<li><a class="reference internal" href="#module-job_searcher.keyword_evaluator">job_searcher.keyword_evaluator module</a></li>
+<li><a class="reference internal" href="#module-job_searcher">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/job_searcher.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">cv_kickstarter  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

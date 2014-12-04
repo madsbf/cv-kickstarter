@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cv_kickstarter.dtu_course_base &mdash; cv_kickstarter  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="cv_kickstarter  documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for cv_kickstarter.dtu_course_base</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;Structuring courses based on xml response from the DTU Course Base.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">as</span> <span class="nn">xmlET</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+
+<div class="viewcode-block" id="courses_from_xml"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.dtu_course_base.courses_from_xml">[docs]</a><span class="k">def</span> <span class="nf">courses_from_xml</span><span class="p">(</span><span class="n">courses_xml_text</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s">&#39;en-GB&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract course objects based on xml with courses.&quot;&quot;&quot;</span>
+    <span class="n">courses</span> <span class="o">=</span> <span class="n">xmlET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">courses_xml_text</span><span class="p">)</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span>
+        <span class="s">&#39;Courses/FullXML/Course&#39;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">CourseExtractor</span><span class="p">(</span><span class="n">course</span><span class="p">,</span> <span class="n">language</span><span class="p">)</span><span class="o">.</span><span class="n">course</span><span class="p">()</span> <span class="k">for</span> <span class="n">course</span> <span class="ow">in</span> <span class="n">courses</span><span class="p">]</span>
+
+</div>
+<div class="viewcode-block" id="CourseExtractor"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.dtu_course_base.CourseExtractor">[docs]</a><span class="k">class</span> <span class="nc">CourseExtractor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Responsible for extracting course objects based on a course xml.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">course_xml</span><span class="p">,</span> <span class="n">language</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct CourseExtractor based on course xml and a language.</span>
+
+<span class="sd">        The language can be either &#39;en-GB&#39; or &#39;da-DK&#39; for respectively</span>
+<span class="sd">        english or danish</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">course_xml</span> <span class="o">=</span> <span class="n">course_xml</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="n">language</span>
+
+<div class="viewcode-block" id="CourseExtractor.course"><a class="viewcode-back" href="../../cv_kickstarter.html#cv_kickstarter.dtu_course_base.CourseExtractor.course">[docs]</a>    <span class="k">def</span> <span class="nf">course</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a Course object based on the given course xml.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Course</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_course_number</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_contents</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_course_objectives_text</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_course_objectives</span><span class="p">()</span>
+        <span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_course_number</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">course_xml</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s">&#39;CourseCode&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">course_xml</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
+            <span class="s">&quot;Title[@Lang=&#39;</span><span class="si">%s</span><span class="s">&#39;]&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s">&#39;Title&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_contents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">course_xml</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
+            <span class="s">&quot;Txt[@Lang=&#39;</span><span class="si">%s</span><span class="s">&#39;]/Contents&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">text</span>
+
+    <span class="k">def</span> <span class="nf">_course_objectives_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">course_xml</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
+            <span class="s">&quot;Txt[@Lang=&#39;</span><span class="si">%s</span><span class="s">&#39;]/Course_Objectives&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">text</span>
+
+    <span class="k">def</span> <span class="nf">_course_objectives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">objective_xml</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s">&#39;Txt&#39;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">objective_xml</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_course_objectives_xml</span><span class="p">()]</span>
+
+    <span class="k">def</span> <span class="nf">_course_objectives_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">course_xml</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span>
+            <span class="s">&quot;DTU_ObjectiveKeyword/Txt[@Lang=&#39;</span><span class="si">%s</span><span class="s">&#39;]&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span>
+        <span class="p">)</span>
+
+</div>
+<span class="n">Course</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&quot;Course&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="s">&#39;course_number&#39;</span><span class="p">,</span> <span class="s">&#39;contents&#39;</span><span class="p">,</span>
+                               <span class="s">&#39;course_objectives_text&#39;</span><span class="p">,</span> <span class="s">&#39;course_objectives&#39;</span><span class="p">])</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
