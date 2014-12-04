@@ -11,7 +11,7 @@ from flask_negotiate import consumes
 from flask_sslify import SSLify
 from career_builder import CareerBuilder
 
-from cnapi import CampusNetApi
+from cv_kickstarter.cnapi import CampusNetApi
 
 from cv_kickstarter.models.user_cv_builder import UserCVBuilder
 from cv_kickstarter.session_authentication import SessionAuthentication
