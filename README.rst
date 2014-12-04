@@ -68,19 +68,3 @@ The project is also set up with ``tox`` and is tested against python
 ::
 
       python setup.py test
-
-
-Documentation
-=============
-
-To generate documentation automatically with sphinx, first install sphinx with:
-
-::
-
-    pip install sphinx
-
-And generate the docs with
-
-::
-
-    sphinx-apidoc -F -o ./docs cv_kickstarter
