@@ -1777,6 +1777,75 @@ The percentage of jobs, that contain the given keyword.
 Job searching module for searching jobs and evaluate skill relevanse.
 
 
+\chapter{Using CV Kickstarter}
+\label{index:using-cv-kickstarter}
+Data Mining using Python project repository
+
+
+\section{Setup}
+\label{index:setup}
+To install required modules, simply type:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+python setup.py install
+\end{Verbatim}
+
+For optimization reasons, the course information is fetched from a MongoDB database. In order to import courses into MongoDB from the xml, run the command:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+python course\PYGZus{}import.py
+\end{Verbatim}
+
+
+\section{Configuration}
+\label{index:configuration}
+To configure the application, it is possible to either add an app.cfg file that contains the relevant configurations (see app.cfg.example for an example configuration file) or environment variables (see \emph{cv\_kickstarter\_config.py} for environment variables used).
+
+The app defaults to using MongoDB through localhost unless a \emph{MONGO\_URL} environment variable is given.
+
+
+\section{Run webserver}
+\label{index:run-webserver}
+To run the web server after the setup, execute:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+python webapp.py
+\end{Verbatim}
+
+or to run with gunicorn, execute:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+gunicorn webapp:app \PYGZhy{}\PYGZhy{}log\PYGZhy{}file=\PYGZhy{}
+\end{Verbatim}
+
+
+\section{Commmand Line Integration}
+\label{index:commmand-line-integration}
+The CV can also be exported in a json format through the CLI by using the command:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+jsoncv s123456 secret
+\end{Verbatim}
+
+where `s123456' should be your student id and `secret' be your password to CampusNet.
+
+
+\section{Tests}
+\label{index:tests}
+The project uses \code{py.test} for testing, so to run tests, execute:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{py}\PYG{o}{.}\PYG{n}{test}
+\end{Verbatim}
+
+The project is also set up with \code{tox} and is tested against python
+2.7, 3.4, pypy and pypy3. To run tox locally, type:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+python setup.py test
+\end{Verbatim}
+
+
 \chapter{Indices and tables}
 \label{index:indices-and-tables}\begin{itemize}
 \item {} 

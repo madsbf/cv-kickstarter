@@ -19,6 +19,12 @@
 \BOOKMARK [1][-]{section.2.4}{job\137searcher.job module}{chapter.2}% 19
 \BOOKMARK [1][-]{section.2.5}{job\137searcher.keyword\137evaluator module}{chapter.2}% 20
 \BOOKMARK [1][-]{section.2.6}{Module contents}{chapter.2}% 21
-\BOOKMARK [0][-]{chapter.3}{Indices and tables}{}% 22
-\BOOKMARK [0][-]{section*.160}{Python Module Index}{}% 23
-\BOOKMARK [0][-]{section*.161}{Index}{}% 24
+\BOOKMARK [0][-]{chapter.3}{Using CV Kickstarter}{}% 22
+\BOOKMARK [1][-]{section.3.1}{Setup}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.2}{Configuration}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.3}{Run webserver}{chapter.3}% 25
+\BOOKMARK [1][-]{section.3.4}{Commmand Line Integration}{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.5}{Tests}{chapter.3}% 27
+\BOOKMARK [0][-]{chapter.4}{Indices and tables}{}% 28
+\BOOKMARK [0][-]{section*.160}{Python Module Index}{}% 29
+\BOOKMARK [0][-]{section*.161}{Index}{}% 30

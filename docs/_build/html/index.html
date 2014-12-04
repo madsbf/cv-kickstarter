@@ -96,6 +96,57 @@
 </ul>
 </div>
 </div>
+<div class="section" id="using-cv-kickstarter">
+<h1>Using CV Kickstarter<a class="headerlink" href="#using-cv-kickstarter" title="Permalink to this headline">¶</a></h1>
+<p>Data Mining using Python project repository</p>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>To install required modules, simply type:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py install
+</pre></div>
+</div>
+<p>For optimization reasons, the course information is fetched from a MongoDB database. In order to import courses into MongoDB from the xml, run the command:</p>
+<div class="highlight-python"><div class="highlight"><pre>python course_import.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>To configure the application, it is possible to either add an app.cfg file that contains the relevant configurations (see app.cfg.example for an example configuration file) or environment variables (see <cite>cv_kickstarter_config.py</cite> for environment variables used).</p>
+<p>The app defaults to using MongoDB through localhost unless a <cite>MONGO_URL</cite> environment variable is given.</p>
+</div>
+<div class="section" id="run-webserver">
+<h2>Run webserver<a class="headerlink" href="#run-webserver" title="Permalink to this headline">¶</a></h2>
+<p>To run the web server after the setup, execute:</p>
+<div class="highlight-python"><div class="highlight"><pre>python webapp.py
+</pre></div>
+</div>
+<p>or to run with gunicorn, execute:</p>
+<div class="highlight-python"><div class="highlight"><pre>gunicorn webapp:app --log-file=-
+</pre></div>
+</div>
+</div>
+<div class="section" id="commmand-line-integration">
+<h2>Commmand Line Integration<a class="headerlink" href="#commmand-line-integration" title="Permalink to this headline">¶</a></h2>
+<p>The CV can also be exported in a json format through the CLI by using the command:</p>
+<div class="highlight-python"><div class="highlight"><pre>jsoncv s123456 secret
+</pre></div>
+</div>
+<p>where &#8216;s123456&#8217; should be your student id and &#8216;secret&#8217; be your password to CampusNet.</p>
+</div>
+<div class="section" id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
+<p>The project uses <tt class="docutils literal"><span class="pre">py.test</span></tt> for testing, so to run tests, execute:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">py</span><span class="o">.</span><span class="n">test</span>
+</pre></div>
+</div>
+<p>The project is also set up with <tt class="docutils literal"><span class="pre">tox</span></tt> and is tested against python
+2.7, 3.4, pypy and pypy3. To run tox locally, type:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py test
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
@@ -114,6 +165,14 @@
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Welcome to cv_kickstarter&#8217;s documentation!</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-cv-kickstarter">Using CV Kickstarter</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#run-webserver">Run webserver</a></li>
+<li><a class="reference internal" href="#commmand-line-integration">Commmand Line Integration</a></li>
+<li><a class="reference internal" href="#tests">Tests</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>

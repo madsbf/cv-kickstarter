@@ -27,6 +27,12 @@
 \contentsline {section}{\numberline {2.4}job\_searcher.job module}{16}{section.2.4}
 \contentsline {section}{\numberline {2.5}job\_searcher.keyword\_evaluator module}{16}{section.2.5}
 \contentsline {section}{\numberline {2.6}Module contents}{17}{section.2.6}
-\contentsline {chapter}{\numberline {3}Indices and tables}{19}{chapter.3}
-\contentsline {chapter}{Python Module Index}{21}{section*.160}
-\contentsline {chapter}{Index}{23}{section*.161}
+\contentsline {chapter}{\numberline {3}Using CV Kickstarter}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Setup}{19}{section.3.1}
+\contentsline {section}{\numberline {3.2}Configuration}{19}{section.3.2}
+\contentsline {section}{\numberline {3.3}Run webserver}{19}{section.3.3}
+\contentsline {section}{\numberline {3.4}Commmand Line Integration}{19}{section.3.4}
+\contentsline {section}{\numberline {3.5}Tests}{20}{section.3.5}
+\contentsline {chapter}{\numberline {4}Indices and tables}{21}{chapter.4}
+\contentsline {chapter}{Python Module Index}{23}{section*.160}
+\contentsline {chapter}{Index}{25}{section*.161}
