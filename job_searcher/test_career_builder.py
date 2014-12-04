@@ -1,4 +1,4 @@
-from career_builder import CareerBuilder
+from job_searcher.career_builder import CareerBuilder
 from job import Job
 import os
 import responses

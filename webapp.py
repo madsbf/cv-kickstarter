@@ -9,7 +9,7 @@ from flask import (Flask, render_template, request, session, redirect, jsonify,
 from werkzeug.contrib.profiler import ProfilerMiddleware
 from flask_negotiate import consumes
 from flask_sslify import SSLify
-from career_builder import CareerBuilder
+from job_searcher.career_builder import CareerBuilder
 
 from cv_kickstarter.cnapi import CampusNetApi
 

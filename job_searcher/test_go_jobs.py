@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
-from go_jobs import GoJobs
+from job_searcher.go_jobs import GoJobs
 from job import Job
 import os
 import responses
