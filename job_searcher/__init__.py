@@ -45,5 +45,6 @@ class JobSearcher:
                 else:
                     scores.append(keyword.rank)
                     all_jobs.append(job)
-        sorted_jobs = [x for (y, x) in sorted(zip(scores, all_jobs))]
+        ranked_jobs = list(zip(scores, all_jobs))
+        sorted_jobs = [x for (y, x) in sorted(ranked_jobs, key=lambda x: x[0])]
         return sorted_jobs[:amount]

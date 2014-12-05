@@ -61,7 +61,7 @@ class StudentSkillSetNoiceFilter(object):
 
     def filtered_skill_set(self, course_keywords):
         """Return a filtered set of skills."""
-        return filter(self._valid_keyword, course_keywords)
+        return list(filter(self._valid_keyword, course_keywords))
 
     def _valid_keyword(self, keyword):
         return len(keyword.keyword) >= self.min_keyword_length
@@ -79,11 +79,11 @@ class StudentSkillSet(object):
 
     def skill_set(self, tokenized_exam_results):
         """Return a ranked skill set."""
-        course_kewords = self._rank_tokens_for_courses2(
+        course_keywords = self._rank_tokens_for_courses(
             tokenized_exam_results,
             self.grade_booster
         )
-        course_skills = reduce(lambda x, y: x + y, course_kewords)
+        course_skills = sum(course_keywords, [])
         student_skill_set = CourseSkillSetMerger().student_skill_set(
             course_skills
         )
@@ -97,8 +97,8 @@ class StudentSkillSet(object):
             key=lambda course_keyword: -course_keyword.rank
         )
 
-    def _rank_tokens_for_courses2(self, tokenized_course_exam_results,
-                                  grade_booster):
+    def _rank_tokens_for_courses(self, tokenized_course_exam_results,
+                                 grade_booster):
         return map(
             CourseSkillSet(grade_booster, self.word_scorer).skill_set,
             tokenized_course_exam_results

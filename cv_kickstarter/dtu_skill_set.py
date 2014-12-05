@@ -28,10 +28,10 @@ class DtuSkillSet(object):
         return academic_skill_set.skill_set(self._tokenized_exam_results())
 
     def _tokenized_exam_results(self):
-        return map(
+        return list(map(
             self._map_to_tokenized_exam_result,
             self._passed_course_exam_results()
-        )
+        ))
 
     def _passed_course_exam_results(self):
         return [exam_result for exam_result
