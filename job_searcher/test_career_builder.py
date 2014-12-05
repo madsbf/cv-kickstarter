@@ -1,5 +1,5 @@
 from job_searcher.career_builder import CareerBuilder
-from job import Job
+from job_searcher.job import Job
 import os
 import responses
 
