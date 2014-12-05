@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>job_searcher &mdash; cv_kickstarter  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="cv_kickstarter  documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for job_searcher</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot; Module for job searching. &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="JobSearcher"><a class="viewcode-back" href="../job_searcher.html#job_searcher.JobSearcher">[docs]</a><span class="k">class</span> <span class="nc">JobSearcher</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot; Class for job searching.</span>
+
+<span class="sd">    JobSearcher finds jobs for a given keyword, or just</span>
+<span class="sd">    find the amount of jobs for a given keyword.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="JobSearcher.find_results_amount"><a class="viewcode-back" href="../job_searcher.html#job_searcher.JobSearcher.find_results_amount">[docs]</a>    <span class="k">def</span> <span class="nf">find_results_amount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the amount of results for a given keyword. &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</div>
+<div class="viewcode-block" id="JobSearcher.find_results"><a class="viewcode-back" href="../job_searcher.html#job_searcher.JobSearcher.find_results">[docs]</a>    <span class="k">def</span> <span class="nf">find_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keywords</span><span class="o">=</span><span class="p">(),</span> <span class="n">amount</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Perform a job search.</span>
+
+<span class="sd">        :param keywords: Keywords, that should be contained in the returned</span>
+<span class="sd">        results.</span>
+<span class="sd">        :param amount: The amount of results wanted.</span>
+<span class="sd">        :return: The jobs found by the given search parameters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</div>
+<div class="viewcode-block" id="JobSearcher.find_results_best_match"><a class="viewcode-back" href="../job_searcher.html#job_searcher.JobSearcher.find_results_best_match">[docs]</a>    <span class="k">def</span> <span class="nf">find_results_best_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keywords</span><span class="o">=</span><span class="p">[],</span> <span class="n">amount</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Perform a job matching.</span>
+
+<span class="sd">        Performs a job search for each keyword, and finds the best matching</span>
+<span class="sd">        jobs. Uses the keyword rank, and the amount of occurrences of a given</span>
+<span class="sd">        job to rank the jobs relevance.</span>
+
+<span class="sd">        :param keywords: Keywords, that should be contained in the returned</span>
+<span class="sd">        results.</span>
+<span class="sd">        :param amount: The amount of results wanted.</span>
+<span class="sd">        :return: The jobs found by the given search parameters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">all_jobs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">:</span>
+            <span class="n">keyword_jobs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_results</span><span class="p">([</span><span class="n">keyword</span><span class="o">.</span><span class="n">keyword</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">keyword_jobs</span><span class="p">:</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">all_jobs</span><span class="o">.</span><span class="n">__contains__</span><span class="p">(</span><span class="n">job</span><span class="p">)):</span>
+                    <span class="n">scores</span><span class="p">[</span><span class="n">all_jobs</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">job</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">keyword</span><span class="o">.</span><span class="n">rank</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span>
+                    <span class="n">all_jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
+        <span class="n">sorted_jobs</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">all_jobs</span><span class="p">))]</span>
+        <span class="k">return</span> <span class="n">sorted_jobs</span><span class="p">[:</span><span class="n">amount</span><span class="p">]</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">cv_kickstarter  documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

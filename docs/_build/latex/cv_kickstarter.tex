@@ -14,7 +14,7 @@
 
 
 \title{cv\_kickstarter Documentation}
-\date{December 04, 2014}
+\date{December 05, 2014}
 \release{}
 \author{Author}
 \newcommand{\sphinxlogo}{}
@@ -1536,7 +1536,7 @@ Module for job searching on CareerBuilder.com.
 
 \begin{fulllineitems}
 \phantomsection\label{job_searcher:job_searcher.career_builder.CareerBuilder}\pysiglinewithargsret{\strong{class }\code{job\_searcher.career\_builder.}\bfcode{CareerBuilder}}{\emph{developer\_key}}{}
-Bases: \code{job\_searcher.job\_searcher.JobSearcher}
+Bases: {\hyperref[job_searcher:job_searcher.JobSearcher]{\code{job\_searcher.JobSearcher}}}
 
 JobSearcher for CareerBuilder.com.
 \index{BASE\_URL (job\_searcher.career\_builder.CareerBuilder attribute)}
@@ -1616,7 +1616,7 @@ Module for job searching on Go.dk.
 
 \begin{fulllineitems}
 \phantomsection\label{job_searcher:job_searcher.go_jobs.GoJobs}\pysiglinewithargsret{\strong{class }\code{job\_searcher.go\_jobs.}\bfcode{GoJobs}}{\emph{guid}}{}
-Bases: \code{job\_searcher.job\_searcher.JobSearcher}
+Bases: {\hyperref[job_searcher:job_searcher.JobSearcher]{\code{job\_searcher.JobSearcher}}}
 
 JobSearcher for Go.dk.
 \index{BASE\_URL (job\_searcher.go\_jobs.GoJobs attribute)}
@@ -1774,7 +1774,64 @@ The percentage of jobs, that contain the given keyword.
 
 \section{Module contents}
 \label{job_searcher:module-job_searcher}\label{job_searcher:module-contents}\index{job\_searcher (module)}
-Job searching module for searching jobs and evaluate skill relevanse.
+Module for job searching.
+\index{JobSearcher (class in job\_searcher)}
+
+\begin{fulllineitems}
+\phantomsection\label{job_searcher:job_searcher.JobSearcher}\pysigline{\strong{class }\code{job\_searcher.}\bfcode{JobSearcher}}
+Class for job searching.
+
+JobSearcher finds jobs for a given keyword, or just
+find the amount of jobs for a given keyword.
+\index{find\_results() (job\_searcher.JobSearcher method)}
+
+\begin{fulllineitems}
+\phantomsection\label{job_searcher:job_searcher.JobSearcher.find_results}\pysiglinewithargsret{\bfcode{find\_results}}{\emph{keywords=()}, \emph{amount=5}}{}
+Perform a job search.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\textbf{keywords} -- Keywords, that should be contained in the returned
+
+\end{description}\end{quote}
+
+results.
+:param amount: The amount of results wanted.
+:return: The jobs found by the given search parameters.
+
+\end{fulllineitems}
+
+\index{find\_results\_amount() (job\_searcher.JobSearcher method)}
+
+\begin{fulllineitems}
+\phantomsection\label{job_searcher:job_searcher.JobSearcher.find_results_amount}\pysiglinewithargsret{\bfcode{find\_results\_amount}}{\emph{keyword='`}}{}
+Find the amount of results for a given keyword.
+
+\end{fulllineitems}
+
+\index{find\_results\_best\_match() (job\_searcher.JobSearcher method)}
+
+\begin{fulllineitems}
+\phantomsection\label{job_searcher:job_searcher.JobSearcher.find_results_best_match}\pysiglinewithargsret{\bfcode{find\_results\_best\_match}}{\emph{keywords={[}{]}}, \emph{amount=5}}{}
+Perform a job matching.
+
+Performs a job search for each keyword, and finds the best matching
+jobs. Uses the keyword rank, and the amount of occurrences of a given
+job to rank the jobs relevance.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\textbf{keywords} -- Keywords, that should be contained in the returned
+
+\end{description}\end{quote}
+
+results.
+:param amount: The amount of results wanted.
+:return: The jobs found by the given search parameters.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
 
 
 \chapter{Using CV Kickstarter}
@@ -1784,13 +1841,17 @@ Data Mining using Python project repository
 
 \section{Setup}
 \label{index:setup}
+We recommend using virtualenv when setting up the application.
+
 To install required modules, simply type:
 
 \begin{Verbatim}[commandchars=\\\{\}]
 python setup.py install
 \end{Verbatim}
 
-For optimization reasons, the course information is fetched from a MongoDB database. In order to import courses into MongoDB from the xml, run the command:
+On some computers this command fails at first, because numpy is not installed correctly with setuptools. To get arround this issue install numpy directly with pip as \emph{pip install numpy==1.9.1} and afterwards execute setup.py install.
+
+For optimization reasons, the course information is fetched from a \href{http://www.mongodb.org}{MongoDB database}, which is an requirement for running the application. In order to import courses into MongoDB from the xml, run the command:
 
 \begin{Verbatim}[commandchars=\\\{\}]
 python course\PYGZus{}import.py
@@ -1818,6 +1879,8 @@ or to run with gunicorn, execute:
 gunicorn webapp:app \PYGZhy{}\PYGZhy{}log\PYGZhy{}file=\PYGZhy{}
 \end{Verbatim}
 
+If the virtual env is activated for the first time, it might need to deactivated and activated again to use gunicorn.
+
 
 \section{Commmand Line Integration}
 \label{index:commmand-line-integration}
@@ -1828,6 +1891,8 @@ jsoncv s123456 secret
 \end{Verbatim}
 
 where `s123456' should be your student id and `secret' be your password to CampusNet.
+
+If the virtual env is activated for the first time, it might need to deactivated and activated again to use command line script.
 
 
 \section{Tests}
