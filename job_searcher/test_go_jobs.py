@@ -2,7 +2,7 @@
 
 from __future__ import unicode_literals
 from job_searcher.go_jobs import GoJobs
-from job import Job
+from job_searcher.job import Job
 import os
 import responses
 
