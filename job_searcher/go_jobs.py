@@ -1,7 +1,7 @@
 """ Module for job searching on Go.dk. """
 
 from __future__ import unicode_literals
-from job import Job
+from job_searcher.job import Job
 from job_searcher import JobSearcher
 
 import requests

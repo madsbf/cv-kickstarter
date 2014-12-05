@@ -1,6 +1,6 @@
 """ Module for job searching on CareerBuilder.com. """
 
-from job import Job
+from job_searcher.job import Job
 from job_searcher import JobSearcher
 
 import requests
