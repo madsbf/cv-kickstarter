@@ -101,11 +101,13 @@
 <p>Data Mining using Python project repository</p>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>We recommend using virtualenv when setting up the application.</p>
 <p>To install required modules, simply type:</p>
 <div class="highlight-python"><div class="highlight"><pre>python setup.py install
 </pre></div>
 </div>
-<p>For optimization reasons, the course information is fetched from a MongoDB database. In order to import courses into MongoDB from the xml, run the command:</p>
+<p>On some computers this command fails at first, because numpy is not installed correctly with setuptools. To get arround this issue install numpy directly with pip as <cite>pip install numpy==1.9.1</cite> and afterwards execute setup.py install.</p>
+<p>For optimization reasons, the course information is fetched from a <a class="reference external" href="http://www.mongodb.org">MongoDB database</a>, which is an requirement for running the application. In order to import courses into MongoDB from the xml, run the command:</p>
 <div class="highlight-python"><div class="highlight"><pre>python course_import.py
 </pre></div>
 </div>
@@ -125,6 +127,7 @@
 <div class="highlight-python"><div class="highlight"><pre>gunicorn webapp:app --log-file=-
 </pre></div>
 </div>
+<p>If the virtual env is activated for the first time, it might need to deactivated and activated again to use gunicorn.</p>
 </div>
 <div class="section" id="commmand-line-integration">
 <h2>Commmand Line Integration<a class="headerlink" href="#commmand-line-integration" title="Permalink to this headline">¶</a></h2>
@@ -133,6 +136,7 @@
 </pre></div>
 </div>
 <p>where &#8216;s123456&#8217; should be your student id and &#8216;secret&#8217; be your password to CampusNet.</p>
+<p>If the virtual env is activated for the first time, it might need to deactivated and activated again to use command line script.</p>
 </div>
 <div class="section" id="tests">
 <h2>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>

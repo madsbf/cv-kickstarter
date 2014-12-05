@@ -23,7 +23,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="cv_kickstarter  documentation" href="index.html" /> 
+    <link rel="top" title="cv_kickstarter  documentation" href="index.html" />
+    <link rel="prev" title="cv_kickstarter.models package" href="cv_kickstarter.models.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,6 +36,9 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="cv_kickstarter.models.html" title="cv_kickstarter.models package"
+             accesskey="P">previous</a> |</li>
         <li><a href="index.html">cv_kickstarter  documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -55,7 +59,7 @@
 <dl class="class">
 <dt id="job_searcher.career_builder.CareerBuilder">
 <em class="property">class </em><tt class="descclassname">job_searcher.career_builder.</tt><tt class="descname">CareerBuilder</tt><big>(</big><em>developer_key</em><big>)</big><a class="reference internal" href="_modules/job_searcher/career_builder.html#CareerBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.career_builder.CareerBuilder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">job_searcher.job_searcher.JobSearcher</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="#job_searcher.JobSearcher" title="job_searcher.JobSearcher"><tt class="xref py py-class docutils literal"><span class="pre">job_searcher.JobSearcher</span></tt></a></p>
 <p>JobSearcher for CareerBuilder.com.</p>
 <dl class="attribute">
 <dt id="job_searcher.career_builder.CareerBuilder.BASE_URL">
@@ -125,7 +129,7 @@
 <dl class="class">
 <dt id="job_searcher.go_jobs.GoJobs">
 <em class="property">class </em><tt class="descclassname">job_searcher.go_jobs.</tt><tt class="descname">GoJobs</tt><big>(</big><em>guid</em><big>)</big><a class="reference internal" href="_modules/job_searcher/go_jobs.html#GoJobs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.go_jobs.GoJobs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">job_searcher.job_searcher.JobSearcher</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="#job_searcher.JobSearcher" title="job_searcher.JobSearcher"><tt class="xref py py-class docutils literal"><span class="pre">job_searcher.JobSearcher</span></tt></a></p>
 <p>JobSearcher for Go.dk.</p>
 <dl class="attribute">
 <dt id="job_searcher.go_jobs.GoJobs.BASE_URL">
@@ -266,7 +270,58 @@ across different job searchers.</p>
 </div>
 <div class="section" id="module-job_searcher">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-job_searcher" title="Permalink to this headline">¶</a></h2>
-<p>Job searching module for searching jobs and evaluate skill relevanse.</p>
+<p>Module for job searching.</p>
+<dl class="class">
+<dt id="job_searcher.JobSearcher">
+<em class="property">class </em><tt class="descclassname">job_searcher.</tt><tt class="descname">JobSearcher</tt><a class="reference internal" href="_modules/job_searcher.html#JobSearcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.JobSearcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for job searching.</p>
+<p>JobSearcher finds jobs for a given keyword, or just
+find the amount of jobs for a given keyword.</p>
+<dl class="method">
+<dt id="job_searcher.JobSearcher.find_results">
+<tt class="descname">find_results</tt><big>(</big><em>keywords=()</em>, <em>amount=5</em><big>)</big><a class="reference internal" href="_modules/job_searcher.html#JobSearcher.find_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.JobSearcher.find_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a job search.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keywords</strong> &#8211; Keywords, that should be contained in the returned</td>
+</tr>
+</tbody>
+</table>
+<p>results.
+:param amount: The amount of results wanted.
+:return: The jobs found by the given search parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="job_searcher.JobSearcher.find_results_amount">
+<tt class="descname">find_results_amount</tt><big>(</big><em>keyword=''</em><big>)</big><a class="reference internal" href="_modules/job_searcher.html#JobSearcher.find_results_amount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.JobSearcher.find_results_amount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the amount of results for a given keyword.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="job_searcher.JobSearcher.find_results_best_match">
+<tt class="descname">find_results_best_match</tt><big>(</big><em>keywords=[]</em>, <em>amount=5</em><big>)</big><a class="reference internal" href="_modules/job_searcher.html#JobSearcher.find_results_best_match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#job_searcher.JobSearcher.find_results_best_match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a job matching.</p>
+<p>Performs a job search for each keyword, and finds the best matching
+jobs. Uses the keyword rank, and the amount of occurrences of a given
+job to rank the jobs relevance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>keywords</strong> &#8211; Keywords, that should be contained in the returned</td>
+</tr>
+</tbody>
+</table>
+<p>results.
+:param amount: The amount of results wanted.
+:return: The jobs found by the given search parameters.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -289,6 +344,9 @@ across different job searchers.</p>
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cv_kickstarter.models.html"
+                        title="previous chapter">cv_kickstarter.models package</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/job_searcher.txt"
@@ -320,6 +378,9 @@ across different job searchers.</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="cv_kickstarter.models.html" title="cv_kickstarter.models package"
+             >previous</a> |</li>
         <li><a href="index.html">cv_kickstarter  documentation</a> &raquo;</li> 
       </ul>
     </div>

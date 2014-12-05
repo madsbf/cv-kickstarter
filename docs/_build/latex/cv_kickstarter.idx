@@ -170,3 +170,7 @@
 \indexentry{KeywordEvaluator (class in job\_searcher.keyword\_evaluator)|hyperpage}{16}
 \indexentry{evaluate\_keyword() (job\_searcher.keyword\_evaluator.KeywordEvaluator method)|hyperpage}{16}
 \indexentry{job\_searcher (module)|hyperpage}{17}
+\indexentry{JobSearcher (class in job\_searcher)|hyperpage}{17}
+\indexentry{find\_results() (job\_searcher.JobSearcher method)|hyperpage}{17}
+\indexentry{find\_results\_amount() (job\_searcher.JobSearcher method)|hyperpage}{17}
+\indexentry{find\_results\_best\_match() (job\_searcher.JobSearcher method)|hyperpage}{17}

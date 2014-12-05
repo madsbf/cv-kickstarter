@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.10.8)  4 DEC 2014 21:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.10.8)  5 DEC 2014 17:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1020,7 +1020,7 @@ Chapter 2.
 Chapter 3.
 [19] [20]
 Chapter 4.
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 1851
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 1916
 .
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
@@ -1029,38 +1029,38 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ] [22
 
 ]
-Overfull \hbox (6.6225pt too wide) in paragraph at lines 1870--1871
+Overfull \hbox (6.6225pt too wide) in paragraph at lines 1935--1936
 []\T1/pcr/m/n/10 cv_kickstarter.course_keyword_tokenizer\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1872--1873
+Underfull \hbox (badness 10000) in paragraph at lines 1937--1938
 []\T1/pcr/m/n/10 cv_kickstarter.cv_kickstarter_config\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1875--1876
+Underfull \hbox (badness 10000) in paragraph at lines 1940--1941
 []\T1/pcr/m/n/10 cv_kickstarter.ects_grade_calculator\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (30.6225pt too wide) in paragraph at lines 1877--1878
+Overfull \hbox (30.6225pt too wide) in paragraph at lines 1942--1943
 []\T1/pcr/m/n/10 cv_kickstarter.models.exam_result_programme\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1879--1880
+Underfull \hbox (badness 10000) in paragraph at lines 1944--1945
 []\T1/pcr/m/n/10 cv_kickstarter.models.user_cv_builder\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (54.6225pt too wide) in paragraph at lines 1880--1881
+Overfull \hbox (54.6225pt too wide) in paragraph at lines 1945--1946
 []\T1/pcr/m/n/10 cv_kickstarter.models.user_cv_dictionary_mapper\T1/ptm/m/n/10 
 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1882--1883
+Underfull \hbox (badness 10000) in paragraph at lines 1947--1948
 []\T1/pcr/m/n/10 cv_kickstarter.session_authentication\T1/ptm/m/n/10 ,
  []
 
@@ -1376,356 +1376,364 @@ Overfull \hbox (17.77034pt too wide) in paragraph at lines 123--125
  []
 
 
-Overfull \hbox (32.8698pt too wide) in paragraph at lines 127--129
+Overfull \hbox (32.8698pt too wide) in paragraph at lines 128--130
 []\T1/ptm/m/n/10 find_results_amount() (job_searcher.career_builder.CareerBuild
 er
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
+Underfull \hbox (badness 10000) in paragraph at lines 130--131
 []\T1/ptm/m/n/10 find_results_amount() (job_searcher.go_jobs.GoJobs
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 131--132
+[]\T1/ptm/m/n/10 find_results_amount() (job_searcher.JobSearcher
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 132--133
+[]\T1/ptm/m/n/10 find_results_best_match() (job_searcher.JobSearcher
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
 []\T1/ptm/m/n/10 full_name (cv_kickstarter.models.user_cv.UserCV
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
 []\T1/ptm/m/n/10 get_details_for_job() (job_searcher.go_jobs.GoJobs
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 137--138
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
 []\T1/ptm/m/n/10 get_details_for_jobs() (job_searcher.go_jobs.GoJobs
  []
 
 
-Overfull \hbox (42.27994pt too wide) in paragraph at lines 138--140
+Overfull \hbox (42.27994pt too wide) in paragraph at lines 141--143
 []\T1/ptm/m/n/10 go_key() (cv_kickstarter.cv_kickstarter_config.CvKickstarterCo
 nfig
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--143
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 []\T1/ptm/m/n/10 GradeAverageCalculator (class in
  []
 
 
-Overfull \hbox (20.38994pt too wide) in paragraph at lines 143--144
+Overfull \hbox (20.38994pt too wide) in paragraph at lines 146--147
 []\T1/ptm/m/n/10 grades (cv_kickstarter.models.user_cv_builder.UserCVBuilder
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
 []\T1/ptm/m/n/10 highest_ranked_keywords
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
 \T1/ptm/m/n/10 (cv_kickstarter.models.user_cv.UserCV at-
  []
 
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
 []\T1/ptm/m/n/10 insert() (cv_kickstarter.course_repository.MongoStore
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
 []\T1/ptm/m/n/10 is_authenticated() (cv_kickstarter.cnapi.CampusNetApi
  []
 
 
-Overfull \hbox (88.64832pt too wide) in paragraph at lines 156--158
+Overfull \hbox (88.64832pt too wide) in paragraph at lines 159--161
 []\T1/ptm/m/n/10 is_authenticated() (cv_kickstarter.session_authentication.Sess
 ionAuthentication
  []
 
 
-Overfull \hbox (94.32904pt too wide) in paragraph at lines 158--160
+Overfull \hbox (94.32904pt too wide) in paragraph at lines 161--163
 []\T1/ptm/m/n/10 is_done (cv_kickstarter.models.exam_result_programme.ExamResul
 tProgramme
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 173--174
 []\T1/ptm/m/n/10 json_to_job() (job_searcher.go_jobs.GoJobs static
  []
 
 
-Overfull \hbox (12.23022pt too wide) in paragraph at lines 173--174
+Overfull \hbox (12.23022pt too wide) in paragraph at lines 177--178
 []\T1/ptm/m/n/10 keyword (cv_kickstarter.academic_skill_set.CourseKeyword
  []
 
 
-Overfull \hbox (84.41927pt too wide) in paragraph at lines 174--176
+Overfull \hbox (84.41927pt too wide) in paragraph at lines 178--180
 []\T1/ptm/m/n/10 keyword_scorer() (cv_kickstarter.academic_skill_set.KeywordSco
 reCalculator
  []
 
 
-Overfull \hbox (120.74017pt too wide) in paragraph at lines 176--178
+Overfull \hbox (120.74017pt too wide) in paragraph at lines 180--182
 []\T1/ptm/m/n/10 keyword_tokens() (cv_kickstarter.course_keyword_tokenizer.Cour
 seKeywordTokenizer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
 []\T1/ptm/m/n/10 KeywordEvaluator (class in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--180
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
 []\T1/ptm/m/n/10 KeywordGradeBooster (class in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
+Underfull \hbox (badness 10000) in paragraph at lines 184--185
 []\T1/ptm/m/n/10 KeywordScoreCalculator (class in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
 []\T1/ptm/m/n/10 KeywordScoreNormalizer (class in
  []
 
 
-Overfull \hbox (54.21904pt too wide) in paragraph at lines 186--188
+Overfull \hbox (54.21904pt too wide) in paragraph at lines 190--192
 []\T1/ptm/m/n/10 log_out() (cv_kickstarter.session_authentication.SessionAuthen
 tication
  []
 
 
-Overfull \hbox (150.77863pt too wide) in paragraph at lines 191--193
+Overfull \hbox (150.77863pt too wide) in paragraph at lines 195--197
 []\T1/ptm/m/n/10 mapped_exam_result() (cv_kickstarter.models.user_cv_builder.Ca
 mpusNetExamResultMapper
  []
 
 
-Overfull \hbox (82.52956pt too wide) in paragraph at lines 193--195
+Overfull \hbox (82.52956pt too wide) in paragraph at lines 197--199
 []\T1/ptm/m/n/10 mongo_db_name() (cv_kickstarter.cv_kickstarter_config.CvKickst
 arterConfig
  []
 
 
-Overfull \hbox (56.97963pt too wide) in paragraph at lines 195--197
+Overfull \hbox (56.97963pt too wide) in paragraph at lines 199--201
 []\T1/ptm/m/n/10 mongo_url() (cv_kickstarter.cv_kickstarter_config.CvKickstarte
 rConfig
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--202
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
 []\T1/ptm/m/n/10 name (cv_kickstarter.cnapi.ProgramExamResults at-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--204
+Underfull \hbox (badness 10000) in paragraph at lines 206--208
 []\T1/ptm/m/n/10 normalized_keyword_score()
  []
 
 
-Overfull \hbox (55.66966pt too wide) in paragraph at lines 202--204
+Overfull \hbox (55.66966pt too wide) in paragraph at lines 206--208
 \T1/ptm/m/n/10 (cv_kickstarter.academic_skill_set.KeywordScoreNormalizer
  []
 
 
-Overfull \hbox (30.27977pt too wide) in paragraph at lines 207--208
+Overfull \hbox (30.27977pt too wide) in paragraph at lines 211--212
 []\T1/ptm/m/n/10 PARAM_DEV_KEY (job_searcher.career_builder.CareerBuilder
  []
 
 
-Overfull \hbox (40.7396pt too wide) in paragraph at lines 208--209
+Overfull \hbox (40.7396pt too wide) in paragraph at lines 212--213
 []\T1/ptm/m/n/10 PARAM_KEYWORDS (job_searcher.career_builder.CareerBuilder
  []
 
 
-Overfull \hbox (32.30977pt too wide) in paragraph at lines 209--210
+Overfull \hbox (32.30977pt too wide) in paragraph at lines 213--214
 []\T1/ptm/m/n/10 PARAM_PER_PAGE (job_searcher.career_builder.CareerBuilder
  []
 
 
-Overfull \hbox (21.98952pt too wide) in paragraph at lines 211--212
+Overfull \hbox (21.98952pt too wide) in paragraph at lines 215--216
 []\T1/ptm/m/n/10 passed_ects_points (cv_kickstarter.cnapi.ProgramExamResults
  []
 
 
-Overfull \hbox (16.0202pt too wide) in paragraph at lines 218--219
+Overfull \hbox (16.0202pt too wide) in paragraph at lines 222--223
 []\T1/ptm/m/n/10 remove() (cv_kickstarter.course_repository.CourseRepository
  []
 
 
-Underfull \hbox (badness 5189) in paragraph at lines 219--220
+Underfull \hbox (badness 5189) in paragraph at lines 223--224
 []\T1/ptm/m/n/10 remove() (cv_kickstarter.course_repository.MongoStore
  []
 
 
-Overfull \hbox (55.5995pt too wide) in paragraph at lines 223--225
+Overfull \hbox (55.5995pt too wide) in paragraph at lines 227--229
 []\T1/ptm/m/n/10 secret_key() (cv_kickstarter.cv_kickstarter_config.CvKickstart
 erConfig
  []
 
 
-Overfull \hbox (90.36938pt too wide) in paragraph at lines 225--227
+Overfull \hbox (90.36938pt too wide) in paragraph at lines 229--231
 []\T1/ptm/m/n/10 sentences() (cv_kickstarter.course_keyword_tokenizer.CourseSen
 tenceExtractor
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 227--228
+Underfull \hbox (badness 10000) in paragraph at lines 231--232
 []\T1/ptm/m/n/10 SessionAuthentication (class in
  []
 
 
-Overfull \hbox (12.55888pt too wide) in paragraph at lines 228--229
+Overfull \hbox (12.55888pt too wide) in paragraph at lines 232--233
 []\T1/ptm/m/n/10 skill_set() (cv_kickstarter.academic_skill_set.CourseSkillSet
  []
 
 
-Overfull \hbox (14.78883pt too wide) in paragraph at lines 229--230
+Overfull \hbox (14.78883pt too wide) in paragraph at lines 233--234
 []\T1/ptm/m/n/10 skill_set() (cv_kickstarter.academic_skill_set.StudentSkillSet
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 230--231
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
 []\T1/ptm/m/n/10 skill_set() (cv_kickstarter.dtu_skill_set.DtuSkillSet
  []
 
 
-Overfull \hbox (58.66885pt too wide) in paragraph at lines 233--235
+Overfull \hbox (58.66885pt too wide) in paragraph at lines 237--239
 []\T1/ptm/m/n/10 student_id (cv_kickstarter.session_authentication.SessionAuthe
 ntication
  []
 
 
-Overfull \hbox (75.69826pt too wide) in paragraph at lines 235--237
+Overfull \hbox (75.69826pt too wide) in paragraph at lines 239--241
 []\T1/ptm/m/n/10 student_skill_set() (cv_kickstarter.academic_skill_set.CourseS
 killSetMerger
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 241--242
 []\T1/ptm/m/n/10 StudentSkillSet (class in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
 []\T1/ptm/m/n/10 StudentSkillSetNoiceFilter (class in
- []
-
-[27]
-Underfull \hbox (badness 10000) in paragraph at lines 242--243
-[]\T1/ptm/m/n/10 TextKeywordChunkifier (class in
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 242--243
-\T1/ptm/m/n/10 cv_kickstarter.course_keyword_tokenizer),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
-[]\T1/ptm/m/n/10 TokenizedCourseExamResult (class in
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 246--247
+[]\T1/ptm/m/n/10 TextKeywordChunkifier (class in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
+\T1/ptm/m/n/10 cv_kickstarter.course_keyword_tokenizer),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
+[]\T1/ptm/m/n/10 TokenizedCourseExamResult (class in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 250--251
 []\T1/ptm/m/n/10 tokens (cv_kickstarter.course_repository.Course at-
  []
 
 
-Overfull \hbox (32.10956pt too wide) in paragraph at lines 247--249
+Overfull \hbox (32.10956pt too wide) in paragraph at lines 251--253
 []\T1/ptm/m/n/10 tokens (cv_kickstarter.dtu_skill_set.TokenizedCourseExamResult
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 252--253
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
 []\T1/ptm/m/n/10 URL_EXTENSION_GET_JOB
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 252--253
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
 \T1/ptm/m/n/10 (job_searcher.go_jobs.GoJobs at-tribute),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 253--254
+Underfull \hbox (badness 10000) in paragraph at lines 257--258
 []\T1/ptm/m/n/10 URL_EXTENSION_SEARCH
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 253--254
+Underfull \hbox (badness 10000) in paragraph at lines 257--258
 \T1/ptm/m/n/10 (job_searcher.go_jobs.GoJobs at-tribute),
  []
 
 
-Overfull \hbox (10.95pt too wide) in paragraph at lines 254--255
+Overfull \hbox (10.95pt too wide) in paragraph at lines 258--259
 []\T1/ptm/m/n/10 user (cv_kickstarter.models.user_cv_builder.UserCVBuilder
  []
 
 
-Overfull \hbox (143.3287pt too wide) in paragraph at lines 256--258
+Overfull \hbox (143.3287pt too wide) in paragraph at lines 260--262
 []\T1/ptm/m/n/10 user_cv_dict() (cv_kickstarter.models.user_cv_dictionary_mappe
 r.UserCVDictionaryMapper
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 259--260
+Underfull \hbox (badness 10000) in paragraph at lines 263--264
 []\T1/ptm/m/n/10 user_picture() (cv_kickstarter.cnapi.CampusNetApi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 262--263
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
 []\T1/ptm/m/n/10 UserCVBuilder (class in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 263--265
+Underfull \hbox (badness 10000) in paragraph at lines 267--269
 []\T1/ptm/m/n/10 UserCVDictionaryMapper (class in
  []
 
 
-Overfull \hbox (17.58037pt too wide) in paragraph at lines 263--265
+Overfull \hbox (17.58037pt too wide) in paragraph at lines 267--269
 \T1/ptm/m/n/10 cv_kickstarter.models.user_cv_dictionary_mapper),
  []
 
 
-Overfull \hbox (97.54904pt too wide) in paragraph at lines 270--272
+Overfull \hbox (97.54904pt too wide) in paragraph at lines 274--276
 []\T1/ptm/m/n/10 word_scorer() (cv_kickstarter.academic_skill_set.WordFrequency
 ScoreCalculator
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--273
+Underfull \hbox (badness 10000) in paragraph at lines 276--277
 []\T1/ptm/m/n/10 WordFrequencyScoreCalculator (class in
  []
 
 
-Overfull \hbox (1.21013pt too wide) in paragraph at lines 276--277
+Overfull \hbox (1.21013pt too wide) in paragraph at lines 280--281
 []\T1/ptm/m/n/10 xml_to_jobs() (job_searcher.career_builder.CareerBuilder
  []
 
-[28
-
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1894.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1894.
+[28])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1959.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1959.
  (./cv_kickstarter.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1894.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1894.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1959.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1959.
 
 Package rerunfilecheck Info: File `cv_kickstarter.out' has not changed.
-(rerunfilecheck)             Checksum: 835FED2B349A5EB0286DE09618538037;2193.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1894.
+(rerunfilecheck)             Checksum: 2433D6EFE93340124065BEB71E8B12BF;2193.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1959.
  ) 
 Here is how much of TeX's memory you used:
- 9569 strings out of 493117
- 143626 string characters out of 6135433
- 242322 words of memory out of 5000000
- 12549 multiletter control sequences out of 15000+600000
+ 9577 strings out of 493117
+ 143887 string characters out of 6135433
+ 242498 words of memory out of 5000000
+ 12553 multiletter control sequences out of 15000+600000
  61137 words of font info for 69 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  36i,12n,45p,401b,524s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1738,10 +1746,10 @@ type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on cv_kickstarter.pdf (32 pages, 157365 bytes).
+Output written on cv_kickstarter.pdf (32 pages, 159588 bytes).
 PDF statistics:
- 742 PDF objects out of 1000 (max. 8388607)
- 688 compressed objects within 7 object streams
- 223 named destinations out of 1000 (max. 500000)
+ 753 PDF objects out of 1000 (max. 8388607)
+ 699 compressed objects within 7 object streams
+ 227 named destinations out of 1000 (max. 500000)
  261 words of extra memory for PDF output out of 10000 (max. 10000000)
 

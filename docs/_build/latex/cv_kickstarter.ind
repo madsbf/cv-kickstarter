@@ -124,9 +124,12 @@
 		\hyperpage{10}
   \item find\_results() (job\_searcher.career\_builder.CareerBuilder method), \hyperpage{15}
   \item find\_results() (job\_searcher.go\_jobs.GoJobs method), \hyperpage{16}
+  \item find\_results() (job\_searcher.JobSearcher method), \hyperpage{17}
   \item find\_results\_amount() (job\_searcher.career\_builder.CareerBuilder method), 
 		\hyperpage{15}
   \item find\_results\_amount() (job\_searcher.go\_jobs.GoJobs method), \hyperpage{16}
+  \item find\_results\_amount() (job\_searcher.JobSearcher method), \hyperpage{17}
+  \item find\_results\_best\_match() (job\_searcher.JobSearcher method), \hyperpage{17}
   \item first\_name (cv\_kickstarter.cnapi.Student attribute), \hyperpage{8}
   \item full\_name (cv\_kickstarter.models.user\_cv.UserCV attribute), \hyperpage{3}
 
@@ -166,6 +169,7 @@
   \item job\_searcher.go\_jobs (module), \hyperpage{15}
   \item job\_searcher.job (module), \hyperpage{16}
   \item job\_searcher.keyword\_evaluator (module), \hyperpage{16}
+  \item JobSearcher (class in job\_searcher), \hyperpage{17}
   \item json\_to\_job() (job\_searcher.go\_jobs.GoJobs static method), \hyperpage{16}
 
   \indexspace
