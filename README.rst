@@ -12,7 +12,7 @@ To install required modules, simply type:
 
       python setup.py install
 
-For optimization reasons, the course information is fetched from a MongoDB database. In order to import courses into MongoDB from the xml, run the command:
+For optimization reasons, the course information is fetched from a `MongoDB database <http://www.mongodb.org>`_, which is an requirement for running the application. In order to import courses into MongoDB from the xml, run the command:
 
 ::
 
