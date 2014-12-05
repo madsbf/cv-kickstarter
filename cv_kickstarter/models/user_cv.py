@@ -25,7 +25,7 @@ class UserCV(object):
         For three courses: 01234 C1, 01235 C2 and 012346 C3
         """
         return self._to_sentence(
-            map(lambda x: x.title, keyword.course_numbers)
+            list(map(lambda x: x.title, keyword.course_numbers))
         )
 
     @property
