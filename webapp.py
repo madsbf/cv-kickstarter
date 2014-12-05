@@ -3,7 +3,6 @@
 import os
 from flask import (Flask, render_template, request, session, redirect, jsonify,
                    Response)
-from werkzeug.contrib.profiler import ProfilerMiddleware
 from flask_negotiate import consumes
 from flask_sslify import SSLify
 from job_searcher.career_builder import CareerBuilder
@@ -16,7 +15,6 @@ from cv_kickstarter.course_repository import MongoStore
 from cv_kickstarter.cv_kickstarter_config import CvKickstarterConfig
 
 app = Flask(__name__)
-app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=[30])
 config = CvKickstarterConfig(os.environ.get("CONFIG_FILE") or "app.cfg")
 
 app.secret_key = config.secret_key()
