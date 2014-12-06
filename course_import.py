@@ -24,11 +24,11 @@ def import_courses(course_xml_path='courses.xml'):
     progress_bar = ProgressBar(len(courses))
     for index, course in enumerate(courses):
         progress_bar.update(index)
-        course_repo.remove(course.course_number)
-        course_repo.create(
-            course,
-            course_keyword_tokenizer.course_keyword_tokens(course)
-        )
+        if not course_repo.find_by_course_number(course.course_number):
+            course_repo.create(
+                course,
+                course_keyword_tokenizer.course_keyword_tokens(course)
+            )
 
 
 class ProgressBar(object):
@@ -56,4 +56,8 @@ class ProgressBar(object):
 
 
 if __name__ == '__main__':
-    import_courses()
+    try:
+        course_xml_path = sys.argv[1]
+        import_courses(course_xml_path)
+    except KeyError:
+        import_courses()

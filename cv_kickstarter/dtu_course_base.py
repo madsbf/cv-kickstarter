@@ -44,14 +44,18 @@ class CourseExtractor(object):
         ).attrib['Title']
 
     def _contents(self):
-        return self.course_xml.find(
+        xml = self.course_xml.find(
             "Txt[@Lang='%s']/Contents" % self.language
-        ).text
+        )
+        if xml is not None:
+            return xml.text
 
     def _course_objectives_text(self):
-        return self.course_xml.find(
+        xml = self.course_xml.find(
             "Txt[@Lang='%s']/Course_Objectives" % self.language
-        ).text
+        )
+        if xml is not None:
+            return xml.text
 
     def _course_objectives(self):
         return [objective_xml.attrib['Txt']

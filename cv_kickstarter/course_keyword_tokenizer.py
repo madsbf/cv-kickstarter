@@ -47,7 +47,7 @@ class CourseSentenceExtractor(object):
         The sentences are based on title, contents, course_objectives_text
         and course_objectives
         """
-        return [sentence for text in self._course_texts()
+        return [sentence for text in self._course_texts() if text is not None
                 for sentence in nltk.sent_tokenize(text)]
 
     def _course_texts(self):
