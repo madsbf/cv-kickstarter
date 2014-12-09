@@ -93,5 +93,14 @@ class CvKickstarterConfig(object):
         return (env.get("MONGO_DB_NAME") or
                 self._get_from_config_file("mongo", "db_name"))
 
+    def opbeat_org_id(self):
+        return env.get("OPBEAT_ORG_ID")
+
+    def opbeat_app_id(self):
+        return env.get("OPBEAT_APP_ID")
+
+    def opbeat_secret_token(self):
+        return env.get("OPBEAT_SECRET_TOKEN")
+
     def _get_from_config_file(self, group, key):
         return self.config.get(group, key)

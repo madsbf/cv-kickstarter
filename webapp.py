@@ -5,6 +5,7 @@ from flask import (Flask, render_template, request, session, redirect, jsonify,
                    Response)
 from flask_negotiate import consumes
 from flask_sslify import SSLify
+from opbeat.contrib.flask import Opbeat
 from job_searcher.career_builder import CareerBuilder
 
 from cv_kickstarter.cnapi import CampusNetApi
@@ -28,6 +29,13 @@ go_key = config.go_key()
 # Enforce https on Heroku
 if 'DYNO' in os.environ:
     sslify = SSLify(app)
+
+    Opbeat(
+        app,
+        organization_id=config.opbeat_org_id(),
+        app_id=config.opbeat_app_id(),
+        secret_token=config.opbeat_secret_token()
+    )
 
 app.config.update(dict(
     DEBUG=True,
