@@ -39,7 +39,8 @@ setup(
         'lxml==3.4.1',
         'PyMongo>=2.7.0,<2.8.0',
         'docopt>=0.6.0,<0.7.0',
-        'opbeat>=1.3.2,<1.4.0'
+        'opbeat>=1.3.2,<1.4.0',
+        'blinker>=1.3,<1.4'
     ],
     tests_require=['tox'],
     scripts=['bin/jsoncv'],
